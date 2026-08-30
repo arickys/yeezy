@@ -1,36 +1,48 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
 <title>unYZY [UPDATES]</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 :root{
 --bg:#08090b;
---surface:#101216;
---surface2:#15171c;
+--surface:#0e1014;
+--surface2:#13161b;
 --line:rgba(255,255,255,.075);
+--line2:rgba(255,255,255,.12);
 --text:#f5f5f6;
 --muted:#858b95;
 --dim:#5e646e;
+}
+
+html{
+scroll-behavior:smooth;
 }
 
 body{
 margin:0;
 min-height:100vh;
 background:
-radial-gradient(circle at 50% -15%,rgba(255,255,255,.07),transparent 32rem),
+radial-gradient(circle at 50% -15%,rgba(255,255,255,.075),transparent 32rem),
+radial-gradient(circle at 8% 55%,rgba(255,255,255,.018),transparent 28rem),
+radial-gradient(circle at 92% 75%,rgba(255,255,255,.014),transparent 30rem),
 var(--bg);
 color:var(--text);
 font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
 opacity:0;
 transform:scale(1.012);
-transition:opacity .55s ease,transform .75s cubic-bezier(.22,1,.36,1);
+transition:
+opacity .55s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -43,7 +55,34 @@ opacity:0;
 transform:scale(.985);
 }
 
-a{color:inherit}
+body:before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+background-size:80px 80px;
+mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 75%);
+opacity:.3;
+}
+
+body:after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:radial-gradient(
+ellipse at center,
+transparent 45%,
+rgba(0,0,0,.3)
+);
+}
+
+a{
+color:inherit;
+}
 
 .nav{
 position:fixed;
@@ -52,14 +91,17 @@ left:50%;
 z-index:100;
 transform:translateX(-50%);
 display:flex;
+align-items:center;
 gap:3px;
 padding:5px;
 border:1px solid rgba(255,255,255,.08);
 border-radius:14px;
-background:rgba(11,12,15,.76);
+background:rgba(11,12,15,.74);
 backdrop-filter:blur(24px) saturate(150%);
 -webkit-backdrop-filter:blur(24px) saturate(150%);
-box-shadow:0 18px 55px rgba(0,0,0,.42);
+box-shadow:
+0 18px 55px rgba(0,0,0,.42),
+inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .nav a{
@@ -74,7 +116,11 @@ color:#707680;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-transition:.2s ease;
+letter-spacing:-.15px;
+transition:
+color .2s ease,
+background .2s ease,
+transform .2s ease;
 }
 
 .nav a:hover{
@@ -85,20 +131,30 @@ background:rgba(255,255,255,.05);
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
+box-shadow:
+inset 0 0 0 1px rgba(255,255,255,.035),
+0 2px 9px rgba(0,0,0,.18);
+}
+
+.nav a:active{
+transform:scale(.95);
 }
 
 .container{
+position:relative;
+z-index:2;
 width:min(1040px,calc(100% - 36px));
 margin:auto;
-padding:128px 0 80px;
+padding:128px 0 90px;
 }
 
 .page-head{
+position:relative;
 display:flex;
-align-items:center;
+align-items:flex-end;
 justify-content:space-between;
 gap:35px;
-padding-bottom:30px;
+padding-bottom:32px;
 border-bottom:1px solid var(--line);
 }
 
@@ -113,41 +169,108 @@ text-transform:uppercase;
 
 .page-title{
 margin:0;
-font-size:clamp(48px,6vw,70px);
-line-height:.9;
-letter-spacing:-4.5px;
-font-weight:900;
+font-size:clamp(50px,7vw,76px);
+line-height:.86;
+letter-spacing:-5px;
+font-weight:950;
 }
 
 .page-subtitle{
-margin-top:13px;
 max-width:450px;
+margin-top:15px;
 color:var(--muted);
 font-size:12px;
-line-height:1.6;
+line-height:1.65;
 }
 
 .logo-area{
-width:135px;
-height:135px;
-flex:0 0 135px;
+position:relative;
+width:145px;
+height:145px;
+flex:0 0 145px;
 display:grid;
 place-items:center;
 }
 
-.logo{
-width:110px;
-height:110px;
-object-fit:contain;
-filter:
-drop-shadow(0 20px 35px rgba(0,0,0,.5))
-drop-shadow(0 0 35px rgba(255,255,255,.055));
-animation:float 6s ease-in-out infinite;
+.logo-area:before{
+content:"";
+position:absolute;
+width:120px;
+height:80px;
+border-radius:50%;
+background:rgba(255,255,255,.065);
+filter:blur(45px);
 }
 
-@keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-7px)}
+.logo-area:after{
+content:"";
+position:absolute;
+width:112px;
+height:112px;
+border:1px solid rgba(255,255,255,.025);
+border-radius:50%;
+box-shadow:
+0 0 50px rgba(255,255,255,.025),
+inset 0 0 35px rgba(255,255,255,.018);
+}
+
+.logo{
+position:relative;
+z-index:2;
+width:112px;
+height:112px;
+display:block;
+object-fit:contain;
+filter:
+drop-shadow(0 22px 38px rgba(0,0,0,.5))
+drop-shadow(0 0 38px rgba(255,255,255,.055));
+animation:logoFloat 6s ease-in-out infinite;
+}
+
+@keyframes logoFloat{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-8px);
+}
+}
+
+.summary{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:20px;
+margin-top:24px;
+padding:13px 16px;
+border:1px solid var(--line);
+border-radius:10px;
+background:rgba(255,255,255,.018);
+}
+
+.summary-left{
+display:flex;
+align-items:center;
+gap:10px;
+color:#858b94;
+font-size:10px;
+font-weight:750;
+}
+
+.status-dot{
+width:6px;
+height:6px;
+border-radius:50%;
+background:#d9dadd;
+box-shadow:0 0 12px rgba(255,255,255,.35);
+}
+
+.summary-right{
+color:#555b64;
+font-size:9px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
 }
 
 .timeline{
@@ -160,8 +283,8 @@ padding-left:22px;
 content:"";
 position:absolute;
 left:3px;
-top:8px;
-bottom:8px;
+top:9px;
+bottom:9px;
 width:1px;
 background:linear-gradient(
 to bottom,
@@ -172,87 +295,143 @@ rgba(255,255,255,.025)
 
 .update{
 position:relative;
-display:grid;
-grid-template-columns:145px minmax(0,1fr) auto;
-gap:25px;
-padding:20px;
-margin-bottom:12px;
+margin-bottom:13px;
+padding:21px 21px 22px;
 border:1px solid var(--line);
 border-radius:13px;
 background:
-linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.006)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.025),
+rgba(255,255,255,.005)
+),
 var(--surface);
-transition:.25s cubic-bezier(.22,1,.36,1);
+box-shadow:0 8px 25px rgba(0,0,0,.08);
+transition:
+transform .25s cubic-bezier(.22,1,.36,1),
+border-color .2s ease,
+background .2s ease,
+box-shadow .25s ease;
 }
 
 .update:before{
 content:"";
 position:absolute;
 left:-23px;
-top:26px;
+top:27px;
 width:7px;
 height:7px;
 border:2px solid var(--bg);
 border-radius:50%;
-background:#737983;
-}
-
-.update:first-child:before{
-background:#fff;
-box-shadow:0 0 16px rgba(255,255,255,.2);
+background:#666c75;
+box-shadow:0 0 0 1px rgba(255,255,255,.07);
 }
 
 .update:hover{
 transform:translateY(-3px);
-border-color:rgba(255,255,255,.13);
-background:var(--surface2);
+border-color:var(--line2);
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.04),
+rgba(255,255,255,.008)
+),
+var(--surface2);
 box-shadow:0 20px 45px rgba(0,0,0,.2);
 }
 
+.update.latest{
+border-color:rgba(255,255,255,.12);
+}
+
+.update.latest:before{
+background:#fff;
+box-shadow:
+0 0 0 1px rgba(255,255,255,.13),
+0 0 18px rgba(255,255,255,.16);
+}
+
+.update-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:15px;
+margin-bottom:14px;
+}
+
 .update-date{
-padding-top:2px;
-color:#666c75;
+color:#656b75;
 font-size:9px;
 font-weight:850;
 letter-spacing:1.2px;
+text-transform:uppercase;
 }
 
-.update:first-child .update-date{
-color:#b4b7bd;
-}
-
-.update-title{
-margin:0;
-font-size:14px;
-font-weight:850;
-}
-
-.update-description{
-margin-top:7px;
-color:#777d87;
-font-size:11px;
-line-height:1.6;
+.update.latest .update-date{
+color:#aeb2b9;
 }
 
 .update-tag{
-height:25px;
+height:24px;
 display:inline-flex;
 align-items:center;
-padding:0 10px;
-border:1px solid rgba(255,255,255,.09);
+justify-content:center;
+padding:0 9px;
+border:1px solid rgba(255,255,255,.085);
 border-radius:7px;
 background:rgba(255,255,255,.025);
-color:#777d86;
+color:#747a84;
 font-size:8px;
 font-weight:850;
 letter-spacing:1px;
 text-transform:uppercase;
+white-space:nowrap;
 }
 
-.update:first-child .update-tag{
+.update.latest .update-tag{
 color:#e0e1e3;
 border-color:rgba(255,255,255,.15);
 background:rgba(255,255,255,.055);
+}
+
+.update-body{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:30px;
+}
+
+.update-content{
+min-width:0;
+}
+
+.update-title{
+margin:0;
+font-size:16px;
+line-height:1.3;
+font-weight:850;
+letter-spacing:-.3px;
+}
+
+.update-description{
+max-width:680px;
+margin-top:7px;
+color:#777d87;
+font-size:11px;
+line-height:1.65;
+}
+
+.update-index{
+color:#30343a;
+font-size:25px;
+line-height:1;
+font-weight:900;
+letter-spacing:-2px;
+user-select:none;
+}
+
+.update.latest .update-index{
+color:#3a3e45;
 }
 
 .page-transition{
@@ -271,29 +450,34 @@ pointer-events:none;
 .page-transition.active{
 opacity:1;
 visibility:visible;
+pointer-events:auto;
 }
 
 .transition-logo{
-width:min(300px,62vw);
-height:min(300px,62vw);
+width:min(310px,62vw);
+height:min(310px,62vw);
 object-fit:contain;
 opacity:0;
 transform:scale(.72);
 filter:
 drop-shadow(0 28px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 55px rgba(255,255,255,.07));
+drop-shadow(0 0 60px rgba(255,255,255,.07));
 }
 
 .page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
-transition:opacity .5s ease,transform .7s cubic-bezier(.22,1,.36,1);
+transition:
+opacity .5s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 .page-transition.fade .transition-logo{
 opacity:0;
 transform:scale(1.1);
-transition:opacity .38s ease,transform .5s ease;
+transition:
+opacity .38s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 @media(max-width:760px){
@@ -307,51 +491,43 @@ align-items:flex-start;
 }
 
 .logo-area{
-width:105px;
-height:105px;
-flex-basis:105px;
+width:110px;
+height:110px;
+flex-basis:110px;
 }
 
 .logo{
-width:85px;
-height:85px;
+width:88px;
+height:88px;
 }
 
-.update{
-grid-template-columns:1fr;
-gap:9px;
+.logo-area:after{
+width:90px;
+height:90px;
 }
 
-.update-tag{
-position:absolute;
-top:17px;
-right:17px;
+.logo-area:before{
+width:95px;
 }
 
-.update-title{
-padding-right:70px;
+.update-body{
+display:block;
 }
 
-.timeline{
-padding-left:18px;
-}
-
-.timeline:before{
-left:2px;
-}
-
-.update:before{
-left:-20px;
+.update-index{
+display:none;
 }
 }
 
 @media(max-width:560px){
 
-.nav{top:12px}
+.nav{
+top:12px;
+}
 
 .nav a{
-min-width:70px;
 height:33px;
+min-width:70px;
 padding:0 10px;
 font-size:11px;
 }
@@ -362,14 +538,11 @@ padding-top:103px;
 
 .page-head{
 display:block;
-}
-
-.logo-area{
-margin:22px auto 0;
+padding-bottom:25px;
 }
 
 .page-title{
-font-size:46px;
+font-size:48px;
 letter-spacing:-3.5px;
 }
 
@@ -377,12 +550,52 @@ letter-spacing:-3.5px;
 font-size:11px;
 }
 
+.logo-area{
+width:105px;
+height:105px;
+margin:20px auto 0;
+}
+
+.summary{
+padding:12px 13px;
+}
+
+.summary-right{
+display:none;
+}
+
+.timeline{
+margin-top:24px;
+padding-left:18px;
+}
+
+.timeline:before{
+left:2px;
+}
+
 .update{
-padding:16px;
+padding:17px;
+}
+
+.update:before{
+left:-20px;
+}
+
+.update-title{
+font-size:14px;
 }
 
 .update-description{
 font-size:10.5px;
+}
+
+.update-top{
+margin-bottom:12px;
+}
+
+.update-tag{
+height:23px;
+font-size:7.5px;
 }
 }
 
@@ -390,8 +603,7 @@ font-size:10.5px;
 
 body,
 .update,
-.page-transition,
-.transition-logo{
+.page-transition .transition-logo{
 transition:none;
 }
 
@@ -405,9 +617,9 @@ animation:none;
 <body>
 
 <nav class="nav">
-<a href="/" data-page="home">Home</a>
-<a href="/downloads" data-page="downloads">Downloads</a>
-<a href="/updates" class="active" data-page="updates">Updates</a>
+<a href="index.html" data-page="home">Home</a>
+<a href="downloads.html" data-page="downloads">Downloads</a>
+<a href="updates.html" class="active" data-page="updates">Updates</a>
 </nav>
 
 <main class="container">
@@ -425,63 +637,154 @@ New additions, changes, fixes, and improvements to the archive.
 </div>
 
 <div class="logo-area">
-<img class="logo" src="assets/LOGO2.png" alt="">
+<img
+class="logo"
+src="assets/LOGO2.png"
+alt=""
+>
 </div>
 
 </header>
 
+<div class="summary">
+<div class="summary-left">
+<span class="status-dot"></span>
+<span>Archive status: active</span>
+</div>
+
+<div class="summary-right">
+Latest activity · AUG 30, 2026
+</div>
+</div>
+
 <section class="timeline">
 
-<article class="update">
-<div class="update-date">AUG 30, 2026</div>
+<article class="update latest">
 
-<div>
-<h2 class="update-title">Archive launch</h2>
+<div class="update-top">
+<div class="update-date">
+AUG 30, 2026
+</div>
+
+<div class="update-tag">
+Added
+</div>
+</div>
+
+<div class="update-body">
+
+<div class="update-content">
+<h2 class="update-title">
+Archive launch
+</h2>
+
 <div class="update-description">
 The archive is now live with the first available release.
 </div>
 </div>
 
-<div class="update-tag">Added</div>
+<div class="update-index">
+01
+</div>
+
+</div>
+
 </article>
 
 <article class="update">
-<div class="update-date">AUG 30, 2026</div>
 
-<div>
-<h2 class="update-title">Dedicated pages</h2>
+<div class="update-top">
+<div class="update-date">
+AUG 30, 2026
+</div>
+
+<div class="update-tag">
+Update
+</div>
+</div>
+
+<div class="update-body">
+
+<div class="update-content">
+<h2 class="update-title">
+Dedicated pages
+</h2>
+
 <div class="update-description">
-Downloads and updates now have their own separate pages.
+Downloads and updates now have their own separate pages, keeping the archive easier to browse.
 </div>
 </div>
 
-<div class="update-tag">Update</div>
+<div class="update-index">
+02
+</div>
+
+</div>
+
 </article>
 
 <article class="update">
-<div class="update-date">AUG 30, 2026</div>
 
-<div>
-<h2 class="update-title">Navigation cleanup</h2>
+<div class="update-top">
+<div class="update-date">
+AUG 30, 2026
+</div>
+
+<div class="update-tag">
+Patch
+</div>
+</div>
+
+<div class="update-body">
+
+<div class="update-content">
+<h2 class="update-title">
+Navigation cleanup
+</h2>
+
 <div class="update-description">
-Clean URLs are now used throughout the site.
+Clean URLs are now used throughout the site for a simpler and more consistent browsing experience.
 </div>
 </div>
 
-<div class="update-tag">Patch</div>
+<div class="update-index">
+03
+</div>
+
+</div>
+
 </article>
 
 <article class="update">
-<div class="update-date">AUG 30, 2026</div>
 
-<div>
-<h2 class="update-title">Asset loading fix</h2>
+<div class="update-top">
+<div class="update-date">
+AUG 30, 2026
+</div>
+
+<div class="update-tag">
+Bug Fixes
+</div>
+</div>
+
+<div class="update-body">
+
+<div class="update-content">
+<h2 class="update-title">
+Asset loading fix
+</h2>
+
 <div class="update-description">
 Fixed image paths after moving the site's graphics into the assets folder.
 </div>
 </div>
 
-<div class="update-tag">Bug Fixes</div>
+<div class="update-index">
+04
+</div>
+
+</div>
+
 </article>
 
 </section>
@@ -489,12 +792,18 @@ Fixed image paths after moving the site's graphics into the assets folder.
 </main>
 
 <div class="page-transition" id="pageTransition">
-<img class="transition-logo" id="transitionLogo" src="assets/LOGO2.png" alt="">
+<img
+class="transition-logo"
+id="transitionLogo"
+src="assets/LOGO2.png"
+alt=""
+>
 </div>
 
 <script>
-const transition=document.getElementById("pageTransition");
+const pageTransition=document.getElementById("pageTransition");
 const transitionLogo=document.getElementById("transitionLogo");
+const links=document.querySelectorAll("[data-page]");
 
 let navigating=false;
 
@@ -502,65 +811,90 @@ function navigate(url,target){
 if(navigating)return;
 
 navigating=true;
+
 document.body.classList.add("leaving");
 
-transitionLogo.src=target==="home"
+transitionLogo.src=
+target==="home"
 ?"assets/logo.png"
 :"assets/LOGO2.png";
 
-transition.classList.add("active");
+pageTransition.classList.add("active");
 
 requestAnimationFrame(()=>{
-transition.classList.add("show");
+pageTransition.classList.add("show");
 });
 
 setTimeout(()=>{
-transition.classList.add("fade");
+pageTransition.classList.add("fade");
 },620);
 
 setTimeout(()=>{
 sessionStorage.setItem("unyzyTransition",target);
 window.location.href=url;
-},900);
+},880);
 }
 
-document.querySelectorAll("[data-page]").forEach(link=>{
+links.forEach(link=>{
 link.addEventListener("click",event=>{
 event.preventDefault();
-navigate(link.href,link.dataset.page);
+
+navigate(
+link.href,
+link.dataset.page
+);
 });
 });
 
-function enter(){
-const target=sessionStorage.getItem("unyzyTransition");
+function enterPage(){
+
+const transition=
+sessionStorage.getItem("unyzyTransition");
+
 sessionStorage.removeItem("unyzyTransition");
 
-if(target){
-transitionLogo.src=target==="home"
+if(
+transition==="home"||
+transition==="downloads"||
+transition==="updates"
+){
+
+transitionLogo.src=
+transition==="home"
 ?"assets/logo.png"
 :"assets/LOGO2.png";
 
-transition.classList.add("active");
+pageTransition.classList.add("active");
 
 requestAnimationFrame(()=>{
-transition.classList.add("show");
+pageTransition.classList.add("show");
 });
 
 setTimeout(()=>{
-transition.classList.add("fade");
+pageTransition.classList.add("fade");
 document.body.classList.add("ready");
-},500);
+},520);
 
 setTimeout(()=>{
-transition.classList.remove("active","show","fade");
-},900);
+pageTransition.classList.remove(
+"active",
+"show",
+"fade"
+);
+},950);
+
 }else{
+
+requestAnimationFrame(()=>{
 document.body.classList.add("ready");
+});
+
 }
 }
 
-enter();
+enterPage();
 </script>
 
 </body>
 </html>
+```
