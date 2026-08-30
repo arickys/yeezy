@@ -42,7 +42,11 @@ content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.3) 100%);
+background:radial-gradient(
+ellipse at center,
+transparent 45%,
+rgba(0,0,0,.3) 100%
+);
 }
 
 a{
@@ -54,7 +58,7 @@ position:fixed;
 top:20px;
 left:50%;
 z-index:50;
-transform:translateX(-50%);
+transform:translate3d(-50%,0,0);
 display:flex;
 align-items:center;
 gap:3px;
@@ -68,8 +72,8 @@ box-shadow:
 0 18px 55px rgba(0,0,0,.4),
 inset 0 1px 0 rgba(255,255,255,.035);
 transition:
-opacity .45s ease,
-transform .55s cubic-bezier(.22,1,.36,1);
+opacity .32s ease,
+transform .45s cubic-bezier(.22,1,.36,1);
 }
 
 .nav a{
@@ -84,7 +88,11 @@ color:#70757e;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-transition:.2s ease;
+letter-spacing:-.15px;
+transition:
+color .18s ease,
+background .18s ease,
+transform .18s ease;
 }
 
 .nav a:hover{
@@ -95,7 +103,12 @@ background:rgba(255,255,255,.055);
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
-box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
+box-shadow:
+inset 0 0 0 1px rgba(255,255,255,.035);
+}
+
+.nav a:active{
+transform:scale(.95);
 }
 
 .hero{
@@ -108,8 +121,8 @@ align-items:center;
 justify-content:center;
 padding:80px 24px 30px;
 transition:
-opacity .45s ease,
-transform .65s cubic-bezier(.22,1,.36,1);
+opacity .35s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 .hero-inner{
@@ -124,28 +137,25 @@ text-align:center;
 
 .logo-holder{
 position:relative;
+width:330px;
+height:330px;
 display:flex;
 align-items:center;
 justify-content:center;
-width:330px;
-height:330px;
 }
 
 .logo-glow{
 position:absolute;
 width:250px;
-height:180px;
+height:170px;
 left:50%;
 top:50%;
-transform:translate(-50%,-50%);
+transform:translate3d(-50%,-50%,0);
 border-radius:50%;
-background:rgba(255,255,255,.07);
-filter:blur(75px);
-opacity:.6;
-transition:
-transform .9s cubic-bezier(.16,1,.3,1),
-opacity .7s ease,
-filter .9s ease;
+background:rgba(255,255,255,.065);
+filter:blur(65px);
+opacity:.55;
+pointer-events:none;
 }
 
 .logo{
@@ -156,20 +166,21 @@ height:320px;
 display:block;
 object-fit:contain;
 filter:
-drop-shadow(0 30px 50px rgba(0,0,0,.5))
-drop-shadow(0 0 35px rgba(255,255,255,.055));
+drop-shadow(0 28px 45px rgba(0,0,0,.46))
+drop-shadow(0 0 28px rgba(255,255,255,.045));
 animation:logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
-transition:
-transform .9s cubic-bezier(.16,1,.3,1),
-filter .8s ease;
+will-change:transform;
+backface-visibility:hidden;
+-webkit-backface-visibility:hidden;
 }
 
 @keyframes logoFloat{
-0%,100%{
-transform:translateY(0);
+0%,
+100%{
+transform:translate3d(0,0,0);
 }
 50%{
-transform:translateY(-11px);
+transform:translate3d(0,-10px,0);
 }
 }
 
@@ -180,8 +191,8 @@ font-size:12px;
 font-weight:650;
 letter-spacing:.5px;
 transition:
-opacity .35s ease,
-transform .5s ease;
+opacity .28s ease,
+transform .35s ease;
 }
 
 .actions{
@@ -191,8 +202,8 @@ justify-content:center;
 gap:8px;
 margin-top:25px;
 transition:
-opacity .35s ease,
-transform .5s ease;
+opacity .28s ease,
+transform .35s ease;
 }
 
 .action{
@@ -208,7 +219,13 @@ color:#bfc2c7;
 text-decoration:none;
 font-size:11px;
 font-weight:800;
-transition:.2s ease;
+letter-spacing:-.05px;
+transition:
+background .18s ease,
+border-color .18s ease,
+color .18s ease,
+transform .18s ease,
+box-shadow .18s ease;
 }
 
 .action:hover{
@@ -229,6 +246,7 @@ color:#08090b;
 background:#fff;
 border-color:#fff;
 color:#08090b;
+box-shadow:0 14px 32px rgba(0,0,0,.3);
 }
 
 .transition{
@@ -242,77 +260,73 @@ justify-content:center;
 background:#08090b;
 opacity:0;
 visibility:hidden;
-transition:opacity .2s ease,visibility 0s linear .8s;
+will-change:opacity;
 }
 
 .transition-logo{
 width:320px;
 height:320px;
+display:block;
 object-fit:contain;
 opacity:0;
-transform:scale(.7);
-filter:
-drop-shadow(0 30px 50px rgba(0,0,0,.5))
-drop-shadow(0 0 40px rgba(255,255,255,.08));
+transform:translate3d(0,0,0) scale(.72);
+will-change:transform,opacity;
+backface-visibility:hidden;
+-webkit-backface-visibility:hidden;
+}
+
+body.page-leave{
+overflow:hidden;
 }
 
 body.page-leave .nav{
 opacity:0;
-transform:translate(-50%,-18px);
+transform:translate3d(-50%,-14px,0);
 }
 
 body.page-leave .hero{
 opacity:0;
-transform:scale(.97);
+transform:translate3d(0,0,0) scale(.985);
 }
 
 body.page-leave .description,
 body.page-leave .actions{
 opacity:0;
-transform:translateY(12px);
+transform:translate3d(0,8px,0);
 }
 
 body.page-leave .logo{
 animation:none;
-transform:scale(.8);
+transform:translate3d(0,0,0) scale(.86);
 }
 
 body.page-leave .transition{
 opacity:1;
 visibility:visible;
-transition:opacity .25s ease;
 }
 
 body.page-leave .transition-logo{
-animation:transitionLogo 1.05s cubic-bezier(.16,1,.3,1) forwards;
+animation:transitionLogo .72s cubic-bezier(.2,.8,.25,1) forwards;
 }
 
 @keyframes transitionLogo{
 0%{
 opacity:0;
-transform:scale(.7);
-filter:
-drop-shadow(0 30px 50px rgba(0,0,0,.5))
-drop-shadow(0 0 20px rgba(255,255,255,.03));
+transform:translate3d(0,0,0) scale(.72);
 }
 
-18%{
+15%{
 opacity:1;
 }
 
-65%{
+55%{
 opacity:1;
-transform:scale(1.35);
-filter:
-drop-shadow(0 35px 60px rgba(0,0,0,.6))
-drop-shadow(0 0 80px rgba(255,255,255,.14));
+transform:translate3d(0,0,0) scale(1.18);
 }
 
 100%{
 opacity:0;
-transform:scale(2.4);
-filter:
-drop-shadow(0 0 100px rgba(255,255,255,.2));
+transform:translate3d(0,0,0) scale(1.9);
 }
 }
 
@@ -374,8 +388,21 @@ padding:0 12px;
 }
 
 @media(prefers-reduced-motion:reduce){
+
 .logo{
 animation:none;
+}
+
+.transition-logo{
+animation:none!important;
+}
+
+body.page-leave .transition{
+opacity:1;
+}
+
+body.page-leave .transition-logo{
+opacity:0;
 }
 }
 </style>
@@ -446,18 +473,22 @@ alt=""
 
 <script>
 const transitionLinks=document.querySelectorAll("[data-transition]");
+let navigating=false;
 
 transitionLinks.forEach(link=>{
 link.addEventListener("click",event=>{
+if(navigating)return;
+
 event.preventDefault();
+navigating=true;
 
 const target=link.href;
 
 document.body.classList.add("page-leave");
 
 setTimeout(()=>{
-window.location.href=target;
-},850);
+window.location.assign(target);
+},680);
 });
 });
 </script>
