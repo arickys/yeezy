@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
 <title>unYZY [DOWNLOADS]</title>
 
@@ -17,38 +17,25 @@ box-sizing:border-box;
 --surface:#101216;
 --surface2:#15171c;
 --line:#22252b;
+--line2:#343941;
 --text:#f5f5f6;
 --muted:#858b95;
 --dim:#5e646e;
 }
 
-html,
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
-min-height:100%;
-background:var(--bg);
-}
-
-html{
-view-transition-name:root;
-}
-
-body{
 min-height:100vh;
+background:
+radial-gradient(circle at 50% -18%,rgba(255,255,255,.06),transparent 30rem),
+var(--bg);
 color:var(--text);
 font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
-overflow-x:hidden;
-}
-
-body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:
-radial-gradient(circle at 50% -18%,rgba(255,255,255,.065),transparent 30rem),
-radial-gradient(circle at 20% 70%,rgba(255,255,255,.018),transparent 25rem);
 }
 
 a{
@@ -60,19 +47,19 @@ position:fixed;
 top:20px;
 left:50%;
 z-index:100;
-transform:translate3d(-50%,0,0);
+transform:translateX(-50%);
 display:flex;
 gap:3px;
 padding:5px;
 border:1px solid rgba(255,255,255,.085);
 border-radius:14px;
 background:rgba(12,13,16,.78);
-backdrop-filter:blur(22px) saturate(150%);
--webkit-backdrop-filter:blur(22px) saturate(150%);
+backdrop-filter:blur(24px) saturate(150%);
+-webkit-backdrop-filter:blur(24px) saturate(150%);
 box-shadow:
 0 15px 50px rgba(0,0,0,.38),
-inset 0 1px rgba(255,255,255,.035);
-view-transition-name:nav;
+inset 0 1px 0 rgba(255,255,255,.035);
+animation:navIn .65s cubic-bezier(.16,1,.3,1);
 }
 
 .nav a{
@@ -87,10 +74,7 @@ color:#747a84;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-transition:
-color .18s ease,
-background .18s ease,
-transform .18s ease;
+transition:.2s ease;
 }
 
 .nav a:hover{
@@ -101,19 +85,15 @@ background:rgba(255,255,255,.055);
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.095);
-}
-
-.nav a:active{
-transform:scale(.94);
+box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
 }
 
 .container{
-position:relative;
-z-index:1;
 width:min(1120px,calc(100% - 36px));
 margin:auto;
 padding:130px 0 80px;
-animation:pageIn .65s cubic-bezier(.22,1,.36,1) both;
+animation:
+contentIn .8s cubic-bezier(.16,1,.3,1) both;
 }
 
 .heading{
@@ -153,7 +133,7 @@ outline:none;
 background:var(--surface);
 color:#fff;
 font-size:13px;
-transition:.18s ease;
+transition:.2s ease;
 }
 
 .search input::placeholder{
@@ -189,17 +169,17 @@ padding:14px;
 border:1px solid var(--line);
 border-radius:12px;
 background:
-linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.006)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.025),
+rgba(255,255,255,.006)
+),
 var(--surface);
-transition:
-transform .18s ease,
-border-color .18s ease,
-background .18s ease,
-box-shadow .18s ease;
+transition:.2s ease;
 }
 
 .file:hover{
-transform:translate3d(0,-3px,0);
+transform:translateY(-3px);
 border-color:#373b44;
 background:var(--surface2);
 box-shadow:0 18px 40px rgba(0,0,0,.22);
@@ -275,7 +255,7 @@ transition:.18s ease;
 .download:hover{
 background:#fff;
 border-color:#fff;
-transform:translate3d(0,-1px,0);
+transform:translateY(-1px);
 }
 
 .empty{
@@ -288,162 +268,125 @@ color:#707680;
 font-size:12px;
 }
 
-.transition-cover{
+.page-transition{
 position:fixed;
 inset:0;
-z-index:9999;
-pointer-events:none;
+z-index:1000;
 display:flex;
 align-items:center;
 justify-content:center;
 background:#08090b;
 opacity:0;
 visibility:hidden;
+pointer-events:none;
+overflow:hidden;
 }
 
-.transition-cover img{
+.transition-logo{
+position:absolute;
 width:320px;
 height:320px;
 object-fit:contain;
-transform:scale(3.5);
-opacity:0;
 }
 
-body.going-home .transition-cover{
+.transition-logo.first{
+opacity:0;
+transform:scale(2.5);
+filter:
+drop-shadow(0 0 90px rgba(255,255,255,.15));
+}
+
+.transition-logo.second{
+opacity:0;
+transform:scale(2.5);
+filter:
+drop-shadow(0 0 100px rgba(255,255,255,.18));
+}
+
+body.entering .page-transition{
 visibility:visible;
-animation:homeCover .8s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-body.going-home .transition-cover img{
-animation:homeLogo .8s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-body.going-home .container{
-animation:downloadsOut .55s cubic-bezier(.22,1,.36,1) forwards;
-}
-
-@keyframes homeCover{
-0%{
-opacity:0;
-}
-28%{
 opacity:1;
-}
-100%{
-opacity:1;
-}
+animation:transitionOut 1.05s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-@keyframes homeLogo{
-0%{
-opacity:0;
-transform:scale(3.8);
-}
-12%{
-opacity:1;
-}
-58%{
-opacity:1;
-transform:scale(1);
-}
-100%{
-opacity:0;
-transform:scale(.34);
-}
+body.entering .transition-logo.first{
+animation:logoReturn 1.05s cubic-bezier(.16,1,.3,1) forwards;
 }
 
-@keyframes downloadsOut{
+body.entering .transition-logo.second{
+animation:logoReturnSecond 1.05s cubic-bezier(.16,1,.3,1) .08s forwards;
+}
+
+@keyframes transitionOut{
 0%{
 opacity:1;
-transform:scale(1);
 }
+
+65%{
+opacity:1;
+}
+
 100%{
 opacity:0;
-transform:scale(1.08);
+visibility:hidden;
 }
 }
 
-@keyframes pageIn{
+@keyframes logoReturn{
 0%{
 opacity:0;
-transform:translate3d(0,28px,0) scale(.98);
+transform:scale(2.5);
 }
+
+25%{
+opacity:1;
+}
+
 100%{
-opacity:1;
-transform:translate3d(0,0,0) scale(1);
-}
-}
-
-@keyframes vtOut{
-from{
-opacity:1;
-transform:scale(1);
-}
-to{
 opacity:0;
-transform:scale(1.07);
+transform:scale(.7);
 }
 }
 
-@keyframes vtIn{
-from{
-opacity:0;
-transform:scale(.93);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
-
-::view-transition-old(root){
-animation:vtOut .7s cubic-bezier(.22,1,.36,1) both;
-}
-
-::view-transition-new(root){
-animation:vtIn .65s cubic-bezier(.22,1,.36,1) both;
-}
-
-::view-transition-group(main-logo){
-animation-duration:.78s;
-animation-timing-function:cubic-bezier(.16,1,.3,1);
-}
-
-::view-transition-old(main-logo){
-animation:downloadLogoOut .78s cubic-bezier(.16,1,.3,1) both;
-}
-
-::view-transition-new(main-logo){
-animation:downloadLogoIn .78s cubic-bezier(.16,1,.3,1) both;
-}
-
-@keyframes downloadLogoOut{
+@keyframes logoReturnSecond{
 0%{
 opacity:0;
-transform:scale(.3);
+transform:scale(2.5);
 }
-42%{
+
+25%{
 opacity:1;
-transform:scale(.8);
 }
+
 100%{
 opacity:0;
-transform:scale(4);
+transform:scale(.7);
 }
 }
 
-@keyframes downloadLogoIn{
+@keyframes contentIn{
 0%{
 opacity:0;
-transform:scale(4);
+transform:translateY(28px) scale(.985);
+filter:blur(5px);
 }
-45%{
-opacity:1;
-transform:scale(1.3);
-}
+
 100%{
 opacity:1;
-transform:scale(1);
+transform:translateY(0) scale(1);
+filter:blur(0);
+}
+}
+
+@keyframes navIn{
+0%{
+opacity:0;
+transform:translate(-50%,-25px) scale(.94);
+}
+
+100%{
+opacity:1;
+transform:translate(-50%,0) scale(1);
 }
 }
 
@@ -497,23 +440,18 @@ padding:0 10px;
 display:none;
 }
 
-.transition-cover img{
-width:270px;
-height:270px;
+.transition-logo{
+width:260px;
+height:260px;
 }
 }
 
 @media(prefers-reduced-motion:reduce){
 
-.container{
-animation:none;
-}
-
-::view-transition-old(root),
-::view-transition-new(root),
-::view-transition-old(main-logo),
-::view-transition-new(main-logo){
-animation:none;
+.container,
+.nav,
+.transition-logo{
+animation:none!important;
 }
 }
 </style>
@@ -523,7 +461,7 @@ animation:none;
 <body>
 
 <nav class="nav">
-<a href="index.html" data-home-transition>Home</a>
+<a href="index.html" data-transition>Home</a>
 <a href="downloads.html" class="active">Downloads</a>
 <a href="news.html">News</a>
 </nav>
@@ -549,8 +487,22 @@ autocomplete="off"
 
 </main>
 
-<div class="transition-cover">
-<img src="logo.png" alt="">
+<div class="page-transition">
+
+<img
+class="transition-logo first"
+src="logo.png"
+alt=""
+
+>
+
+<img
+class="transition-logo second"
+src="LOGO2.png"
+alt=""
+
+>
+
 </div>
 
 <script>
@@ -566,8 +518,6 @@ icon:"IAPW.png"
 const downloads=document.getElementById("downloadsList");
 const search=document.getElementById("search");
 const fileCount=document.getElementById("fileCount");
-
-let navigating=false;
 
 function escapeHTML(value){
 return String(value??"").replace(/[&<>"']/g,c=>({
@@ -632,54 +582,35 @@ download
 `).join("");
 }
 
-async function goHome(url){
-
-if(navigating)return;
-
-navigating=true;
-
-if(document.startViewTransition){
-
-const transition=document.startViewTransition(()=>{
-window.location.href=url;
-});
-
-try{
-await transition.finished;
-}catch{}
-
-return;
-}
-
-document.body.classList.add("going-home");
-
-setTimeout(()=>{
-window.location.href=url;
-},780);
-}
-
-document
-.querySelector("[data-home-transition]")
-.addEventListener("click",event=>{
-
-if(
-event.button!==0||
-event.metaKey||
-event.ctrlKey||
-event.shiftKey||
-event.altKey
-)return;
-
-event.preventDefault();
-
-goHome("index.html");
-});
-
 search.addEventListener("input",()=>{
 renderFiles(search.value);
 });
 
+const transitionLinks=document.querySelectorAll("[data-transition]");
+
+transitionLinks.forEach(link=>{
+link.addEventListener("click",event=>{
+event.preventDefault();
+
+const target=link.href;
+
+document.body.classList.add("leaving");
+
+setTimeout(()=>{
+window.location.href=target;
+},850);
+});
+});
+
 renderFiles();
+
+if(document.referrer){
+document.body.classList.add("entering");
+
+setTimeout(()=>{
+document.body.classList.remove("entering");
+},1100);
+}
 </script>
 
 </body>
