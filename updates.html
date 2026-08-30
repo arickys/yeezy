@@ -8,9 +8,7 @@
 <title>unYZY [UPDATES]</title>
 
 <style>
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 :root{
 --bg:#08090b;
@@ -31,8 +29,8 @@ body{
 margin:0;
 min-height:100vh;
 background:
-radial-gradient(circle at 50% -15%,rgba(255,255,255,.065),transparent 32rem),
-radial-gradient(circle at 0% 55%,rgba(255,255,255,.018),transparent 28rem),
+radial-gradient(circle at 50% -16%,rgba(255,255,255,.065),transparent 32rem),
+radial-gradient(circle at 0% 60%,rgba(255,255,255,.018),transparent 28rem),
 radial-gradient(circle at 100% 80%,rgba(255,255,255,.015),transparent 30rem),
 var(--bg);
 color:var(--text);
@@ -40,9 +38,7 @@ font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Aria
 -webkit-font-smoothing:antialiased;
 opacity:0;
 transform:scale(1.018);
-transition:
-opacity .6s ease,
-transform .75s cubic-bezier(.22,1,.36,1);
+transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -104,10 +100,7 @@ text-decoration:none;
 font-size:12px;
 font-weight:750;
 letter-spacing:-.15px;
-transition:
-color .2s ease,
-background .2s ease,
-transform .2s ease;
+transition:color .2s ease,background .2s ease,transform .2s ease;
 }
 
 .nav a:hover{
@@ -138,23 +131,19 @@ display:grid;
 grid-template-columns:1fr auto;
 align-items:end;
 gap:30px;
-padding-bottom:25px;
+padding-bottom:27px;
 border-bottom:1px solid var(--line);
 }
 
-.header-left{
-min-width:0;
-}
-
 .logo-mark{
-width:78px;
-height:78px;
-margin-bottom:25px;
+width:74px;
+height:74px;
 display:block;
 object-fit:contain;
+margin-bottom:23px;
 filter:
 drop-shadow(0 18px 30px rgba(0,0,0,.45))
-drop-shadow(0 0 30px rgba(255,255,255,.045));
+drop-shadow(0 0 32px rgba(255,255,255,.05));
 }
 
 .page-title{
@@ -173,21 +162,32 @@ line-height:1.5;
 }
 
 .header-mark{
-width:110px;
-height:110px;
+width:125px;
+height:125px;
 display:flex;
 align-items:center;
 justify-content:center;
-opacity:.8;
+opacity:.82;
 }
 
 .header-mark img{
 width:100%;
 height:100%;
+display:block;
 object-fit:contain;
 filter:
-drop-shadow(0 20px 30px rgba(0,0,0,.45))
-drop-shadow(0 0 35px rgba(255,255,255,.045));
+drop-shadow(0 20px 35px rgba(0,0,0,.48))
+drop-shadow(0 0 38px rgba(255,255,255,.05));
+animation:markFloat 6s ease-in-out infinite;
+}
+
+@keyframes markFloat{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-7px);
+}
 }
 
 .updates{
@@ -277,42 +277,17 @@ border-color:#454a53;
 background:rgba(255,255,255,.055);
 }
 
-.empty{
-padding:55px 20px;
-border:1px dashed #292d34;
-border-radius:12px;
-text-align:center;
-color:#707680;
-font-size:12px;
-}
-
-.empty-mark{
-width:50px;
-height:50px;
-margin:0 auto 15px;
-opacity:.35;
-}
-
-.empty-mark img{
-width:100%;
-height:100%;
-object-fit:contain;
-}
-
 .page-transition{
 position:fixed;
 inset:0;
-z-index:500;
+z-index:999;
 display:flex;
 align-items:center;
 justify-content:center;
 background:#08090b;
-pointer-events:none;
 opacity:0;
 visibility:hidden;
-transition:
-opacity .42s ease,
-visibility .42s ease;
+pointer-events:none;
 }
 
 .page-transition.active{
@@ -321,28 +296,31 @@ visibility:visible;
 pointer-events:auto;
 }
 
-.page-transition img{
-width:min(300px,65vw);
-height:min(300px,65vw);
+.transition-logo{
+width:min(310px,62vw);
+height:min(310px,62vw);
 object-fit:contain;
 opacity:0;
-transform:scale(.76);
+transform:scale(.72);
 filter:
-drop-shadow(0 28px 50px rgba(0,0,0,.6))
-drop-shadow(0 0 55px rgba(255,255,255,.08));
-transition:
-opacity .62s cubic-bezier(.22,1,.36,1),
-transform .78s cubic-bezier(.22,1,.36,1);
+drop-shadow(0 28px 55px rgba(0,0,0,.65))
+drop-shadow(0 0 60px rgba(255,255,255,.07));
 }
 
-.page-transition.show img{
+.page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
+transition:
+opacity .5s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
-.page-transition.fade img{
+.page-transition.fade .transition-logo{
 opacity:0;
-transform:scale(1.12);
+transform:scale(1.13);
+transition:
+opacity .4s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 @media(max-width:750px){
@@ -391,8 +369,8 @@ padding-top:105px;
 }
 
 .logo-mark{
-width:65px;
-height:65px;
+width:64px;
+height:64px;
 margin-bottom:20px;
 }
 
@@ -421,10 +399,13 @@ padding-right:70px;
 
 @media(prefers-reduced-motion:reduce){
 body,
-.page-transition,
-.page-transition img,
+.page-transition .transition-logo,
 .update{
 transition:none;
+}
+
+.header-mark img{
+animation:none;
 }
 }
 </style>
@@ -434,8 +415,8 @@ transition:none;
 <body>
 
 <nav class="nav">
-<a href="index.html" id="homeLink">Home</a>
-<a href="downloads.html" id="downloadsLink">Downloads</a>
+<a href="index.html" data-page="home">Home</a>
+<a href="downloads.html" data-page="downloads">Downloads</a>
 <a href="updates.html" class="active">Updates</a>
 </nav>
 
@@ -443,21 +424,14 @@ transition:none;
 
 <header class="page-header">
 
-<div class="header-left">
-
-<img
-class="logo-mark"
-src="LOGO2.png"
-alt=""
-
->
+<div>
+<img class="logo-mark" src="LOGO2.png" alt="">
 
 <h1 class="page-title">Updates</h1>
 
 <div class="page-subtitle">
 Changes, additions, and new releases.
 </div>
-
 </div>
 
 <div class="header-mark">
@@ -466,7 +440,7 @@ Changes, additions, and new releases.
 
 </header>
 
-<section class="updates" id="updates">
+<section class="updates">
 
 <article class="update">
 
@@ -475,20 +449,14 @@ AUG 30, 2026
 </div>
 
 <div class="update-content">
-
-<h2 class="update-title">
-Archive launch
-</h2>
+<h2 class="update-title">Archive launch</h2>
 
 <div class="update-description">
-The unYZY archive is now live with the first available release.
+The archive is now live with the first available release.
+</div>
 </div>
 
-</div>
-
-<div class="update-tag">
-New
-</div>
+<div class="update-tag">New</div>
 
 </article>
 
@@ -499,20 +467,14 @@ AUG 30, 2026
 </div>
 
 <div class="update-content">
-
-<h2 class="update-title">
-New archive layout
-</h2>
+<h2 class="update-title">New archive layout</h2>
 
 <div class="update-description">
-Downloads and updates have been separated into their own dedicated pages.
+Downloads and updates now have their own dedicated pages.
+</div>
 </div>
 
-</div>
-
-<div class="update-tag">
-Site
-</div>
+<div class="update-tag">Site</div>
 
 </article>
 
@@ -521,50 +483,21 @@ Site
 </main>
 
 <div class="page-transition" id="pageTransition">
-<img id="transitionLogo" src="logo.png" alt="">
+<img class="transition-logo" id="transitionLogo" src="LOGO2.png" alt="">
 </div>
 
 <script>
 const pageTransition=document.getElementById("pageTransition");
 const transitionLogo=document.getElementById("transitionLogo");
-const homeLink=document.getElementById("homeLink");
-const downloadsLink=document.getElementById("downloadsLink");
+const links=document.querySelectorAll("[data-page]");
 
-function enterPage(){
-const transition=sessionStorage.getItem("unyzyTransition");
-
-if(transition==="updates"){
-sessionStorage.removeItem("unyzyTransition");
-
-pageTransition.classList.add("active");
-
-requestAnimationFrame(()=>{
-pageTransition.classList.add("show");
-});
-
-setTimeout(()=>{
-pageTransition.classList.add("fade");
-document.body.classList.add("ready");
-},650);
-
-setTimeout(()=>{
-pageTransition.classList.remove("active","show","fade");
-},1100);
-
-return;
-}
-
-requestAnimationFrame(()=>{
-document.body.classList.add("ready");
-});
-}
-
-function navigateTo(url){
+function navigate(url,target){
 if(document.body.classList.contains("leaving"))return;
 
 document.body.classList.add("leaving");
 
-transitionLogo.src="logo.png";
+transitionLogo.src=target==="home"?"logo.png":"LOGO2.png";
+
 pageTransition.classList.add("active");
 
 requestAnimationFrame(()=>{
@@ -576,20 +509,45 @@ pageTransition.classList.add("fade");
 },650);
 
 setTimeout(()=>{
-sessionStorage.setItem("unyzyTransition","updates");
+sessionStorage.setItem("unyzyTransition",target);
 window.location.href=url;
 },900);
 }
 
-homeLink.addEventListener("click",event=>{
+links.forEach(link=>{
+link.addEventListener("click",event=>{
 event.preventDefault();
-navigateTo("index.html");
+navigate(link.href,link.dataset.page);
+});
 });
 
-downloadsLink.addEventListener("click",event=>{
-event.preventDefault();
-navigateTo("downloads.html");
+function enterPage(){
+const transition=sessionStorage.getItem("unyzyTransition");
+sessionStorage.removeItem("unyzyTransition");
+
+if(transition==="home"||transition==="downloads"||transition==="updates"){
+transitionLogo.src=transition==="home"?"logo.png":"LOGO2.png";
+
+pageTransition.classList.add("active");
+
+requestAnimationFrame(()=>{
+pageTransition.classList.add("show");
 });
+
+setTimeout(()=>{
+pageTransition.classList.add("fade");
+document.body.classList.add("ready");
+},600);
+
+setTimeout(()=>{
+pageTransition.classList.remove("active","show","fade");
+},1050);
+}else{
+requestAnimationFrame(()=>{
+document.body.classList.add("ready");
+});
+}
+}
 
 enterPage();
 </script>
