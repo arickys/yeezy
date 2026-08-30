@@ -423,7 +423,6 @@ Yeezus
 <span>Built for simple file sharing</span>
 </footer>
 </main>
-
 <script>
 const files=[
 {name:"IN A PERFECT WORLD",description:"10/10",file:"IN A PERFECT WORLD.zip",icon:"IAPW.png"}
@@ -436,7 +435,11 @@ const search=document.getElementById("search");
 
 function escapeHTML(value){
 return String(value??"").replace(/[&<>"']/g,char=>({
-"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
 }[char]));
 }
 
@@ -448,7 +451,11 @@ function formatDate(value){
 if(!value)return "";
 const date=new Date(value);
 if(Number.isNaN(date.getTime()))return "";
-return date.toLocaleDateString(undefined,{month:"short",day:"numeric",year:"numeric"});
+return date.toLocaleDateString(undefined,{
+month:"short",
+day:"numeric",
+year:"numeric"
+});
 }
 
 function renderNews(articles){
@@ -462,19 +469,44 @@ const title=escapeHTML(article.title||"Untitled");
 const source=escapeHTML(article.source?.name||"News");
 const description=escapeHTML(article.description||"");
 const url=escapeAttr(article.url||"#");
+
 const image=article.urlToImage
-?`<div class="news-image-wrap"><img class="news-image" src="${escapeAttr(article.urlToImage)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;news-fallback&quot;>Y</div>'"></div>`
+?`<div class="news-image-wrap">
+<img class="news-image" src="${escapeAttr(article.urlToImage)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;news-fallback&quot;>Y</div>'">
+</div>`
 :`<div class="news-image-wrap"><div class="news-fallback">Y</div></div>`;
-return `<article class="news-card">${image}<div class="news-content"><div class="news-top"><div class="news-source">${source}</div><div class="news-date">${formatDate(article.publishedAt)}</div></div><div class="news-title"><a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a></div>${description?`<div class="news-description">${description}</div>`:""}</div></article>`;
+
+return `
+<article class="news-card">
+${image}
+<div class="news-content">
+<div class="news-top">
+<div class="news-source">${source}</div>
+<div class="news-date">${formatDate(article.publishedAt)}</div>
+</div>
+<div class="news-title">
+<a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>
+</div>
+${description?`<div class="news-description">${description}</div>`:""}
+</div>
+</article>`;
 }).join("");
 }
 
 async function loadNews(query="Kanye West"){
 news.innerHTML='<div class="status">Loading news...</div>';
+
 try{
-const response=await fetch(`/api/news?q=${encodeURIComponent(query)}`,{cache:"no-store"});
+const response=await fetch(`/api/news?q=${encodeURIComponent(query)}`,{
+cache:"no-store"
+});
+
 const data=await response.json();
-if(!response.ok||data.status!=="ok")throw new Error(data.message||"News request failed");
+
+if(!response.ok||data.status!=="ok"){
+throw new Error(data.message||"News request failed");
+}
+
 renderNews(data.articles||[]);
 }catch(error){
 news.innerHTML='<div class="status"><strong>News is temporarily unavailable</strong>Try refreshing in a moment.</div>';
@@ -483,36 +515,69 @@ news.innerHTML='<div class="status"><strong>News is temporarily unavailable</str
 
 function renderFiles(filter=""){
 const value=filter.toLowerCase().trim();
-const filtered=files.filter(file=>file.name.toLowerCase().includes(value)||file.description.toLowerCase().includes(value));
+
+const filtered=files.filter(file=>
+file.name.toLowerCase().includes(value)||
+file.description.toLowerCase().includes(value)
+);
+
 if(!filtered.length){
 downloads.innerHTML='<div class="status"><strong>No downloads found</strong>Try another search.</div>';
 return;
 }
+
 downloads.innerHTML=filtered.map(file=>`
 <div class="file">
-<div class="icon-wrapper"><img class="icon" src="${escapeAttr(file.icon)}" alt="" onerror="this.style.display='none';this.parentElement.textContent='📦'"></div>
+<div class="icon-wrapper">
+<img
+class="icon"
+src="${escapeAttr(file.icon)}"
+alt=""
+onerror="this.style.display='none';this.parentElement.textContent='📦'"
+>
+</div>
+
 <div class="info">
 <div class="name">${escapeHTML(file.name)}</div>
 <div class="description">${escapeHTML(file.description)}</div>
 <div class="file-type">ZIP Archive</div>
 </div>
-<a class="download" href="${escapeAttr(file.file)}" download><span>↓</span><span class="download-text">Download</span></a>
-</div>`).join("");
+
+<a
+class="download"
+href="${escapeAttr(file.file)}"
+download
+>
+<span>↓</span>
+<span class="download-text">Download</span>
+</a>
+</div>
+`).join("");
 }
 
-search.addEventListener("input",()=>renderFiles(search.value));
+search.addEventListener("input",()=>{
+renderFiles(search.value);
+});
 
 let newsTimer;
+
 newsSearch.addEventListener("input",()=>{
 clearTimeout(newsTimer);
+
 newsTimer=setTimeout(()=>{
 const query=newsSearch.value.trim();
-loadNews(query?`Kanye West ${query}`:"Kanye West");
+
+loadNews(
+query
+?`Kanye West ${query}`
+:"Kanye West"
+);
 },450);
 });
 
 renderFiles();
 loadNews();
 </script>
+
 </body>
 </html>
