@@ -23,12 +23,6 @@
         "Location": "/"
       }
     },
-
-    {
-      "src": "/error.html",
-      "dest": "/error.html"
-    },
-
     {
       "src": "/",
       "dest": "/index.html"
@@ -41,7 +35,10 @@
       "src": "/updates",
       "dest": "/updates.html"
     },
-
+    {
+      "src": "/error.html",
+      "dest": "/error.html"
+    },
     {
       "src": "/(.*)",
       "status": 404,
