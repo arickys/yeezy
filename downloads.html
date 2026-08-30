@@ -8,9 +8,7 @@
 <title>unYZY [DOWNLOADS]</title>
 
 <style>
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 :root{
 --bg:#08090b;
@@ -39,9 +37,7 @@ font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Aria
 -webkit-font-smoothing:antialiased;
 opacity:0;
 transform:scale(1.018);
-transition:
-opacity .6s ease,
-transform .75s cubic-bezier(.22,1,.36,1);
+transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -90,10 +86,7 @@ text-decoration:none;
 font-size:12px;
 font-weight:750;
 letter-spacing:-.15px;
-transition:
-color .2s ease,
-background .2s ease,
-transform .2s ease;
+transition:color .2s ease,background .2s ease,transform .2s ease;
 }
 
 .nav a:hover{
@@ -156,10 +149,7 @@ outline:none;
 background:var(--surface);
 color:#fff;
 font-size:13px;
-transition:
-border-color .2s ease,
-background .2s ease,
-box-shadow .2s ease;
+transition:.2s ease;
 }
 
 .search input::placeholder{
@@ -179,7 +169,6 @@ top:50%;
 transform:translateY(-50%);
 color:#666c76;
 font-size:17px;
-pointer-events:none;
 }
 
 .downloads{
@@ -276,11 +265,7 @@ color:#090a0c;
 text-decoration:none;
 font-size:11px;
 font-weight:850;
-transition:
-background .18s ease,
-border-color .18s ease,
-transform .18s ease,
-box-shadow .18s ease;
+transition:.18s ease;
 }
 
 .download:hover{
@@ -303,17 +288,14 @@ font-size:12px;
 .page-transition{
 position:fixed;
 inset:0;
-z-index:500;
+z-index:999;
 display:flex;
 align-items:center;
 justify-content:center;
 background:#08090b;
-pointer-events:none;
 opacity:0;
 visibility:hidden;
-transition:
-opacity .42s ease,
-visibility .42s ease;
+pointer-events:none;
 }
 
 .page-transition.active{
@@ -322,28 +304,31 @@ visibility:visible;
 pointer-events:auto;
 }
 
-.page-transition img{
-width:min(300px,65vw);
-height:min(300px,65vw);
+.transition-logo{
+width:min(310px,62vw);
+height:min(310px,62vw);
 object-fit:contain;
 opacity:0;
-transform:scale(.76);
+transform:scale(.72);
 filter:
-drop-shadow(0 28px 50px rgba(0,0,0,.6))
-drop-shadow(0 0 55px rgba(255,255,255,.08));
-transition:
-opacity .62s cubic-bezier(.22,1,.36,1),
-transform .78s cubic-bezier(.22,1,.36,1);
+drop-shadow(0 28px 55px rgba(0,0,0,.65))
+drop-shadow(0 0 60px rgba(255,255,255,.07));
 }
 
-.page-transition.show img{
+.page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
+transition:
+opacity .5s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
-.page-transition.fade img{
+.page-transition.fade .transition-logo{
 opacity:0;
-transform:scale(1.12);
+transform:scale(1.13);
+transition:
+opacity .4s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 @media(max-width:700px){
@@ -397,9 +382,7 @@ display:none;
 
 @media(prefers-reduced-motion:reduce){
 body,
-.page-transition,
-.page-transition img,
-.file{
+.page-transition .transition-logo{
 transition:none;
 }
 }
@@ -410,9 +393,9 @@ transition:none;
 <body>
 
 <nav class="nav">
-<a href="index.html" id="homeLink">Home</a>
+<a href="index.html" data-page="home">Home</a>
 <a href="downloads.html" class="active">Downloads</a>
-<a href="news.html">News</a>
+<a href="updates.html" data-page="updates">Updates</a>
 </nav>
 
 <main class="container">
@@ -424,12 +407,7 @@ transition:none;
 
 <div class="search">
 <div class="search-icon">⌕</div>
-<input
-id="search"
-type="text"
-placeholder="Search downloads..."
-autocomplete="off"
->
+<input id="search" type="text" placeholder="Search downloads..." autocomplete="off">
 </div>
 
 <div class="downloads" id="downloadsList"></div>
@@ -437,7 +415,7 @@ autocomplete="off"
 </main>
 
 <div class="page-transition" id="pageTransition">
-<img id="transitionLogo" src="logo.png" alt="">
+<img class="transition-logo" id="transitionLogo" src="LOGO2.png" alt="">
 </div>
 
 <script>
@@ -455,7 +433,7 @@ const search=document.getElementById("search");
 const fileCount=document.getElementById("fileCount");
 const pageTransition=document.getElementById("pageTransition");
 const transitionLogo=document.getElementById("transitionLogo");
-const homeLink=document.getElementById("homeLink");
+const navLinks=document.querySelectorAll("[data-page]");
 
 function escapeHTML(value){
 return String(value??"").replace(/[&<>"']/g,c=>({
@@ -482,16 +460,12 @@ file.description.toLowerCase().includes(value)
 fileCount.textContent=`${filtered.length} ${filtered.length===1?"file":"files"}`;
 
 if(!filtered.length){
-downloads.innerHTML=`
-<div class="empty">
-No downloads found.
-</div>`;
+downloads.innerHTML=`<div class="empty">No downloads found.</div>`;
 return;
 }
 
 downloads.innerHTML=filtered.map(file=>`
 <div class="file">
-
 <div class="icon">
 <img
 src="${escapeAttr(file.icon)}"
@@ -506,24 +480,50 @@ onerror="this.style.display='none';this.parentElement.textContent='📦'"
 <div class="type">ZIP Archive</div>
 </div>
 
-<a
-class="download"
-href="${escapeAttr(file.file)}"
-download
->
+<a class="download" href="${escapeAttr(file.file)}" download>
 <span>↓</span>
 <span class="download-text">Download</span>
 </a>
-
 </div>
 `).join("");
 }
 
-function enterDownloads(){
-const transition=sessionStorage.getItem("unyzyTransition");
+function navigate(url,target){
+if(document.body.classList.contains("leaving"))return;
 
-if(transition==="downloads"){
+document.body.classList.add("leaving");
+
+transitionLogo.src=target==="home"?"logo.png":"LOGO2.png";
+
+pageTransition.classList.add("active");
+
+requestAnimationFrame(()=>{
+pageTransition.classList.add("show");
+});
+
+setTimeout(()=>{
+pageTransition.classList.add("fade");
+},650);
+
+setTimeout(()=>{
+sessionStorage.setItem("unyzyTransition",target);
+window.location.href=url;
+},900);
+}
+
+navLinks.forEach(link=>{
+link.addEventListener("click",event=>{
+event.preventDefault();
+navigate(link.href,link.dataset.page);
+});
+});
+
+function enterPage(){
+const transition=sessionStorage.getItem("unyzyTransition");
 sessionStorage.removeItem("unyzyTransition");
+
+if(transition==="downloads"||transition==="updates"){
+transitionLogo.src="LOGO2.png";
 
 pageTransition.classList.add("active");
 
@@ -534,11 +534,11 @@ pageTransition.classList.add("show");
 setTimeout(()=>{
 pageTransition.classList.add("fade");
 document.body.classList.add("ready");
-},650);
+},600);
 
 setTimeout(()=>{
 pageTransition.classList.remove("active","show","fade");
-},1100);
+},1050);
 }else{
 requestAnimationFrame(()=>{
 document.body.classList.add("ready");
@@ -546,38 +546,12 @@ document.body.classList.add("ready");
 }
 }
 
-function goHome(event){
-event.preventDefault();
-
-if(document.body.classList.contains("leaving"))return;
-
-document.body.classList.add("leaving");
-
-transitionLogo.src="logo.png";
-pageTransition.classList.add("active");
-
-requestAnimationFrame(()=>{
-pageTransition.classList.add("show");
-});
-
-setTimeout(()=>{
-pageTransition.classList.add("fade");
-},650);
-
-setTimeout(()=>{
-sessionStorage.setItem("unyzyTransition","home");
-window.location.href="index.html";
-},900);
-}
-
-homeLink.addEventListener("click",goHome);
-
 search.addEventListener("input",()=>{
 renderFiles(search.value);
 });
 
 renderFiles();
-enterDownloads();
+enterPage();
 </script>
 
 </body>
