@@ -1,7 +1,8 @@
 export default async function handler(req, res) {
-    const query = typeof req.query.q === "string" && req.query.q.trim()
-        ? req.query.q.trim()
-        : "Kanye West";
+    const query =
+        typeof req.query.q === "string" && req.query.q.trim()
+            ? req.query.q.trim()
+            : "Kanye West";
 
     const params = new URLSearchParams({
         q: query,
@@ -9,11 +10,14 @@ export default async function handler(req, res) {
         sortBy: "publishedAt",
         language: "en",
         pageSize: "9",
-        apiKey: process.env.NEWS_API_KEY
+        apiKey: "1d68c6e342614af9aa6417cbf688b8d4"
     });
 
     try {
-        const response = await fetch(`https://newsapi.org/v2/everything?${params}`);
+        const response = await fetch(
+            `https://newsapi.org/v2/everything?${params.toString()}`
+        );
+
         const data = await response.json();
 
         if (!response.ok || data.status !== "ok") {
@@ -24,7 +28,9 @@ export default async function handler(req, res) {
         }
 
         return res.status(200).json(data);
-    } catch {
+    } catch (error) {
+        console.error("NewsAPI error:", error);
+
         return res.status(500).json({
             status: "error",
             message: "News request failed"
