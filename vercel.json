@@ -23,25 +23,12 @@
         "Location": "/"
       }
     },
+
     {
-      "src": "/logo.png",
-      "status": 403,
+      "src": "/error.html",
       "dest": "/error.html"
     },
-    {
-      "src": "/LOGO2.png",
-      "status": 403,
-      "dest": "/error.html"
-    },
-    {
-      "src": "/IAPW.png",
-      "status": 403,
-      "dest": "/error.html"
-    },
-    {
-      "src": "/assets/(.*)",
-      "continue": true
-    },
+
     {
       "src": "/",
       "dest": "/index.html"
@@ -54,6 +41,7 @@
       "src": "/updates",
       "dest": "/updates.html"
     },
+
     {
       "src": "/(.*)",
       "status": 404,
