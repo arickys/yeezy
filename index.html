@@ -3,580 +3,1684 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#0a0a0c">
-<title>Yeezus — Archive</title>
+<meta name="theme-color" content="#08090b">
+
+<title>unYZY — Archive</title>
+
 <style>
-*{box-sizing:border-box}
+*{
+    box-sizing:border-box;
+}
+
 :root{
---bg:#08090b;
---surface:#101216;
---surface2:#15171c;
---line:#24272d;
---line2:#30343c;
---text:#f5f5f6;
---muted:#8d929c;
---dim:#60656f;
---white:#fff;
+    --bg:#08090b;
+    --surface:#101216;
+    --surface2:#15171c;
+    --line:#24272d;
+    --line2:#343941;
+    --text:#f5f5f6;
+    --muted:#8d929c;
+    --dim:#60656f;
+    --white:#fff;
 }
-html{scroll-behavior:smooth}
+
+html{
+    scroll-behavior:smooth;
+}
+
 body{
-margin:0;
-min-height:100vh;
-background:
-radial-gradient(circle at 80% -10%,rgba(255,255,255,.055),transparent 32rem),
-var(--bg);
-color:var(--text);
-font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
-line-height:1.45;
+    margin:0;
+    min-height:100vh;
+    background:
+        radial-gradient(
+            circle at 75% -10%,
+            rgba(255,255,255,.06),
+            transparent 34rem
+        ),
+        var(--bg);
+    color:var(--text);
+    font-family:
+        Inter,
+        ui-sans-serif,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    line-height:1.45;
 }
-button,input{font:inherit}
-a{color:inherit}
+
+button,
+input{
+    font:inherit;
+}
+
+a{
+    color:inherit;
+}
+
+/* =========================
+   NAVIGATION
+========================= */
+
 .nav{
-position:sticky;
-top:0;
-z-index:30;
-height:68px;
-border-bottom:1px solid rgba(255,255,255,.07);
-background:rgba(8,9,11,.86);
-backdrop-filter:blur(18px);
+    position:sticky;
+    top:0;
+    z-index:50;
+    height:68px;
+    border-bottom:1px solid rgba(255,255,255,.07);
+    background:rgba(8,9,11,.84);
+    backdrop-filter:blur(20px);
 }
+
 .nav-inner{
-width:min(1180px,calc(100% - 36px));
-height:100%;
-margin:auto;
-display:flex;
-align-items:center;
-justify-content:space-between;
+    width:min(1180px,calc(100% - 36px));
+    height:100%;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
+
 .brand{
-display:flex;
-align-items:center;
-gap:11px;
-font-size:15px;
-font-weight:800;
-letter-spacing:-.3px;
+    display:flex;
+    align-items:center;
+    gap:11px;
+
+    font-size:15px;
+    font-weight:800;
+    letter-spacing:-.3px;
 }
+
 .brand-icon{
-width:31px;
-height:31px;
-display:grid;
-place-items:center;
-border-radius:8px;
-background:#f4f4f5;
-color:#090a0c;
-font-size:17px;
-font-weight:900;
-box-shadow:0 0 0 1px rgba(255,255,255,.12);
+    width:32px;
+    height:32px;
+    overflow:hidden;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid rgba(255,255,255,.12);
+    border-radius:8px;
+
+    background:#111318;
 }
-.nav-actions{display:flex;align-items:center;gap:8px}
+
+.brand-icon img{
+    width:100%;
+    height:100%;
+    display:block;
+    object-fit:cover;
+}
+
+.nav-actions{
+    display:flex;
+    align-items:center;
+    gap:8px;
+}
+
 .nav-link{
-display:inline-flex;
-align-items:center;
-justify-content:center;
-height:34px;
-padding:0 12px;
-border:1px solid var(--line);
-border-radius:8px;
-background:rgba(255,255,255,.025);
-color:var(--muted);
-text-decoration:none;
-font-size:12px;
-font-weight:700;
-transition:.18s ease;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    height:34px;
+    padding:0 12px;
+
+    border:1px solid var(--line);
+    border-radius:8px;
+
+    background:rgba(255,255,255,.025);
+    color:var(--muted);
+
+    text-decoration:none;
+
+    font-size:12px;
+    font-weight:700;
+
+    transition:.18s ease;
 }
-.nav-link:hover{color:#fff;border-color:var(--line2);background:var(--surface2)}
+
+.nav-link:hover{
+    color:#fff;
+    border-color:var(--line2);
+    background:var(--surface2);
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
 .container{
-width:min(1180px,calc(100% - 36px));
-margin:auto;
-padding:62px 0 90px;
+    width:min(1180px,calc(100% - 36px));
+    margin:auto;
+    padding:55px 0 80px;
 }
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
-position:relative;
-padding:30px 0 52px;
-display:grid;
-grid-template-columns:1fr auto;
-gap:40px;
-align-items:end;
-border-bottom:1px solid var(--line);
+    position:relative;
+
+    padding:30px 0 45px;
+
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:40px;
+    align-items:end;
+
+    border-bottom:1px solid var(--line);
 }
+
 .hero:after{
-content:"";
-position:absolute;
-left:0;
-bottom:-1px;
-width:110px;
-height:1px;
-background:#fff;
+    content:"";
+
+    position:absolute;
+    left:0;
+    bottom:-1px;
+
+    width:110px;
+    height:1px;
+
+    background:#fff;
 }
+
 .eyebrow{
-margin-bottom:13px;
-color:#7d828c;
-font-size:11px;
-font-weight:800;
-letter-spacing:1.8px;
-text-transform:uppercase;
+    margin-bottom:13px;
+
+    color:#7d828c;
+
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.8px;
+    text-transform:uppercase;
 }
+
 h1{
-margin:0;
-font-size:clamp(52px,9vw,92px);
-line-height:.88;
-letter-spacing:-5px;
-font-weight:850;
+    margin:0;
+
+    font-size:clamp(58px,9vw,94px);
+    line-height:.84;
+
+    letter-spacing:-6px;
+    font-weight:900;
 }
+
 .subtitle{
-max-width:650px;
-margin-top:19px;
-color:var(--muted);
-font-size:15px;
+    max-width:650px;
+
+    margin-top:20px;
+
+    color:var(--muted);
+    font-size:15px;
 }
+
 .hero-meta{
-color:#666b75;
-font-size:11px;
-font-weight:700;
-text-transform:uppercase;
-letter-spacing:1px;
-text-align:right;
-line-height:1.8;
+    color:#666b75;
+
+    font-size:11px;
+    font-weight:700;
+
+    text-transform:uppercase;
+    letter-spacing:1px;
+
+    text-align:right;
+    line-height:1.8;
 }
-.hero-meta strong{display:block;color:#a5a9b1;font-size:12px}
-.section{margin-top:54px}
+
+.hero-meta strong{
+    display:block;
+
+    color:#a5a9b1;
+    font-size:12px;
+}
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.main-layout{
+    margin-top:48px;
+
+    display:grid;
+    grid-template-columns:minmax(0,1fr) 360px;
+
+    gap:20px;
+
+    align-items:start;
+}
+
+/* =========================
+   SECTIONS
+========================= */
+
+.section{
+    min-width:0;
+}
+
 .section-head{
-display:flex;
-align-items:end;
-justify-content:space-between;
-gap:20px;
-margin-bottom:17px;
+    display:flex;
+    align-items:end;
+    justify-content:space-between;
+
+    gap:20px;
+    margin-bottom:15px;
 }
+
 .section-title{
-margin:0;
-font-size:22px;
-letter-spacing:-.7px;
+    margin:0;
+
+    font-size:22px;
+    letter-spacing:-.7px;
 }
-.section-note{color:#666b75;font-size:11px;text-transform:uppercase;letter-spacing:1px}
-.toolbar{display:flex;gap:9px;margin-bottom:15px}
+
+.section-note{
+    color:#666b75;
+
+    font-size:10px;
+    text-transform:uppercase;
+    letter-spacing:1px;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.toolbar{
+    display:flex;
+    gap:9px;
+
+    margin-bottom:13px;
+}
+
 .field{
-position:relative;
-flex:1;
+    position:relative;
+    flex:1;
 }
+
 .field input{
-width:100%;
-height:44px;
-padding:0 14px 0 40px;
-border:1px solid var(--line);
-border-radius:9px;
-outline:none;
-background:var(--surface);
-color:#fff;
-font-size:13px;
-transition:.18s ease;
+    width:100%;
+    height:43px;
+
+    padding:0 14px 0 40px;
+
+    border:1px solid var(--line);
+    border-radius:9px;
+
+    outline:none;
+
+    background:var(--surface);
+    color:#fff;
+
+    font-size:13px;
+
+    transition:.18s ease;
 }
-.field input:focus{border-color:#444952;background:#121419}
+
+.field input::placeholder{
+    color:#5f646d;
+}
+
+.field input:focus{
+    border-color:#444952;
+    background:#121419;
+}
+
 .field-icon{
-position:absolute;
-left:14px;
-top:50%;
-transform:translateY(-50%);
-color:#707580;
-font-size:16px;
-pointer-events:none;
+    position:absolute;
+    left:14px;
+    top:50%;
+
+    transform:translateY(-50%);
+
+    color:#707580;
+
+    font-size:16px;
+
+    pointer-events:none;
 }
-.news-grid{
-display:grid;
-grid-template-columns:repeat(3,1fr);
-gap:13px;
-}
-.news-card{
-min-width:0;
-overflow:hidden;
-border:1px solid var(--line);
-border-radius:11px;
-background:linear-gradient(180deg,#111318,#0e1013);
-transition:.2s ease;
-}
-.news-card:hover{transform:translateY(-3px);border-color:#3a3e47;box-shadow:0 12px 30px rgba(0,0,0,.18)}
-.news-image-wrap{position:relative;height:170px;background:#181b20;overflow:hidden}
-.news-image,.news-fallback{
-width:100%;
-height:100%;
-display:block;
-object-fit:cover;
-}
-.news-fallback{
-display:grid;
-place-items:center;
-background:
-linear-gradient(135deg,#17191e,#0e1013);
-color:#555b65;
-font-size:30px;
-font-weight:900;
-}
-.news-image{transition:transform .35s ease}
-.news-card:hover .news-image{transform:scale(1.025)}
-.news-content{padding:15px}
-.news-top{
-display:flex;
-align-items:center;
-justify-content:space-between;
-gap:10px;
-}
-.news-source{
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-color:#8a8f99;
-font-size:10px;
-font-weight:800;
-letter-spacing:.9px;
-text-transform:uppercase;
-}
-.news-date{color:#5f646d;font-size:10px;white-space:nowrap}
-.news-title{
-margin:8px 0 0;
-font-size:15px;
-line-height:1.32;
-font-weight:750;
-letter-spacing:-.2px;
-}
-.news-title a{text-decoration:none}
-.news-title a:hover{text-decoration:underline}
-.news-description{
-display:-webkit-box;
--webkit-line-clamp:2;
--webkit-box-orient:vertical;
-overflow:hidden;
-margin-top:8px;
-color:#747984;
-font-size:12px;
-line-height:1.45;
-}
-.status{
-grid-column:1/-1;
-padding:45px 20px;
-border:1px dashed #2a2e35;
-border-radius:11px;
-color:#777c86;
-text-align:center;
-font-size:13px;
-background:rgba(255,255,255,.012);
-}
-.status strong{display:block;margin-bottom:5px;color:#aeb2b9;font-size:14px}
+
+/* =========================
+   DOWNLOADS
+========================= */
+
 .downloads{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:13px;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
 }
+
 .file{
-min-width:0;
-display:flex;
-align-items:center;
-gap:14px;
-padding:14px;
-border:1px solid var(--line);
-border-radius:11px;
-background:var(--surface);
-transition:.2s ease;
+    min-width:0;
+
+    display:flex;
+    align-items:center;
+    gap:13px;
+
+    padding:13px;
+
+    border:1px solid var(--line);
+    border-radius:11px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(255,255,255,.025),
+            rgba(255,255,255,.008)
+        ),
+        var(--surface);
+
+    transition:.2s ease;
 }
-.file:hover{border-color:#3a3e47;background:var(--surface2);transform:translateY(-2px)}
+
+.file:hover{
+    transform:translateY(-2px);
+
+    border-color:#3a3e47;
+    background:var(--surface2);
+
+    box-shadow:0 12px 30px rgba(0,0,0,.18);
+}
+
 .icon-wrapper{
-width:60px;
-height:60px;
-flex:0 0 60px;
-overflow:hidden;
-display:grid;
-place-items:center;
-border:1px solid #2b2f36;
-border-radius:9px;
-background:#191b20;
-color:#777d87;
-font-size:21px;
+    width:58px;
+    height:58px;
+
+    flex:0 0 58px;
+
+    overflow:hidden;
+
+    display:grid;
+    place-items:center;
+
+    border:1px solid #2b2f36;
+    border-radius:9px;
+
+    background:#191b20;
+
+    color:#777d87;
+    font-size:21px;
 }
-.icon{width:100%;height:100%;object-fit:cover;display:block}
-.info{min-width:0;flex:1}
+
+.icon{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
+    display:block;
+}
+
+.info{
+    min-width:0;
+    flex:1;
+}
+
 .name{
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-font-size:15px;
-font-weight:750;
-letter-spacing:-.2px;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    font-size:14px;
+    font-weight:750;
+
+    letter-spacing:-.2px;
 }
+
 .description{
-margin-top:4px;
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-color:var(--muted);
-font-size:12px;
+    margin-top:3px;
+
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    color:var(--muted);
+    font-size:11px;
 }
+
 .file-type{
-margin-top:7px;
-color:#646973;
-font-size:9px;
-font-weight:800;
-letter-spacing:1px;
-text-transform:uppercase;
+    margin-top:6px;
+
+    color:#646973;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
 }
+
 .download{
-flex:0 0 auto;
-display:inline-flex;
-align-items:center;
-gap:7px;
-height:35px;
-padding:0 12px;
-border:1px solid #d7d7da;
-border-radius:8px;
-background:#e9e9eb;
-color:#090a0c;
-text-decoration:none;
-font-size:12px;
-font-weight:800;
-transition:.18s ease;
+    flex:0 0 auto;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:7px;
+
+    height:34px;
+    padding:0 11px;
+
+    border:1px solid #d7d7da;
+    border-radius:8px;
+
+    background:#e9e9eb;
+    color:#090a0c;
+
+    text-decoration:none;
+
+    font-size:11px;
+    font-weight:800;
+
+    transition:.18s ease;
 }
-.download:hover{background:#fff;border-color:#fff;transform:translateY(-1px)}
+
+.download:hover{
+    background:#fff;
+    border-color:#fff;
+
+    transform:translateY(-1px);
+}
+
+/* =========================
+   NEWS SIDEBAR
+========================= */
+
+.news-panel{
+    position:sticky;
+    top:88px;
+
+    min-width:0;
+
+    border:1px solid var(--line);
+    border-radius:13px;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(255,255,255,.025),
+            rgba(255,255,255,.008)
+        ),
+        var(--surface);
+}
+
+.news-panel-head{
+    padding:16px;
+
+    border-bottom:1px solid var(--line);
+
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:15px;
+}
+
+.news-panel-title{
+    margin:0;
+
+    font-size:15px;
+    font-weight:800;
+
+    letter-spacing:-.3px;
+}
+
+.live{
+    display:flex;
+    align-items:center;
+    gap:6px;
+
+    color:#777c86;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:1px;
+    text-transform:uppercase;
+}
+
+.live-dot{
+    width:6px;
+    height:6px;
+
+    border-radius:50%;
+
+    background:#fff;
+
+    box-shadow:0 0 10px rgba(255,255,255,.5);
+}
+
+.news-search{
+    padding:11px 12px;
+
+    border-bottom:1px solid var(--line);
+}
+
+.news-search .field input{
+    height:38px;
+    background:#0d0f12;
+}
+
+/* =========================
+   NEWS LIST
+========================= */
+
+.news-list{
+    max-height:680px;
+
+    overflow:auto;
+
+    scrollbar-width:thin;
+    scrollbar-color:#292d34 transparent;
+}
+
+.news-list::-webkit-scrollbar{
+    width:5px;
+}
+
+.news-list::-webkit-scrollbar-thumb{
+    background:#292d34;
+    border-radius:10px;
+}
+
+.news-card{
+    min-width:0;
+
+    border-bottom:1px solid var(--line);
+
+    background:transparent;
+
+    transition:.18s ease;
+}
+
+.news-card:last-child{
+    border-bottom:0;
+}
+
+.news-card:hover{
+    background:rgba(255,255,255,.025);
+}
+
+.news-feature{
+    display:block;
+}
+
+.news-feature-image{
+    width:100%;
+    height:175px;
+
+    object-fit:cover;
+    display:block;
+
+    background:#181b20;
+}
+
+.news-content{
+    padding:13px 14px;
+}
+
+.news-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+
+    gap:10px;
+}
+
+.news-source{
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+
+    color:#8a8f99;
+
+    font-size:9px;
+    font-weight:800;
+
+    letter-spacing:.9px;
+    text-transform:uppercase;
+}
+
+.news-date{
+    color:#5f646d;
+
+    font-size:9px;
+
+    white-space:nowrap;
+}
+
+.news-title{
+    margin:7px 0 0;
+
+    font-size:13px;
+    line-height:1.35;
+
+    font-weight:750;
+    letter-spacing:-.15px;
+}
+
+.news-title a{
+    text-decoration:none;
+}
+
+.news-title a:hover{
+    text-decoration:underline;
+}
+
+.news-description{
+    display:-webkit-box;
+
+    -webkit-line-clamp:2;
+    -webkit-box-orient:vertical;
+
+    overflow:hidden;
+
+    margin-top:6px;
+
+    color:#747984;
+
+    font-size:11px;
+    line-height:1.45;
+}
+
+/* Compact stories */
+
+.news-compact{
+    display:grid;
+    grid-template-columns:82px 1fr;
+
+    gap:11px;
+
+    padding:11px 14px;
+}
+
+.news-compact-image{
+    width:82px;
+    height:62px;
+
+    object-fit:cover;
+
+    border-radius:7px;
+
+    background:#181b20;
+}
+
+.news-compact .news-content{
+    padding:0;
+}
+
+.news-compact .news-title{
+    margin-top:5px;
+
+    font-size:11px;
+
+    display:-webkit-box;
+    -webkit-line-clamp:3;
+    -webkit-box-orient:vertical;
+    overflow:hidden;
+}
+
+/* =========================
+   FALLBACK IMAGE
+========================= */
+
+.news-fallback{
+    width:100%;
+    height:100%;
+
+    display:grid;
+    place-items:center;
+
+    background:
+        radial-gradient(
+            circle at 50% 40%,
+            #252932,
+            #101216 65%
+        );
+
+    color:#555b65;
+
+    font-size:26px;
+    font-weight:900;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.status{
+    padding:35px 20px;
+
+    border:1px dashed #2a2e35;
+
+    border-radius:10px;
+
+    color:#777c86;
+
+    text-align:center;
+
+    font-size:12px;
+
+    background:rgba(255,255,255,.012);
+}
+
+.news-list > .status{
+    border:0;
+    border-radius:0;
+}
+
+.status strong{
+    display:block;
+
+    margin-bottom:5px;
+
+    color:#aeb2b9;
+
+    font-size:13px;
+}
+
+/* =========================
+   FOOTER
+========================= */
+
 .footer{
-margin-top:70px;
-padding-top:22px;
-border-top:1px solid var(--line);
-display:flex;
-justify-content:space-between;
-gap:20px;
-color:#555a63;
-font-size:11px;
+    margin-top:65px;
+    padding-top:22px;
+
+    border-top:1px solid var(--line);
+
+    display:flex;
+    justify-content:space-between;
+
+    gap:20px;
+
+    color:#555a63;
+
+    font-size:11px;
 }
-@media(max-width:850px){
-.hero{grid-template-columns:1fr}
-.hero-meta{text-align:left}
-.news-grid{grid-template-columns:1fr 1fr}
-.downloads{grid-template-columns:1fr}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:1000px){
+
+    .main-layout{
+        grid-template-columns:1fr;
+    }
+
+    .news-panel{
+        position:relative;
+        top:auto;
+    }
+
+    .news-list{
+        max-height:none;
+
+        display:grid;
+        grid-template-columns:1fr 1fr;
+    }
+
+    .news-card{
+        border-right:1px solid var(--line);
+    }
+
+    .news-feature{
+        grid-column:1/-1;
+    }
+
+    .news-compact{
+        border-bottom:1px solid var(--line);
+    }
 }
+
+@media(max-width:750px){
+
+    .hero{
+        grid-template-columns:1fr;
+    }
+
+    .hero-meta{
+        text-align:left;
+    }
+
+    .downloads{
+        grid-template-columns:1fr;
+    }
+
+    .news-list{
+        display:block;
+    }
+
+    .news-card{
+        border-right:0;
+    }
+}
+
 @media(max-width:560px){
-.nav-inner,.container{width:calc(100% - 24px)}
-.container{padding-top:40px}
-h1{font-size:53px;letter-spacing:-3px}
-.news-grid{grid-template-columns:1fr}
-.news-image-wrap{height:185px}
-.file{padding:11px}
-.icon-wrapper{width:53px;height:53px;flex-basis:53px}
-.download{padding:0 10px}
-.download-text{display:none}
-.footer{flex-direction:column}
+
+    .nav-inner,
+    .container{
+        width:calc(100% - 24px);
+    }
+
+    .nav{
+        height:62px;
+    }
+
+    .nav-link{
+        padding:0 9px;
+    }
+
+    .nav-link:first-child{
+        display:none;
+    }
+
+    .container{
+        padding-top:35px;
+    }
+
+    h1{
+        font-size:55px;
+        letter-spacing:-4px;
+    }
+
+    .subtitle{
+        font-size:14px;
+    }
+
+    .main-layout{
+        margin-top:38px;
+    }
+
+    .file{
+        padding:11px;
+    }
+
+    .icon-wrapper{
+        width:53px;
+        height:53px;
+        flex-basis:53px;
+    }
+
+    .download{
+        padding:0 10px;
+    }
+
+    .download-text{
+        display:none;
+    }
+
+    .footer{
+        flex-direction:column;
+    }
 }
 </style>
 </head>
+
 <body>
+
+<!-- =========================
+     NAV
+========================= -->
+
 <nav class="nav">
-<div class="nav-inner">
-<div class="brand">
-<div class="brand-icon">↓</div>
-Yeezus
-</div>
-<div class="nav-actions">
-<a class="nav-link" href="#news">News</a>
-<a class="nav-link" href="#downloads">Downloads</a>
-<a class="nav-link" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-</div>
-</div>
+    <div class="nav-inner">
+
+        <div class="brand">
+            <div class="brand-icon">
+                <img src="logo.png" alt="unYZY">
+            </div>
+
+            unYZY
+        </div>
+
+        <div class="nav-actions">
+            <a class="nav-link" href="#downloads">Downloads</a>
+            <a class="nav-link" href="#news">News</a>
+
+            <a
+                class="nav-link"
+                href="https://github.com/"
+                target="_blank"
+                rel="noopener"
+            >
+                GitHub
+            </a>
+        </div>
+
+    </div>
 </nav>
 
+
 <main class="container">
+
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
-<div>
-<div class="eyebrow">Unreleased Archive</div>
-<h1>Yeezus</h1>
-<div class="subtitle">A clean archive for projects, builds, files, and Kanye West news.</div>
-</div>
-<div class="hero-meta"><strong>Archive</strong>Downloads & updates</div>
+
+    <div>
+
+        <div class="eyebrow">
+            Unreleased Archive
+        </div>
+
+        <h1>unYZY</h1>
+
+        <div class="subtitle">
+            A clean archive for projects, builds, files, and Kanye West news.
+        </div>
+
+    </div>
+
+    <div class="hero-meta">
+        <strong>Archive</strong>
+        Downloads & updates
+    </div>
+
 </section>
 
-<section class="section" id="news">
-<div class="section-head">
-<h2 class="section-title">Kanye West News</h2>
-<div class="section-note">Latest stories</div>
-</div>
-<div class="toolbar">
-<div class="field">
-<div class="field-icon">⌕</div>
-<input id="newsSearch" type="text" placeholder="Search Kanye West news..." autocomplete="off">
-</div>
-</div>
-<div id="news" class="news-grid">
-<div class="status">Loading news...</div>
-</div>
-</section>
+
+<!-- =========================
+     MAIN
+========================= -->
+
+<div class="main-layout">
+
+<!-- =========================
+     DOWNLOADS
+========================= -->
 
 <section class="section" id="downloads">
-<div class="section-head">
-<h2 class="section-title">Downloads</h2>
-<div class="section-note">ZIP archives</div>
-</div>
-<div class="toolbar">
-<div class="field">
-<div class="field-icon">⌕</div>
-<input id="search" type="text" placeholder="Search downloads..." autocomplete="off">
-</div>
-</div>
-<div class="downloads" id="downloadsList"></div>
+
+    <div class="section-head">
+
+        <h2 class="section-title">
+            Downloads
+        </h2>
+
+        <div class="section-note">
+            ZIP Archives
+        </div>
+
+    </div>
+
+    <div class="toolbar">
+
+        <div class="field">
+
+            <div class="field-icon">
+                ⌕
+            </div>
+
+            <input
+                id="search"
+                type="text"
+                placeholder="Search downloads..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </div>
+
+    <div
+        class="downloads"
+        id="downloadsList"
+    ></div>
+
 </section>
 
+
+<!-- =========================
+     NEWS
+========================= -->
+
+<aside
+    class="news-panel"
+    id="news"
+>
+
+    <div class="news-panel-head">
+
+        <h2 class="news-panel-title">
+            Kanye West News
+        </h2>
+
+        <div class="live">
+            <span class="live-dot"></span>
+            Live Feed
+        </div>
+
+    </div>
+
+
+    <div class="news-search">
+
+        <div class="field">
+
+            <div class="field-icon">
+                ⌕
+            </div>
+
+            <input
+                id="newsSearch"
+                type="text"
+                placeholder="Search news..."
+                autocomplete="off"
+            >
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="news-list"
+        id="newsList"
+    >
+
+        <div class="status">
+            Loading news...
+        </div>
+
+    </div>
+
+</aside>
+
+</div>
+
+
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer class="footer">
-<span>Yeezus Archive</span>
-<span>Built for simple file sharing</span>
+
+    <span>
+        unYZY Archive
+    </span>
+
+    <span>
+        Built for simple file sharing
+    </span>
+
 </footer>
+
 </main>
+
+
 <script>
-const files=[
-{name:"IN A PERFECT WORLD",description:"10/10",file:"IN A PERFECT WORLD.zip",icon:"IAPW.png"}
+
+/* =========================
+   DOWNLOAD FILES
+========================= */
+
+const files = [
+
+    {
+        name:"IN A PERFECT WORLD",
+        description:"10/10",
+        file:"IN A PERFECT WORLD.zip",
+        icon:"IAPW.png"
+    }
+
 ];
 
-const news=document.getElementById("news");
-const newsSearch=document.getElementById("newsSearch");
-const downloads=document.getElementById("downloadsList");
-const search=document.getElementById("search");
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const newsList =
+    document.getElementById("newsList");
+
+const newsSearch =
+    document.getElementById("newsSearch");
+
+const downloads =
+    document.getElementById("downloadsList");
+
+const search =
+    document.getElementById("search");
+
+
+/* =========================
+   SECURITY
+========================= */
 
 function escapeHTML(value){
-return String(value??"").replace(/[&<>"']/g,char=>({
-"&":"&amp;",
-"<":"&lt;",
-">":"&gt;",
-'"':"&quot;",
-"'":"&#039;"
-}[char]));
+
+    return String(value ?? "")
+        .replace(/[&<>"']/g,char => ({
+
+            "&":"&amp;",
+            "<":"&lt;",
+            ">":"&gt;",
+            '"':"&quot;",
+            "'":"&#039;"
+
+        }[char]));
+
 }
+
 
 function escapeAttr(value){
-return escapeHTML(value);
+    return escapeHTML(value);
 }
+
+
+/* =========================
+   DATE
+========================= */
 
 function formatDate(value){
-if(!value)return "";
-const date=new Date(value);
-if(Number.isNaN(date.getTime()))return "";
-return date.toLocaleDateString(undefined,{
-month:"short",
-day:"numeric",
-year:"numeric"
-});
+
+    if(!value){
+        return "";
+    }
+
+    const date = new Date(value);
+
+    if(Number.isNaN(date.getTime())){
+        return "";
+    }
+
+    return date.toLocaleDateString(undefined,{
+
+        month:"short",
+        day:"numeric",
+        year:"numeric"
+
+    });
+
 }
+
+
+/* =========================
+   NEWS IMAGE
+========================= */
+
+function getNewsImage(article,compact=false){
+
+    if(article.urlToImage){
+
+        return `
+            <img
+                class="${compact
+                    ? "news-compact-image"
+                    : "news-feature-image"
+                }"
+                src="${escapeAttr(article.urlToImage)}"
+                alt=""
+                loading="lazy"
+                onerror="
+                    this.outerHTML='<div class=&quot;news-fallback&quot;>Y</div>'
+                "
+            >
+        `;
+
+    }
+
+    return `
+        <div class="news-fallback">
+            Y
+        </div>
+    `;
+
+}
+
+
+/* =========================
+   RENDER NEWS
+========================= */
 
 function renderNews(articles){
-if(!articles.length){
-news.innerHTML='<div class="status"><strong>No stories found</strong>Try another search.</div>';
-return;
+
+    if(!articles.length){
+
+        newsList.innerHTML = `
+            <div class="status">
+
+                <strong>
+                    No stories found
+                </strong>
+
+                Try another search.
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    const cleanArticles =
+        articles
+            .filter(article =>
+                article &&
+                article.title &&
+                article.title !== "[Removed]"
+            )
+            .slice(0,9);
+
+
+    if(!cleanArticles.length){
+
+        newsList.innerHTML = `
+            <div class="status">
+
+                <strong>
+                    No stories found
+                </strong>
+
+                Try another search.
+
+            </div>
+        `;
+
+        return;
+    }
+
+
+    /* FEATURED STORY */
+
+    const featured =
+        cleanArticles[0];
+
+
+    const featuredTitle =
+        escapeHTML(
+            featured.title || "Untitled"
+        );
+
+    const featuredSource =
+        escapeHTML(
+            featured.source?.name || "News"
+        );
+
+    const featuredDescription =
+        escapeHTML(
+            featured.description || ""
+        );
+
+    const featuredURL =
+        escapeAttr(
+            featured.url || "#"
+        );
+
+
+    let html = `
+
+        <article class="news-card news-feature">
+
+            ${getNewsImage(featured,false)}
+
+            <div class="news-content">
+
+                <div class="news-top">
+
+                    <div class="news-source">
+                        ${featuredSource}
+                    </div>
+
+                    <div class="news-date">
+                        ${formatDate(featured.publishedAt)}
+                    </div>
+
+                </div>
+
+                <div class="news-title">
+
+                    <a
+                        href="${featuredURL}"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                    >
+                        ${featuredTitle}
+                    </a>
+
+                </div>
+
+                ${
+                    featuredDescription
+                    ?
+                    `
+                    <div class="news-description">
+                        ${featuredDescription}
+                    </div>
+                    `
+                    :
+                    ""
+                }
+
+            </div>
+
+        </article>
+
+    `;
+
+
+    /* OTHER STORIES */
+
+    html += cleanArticles
+        .slice(1)
+        .map(article => {
+
+            const title =
+                escapeHTML(
+                    article.title || "Untitled"
+                );
+
+            const source =
+                escapeHTML(
+                    article.source?.name || "News"
+                );
+
+            const url =
+                escapeAttr(
+                    article.url || "#"
+                );
+
+
+            return `
+
+                <article class="news-card news-compact">
+
+                    ${getNewsImage(article,true)}
+
+                    <div class="news-content">
+
+                        <div class="news-top">
+
+                            <div class="news-source">
+                                ${source}
+                            </div>
+
+                            <div class="news-date">
+                                ${formatDate(article.publishedAt)}
+                            </div>
+
+                        </div>
+
+                        <div class="news-title">
+
+                            <a
+                                href="${url}"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                ${title}
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            `;
+
+        })
+        .join("");
+
+
+    newsList.innerHTML = html;
+
 }
 
-news.innerHTML=articles.slice(0,9).map(article=>{
-const title=escapeHTML(article.title||"Untitled");
-const source=escapeHTML(article.source?.name||"News");
-const description=escapeHTML(article.description||"");
-const url=escapeAttr(article.url||"#");
 
-const image=article.urlToImage
-?`<div class="news-image-wrap">
-<img class="news-image" src="${escapeAttr(article.urlToImage)}" alt="" loading="lazy" onerror="this.parentElement.innerHTML='<div class=&quot;news-fallback&quot;>Y</div>'">
-</div>`
-:`<div class="news-image-wrap"><div class="news-fallback">Y</div></div>`;
-
-return `
-<article class="news-card">
-${image}
-<div class="news-content">
-<div class="news-top">
-<div class="news-source">${source}</div>
-<div class="news-date">${formatDate(article.publishedAt)}</div>
-</div>
-<div class="news-title">
-<a href="${url}" target="_blank" rel="noopener noreferrer">${title}</a>
-</div>
-${description?`<div class="news-description">${description}</div>`:""}
-</div>
-</article>`;
-}).join("");
-}
+/* =========================
+   LOAD NEWS
+========================= */
 
 async function loadNews(query="Kanye West"){
-news.innerHTML='<div class="status">Loading news...</div>';
 
-try{
-const response=await fetch(`/api/news?q=${encodeURIComponent(query)}`,{
-cache:"no-store"
-});
+    newsList.innerHTML = `
 
-const data=await response.json();
+        <div class="status">
 
-if(!response.ok||data.status!=="ok"){
-throw new Error(data.message||"News request failed");
+            Loading news...
+
+        </div>
+
+    `;
+
+
+    try{
+
+        const response =
+            await fetch(
+                `/api/news?q=${encodeURIComponent(query)}`,
+                {
+                    cache:"no-store"
+                }
+            );
+
+
+        const data =
+            await response.json();
+
+
+        if(
+            !response.ok ||
+            data.status !== "ok"
+        ){
+
+            throw new Error(
+                data.message ||
+                "News request failed"
+            );
+
+        }
+
+
+        renderNews(
+            data.articles || []
+        );
+
+
+    }catch(error){
+
+        console.error(
+            "News error:",
+            error
+        );
+
+
+        newsList.innerHTML = `
+
+            <div class="status">
+
+                <strong>
+                    News is temporarily unavailable
+                </strong>
+
+                Try refreshing in a moment.
+
+            </div>
+
+        `;
+
+    }
+
 }
 
-renderNews(data.articles||[]);
-}catch(error){
-news.innerHTML='<div class="status"><strong>News is temporarily unavailable</strong>Try refreshing in a moment.</div>';
-}
-}
+
+/* =========================
+   DOWNLOAD RENDER
+========================= */
 
 function renderFiles(filter=""){
-const value=filter.toLowerCase().trim();
 
-const filtered=files.filter(file=>
-file.name.toLowerCase().includes(value)||
-file.description.toLowerCase().includes(value)
+    const value =
+        filter
+            .toLowerCase()
+            .trim();
+
+
+    const filtered =
+        files.filter(file =>
+
+            file.name
+                .toLowerCase()
+                .includes(value)
+
+            ||
+
+            file.description
+                .toLowerCase()
+                .includes(value)
+
+        );
+
+
+    if(!filtered.length){
+
+        downloads.innerHTML = `
+
+            <div class="status">
+
+                <strong>
+                    No downloads found
+                </strong>
+
+                Try another search.
+
+            </div>
+
+        `;
+
+        return;
+    }
+
+
+    downloads.innerHTML =
+        filtered.map(file => `
+
+            <div class="file">
+
+                <div class="icon-wrapper">
+
+                    <img
+                        class="icon"
+                        src="${escapeAttr(file.icon)}"
+                        alt=""
+                        onerror="
+                            this.style.display='none';
+                            this.parentElement.textContent='📦'
+                        "
+                    >
+
+                </div>
+
+
+                <div class="info">
+
+                    <div class="name">
+                        ${escapeHTML(file.name)}
+                    </div>
+
+                    <div class="description">
+                        ${escapeHTML(file.description)}
+                    </div>
+
+                    <div class="file-type">
+                        ZIP Archive
+                    </div>
+
+                </div>
+
+
+                <a
+                    class="download"
+                    href="${escapeAttr(file.file)}"
+                    download
+                >
+
+                    <span>↓</span>
+
+                    <span class="download-text">
+                        Download
+                    </span>
+
+                </a>
+
+            </div>
+
+        `).join("");
+
+}
+
+
+/* =========================
+   DOWNLOAD SEARCH
+========================= */
+
+search.addEventListener(
+    "input",
+    () => {
+
+        renderFiles(
+            search.value
+        );
+
+    }
 );
 
-if(!filtered.length){
-downloads.innerHTML='<div class="status"><strong>No downloads found</strong>Try another search.</div>';
-return;
-}
 
-downloads.innerHTML=filtered.map(file=>`
-<div class="file">
-<div class="icon-wrapper">
-<img
-class="icon"
-src="${escapeAttr(file.icon)}"
-alt=""
-onerror="this.style.display='none';this.parentElement.textContent='📦'"
->
-</div>
-
-<div class="info">
-<div class="name">${escapeHTML(file.name)}</div>
-<div class="description">${escapeHTML(file.description)}</div>
-<div class="file-type">ZIP Archive</div>
-</div>
-
-<a
-class="download"
-href="${escapeAttr(file.file)}"
-download
->
-<span>↓</span>
-<span class="download-text">Download</span>
-</a>
-</div>
-`).join("");
-}
-
-search.addEventListener("input",()=>{
-renderFiles(search.value);
-});
+/* =========================
+   NEWS SEARCH
+========================= */
 
 let newsTimer;
 
-newsSearch.addEventListener("input",()=>{
-clearTimeout(newsTimer);
 
-newsTimer=setTimeout(()=>{
-const query=newsSearch.value.trim();
+newsSearch.addEventListener(
+    "input",
+    () => {
 
-loadNews(
-query
-?`Kanye West ${query}`
-:"Kanye West"
+        clearTimeout(
+            newsTimer
+        );
+
+
+        newsTimer =
+            setTimeout(() => {
+
+                const query =
+                    newsSearch.value.trim();
+
+
+                loadNews(
+
+                    query
+                        ? `Kanye West ${query}`
+                        : "Kanye West"
+
+                );
+
+            },450);
+
+    }
 );
-},450);
-});
+
+
+/* =========================
+   INITIAL LOAD
+========================= */
 
 renderFiles();
+
 loadNews();
+
 </script>
 
 </body>
