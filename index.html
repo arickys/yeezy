@@ -1,503 +1,980 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
-<title>unYZY [HOME]</title>
-
+<title>unYZY</title>
 <style>
 *{box-sizing:border-box}
 
 :root{
 --bg:#08090b;
---white:#f5f5f6;
---muted:#7d828b;
---dim:#555a63;
+--surface:#101216;
+--surface2:#15171c;
+--line:#22252b;
+--line2:#30343c;
+--text:#f5f5f6;
+--muted:#858b95;
+--dim:#5e646e;
 }
 
-html,body{
-margin:0;
-width:100%;
-min-height:100%;
+html{
+scroll-behavior:smooth;
+scroll-padding-top:100px;
 }
 
 body{
+margin:0;
 min-height:100vh;
-overflow:hidden;
 background:
-radial-gradient(circle at 50% 42%,rgba(255,255,255,.075),transparent 48%),
-radial-gradient(circle at 50% 100%,rgba(255,255,255,.025),transparent 38%),
+radial-gradient(circle at 50% -20%,rgba(255,255,255,.07),transparent 32rem),
+radial-gradient(circle at 100% 40%,rgba(255,255,255,.025),transparent 28rem),
 var(--bg);
-color:var(--white);
+color:var(--text);
 font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+line-height:1.45;
 -webkit-font-smoothing:antialiased;
-opacity:0;
-transform:scale(1.012);
-transition:opacity .55s ease,transform .75s cubic-bezier(.22,1,.36,1);
 }
 
-body.ready{
-opacity:1;
-transform:scale(1);
+button,input{
+font:inherit;
 }
 
-body.leaving{
-opacity:0;
-transform:scale(.985);
+a{
+color:inherit;
 }
-
-body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:
-linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
-background-size:80px 80px;
-opacity:.25;
-mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
-}
-
-body:after{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.3));
-}
-
-a{color:inherit}
 
 .nav{
 position:fixed;
-top:20px;
+top:18px;
 left:50%;
-z-index:50;
+z-index:100;
 transform:translateX(-50%);
 display:flex;
 align-items:center;
-gap:3px;
 padding:5px;
-border:1px solid rgba(255,255,255,.075);
-border-radius:14px;
-background:rgba(10,11,14,.68);
-backdrop-filter:blur(24px) saturate(150%);
--webkit-backdrop-filter:blur(24px) saturate(150%);
-box-shadow:0 18px 55px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.035);
+border:1px solid rgba(255,255,255,.09);
+border-radius:13px;
+background:rgba(13,14,17,.78);
+backdrop-filter:blur(22px) saturate(140%);
+-webkit-backdrop-filter:blur(22px) saturate(140%);
+box-shadow:
+0 12px 40px rgba(0,0,0,.32),
+inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .nav a{
-height:35px;
-min-width:78px;
+position:relative;
+height:34px;
+min-width:76px;
 display:flex;
 align-items:center;
 justify-content:center;
 padding:0 14px;
 border-radius:9px;
-color:#70757e;
+color:#777d87;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-transition:.2s ease;
+letter-spacing:-.1px;
+transition:
+color .2s ease,
+background .2s ease,
+transform .2s ease;
 }
 
 .nav a:hover{
-color:#fff;
-background:rgba(255,255,255,.05);
+color:#e7e8ea;
+background:rgba(255,255,255,.055);
 }
 
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
+box-shadow:
+inset 0 0 0 1px rgba(255,255,255,.045),
+0 2px 8px rgba(0,0,0,.15);
 }
 
 .nav a:active{
-transform:scale(.95);
+transform:scale(.96);
+}
+
+.container{
+width:min(1180px,calc(100% - 36px));
+margin:auto;
+padding:145px 0 70px;
 }
 
 .hero{
-position:relative;
-width:100%;
-height:100vh;
-min-height:600px;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:80px 24px 30px;
-}
-
-.hero-inner{
-position:relative;
-z-index:2;
-display:flex;
-flex-direction:column;
-align-items:center;
-justify-content:center;
+min-height:360px;
 text-align:center;
 }
 
-.logo-wrap{
-position:relative;
-width:min(340px,45vw);
-height:min(340px,45vw);
+.hero-inner{
 display:flex;
+flex-direction:column;
 align-items:center;
-justify-content:center;
-}
-
-.logo-glow{
-position:absolute;
-width:70%;
-height:45%;
-border-radius:50%;
-background:rgba(255,255,255,.08);
-filter:blur(70px);
-opacity:.6;
 }
 
 .logo{
-position:relative;
-z-index:2;
+width:78px;
+height:78px;
+margin-bottom:27px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.12);
+border-radius:19px;
+background:#111318;
+box-shadow:
+0 18px 50px rgba(0,0,0,.35),
+0 0 0 7px rgba(255,255,255,.018);
+}
+
+.logo img{
 width:100%;
 height:100%;
 display:block;
-object-fit:contain;
-filter:
-drop-shadow(0 28px 45px rgba(0,0,0,.5))
-drop-shadow(0 0 45px rgba(255,255,255,.055));
-animation:logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
+object-fit:cover;
 }
 
-@keyframes logoFloat{
-0%,100%{
-transform:translateY(0) scale(1);
-}
-50%{
-transform:translateY(-12px) scale(1.015);
-}
-}
-
-.description{
-margin-top:4px;
-color:#858a93;
-font-size:12px;
-font-weight:650;
-letter-spacing:.5px;
+h1{
+margin:0;
+font-size:clamp(68px,10vw,110px);
+line-height:.82;
+letter-spacing:-7px;
+font-weight:900;
 }
 
-.actions{
+.hero-description{
+max-width:430px;
+margin:25px auto 0;
+color:var(--muted);
+font-size:14px;
+line-height:1.6;
+}
+
+.section{
+padding-top:65px;
+}
+
+.section-head{
 display:flex;
 align-items:center;
-justify-content:center;
-gap:8px;
-margin-top:25px;
+justify-content:space-between;
+gap:20px;
+margin-bottom:17px;
 }
 
-.action{
-height:40px;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:0 17px;
-border:1px solid rgba(255,255,255,.12);
-border-radius:9px;
-background:rgba(255,255,255,.025);
-color:#bfc2c7;
-text-decoration:none;
-font-size:11px;
+.section-title{
+margin:0;
+font-size:22px;
 font-weight:800;
-transition:.2s ease;
+letter-spacing:-.7px;
 }
 
-.action:hover{
-transform:translateY(-2px);
-background:rgba(255,255,255,.075);
-border-color:rgba(255,255,255,.2);
-color:#fff;
-box-shadow:0 12px 30px rgba(0,0,0,.2);
-}
-
-.action.primary{
-background:#e9e9eb;
-border-color:#e9e9eb;
-color:#08090b;
-}
-
-.action.primary:hover{
-background:#fff;
-border-color:#fff;
-color:#08090b;
-}
-
-.corner{
-position:absolute;
-z-index:2;
-color:#454a53;
-font-size:9px;
+.section-count{
+color:var(--dim);
+font-size:11px;
 font-weight:750;
-letter-spacing:1.5px;
 }
 
-.corner.left{
-left:30px;
-bottom:27px;
+.toolbar{
+margin-bottom:14px;
 }
 
-.corner.right{
-right:30px;
-bottom:27px;
+.field{
+position:relative;
+width:100%;
 }
 
-.page-transition{
-position:fixed;
-inset:0;
-z-index:999;
-display:flex;
-align-items:center;
-justify-content:center;
-background:#08090b;
-opacity:0;
-visibility:hidden;
+.field input{
+width:100%;
+height:45px;
+padding:0 15px 0 41px;
+border:1px solid var(--line);
+border-radius:10px;
+outline:none;
+background:rgba(16,18,22,.82);
+color:#fff;
+font-size:13px;
+transition:
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
+}
+
+.field input::placeholder{
+color:#5d626b;
+}
+
+.field input:hover
+
+.field input:focus{
+border-color:#41464f;
+background:#121419;
+box-shadow:0 0 0 3px rgba(255,255,255,.025);
+}
+
+.field-icon{
+position:absolute;
+left:15px;
+top:50%;
+transform:translateY(-51%);
+color:#686e78;
+font-size:17px;
+line-height:1;
 pointer-events:none;
 }
 
-.page-transition.active{
-opacity:1;
-visibility:visible;
+.downloads{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
 }
 
-.transition-logo{
-width:min(320px,60vw);
-height:min(320px,60vw);
-object-fit:contain;
-opacity:0;
-transform:scale(.72);
-filter:
-drop-shadow(0 28px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 60px rgba(255,255,255,.07));
+.file{
+min-width:0;
+display:flex;
+align-items:center;
+gap:13px;
+padding:13px;
+border:1px solid var(--line);
+border-radius:12px;
+background:
+linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.006)),
+var(--surface);
+transition:
+transform .2s ease,
+border-color .2s ease,
+background .2s ease,
+box-shadow .2s ease;
 }
 
-.page-transition.show .transition-logo{
-opacity:1;
-transform:scale(1);
-transition:opacity .45s ease,transform .7s cubic-bezier(.22,1,.36,1);
+.file:hover{
+transform:translateY(-3px);
+border-color:#363a43;
+background:var(--surface2);
+box-shadow:0 18px 38px rgba(0,0,0,.22);
 }
 
-.page-transition.fade .transition-logo{
-opacity:0;
-transform:scale(1.1);
-transition:opacity .35s ease,transform .45s ease;
+.icon-wrapper{
+width:58px;
+height:58px;
+flex:0 0 58px;
+overflow:hidden;
+display:grid;
+place-items:center;
+border:1px solid #292d34;
+border-radius:10px;
+background:#181a1f;
+color:#747a84;
+font-size:20px;
 }
 
-@media(max-width:650px){
+.icon{
+width:100%;
+height:100%;
+display:block;
+object-fit:cover;
+}
 
-body{
+.info{
+min-width:0;
+flex:1;
+}
+
+.name{
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+font-size:14px;
+font-weight:750;
+letter-spacing:-.25px;
+}
+
+.description{
+margin-top:3px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+color:var(--muted);
+font-size:11px;
+}
+
+.file-type{
+margin-top:6px;
+color:#626872;
+font-size:9px;
+font-weight:800;
+letter-spacing:1px;
+text-transform:uppercase;
+}
+
+.download{
+flex:0 0 auto;
+display:inline-flex;
+align-items:center;
+justify-content:center;
+gap:7px;
+height:34px;
+padding:0 12px;
+border:1px solid #d1d2d5;
+border-radius:8px;
+background:#e7e7e9;
+color:#090a0c;
+text-decoration:none;
+font-size:11px;
+font-weight:850;
+transition:
+background .18s ease,
+border-color .18s ease,
+transform .18s ease;
+}
+
+.download:hover{
+background:#fff;
+border-color:#fff;
+transform:translateY(-1px);
+}
+
+.download:active{
+transform:translateY(0) scale(.97);
+}
+
+.main-layout{
+display:grid;
+grid-template-columns:minmax(0,1fr) 360px;
+gap:22px;
+align-items:start;
+}
+
+.news-panel{
+position:sticky;
+top:86px;
+min-width:0;
+border:1px solid var(--line);
+border-radius:13px;
+overflow:hidden;
+background:
+linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.007)),
+var(--surface);
+box-shadow:0 18px 50px rgba(0,0,0,.14);
+}
+
+.news-panel-head{
+padding:16px;
+border-bottom:1px solid var(--line);
+display:flex;
+align-items:center;
+justify-content:space-between;
+}
+
+.news-panel-title{
+margin:0;
+font-size:15px;
+font-weight:800;
+letter-spacing:-.3px;
+}
+
+.news-search{
+padding:11px 12px;
+border-bottom:1px solid var(--line);
+}
+
+.news-search .field input{
+height:38px;
+background:#0d0f12;
+}
+
+.news-list{
+max-height:650px;
 overflow:auto;
+scrollbar-width:thin;
+scrollbar-color:#292d34 transparent;
 }
 
+.news-list::-webkit-scrollbar{
+width:5px;
+}
+
+.news-list::-webkit-scrollbar-thumb{
+background:#292d34;
+border-radius:10px;
+}
+
+.news-card{
+min-width:0;
+border-bottom:1px solid var(--line);
+background:transparent;
+transition:background .18s ease;
+}
+
+.news-card:last-child{
+border-bottom:0;
+}
+
+.news-card:hover{
+background:rgba(255,255,255,.025);
+}
+
+.news-feature{
+display:block;
+}
+
+.news-feature-image{
+width:100%;
+height:180px;
+object-fit:cover;
+display:block;
+background:#181b20;
+}
+
+.news-content{
+padding:13px 14px;
+}
+
+.news-top{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+}
+
+.news-source{
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+color:#898f99;
+font-size:9px;
+font-weight:800;
+letter-spacing:.9px;
+text-transform:uppercase;
+}
+
+.news-date{
+color:#5e636d;
+font-size:9px;
+white-space:nowrap;
+}
+
+.news-title{
+margin-top:7px;
+font-size:13px;
+line-height:1.35;
+font-weight:750;
+letter-spacing:-.15px;
+}
+
+.news-title a{
+text-decoration:none;
+}
+
+.news-title a:hover{
+text-decoration:underline;
+}
+
+.news-description{
+display:-webkit-box;
+-webkit-line-clamp:2;
+-webkit-box-orient:vertical;
+overflow:hidden;
+margin-top:6px;
+color:#747a84;
+font-size:11px;
+line-height:1.45;
+}
+
+.news-compact{
+display:grid;
+grid-template-columns:82px minmax(0,1fr);
+gap:11px;
+padding:11px 14px;
+}
+
+.news-compact-image{
+width:82px;
+height:62px;
+object-fit:cover;
+border-radius:7px;
+background:#181b20;
+}
+
+.news-compact .news-content{
+padding:0;
+}
+
+.news-compact .news-title{
+margin-top:5px;
+font-size:11px;
+display:-webkit-box;
+-webkit-line-clamp:3;
+-webkit-box-orient:vertical;
+overflow:hidden;
+}
+
+.news-fallback{
+width:100%;
+height:100%;
+display:grid;
+place-items:center;
+background:
+radial-gradient(circle at 50% 40%,#252932,#101216 65%);
+color:#555b65;
+font-size:26px;
+font-weight:900;
+}
+
+.status{
+padding:38px 20px;
+border:1px dashed #2a2e35;
+border-radius:10px;
+color:#777d86;
+text-align:center;
+font-size:12px;
+background:rgba(255,255,255,.012);
+}
+
+.news-list>.status{
+border:0;
+border-radius:0;
+}
+
+.status strong{
+display:block;
+margin-bottom:5px;
+color:#aeb2b9;
+font-size:13px;
+}
+
+.reveal{
+opacity:0;
+transform:translateY(15px);
+animation:reveal .65s cubic-bezier(.2,.7,.2,1) forwards;
+}
+
+.reveal:nth-child(2){animation-delay:.06s}
+.reveal:nth-child(3){animation-delay:.12s}
+
+@keyframes reveal{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@media(max-width:1000px){
+.main-layout{
+grid-template-columns:1fr;
+}
+
+.news-panel{
+position:relative;
+top:auto;
+}
+
+.news-list{
+max-height:none;
+display:grid;
+grid-template-columns:1fr 1fr;
+}
+
+.news-feature{
+grid-column:1/-1;
+}
+
+.news-card{
+border-right:1px solid var(--line);
+}
+
+.news-compact{
+border-bottom:1px solid var(--line);
+}
+}
+
+@media(max-width:750px){
+.container{
+padding-top:125px;
+}
+
+.hero{
+min-height:300px;
+}
+
+.downloads{
+grid-template-columns:1fr;
+}
+
+.news-list{
+display:block;
+}
+
+.news-card{
+border-right:0;
+}
+}
+
+@media(max-width:560px){
 .nav{
 top:12px;
+padding:4px;
 }
 
 .nav a{
-height:33px;
 min-width:70px;
+height:33px;
 padding:0 10px;
 font-size:11px;
 }
 
+.container{
+width:calc(100% - 24px);
+padding-top:112px;
+}
+
 .hero{
-min-height:100svh;
-padding:75px 18px 35px;
+min-height:275px;
 }
 
-.logo-wrap{
-width:min(270px,72vw);
-height:min(270px,72vw);
+.logo{
+width:68px;
+height:68px;
+margin-bottom:24px;
+border-radius:16px;
 }
 
-.description{
-font-size:11px;
+h1{
+font-size:61px;
+letter-spacing:-5px;
 }
 
-.actions{
-width:100%;
-max-width:330px;
+.hero-description{
+font-size:13px;
+margin-top:21px;
 }
 
-.action{
-flex:1;
-padding:0 12px;
+.section{
+padding-top:48px;
 }
 
-.corner{
+.section-title{
+font-size:20px;
+}
+
+.file{
+padding:11px;
+}
+
+.icon-wrapper{
+width:53px;
+height:53px;
+flex-basis:53px;
+}
+
+.download{
+padding:0 10px;
+}
+
+.download-text{
 display:none;
 }
 }
 
 @media(prefers-reduced-motion:reduce){
-
-body,
-.update,
-.page-transition .transition-logo{
-transition:none;
+html{
+scroll-behavior:auto;
 }
 
-.logo{
-animation:none;
+*{
+animation:none!important;
+transition:none!important;
 }
-}
-</style>
+} </style>
+
 </head>
-
 <body>
 
 <nav class="nav">
-<a href="/" class="active" data-page="home">Home</a>
-<a href="/downloads" data-page="downloads">Downloads</a>
-<a href="/updates" data-page="updates">Updates</a>
+<a href="#home" class="active">Home</a>
+<a href="#downloads">Downloads</a>
+<a href="#news">News</a>
 </nav>
 
-<main class="hero">
+<main class="container">
 
+<section class="hero reveal" id="home">
 <div class="hero-inner">
+<div class="logo">
+<img src="logo.png" alt="unYZY">
+</div>
+<h1>unYZY</h1>
+<div class="hero-description">
+An archive for unreleased tracks, sessions, and rare material.
+</div>
+</div>
+</section>
 
-<div class="logo-wrap">
-<div class="logo-glow"></div>
+<div class="main-layout">
 
-<img
-class="logo"
-src="assets/logo.png"
-alt="unYZY"
->
+<section class="section reveal" id="downloads">
+<div class="section-head">
+<h2 class="section-title">Downloads</h2>
+<div class="section-count" id="fileCount"></div>
 </div>
 
-<div class="description">
-KEVLAR YEEZY
+<div class="toolbar">
+<div class="field">
+<div class="field-icon">⌕</div>
+<input id="search" type="text" placeholder="Search downloads..." autocomplete="off">
+</div>
 </div>
 
-<div class="actions">
+<div class="downloads" id="downloadsList"></div>
+</section>
 
-<a
-class="action primary"
-href="/downloads"
-data-page="downloads"
->
-Browse Downloads
-</a>
+<aside class="news-panel reveal" id="news">
 
-<a
-class="action"
-href="/updates"
-data-page="updates"
->
-Latest Updates
-</a>
-
+<div class="news-panel-head">
+<h2 class="news-panel-title">Kanye West News</h2>
 </div>
 
+<div class="news-search">
+<div class="field">
+<div class="field-icon">⌕</div>
+<input id="newsSearch" type="text" placeholder="Search news..." autocomplete="off">
+</div>
 </div>
 
-<div class="corner left">+</div>
-<div class="corner right">+</div>
+<div class="news-list" id="newsList">
+<div class="status">Loading news...</div>
+</div>
+
+</aside>
+
+</div>
 
 </main>
 
-<div class="page-transition" id="pageTransition">
+<script>
+const files=[
+{
+name:"IN A PERFECT WORLD",
+description:"10/10",
+file:"IN A PERFECT WORLD.zip",
+icon:"IAPW.png"
+}
+];
+
+const newsList=document.getElementById("newsList");
+const newsSearch=document.getElementById("newsSearch");
+const downloads=document.getElementById("downloadsList");
+const search=document.getElementById("search");
+const fileCount=document.getElementById("fileCount");
+const navLinks=[...document.querySelectorAll(".nav a")];
+
+function escapeHTML(value){
+return String(value??"").replace(/[&<>"']/g,c=>({
+"&":"&amp;",
+"<":"&lt;",
+">":"&gt;",
+'"':"&quot;",
+"'":"&#039;"
+}[c]));
+}
+
+function escapeAttr(value){
+return escapeHTML(value);
+}
+
+function formatDate(value){
+if(!value)return"";
+const date=new Date(value);
+if(Number.isNaN(date.getTime()))return"";
+return date.toLocaleDateString(undefined,{
+month:"short",
+day:"numeric",
+year:"numeric"
+});
+}
+
+function getNewsImage(article,compact=false){
+if(article.urlToImage){
+return`<img class="${compact?"news-compact-image":"news-feature-image"}" src="${escapeAttr(article.urlToImage)}" alt="" loading="lazy" onerror="this.outerHTML='<div class=&quot;news-fallback&quot;>Y</div>'">`;
+}
+
+return`<div class="news-fallback">Y</div>`;
+}
+
+function renderNews(articles){
+const clean=articles
+.filter(a=>a&&a.title&&a.title!=="[Removed]")
+.slice(0,9);
+
+if(!clean.length){
+newsList.innerHTML=`<div class="status"><strong>No stories found</strong>Try another search.</div>`;
+return;
+}
+
+const featured=clean[0];
+
+let html=`
+<article class="news-card news-feature">
+${getNewsImage(featured,false)}
+<div class="news-content">
+<div class="news-top">
+<div class="news-source">${escapeHTML(featured.source?.name||"News")}</div>
+<div class="news-date">${formatDate(featured.publishedAt)}</div>
+</div>
+<div class="news-title">
+<a href="${escapeAttr(featured.url||"#")}" target="_blank" rel="noopener noreferrer">
+${escapeHTML(featured.title||"Untitled")}
+</a>
+</div>
+${featured.description?`<div class="news-description">${escapeHTML(featured.description)}</div>`:""}
+</div>
+</article>`;
+
+html+=clean.slice(1).map(article=>`
+<article class="news-card news-compact">
+${getNewsImage(article,true)}
+<div class="news-content">
+<div class="news-top">
+<div class="news-source">${escapeHTML(article.source?.name||"News")}</div>
+<div class="news-date">${formatDate(article.publishedAt)}</div>
+</div>
+<div class="news-title">
+<a href="${escapeAttr(article.url||"#")}" target="_blank" rel="noopener noreferrer">
+${escapeHTML(article.title||"Untitled")}
+</a>
+</div>
+</div>
+</article>
+`).join("");
+
+newsList.innerHTML=html;
+}
+
+async function loadNews(query="Kanye West"){
+newsList.innerHTML=`<div class="status">Loading news...</div>`;
+
+try{
+const res=await fetch(`/api/news?q=${encodeURIComponent(query)}`,{
+cache:"no-store"
+});
+
+const data=await res.json();
+
+if(!res.ok||data.status!=="ok"){
+throw new Error(data.message||"News request failed");
+}
+
+renderNews(data.articles||[]);
+}catch(error){
+console.error("News error:",error);
+
+newsList.innerHTML=`
+<div class="status">
+<strong>News is temporarily unavailable</strong>
+Try refreshing in a moment.
+</div>`;
+}
+}
+
+function renderFiles(filter=""){
+const value=filter.toLowerCase().trim();
+
+const filtered=files.filter(file=>
+file.name.toLowerCase().includes(value)||
+file.description.toLowerCase().includes(value)
+);
+
+fileCount.textContent=`${filtered.length} ${filtered.length===1?"file":"files"}`;
+
+if(!filtered.length){
+downloads.innerHTML=`
+<div class="status">
+<strong>No downloads found</strong>
+Try another search.
+</div>`;
+return;
+}
+
+downloads.innerHTML=filtered.map(file=>`
+<div class="file">
+<div class="icon-wrapper">
 <img
-class="transition-logo"
-id="transitionLogo"
-src="assets/LOGO2.png"
+class="icon"
+src="${escapeAttr(file.icon)}"
 alt=""
+onerror="this.style.display='none';this.parentElement.textContent='📦'"
 >
 </div>
 
-<script>
-const pageTransition=document.getElementById("pageTransition");
-const transitionLogo=document.getElementById("transitionLogo");
+<div class="info">
+<div class="name">${escapeHTML(file.name)}</div>
+<div class="description">${escapeHTML(file.description)}</div>
+<div class="file-type">ZIP Archive</div>
+</div>
 
-let navigating=false;
-
-function navigate(url,target){
-if(navigating)return;
-
-navigating=true;
-
-document.body.classList.add("leaving");
-
-transitionLogo.src=
-target==="home"
-?"assets/logo.png"
-:"assets/LOGO2.png";
-
-pageTransition.classList.add("active");
-
-requestAnimationFrame(()=>{
-pageTransition.classList.add("show");
-});
-
-setTimeout(()=>{
-pageTransition.classList.add("fade");
-},620);
-
-setTimeout(()=>{
-sessionStorage.setItem("unyzyTransition",target);
-window.location.href=url;
-},900);
+<a
+class="download"
+href="${escapeAttr(file.file)}"
+download
+>
+<span>↓</span>
+<span class="download-text">Download</span>
+</a>
+</div>
+`).join("");
 }
 
-document.querySelectorAll("[data-page]").forEach(link=>{
-link.addEventListener("click",event=>{
-event.preventDefault();
-navigate(link.href,link.dataset.page);
-});
+search.addEventListener("input",()=>{
+renderFiles(search.value);
 });
 
-function enterPage(){
+let newsTimer;
 
-const transition=sessionStorage.getItem("unyzyTransition");
+newsSearch.addEventListener("input",()=>{
+clearTimeout(newsTimer);
 
-sessionStorage.removeItem("unyzyTransition");
-
-if(
-transition==="home"||
-transition==="downloads"||
-transition==="updates"
-){
-
-transitionLogo.src=
-transition==="home"
-?"assets/logo.png"
-:"assets/LOGO2.png";
-
-pageTransition.classList.add("active");
-
-requestAnimationFrame(()=>{
-pageTransition.classList.add("show");
+newsTimer=setTimeout(()=>{
+const query=newsSearch.value.trim();
+loadNews(query?`Kanye West ${query}`:"Kanye West");
+},450);
 });
 
-setTimeout(()=>{
-pageTransition.classList.add("fade");
-document.body.classList.add("ready");
-},500);
+const sections=[
+document.getElementById("home"),
+document.getElementById("downloads"),
+document.getElementById("news")
+];
 
-setTimeout(()=>{
-pageTransition.classList.remove("active","show","fade");
-},950);
+const observer=new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+const id=entry.target.id;
 
-}else{
-
-requestAnimationFrame(()=>{
-document.body.classList.add("ready");
+navLinks.forEach(link=>{
+link.classList.toggle(
+"active",
+link.getAttribute("href")===`#${id}`
+);
 });
-
 }
+});
+},{
+rootMargin:"-35% 0px -55% 0px",
+threshold:0
+});
 
-}
+sections.forEach(section=>observer.observe(section));
 
-enterPage();
+renderFiles();
+loadNews();
 </script>
 
 </body>
