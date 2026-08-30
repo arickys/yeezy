@@ -1,1 +1,63 @@
-{"rewrites":[{"source":"/api/news","destination":"/api/news"}]}
+{
+  "cleanUrls": true,
+  "trailingSlash": false,
+  "routes": [
+    {
+      "src": "/downloads.html",
+      "status": 308,
+      "headers": {
+        "Location": "/downloads"
+      }
+    },
+    {
+      "src": "/updates.html",
+      "status": 308,
+      "headers": {
+        "Location": "/updates"
+      }
+    },
+    {
+      "src": "/index.html",
+      "status": 308,
+      "headers": {
+        "Location": "/"
+      }
+    },
+    {
+      "src": "/logo.png",
+      "status": 403,
+      "dest": "/error.html"
+    },
+    {
+      "src": "/LOGO2.png",
+      "status": 403,
+      "dest": "/error.html"
+    },
+    {
+      "src": "/IAPW.png",
+      "status": 403,
+      "dest": "/error.html"
+    },
+    {
+      "src": "/assets/(.*)",
+      "continue": true
+    },
+    {
+      "src": "/",
+      "dest": "/index.html"
+    },
+    {
+      "src": "/downloads",
+      "dest": "/downloads.html"
+    },
+    {
+      "src": "/updates",
+      "dest": "/updates.html"
+    },
+    {
+      "src": "/(.*)",
+      "status": 404,
+      "dest": "/error.html"
+    }
+  ]
+}

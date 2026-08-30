@@ -3,39 +3,49 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
 <title>unYZY [HOME]</title>
 
 <style>
-*{
-box-sizing:border-box;
-}
+*{box-sizing:border-box}
 
 :root{
 --bg:#08090b;
 --white:#f5f5f6;
 --muted:#7d828b;
+--dim:#555a63;
 }
 
-html,
-body{
+html,body{
 margin:0;
 width:100%;
 min-height:100%;
-background:var(--bg);
-}
-
-html{
-view-transition-name:root;
 }
 
 body{
 min-height:100vh;
 overflow:hidden;
+background:
+radial-gradient(circle at 50% 42%,rgba(255,255,255,.075),rgba(255,255,255,.035) 13%,rgba(255,255,255,.012) 25%,transparent 48%),
+radial-gradient(circle at 50% 100%,rgba(255,255,255,.025),transparent 38%),
+var(--bg);
 color:var(--white);
 font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
+opacity:0;
+transform:scale(1.018);
+transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1);
+}
+
+body.ready{
+opacity:1;
+transform:scale(1);
+}
+
+body.leaving{
+opacity:0;
+transform:scale(.985);
 }
 
 body:before{
@@ -44,8 +54,11 @@ position:fixed;
 inset:0;
 pointer-events:none;
 background:
-radial-gradient(circle at 50% 42%,rgba(255,255,255,.075),transparent 30rem),
-radial-gradient(circle at 50% 100%,rgba(255,255,255,.025),transparent 38rem);
+linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+background-size:80px 80px;
+mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
+opacity:.3;
 }
 
 body:after{
@@ -53,11 +66,7 @@ content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-background:radial-gradient(
-ellipse at center,
-transparent 42%,
-rgba(0,0,0,.32) 100%
-);
+background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.28) 100%);
 }
 
 a{
@@ -69,19 +78,19 @@ position:fixed;
 top:20px;
 left:50%;
 z-index:100;
-transform:translate3d(-50%,0,0);
+transform:translateX(-50%);
 display:flex;
+align-items:center;
 gap:3px;
 padding:5px;
 border:1px solid rgba(255,255,255,.075);
 border-radius:14px;
-background:rgba(10,11,14,.7);
-backdrop-filter:blur(22px) saturate(150%);
--webkit-backdrop-filter:blur(22px) saturate(150%);
+background:rgba(10,11,14,.68);
+backdrop-filter:blur(24px) saturate(150%);
+-webkit-backdrop-filter:blur(24px) saturate(150%);
 box-shadow:
-0 18px 55px rgba(0,0,0,.42),
-inset 0 1px rgba(255,255,255,.035);
-view-transition-name:nav;
+0 18px 55px rgba(0,0,0,.4),
+inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .nav a{
@@ -97,30 +106,28 @@ text-decoration:none;
 font-size:12px;
 font-weight:750;
 letter-spacing:-.15px;
-transition:
-color .18s ease,
-background .18s ease,
-transform .18s ease;
+transition:color .2s ease,background .2s ease,transform .2s ease;
 }
 
 .nav a:hover{
 color:#fff;
-background:rgba(255,255,255,.055);
+background:rgba(255,255,255,.05);
 }
 
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
-box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
+box-shadow:
+inset 0 0 0 1px rgba(255,255,255,.035),
+0 2px 8px rgba(0,0,0,.18);
 }
 
 .nav a:active{
-transform:scale(.94);
+transform:scale(.95);
 }
 
 .hero{
 position:relative;
-z-index:1;
 width:100%;
 height:100vh;
 min-height:600px;
@@ -131,6 +138,8 @@ padding:80px 24px 30px;
 }
 
 .hero-inner{
+position:relative;
+z-index:2;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -138,51 +147,49 @@ justify-content:center;
 text-align:center;
 }
 
-.logo-holder{
+.logo-area{
 position:relative;
-width:340px;
-height:340px;
+width:min(340px,45vw);
+height:min(340px,45vw);
 display:flex;
 align-items:center;
 justify-content:center;
+margin-bottom:5px;
 }
 
 .logo-glow{
 position:absolute;
-width:260px;
-height:175px;
+width:270px;
+height:165px;
 left:50%;
 top:50%;
-transform:translate3d(-50%,-50%,0);
+transform:translate(-50%,-40%);
 border-radius:50%;
-background:rgba(255,255,255,.065);
-filter:blur(65px);
-opacity:.5;
+background:rgba(255,255,255,.07);
+filter:blur(72px);
+opacity:.55;
 pointer-events:none;
 }
 
 .logo{
 position:relative;
 z-index:2;
-width:320px;
-height:320px;
+width:100%;
+height:100%;
 display:block;
 object-fit:contain;
 filter:
-drop-shadow(0 28px 45px rgba(0,0,0,.46))
-drop-shadow(0 0 28px rgba(255,255,255,.045));
+drop-shadow(0 28px 45px rgba(0,0,0,.48))
+drop-shadow(0 0 45px rgba(255,255,255,.055));
 animation:logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
-will-change:transform;
-view-transition-name:main-logo;
 }
 
 @keyframes logoFloat{
-0%,
-100%{
-transform:translate3d(0,0,0);
+0%,100%{
+transform:translateY(0) scale(1);
 }
 50%{
-transform:translate3d(0,-11px,0);
+transform:translateY(-12px) scale(1.015);
 }
 }
 
@@ -215,16 +222,17 @@ color:#bfc2c7;
 text-decoration:none;
 font-size:11px;
 font-weight:800;
+letter-spacing:-.05px;
 transition:
-background .18s ease,
-border-color .18s ease,
-color .18s ease,
-transform .18s ease,
-box-shadow .18s ease;
+background .2s ease,
+border-color .2s ease,
+color .2s ease,
+transform .2s ease,
+box-shadow .2s ease;
 }
 
 .action:hover{
-transform:translate3d(0,-2px,0);
+transform:translateY(-2px);
 background:rgba(255,255,255,.075);
 border-color:rgba(255,255,255,.2);
 color:#fff;
@@ -244,155 +252,75 @@ color:#08090b;
 box-shadow:0 14px 32px rgba(0,0,0,.3);
 }
 
-.transition-cover{
+.corner{
+position:absolute;
+z-index:2;
+color:#454a53;
+font-size:9px;
+font-weight:750;
+letter-spacing:1.5px;
+}
+
+.corner.left{
+left:30px;
+bottom:27px;
+}
+
+.corner.right{
+right:30px;
+bottom:27px;
+}
+
+.page-transition{
 position:fixed;
 inset:0;
-z-index:9999;
-pointer-events:none;
+z-index:999;
 display:flex;
 align-items:center;
 justify-content:center;
 background:#08090b;
 opacity:0;
 visibility:hidden;
+pointer-events:none;
 }
 
-.transition-cover img{
-width:320px;
-height:320px;
-object-fit:contain;
-transform:scale(.45);
-opacity:0;
-}
-
-body.leaving .transition-cover{
+.page-transition.active{
+opacity:1;
 visibility:visible;
-animation:coverIn .78s cubic-bezier(.16,1,.3,1) forwards;
+pointer-events:auto;
 }
 
-body.leaving .transition-cover img{
-animation:coverLogo .78s cubic-bezier(.16,1,.3,1) forwards;
-}
-
-body.leaving .hero{
-animation:heroOut .55s ease forwards;
-}
-
-@keyframes coverIn{
-0%{
+.transition-logo{
+width:min(310px,62vw);
+height:min(310px,62vw);
+object-fit:contain;
 opacity:0;
-}
-35%{
-opacity:1;
-}
-100%{
-opacity:1;
-}
+transform:scale(.72);
+filter:
+drop-shadow(0 28px 55px rgba(0,0,0,.65))
+drop-shadow(0 0 60px rgba(255,255,255,.07));
 }
 
-@keyframes coverLogo{
-0%{
-opacity:0;
-transform:scale(.45);
-}
-12%{
-opacity:1;
-}
-55%{
-opacity:1;
-transform:scale(1.25);
-}
-100%{
-opacity:0;
-transform:scale(4.5);
-}
-}
-
-@keyframes heroOut{
-0%{
+.page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
+transition:
+opacity .5s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
 }
-100%{
+
+.page-transition.fade .transition-logo{
 opacity:0;
-transform:scale(.92);
-}
-}
-
-@keyframes vtOut{
-from{
-opacity:1;
-transform:scale(1);
-}
-to{
-opacity:0;
-transform:scale(.86);
-}
-}
-
-@keyframes vtIn{
-from{
-opacity:0;
-transform:scale(1.08);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
-
-::view-transition-old(root){
-animation:vtOut .55s cubic-bezier(.22,1,.36,1) both;
-}
-
-::view-transition-new(root){
-animation:vtIn .7s cubic-bezier(.22,1,.36,1) both;
-}
-
-::view-transition-group(main-logo){
-animation-duration:.7s;
-animation-timing-function:cubic-bezier(.16,1,.3,1);
-}
-
-::view-transition-old(main-logo){
-animation:logoMorphOut .7s cubic-bezier(.16,1,.3,1) both;
-}
-
-::view-transition-new(main-logo){
-animation:logoMorphIn .7s cubic-bezier(.16,1,.3,1) both;
-}
-
-@keyframes logoMorphOut{
-0%{
-opacity:1;
-transform:scale(1);
-}
-35%{
-opacity:1;
-transform:scale(1.35);
-}
-100%{
-opacity:0;
-transform:scale(4);
-}
-}
-
-@keyframes logoMorphIn{
-0%{
-opacity:0;
-transform:scale(.25);
-}
-45%{
-opacity:1;
-transform:scale(.8);
-}
-100%{
-opacity:1;
-transform:scale(1);
-}
+transform:scale(1.13);
+transition:
+opacity .4s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 @media(max-width:650px){
+body{
+overflow:auto;
+}
 
 .nav{
 top:12px;
@@ -410,24 +338,14 @@ min-height:100svh;
 padding:75px 18px 35px;
 }
 
-.logo-holder{
-width:275px;
-height:275px;
-}
-
-.logo{
-width:260px;
-height:260px;
+.logo-area{
+width:min(280px,76vw);
+height:min(280px,76vw);
 }
 
 .logo-glow{
-width:210px;
+width:220px;
 height:130px;
-}
-
-.transition-cover img{
-width:270px;
-height:270px;
 }
 
 .description{
@@ -437,24 +355,26 @@ font-size:11px;
 .actions{
 width:100%;
 max-width:330px;
+margin-top:22px;
 }
 
 .action{
 flex:1;
 padding:0 12px;
 }
+
+.corner{
+display:none;
+}
 }
 
 @media(prefers-reduced-motion:reduce){
-
-.logo{
-animation:none;
+body,
+.page-transition .transition-logo{
+transition:none;
 }
 
-::view-transition-old(root),
-::view-transition-new(root),
-::view-transition-old(main-logo),
-::view-transition-new(main-logo){
+.logo{
 animation:none;
 }
 }
@@ -466,24 +386,17 @@ animation:none;
 
 <nav class="nav">
 <a href="index.html" class="active">Home</a>
-<a href="downloads.html" data-transition>Downloads</a>
-<a href="news.html">News</a>
+<a href="downloads.html" data-page="downloads">Downloads</a>
+<a href="updates.html" data-page="updates">Updates</a>
 </nav>
 
 <main class="hero">
 
 <div class="hero-inner">
 
-<div class="logo-holder">
+<div class="logo-area">
 <div class="logo-glow"></div>
-
-<img
-class="logo"
-src="logo.png"
-alt="unYZY"
-
->
-
+<img class="logo" src="logo.png" alt="">
 </div>
 
 <div class="description">
@@ -491,78 +404,89 @@ KEVLAR YEEZY
 </div>
 
 <div class="actions">
+<a class="action primary" href="downloads.html" data-page="downloads">
+Browse Downloads
+</a>
 
-<a
-class="action primary"
-href="downloads.html"
-data-transition
-
->
-
-Browse Downloads </a>
-
-<a
-class="action"
-href="news.html"
-
->
-
-Latest News </a>
-
+<a class="action" href="updates.html" data-page="updates">
+Latest Updates
+</a>
 </div>
 
 </div>
+
+<div class="corner left">+</div>
+<div class="corner right">+</div>
 
 </main>
 
-<div class="transition-cover">
-<img src="logo.png" alt="">
+<div class="page-transition" id="pageTransition">
+<img class="transition-logo" id="transitionLogo" src="LOGO2.png" alt="">
 </div>
 
 <script>
-const links=document.querySelectorAll("[data-transition]");
-let navigating=false;
+const pageTransition=document.getElementById("pageTransition");
+const transitionLogo=document.getElementById("transitionLogo");
+const links=document.querySelectorAll("[data-page]");
 
-async function transitionTo(url){
-if(navigating)return;
-
-navigating=true;
-
-if(document.startViewTransition){
-
-const transition=document.startViewTransition(()=>{
-window.location.href=url;
-});
-
-try{
-await transition.finished;
-}catch{}
-return;
-}
+function navigate(url,target){
+if(document.body.classList.contains("leaving"))return;
 
 document.body.classList.add("leaving");
 
+transitionLogo.src=target==="home"?"logo.png":"LOGO2.png";
+
+pageTransition.classList.add("active");
+
+requestAnimationFrame(()=>{
+pageTransition.classList.add("show");
+});
+
 setTimeout(()=>{
+pageTransition.classList.add("fade");
+},650);
+
+setTimeout(()=>{
+sessionStorage.setItem("unyzyTransition",target);
 window.location.href=url;
-},760);
+},900);
 }
 
 links.forEach(link=>{
 link.addEventListener("click",event=>{
-
-if(
-event.button!==0||
-event.metaKey||
-event.ctrlKey||
-event.shiftKey||
-event.altKey
-)return;
-
 event.preventDefault();
+navigate(link.href,link.dataset.page);
+});
+});
 
-transitionTo(link.href);
+function enterPage(){
+const transition=sessionStorage.getItem("unyzyTransition");
+sessionStorage.removeItem("unyzyTransition");
+
+if(transition==="home"){
+transitionLogo.src="logo.png";
+pageTransition.classList.add("active");
+
+requestAnimationFrame(()=>{
+pageTransition.classList.add("show");
 });
+
+setTimeout(()=>{
+pageTransition.classList.add("fade");
+document.body.classList.add("ready");
+},600);
+
+setTimeout(()=>{
+pageTransition.classList.remove("active","show","fade");
+},1050);
+}else{
+requestAnimationFrame(()=>{
+document.body.classList.add("ready");
 });
+}
+}
+
+enterPage();
 </script>
 
 </body>
