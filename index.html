@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
 <title>unYZY [HOME]</title>
 
@@ -15,48 +15,53 @@ box-sizing:border-box;
 :root{
 --bg:#08090b;
 --white:#f5f5f6;
---muted:#7d828b;
+--muted:#858a93;
 }
 
 html,
 body{
-margin:0;
 width:100%;
 min-height:100%;
-background:var(--bg);
-}
-
-html{
-view-transition-name:root;
+margin:0;
 }
 
 body{
 min-height:100vh;
 overflow:hidden;
-color:var(--white);
-font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
--webkit-font-smoothing:antialiased;
-}
-
-body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
 background:
-radial-gradient(circle at 50% 42%,rgba(255,255,255,.075),transparent 30rem),
-radial-gradient(circle at 50% 100%,rgba(255,255,255,.025),transparent 38rem);
+radial-gradient(
+circle at 50% 42%,
+rgba(255,255,255,.07),
+transparent 31rem
+),
+radial-gradient(
+circle at 50% 100%,
+rgba(255,255,255,.025),
+transparent 38rem
+),
+var(--bg);
+color:var(--white);
+font-family:
+Inter,
+ui-sans-serif,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Arial,
+sans-serif;
+-webkit-font-smoothing:antialiased;
 }
 
 body:after{
 content:"";
 position:fixed;
 inset:0;
+z-index:20;
 pointer-events:none;
 background:radial-gradient(
 ellipse at center,
-transparent 42%,
-rgba(0,0,0,.32) 100%
+transparent 45%,
+rgba(0,0,0,.3) 100%
 );
 }
 
@@ -69,19 +74,22 @@ position:fixed;
 top:20px;
 left:50%;
 z-index:100;
-transform:translate3d(-50%,0,0);
+transform:translateX(-50%);
 display:flex;
+align-items:center;
 gap:3px;
 padding:5px;
 border:1px solid rgba(255,255,255,.075);
 border-radius:14px;
-background:rgba(10,11,14,.7);
-backdrop-filter:blur(22px) saturate(150%);
--webkit-backdrop-filter:blur(22px) saturate(150%);
+background:rgba(10,11,14,.68);
+backdrop-filter:blur(24px) saturate(150%);
+-webkit-backdrop-filter:blur(24px) saturate(150%);
 box-shadow:
-0 18px 55px rgba(0,0,0,.42),
-inset 0 1px rgba(255,255,255,.035);
-view-transition-name:nav;
+0 18px 55px rgba(0,0,0,.4),
+inset 0 1px 0 rgba(255,255,255,.035);
+transition:
+opacity .4s ease,
+transform .65s cubic-bezier(.16,1,.3,1);
 }
 
 .nav a{
@@ -96,11 +104,10 @@ color:#70757e;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-letter-spacing:-.15px;
 transition:
-color .18s ease,
-background .18s ease,
-transform .18s ease;
+color .2s ease,
+background .2s ease,
+transform .2s ease;
 }
 
 .nav a:hover{
@@ -115,12 +122,11 @@ box-shadow:inset 0 0 0 1px rgba(255,255,255,.035);
 }
 
 .nav a:active{
-transform:scale(.94);
+transform:scale(.95);
 }
 
 .hero{
 position:relative;
-z-index:1;
 width:100%;
 height:100vh;
 min-height:600px;
@@ -128,9 +134,14 @@ display:flex;
 align-items:center;
 justify-content:center;
 padding:80px 24px 30px;
+transition:
+opacity .5s ease,
+transform .8s cubic-bezier(.16,1,.3,1);
 }
 
 .hero-inner{
+position:relative;
+z-index:2;
 display:flex;
 flex-direction:column;
 align-items:center;
@@ -138,7 +149,7 @@ justify-content:center;
 text-align:center;
 }
 
-.logo-holder{
+.logo-stage{
 position:relative;
 width:340px;
 height:340px;
@@ -149,16 +160,18 @@ justify-content:center;
 
 .logo-glow{
 position:absolute;
-width:260px;
-height:175px;
 left:50%;
 top:50%;
-transform:translate3d(-50%,-50%,0);
+width:250px;
+height:180px;
+transform:translate(-50%,-50%);
 border-radius:50%;
-background:rgba(255,255,255,.065);
-filter:blur(65px);
-opacity:.5;
-pointer-events:none;
+background:rgba(255,255,255,.075);
+filter:blur(75px);
+opacity:.58;
+transition:
+opacity .8s ease,
+transform 1s cubic-bezier(.16,1,.3,1);
 }
 
 .logo{
@@ -169,29 +182,47 @@ height:320px;
 display:block;
 object-fit:contain;
 filter:
-drop-shadow(0 28px 45px rgba(0,0,0,.46))
-drop-shadow(0 0 28px rgba(255,255,255,.045));
+drop-shadow(0 30px 50px rgba(0,0,0,.5))
+drop-shadow(0 0 38px rgba(255,255,255,.06));
 animation:logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
-will-change:transform;
-view-transition-name:main-logo;
+transition:
+transform 1s cubic-bezier(.16,1,.3,1),
+filter 1s ease;
+}
+
+.logo2{
+position:absolute;
+z-index:3;
+width:320px;
+height:320px;
+display:block;
+object-fit:contain;
+opacity:0;
+transform:scale(.9);
+pointer-events:none;
+filter:
+drop-shadow(0 30px 55px rgba(0,0,0,.55))
+drop-shadow(0 0 55px rgba(255,255,255,.12));
 }
 
 @keyframes logoFloat{
-0%,
-100%{
-transform:translate3d(0,0,0);
+0%,100%{
+transform:translateY(0);
 }
 50%{
-transform:translate3d(0,-11px,0);
+transform:translateY(-11px);
 }
 }
 
 .description{
 margin-top:0;
-color:#858a93;
+color:var(--muted);
 font-size:12px;
 font-weight:650;
 letter-spacing:.5px;
+transition:
+opacity .35s ease,
+transform .55s cubic-bezier(.16,1,.3,1);
 }
 
 .actions{
@@ -200,6 +231,9 @@ align-items:center;
 justify-content:center;
 gap:8px;
 margin-top:25px;
+transition:
+opacity .35s ease,
+transform .55s cubic-bezier(.16,1,.3,1);
 }
 
 .action{
@@ -216,15 +250,15 @@ text-decoration:none;
 font-size:11px;
 font-weight:800;
 transition:
-background .18s ease,
-border-color .18s ease,
-color .18s ease,
-transform .18s ease,
-box-shadow .18s ease;
+background .2s ease,
+border-color .2s ease,
+color .2s ease,
+transform .2s ease,
+box-shadow .2s ease;
 }
 
 .action:hover{
-transform:translate3d(0,-2px,0);
+transform:translateY(-2px);
 background:rgba(255,255,255,.075);
 border-color:rgba(255,255,255,.2);
 color:#fff;
@@ -244,155 +278,141 @@ color:#08090b;
 box-shadow:0 14px 32px rgba(0,0,0,.3);
 }
 
-.transition-cover{
+.page-transition{
 position:fixed;
 inset:0;
-z-index:9999;
-pointer-events:none;
+z-index:1000;
 display:flex;
 align-items:center;
 justify-content:center;
 background:#08090b;
 opacity:0;
 visibility:hidden;
+pointer-events:none;
+overflow:hidden;
 }
 
-.transition-cover img{
+.transition-logo{
+position:absolute;
 width:320px;
 height:320px;
 object-fit:contain;
-transform:scale(.45);
 opacity:0;
+transform:scale(.75);
 }
 
-body.leaving .transition-cover{
-visibility:visible;
-animation:coverIn .78s cubic-bezier(.16,1,.3,1) forwards;
+.transition-logo.second{
+filter:
+drop-shadow(0 0 50px rgba(255,255,255,.1))
+drop-shadow(0 0 110px rgba(255,255,255,.06));
 }
 
-body.leaving .transition-cover img{
-animation:coverLogo .78s cubic-bezier(.16,1,.3,1) forwards;
+body.leaving .nav{
+opacity:0;
+transform:translate(-50%,-25px) scale(.94);
 }
 
 body.leaving .hero{
-animation:heroOut .55s ease forwards;
+opacity:0;
+transform:scale(.96);
 }
 
-@keyframes coverIn{
-0%{
+body.leaving .description,
+body.leaving .actions{
 opacity:0;
+transform:translateY(15px);
 }
-35%{
+
+body.leaving .logo{
+animation:none;
+transform:scale(.72);
+filter:
+drop-shadow(0 0 80px rgba(255,255,255,.15));
+}
+
+body.leaving .logo2{
 opacity:1;
+transform:scale(1);
+}
+
+body.leaving .page-transition{
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+animation:transitionBackground 1.15s ease forwards;
+}
+
+body.leaving .transition-logo.first{
+animation:logoExpand 1.05s cubic-bezier(.16,1,.3,1) forwards;
+}
+
+body.leaving .transition-logo.second{
+animation:logoSecond 1.05s cubic-bezier(.16,1,.3,1) .12s forwards;
+}
+
+@keyframes transitionBackground{
+0%{
+background:#08090b;
 }
 100%{
-opacity:1;
+background:#08090b;
 }
 }
 
-@keyframes coverLogo{
+@keyframes logoExpand{
 0%{
 opacity:0;
-transform:scale(.45);
+transform:scale(.65);
+filter:
+drop-shadow(0 0 20px rgba(255,255,255,0));
 }
-12%{
+
+15%{
 opacity:1;
 }
-55%{
+
+65%{
 opacity:1;
 transform:scale(1.25);
+filter:
+drop-shadow(0 0 55px rgba(255,255,255,.12));
 }
+
 100%{
 opacity:0;
-transform:scale(4.5);
+transform:scale(2.6);
+filter:
+drop-shadow(0 0 100px rgba(255,255,255,.18));
 }
 }
 
-@keyframes heroOut{
-0%{
-opacity:1;
-transform:scale(1);
-}
-100%{
-opacity:0;
-transform:scale(.92);
-}
-}
-
-@keyframes vtOut{
-from{
-opacity:1;
-transform:scale(1);
-}
-to{
-opacity:0;
-transform:scale(.86);
-}
-}
-
-@keyframes vtIn{
-from{
-opacity:0;
-transform:scale(1.08);
-}
-to{
-opacity:1;
-transform:scale(1);
-}
-}
-
-::view-transition-old(root){
-animation:vtOut .55s cubic-bezier(.22,1,.36,1) both;
-}
-
-::view-transition-new(root){
-animation:vtIn .7s cubic-bezier(.22,1,.36,1) both;
-}
-
-::view-transition-group(main-logo){
-animation-duration:.7s;
-animation-timing-function:cubic-bezier(.16,1,.3,1);
-}
-
-::view-transition-old(main-logo){
-animation:logoMorphOut .7s cubic-bezier(.16,1,.3,1) both;
-}
-
-::view-transition-new(main-logo){
-animation:logoMorphIn .7s cubic-bezier(.16,1,.3,1) both;
-}
-
-@keyframes logoMorphOut{
-0%{
-opacity:1;
-transform:scale(1);
-}
-35%{
-opacity:1;
-transform:scale(1.35);
-}
-100%{
-opacity:0;
-transform:scale(4);
-}
-}
-
-@keyframes logoMorphIn{
+@keyframes logoSecond{
 0%{
 opacity:0;
-transform:scale(.25);
+transform:scale(.72);
 }
-45%{
+
+20%{
 opacity:1;
-transform:scale(.8);
+transform:scale(.95);
 }
+
+65%{
+opacity:.95;
+transform:scale(1.3);
+}
+
 100%{
-opacity:1;
-transform:scale(1);
+opacity:0;
+transform:scale(2.6);
 }
 }
 
 @media(max-width:650px){
+
+body{
+overflow:auto;
+}
 
 .nav{
 top:12px;
@@ -410,24 +430,25 @@ min-height:100svh;
 padding:75px 18px 35px;
 }
 
-.logo-holder{
+.logo-stage{
 width:275px;
 height:275px;
 }
 
-.logo{
+.logo,
+.logo2{
 width:260px;
 height:260px;
 }
 
 .logo-glow{
 width:210px;
-height:130px;
+height:140px;
 }
 
-.transition-cover img{
-width:270px;
-height:270px;
+.transition-logo{
+width:260px;
+height:260px;
 }
 
 .description{
@@ -447,15 +468,10 @@ padding:0 12px;
 
 @media(prefers-reduced-motion:reduce){
 
-.logo{
-animation:none;
-}
-
-::view-transition-old(root),
-::view-transition-new(root),
-::view-transition-old(main-logo),
-::view-transition-new(main-logo){
-animation:none;
+.logo,
+.logo2,
+.transition-logo{
+animation:none!important;
 }
 }
 </style>
@@ -474,13 +490,21 @@ animation:none;
 
 <div class="hero-inner">
 
-<div class="logo-holder">
+<div class="logo-stage">
+
 <div class="logo-glow"></div>
 
 <img
 class="logo"
 src="logo.png"
 alt="unYZY"
+
+>
+
+<img
+class="logo2"
+src="LOGO2.png"
+alt=""
 
 >
 
@@ -515,52 +539,38 @@ Latest News </a>
 
 </main>
 
-<div class="transition-cover">
-<img src="logo.png" alt="">
+<div class="page-transition">
+
+<img
+class="transition-logo first"
+src="logo.png"
+alt=""
+
+>
+
+<img
+class="transition-logo second"
+src="LOGO2.png"
+alt=""
+
+>
+
 </div>
 
 <script>
-const links=document.querySelectorAll("[data-transition]");
-let navigating=false;
+const transitionLinks=document.querySelectorAll("[data-transition]");
 
-async function transitionTo(url){
-if(navigating)return;
+transitionLinks.forEach(link=>{
+link.addEventListener("click",event=>{
+event.preventDefault();
 
-navigating=true;
-
-if(document.startViewTransition){
-
-const transition=document.startViewTransition(()=>{
-window.location.href=url;
-});
-
-try{
-await transition.finished;
-}catch{}
-return;
-}
+const target=link.href;
 
 document.body.classList.add("leaving");
 
 setTimeout(()=>{
-window.location.href=url;
-},760);
-}
-
-links.forEach(link=>{
-link.addEventListener("click",event=>{
-
-if(
-event.button!==0||
-event.metaKey||
-event.ctrlKey||
-event.shiftKey||
-event.altKey
-)return;
-
-event.preventDefault();
-
-transitionTo(link.href);
+window.location.href=target;
+},850);
 });
 });
 </script>
