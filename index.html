@@ -1,9 +1,8 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090b">
 <title>unYZY [HOME]</title>
 
@@ -27,15 +26,15 @@ body{
 min-height:100vh;
 overflow:hidden;
 background:
-radial-gradient(circle at 50% 42%,rgba(255,255,255,.075),rgba(255,255,255,.035) 13%,rgba(255,255,255,.012) 25%,transparent 48%),
+radial-gradient(circle at 50% 42%,rgba(255,255,255,.075),transparent 48%),
 radial-gradient(circle at 50% 100%,rgba(255,255,255,.025),transparent 38%),
 var(--bg);
 color:var(--white);
 font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
 opacity:0;
-transform:scale(1.018);
-transition:opacity .65s ease,transform .8s cubic-bezier(.22,1,.36,1);
+transform:scale(1.012);
+transition:opacity .55s ease,transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -57,8 +56,8 @@ background:
 linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
 background-size:80px 80px;
+opacity:.25;
 mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
-opacity:.3;
 }
 
 body:after{
@@ -66,18 +65,16 @@ content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.28) 100%);
+background:radial-gradient(ellipse at center,transparent 45%,rgba(0,0,0,.3));
 }
 
-a{
-color:inherit;
-}
+a{color:inherit}
 
 .nav{
 position:fixed;
 top:20px;
 left:50%;
-z-index:100;
+z-index:50;
 transform:translateX(-50%);
 display:flex;
 align-items:center;
@@ -88,9 +85,7 @@ border-radius:14px;
 background:rgba(10,11,14,.68);
 backdrop-filter:blur(24px) saturate(150%);
 -webkit-backdrop-filter:blur(24px) saturate(150%);
-box-shadow:
-0 18px 55px rgba(0,0,0,.4),
-inset 0 1px 0 rgba(255,255,255,.035);
+box-shadow:0 18px 55px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.035);
 }
 
 .nav a{
@@ -105,8 +100,7 @@ color:#70757e;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-letter-spacing:-.15px;
-transition:color .2s ease,background .2s ease,transform .2s ease;
+transition:.2s ease;
 }
 
 .nav a:hover{
@@ -117,9 +111,6 @@ background:rgba(255,255,255,.05);
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
-box-shadow:
-inset 0 0 0 1px rgba(255,255,255,.035),
-0 2px 8px rgba(0,0,0,.18);
 }
 
 .nav a:active{
@@ -147,28 +138,23 @@ justify-content:center;
 text-align:center;
 }
 
-.logo-area{
+.logo-wrap{
 position:relative;
 width:min(340px,45vw);
 height:min(340px,45vw);
 display:flex;
 align-items:center;
 justify-content:center;
-margin-bottom:5px;
 }
 
 .logo-glow{
 position:absolute;
-width:270px;
-height:165px;
-left:50%;
-top:50%;
-transform:translate(-50%,-40%);
+width:70%;
+height:45%;
 border-radius:50%;
-background:rgba(255,255,255,.07);
-filter:blur(72px);
-opacity:.55;
-pointer-events:none;
+background:rgba(255,255,255,.08);
+filter:blur(70px);
+opacity:.6;
 }
 
 .logo{
@@ -179,7 +165,7 @@ height:100%;
 display:block;
 object-fit:contain;
 filter:
-drop-shadow(0 28px 45px rgba(0,0,0,.48))
+drop-shadow(0 28px 45px rgba(0,0,0,.5))
 drop-shadow(0 0 45px rgba(255,255,255,.055));
 animation:logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
 }
@@ -194,7 +180,7 @@ transform:translateY(-12px) scale(1.015);
 }
 
 .description{
-margin-top:0;
+margin-top:4px;
 color:#858a93;
 font-size:12px;
 font-weight:650;
@@ -222,13 +208,7 @@ color:#bfc2c7;
 text-decoration:none;
 font-size:11px;
 font-weight:800;
-letter-spacing:-.05px;
-transition:
-background .2s ease,
-border-color .2s ease,
-color .2s ease,
-transform .2s ease,
-box-shadow .2s ease;
+transition:.2s ease;
 }
 
 .action:hover{
@@ -249,7 +229,6 @@ color:#08090b;
 background:#fff;
 border-color:#fff;
 color:#08090b;
-box-shadow:0 14px 32px rgba(0,0,0,.3);
 }
 
 .corner{
@@ -287,12 +266,11 @@ pointer-events:none;
 .page-transition.active{
 opacity:1;
 visibility:visible;
-pointer-events:auto;
 }
 
 .transition-logo{
-width:min(310px,62vw);
-height:min(310px,62vw);
+width:min(320px,60vw);
+height:min(320px,60vw);
 object-fit:contain;
 opacity:0;
 transform:scale(.72);
@@ -304,20 +282,17 @@ drop-shadow(0 0 60px rgba(255,255,255,.07));
 .page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
-transition:
-opacity .5s ease,
-transform .75s cubic-bezier(.22,1,.36,1);
+transition:opacity .45s ease,transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 .page-transition.fade .transition-logo{
 opacity:0;
-transform:scale(1.13);
-transition:
-opacity .4s ease,
-transform .5s cubic-bezier(.22,1,.36,1);
+transform:scale(1.1);
+transition:opacity .35s ease,transform .45s ease;
 }
 
 @media(max-width:650px){
+
 body{
 overflow:auto;
 }
@@ -338,14 +313,9 @@ min-height:100svh;
 padding:75px 18px 35px;
 }
 
-.logo-area{
-width:min(280px,76vw);
-height:min(280px,76vw);
-}
-
-.logo-glow{
-width:220px;
-height:130px;
+.logo-wrap{
+width:min(270px,72vw);
+height:min(270px,72vw);
 }
 
 .description{
@@ -355,7 +325,6 @@ font-size:11px;
 .actions{
 width:100%;
 max-width:330px;
-margin-top:22px;
 }
 
 .action{
@@ -369,7 +338,9 @@ display:none;
 }
 
 @media(prefers-reduced-motion:reduce){
+
 body,
+.update,
 .page-transition .transition-logo{
 transition:none;
 }
@@ -379,24 +350,28 @@ animation:none;
 }
 }
 </style>
-
 </head>
 
 <body>
 
 <nav class="nav">
-<a href="index.html" class="active">Home</a>
-<a href="downloads.html" data-page="downloads">Downloads</a>
-<a href="updates.html" data-page="updates">Updates</a>
+<a href="/" class="active" data-page="home">Home</a>
+<a href="/downloads" data-page="downloads">Downloads</a>
+<a href="/updates" data-page="updates">Updates</a>
 </nav>
 
 <main class="hero">
 
 <div class="hero-inner">
 
-<div class="logo-area">
+<div class="logo-wrap">
 <div class="logo-glow"></div>
-<img class="logo" src="logo.png" alt="">
+
+<img
+class="logo"
+src="/assets/logo.png"
+alt="unYZY"
+>
 </div>
 
 <div class="description">
@@ -404,13 +379,23 @@ KEVLAR YEEZY
 </div>
 
 <div class="actions">
-<a class="action primary" href="downloads.html" data-page="downloads">
+
+<a
+class="action primary"
+href="/downloads"
+data-page="downloads"
+>
 Browse Downloads
 </a>
 
-<a class="action" href="updates.html" data-page="updates">
+<a
+class="action"
+href="/updates"
+data-page="updates"
+>
 Latest Updates
 </a>
+
 </div>
 
 </div>
@@ -421,20 +406,31 @@ Latest Updates
 </main>
 
 <div class="page-transition" id="pageTransition">
-<img class="transition-logo" id="transitionLogo" src="LOGO2.png" alt="">
+<img
+class="transition-logo"
+id="transitionLogo"
+src="/assets/LOGO2.png"
+alt=""
+>
 </div>
 
 <script>
 const pageTransition=document.getElementById("pageTransition");
 const transitionLogo=document.getElementById("transitionLogo");
-const links=document.querySelectorAll("[data-page]");
+
+let navigating=false;
 
 function navigate(url,target){
-if(document.body.classList.contains("leaving"))return;
+if(navigating)return;
+
+navigating=true;
 
 document.body.classList.add("leaving");
 
-transitionLogo.src=target==="home"?"logo.png":"LOGO2.png";
+transitionLogo.src=
+target==="home"
+?"/assets/logo.png"
+:"/assets/LOGO2.png";
 
 pageTransition.classList.add("active");
 
@@ -444,7 +440,7 @@ pageTransition.classList.add("show");
 
 setTimeout(()=>{
 pageTransition.classList.add("fade");
-},650);
+},620);
 
 setTimeout(()=>{
 sessionStorage.setItem("unyzyTransition",target);
@@ -452,7 +448,7 @@ window.location.href=url;
 },900);
 }
 
-links.forEach(link=>{
+document.querySelectorAll("[data-page]").forEach(link=>{
 link.addEventListener("click",event=>{
 event.preventDefault();
 navigate(link.href,link.dataset.page);
@@ -460,11 +456,22 @@ navigate(link.href,link.dataset.page);
 });
 
 function enterPage(){
+
 const transition=sessionStorage.getItem("unyzyTransition");
+
 sessionStorage.removeItem("unyzyTransition");
 
-if(transition==="home"){
-transitionLogo.src="logo.png";
+if(
+transition==="home"||
+transition==="downloads"||
+transition==="updates"
+){
+
+transitionLogo.src=
+transition==="home"
+?"/assets/logo.png"
+:"/assets/LOGO2.png";
+
 pageTransition.classList.add("active");
 
 requestAnimationFrame(()=>{
@@ -474,16 +481,20 @@ pageTransition.classList.add("show");
 setTimeout(()=>{
 pageTransition.classList.add("fade");
 document.body.classList.add("ready");
-},600);
+},500);
 
 setTimeout(()=>{
 pageTransition.classList.remove("active","show","fade");
-},1050);
+},950);
+
 }else{
+
 requestAnimationFrame(()=>{
 document.body.classList.add("ready");
 });
+
 }
+
 }
 
 enterPage();
