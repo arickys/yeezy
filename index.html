@@ -8,44 +8,63 @@
 <title>unYZY [HOME]</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 :root{
 --bg:#08090b;
---text:#f5f5f6;
---muted:#858b95;
---dim:#5d636d;
+--white:#f5f5f6;
+--muted:#7d828b;
+--dim:#555a63;
 }
 
-html{
-scroll-behavior:smooth;
+html,
+body{
+margin:0;
+width:100%;
+min-height:100%;
 }
 
 body{
-margin:0;
 min-height:100vh;
 overflow:hidden;
 background:
-radial-gradient(circle at 50% 25%,rgba(255,255,255,.065),transparent 25rem),
-radial-gradient(circle at 15% 80%,rgba(255,255,255,.025),transparent 25rem),
-radial-gradient(circle at 85% 70%,rgba(255,255,255,.018),transparent 25rem),
+radial-gradient(
+circle at 50% 42%,
+rgba(255,255,255,.075) 0%,
+rgba(255,255,255,.035) 13%,
+rgba(255,255,255,.012) 25%,
+transparent 48%
+),
+radial-gradient(
+circle at 50% 100%,
+rgba(255,255,255,.025),
+transparent 38%
+),
 var(--bg);
-color:var(--text);
-font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+color:var(--white);
+font-family:
+Inter,
+ui-sans-serif,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Arial,
+sans-serif;
 -webkit-font-smoothing:antialiased;
 }
 
-body:before{
+body:after{
 content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-background:
-linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
-background-size:80px 80px;
-mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
-opacity:.35;
+background:radial-gradient(
+ellipse at center,
+transparent 45%,
+rgba(0,0,0,.28) 100%
+);
 }
 
 a{
@@ -56,19 +75,19 @@ color:inherit;
 position:fixed;
 top:20px;
 left:50%;
-z-index:100;
+z-index:50;
 transform:translateX(-50%);
 display:flex;
 align-items:center;
 gap:3px;
 padding:5px;
-border:1px solid rgba(255,255,255,.08);
+border:1px solid rgba(255,255,255,.075);
 border-radius:14px;
-background:rgba(11,12,15,.72);
+background:rgba(10,11,14,.68);
 backdrop-filter:blur(24px) saturate(150%);
 -webkit-backdrop-filter:blur(24px) saturate(150%);
 box-shadow:
-0 15px 55px rgba(0,0,0,.4),
+0 18px 55px rgba(0,0,0,.4),
 inset 0 1px 0 rgba(255,255,255,.035);
 }
 
@@ -80,11 +99,11 @@ align-items:center;
 justify-content:center;
 padding:0 14px;
 border-radius:9px;
-color:#707680;
+color:#70757e;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
-letter-spacing:-.1px;
+letter-spacing:-.15px;
 transition:
 color .2s ease,
 background .2s ease,
@@ -92,7 +111,7 @@ transform .2s ease;
 }
 
 .nav a:hover{
-color:#f5f5f6;
+color:#fff;
 background:rgba(255,255,255,.05);
 }
 
@@ -100,8 +119,8 @@ background:rgba(255,255,255,.05);
 color:#fff;
 background:rgba(255,255,255,.09);
 box-shadow:
-inset 0 0 0 1px rgba(255,255,255,.04),
-0 2px 9px rgba(0,0,0,.18);
+inset 0 0 0 1px rgba(255,255,255,.035),
+0 2px 8px rgba(0,0,0,.18);
 }
 
 .nav a:active{
@@ -112,11 +131,11 @@ transform:scale(.95);
 position:relative;
 width:100%;
 height:100vh;
-min-height:620px;
+min-height:600px;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:90px 24px 40px;
+padding:80px 24px 30px;
 }
 
 .hero-inner{
@@ -125,103 +144,80 @@ z-index:2;
 display:flex;
 flex-direction:column;
 align-items:center;
-text-align:center;
-}
-
-.logo-wrap{
-position:relative;
-width:190px;
-height:190px;
-margin-bottom:34px;
-display:flex;
-align-items:center;
 justify-content:center;
-}
-
-.logo-wrap:before{
-content:"";
-position:absolute;
-width:170px;
-height:170px;
-border-radius:50%;
-background:rgba(255,255,255,.045);
-filter:blur(38px);
-opacity:.7;
-}
-
-.logo-wrap:after{
-content:"";
-position:absolute;
-inset:24px;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.035);
-box-shadow:
-0 0 60px rgba(255,255,255,.025),
-inset 0 0 35px rgba(255,255,255,.018);
+text-align:center;
 }
 
 .logo{
 position:relative;
-z-index:2;
-width:165px;
-height:165px;
+width:min(320px,42vw);
+height:min(320px,42vw);
+max-width:320px;
+max-height:320px;
 display:block;
 object-fit:contain;
 filter:
-drop-shadow(0 20px 35px rgba(0,0,0,.42))
-drop-shadow(0 0 25px rgba(255,255,255,.055));
-animation:float 5s ease-in-out infinite;
+drop-shadow(0 28px 45px rgba(0,0,0,.48))
+drop-shadow(0 0 45px rgba(255,255,255,.055));
+animation:
+logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
 }
 
-@keyframes float{
-0%,100%{
-transform:translateY(0);
+@keyframes logoFloat{
+0%,
+100%{
+transform:translateY(0) scale(1);
 }
 50%{
-transform:translateY(-9px);
+transform:translateY(-12px) scale(1.015);
 }
 }
 
-.title{
-margin:0;
-font-size:clamp(68px,10vw,118px);
-line-height:.8;
-letter-spacing:-8px;
-font-weight:950;
-color:#f7f7f8;
-text-shadow:0 10px 45px rgba(0,0,0,.35);
+.logo-glow{
+position:absolute;
+z-index:-1;
+width:260px;
+height:150px;
+left:50%;
+top:50%;
+transform:translate(-50%,-38%);
+border-radius:50%;
+background:rgba(255,255,255,.07);
+filter:blur(70px);
+opacity:.55;
+pointer-events:none;
 }
 
 .description{
-margin-top:25px;
-color:#7c828c;
-font-size:13px;
-font-weight:600;
-letter-spacing:.35px;
+margin-top:8px;
+color:#858a93;
+font-size:12px;
+font-weight:650;
+letter-spacing:.5px;
 }
 
 .actions{
 display:flex;
 align-items:center;
 justify-content:center;
-gap:9px;
-margin-top:30px;
+gap:8px;
+margin-top:25px;
 }
 
 .action{
-height:42px;
+height:40px;
 display:inline-flex;
 align-items:center;
 justify-content:center;
-gap:8px;
-padding:0 18px;
-border:1px solid rgba(255,255,255,.13);
-border-radius:10px;
-background:rgba(255,255,255,.035);
-color:#cfd1d5;
+padding:0 17px;
+border:1px solid rgba(255,255,255,.12);
+border-radius:9px;
+background:rgba(255,255,255,.025);
+color:#bfc2c7;
 text-decoration:none;
 font-size:11px;
 font-weight:800;
+letter-spacing:-.05px;
 transition:
 background .2s ease,
 border-color .2s ease,
@@ -231,51 +227,48 @@ box-shadow .2s ease;
 }
 
 .action:hover{
-background:rgba(255,255,255,.085);
-border-color:rgba(255,255,255,.22);
-color:#fff;
 transform:translateY(-2px);
-box-shadow:0 10px 25px rgba(0,0,0,.2);
+background:rgba(255,255,255,.075);
+border-color:rgba(255,255,255,.2);
+color:#fff;
+box-shadow:0 12px 30px rgba(0,0,0,.2);
 }
 
 .action.primary{
 background:#e9e9eb;
 border-color:#e9e9eb;
-color:#090a0c;
+color:#08090b;
 }
 
 .action.primary:hover{
 background:#fff;
 border-color:#fff;
-color:#090a0c;
-box-shadow:0 12px 30px rgba(0,0,0,.3);
+color:#08090b;
+box-shadow:0 14px 32px rgba(0,0,0,.3);
 }
 
-.ambient{
+.corner{
 position:absolute;
-pointer-events:none;
-border-radius:50%;
-border:1px solid rgba(255,255,255,.025);
+z-index:2;
+color:#454a53;
+font-size:9px;
+font-weight:750;
+letter-spacing:1.5px;
+text-transform:uppercase;
 }
 
-.ambient.one{
-width:480px;
-height:480px;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
+.corner.left{
+left:30px;
+bottom:27px;
 }
 
-.ambient.two{
-width:700px;
-height:700px;
-left:50%;
-top:50%;
-transform:translate(-50%,-50%);
-opacity:.55;
+.corner.right{
+right:30px;
+bottom:27px;
 }
 
-@media(max-width:600px){
+@media(max-width:650px){
+
 body{
 overflow:auto;
 }
@@ -293,51 +286,42 @@ font-size:11px;
 
 .hero{
 min-height:100svh;
-padding:90px 18px 35px;
-}
-
-.logo-wrap{
-width:145px;
-height:145px;
-margin-bottom:28px;
+padding:75px 18px 35px;
 }
 
 .logo{
-width:130px;
-height:130px;
+width:min(250px,70vw);
+height:min(250px,70vw);
 }
 
-.logo-wrap:before{
-width:140px;
-height:140px;
-}
-
-.logo-wrap:after{
-inset:18px;
-}
-
-.title{
-font-size:65px;
-letter-spacing:-5px;
+.logo-glow{
+width:210px;
+height:125px;
 }
 
 .description{
-margin-top:21px;
-font-size:12px;
+font-size:11px;
+margin-top:3px;
 }
 
 .actions{
 width:100%;
 max-width:330px;
+margin-top:22px;
 }
 
 .action{
 flex:1;
 padding:0 12px;
 }
+
+.corner{
+display:none;
+}
 }
 
 @media(prefers-reduced-motion:reduce){
+
 .logo{
 animation:none;
 }
@@ -356,30 +340,45 @@ animation:none;
 
 <main class="hero">
 
-<div class="ambient one"></div>
-<div class="ambient two"></div>
-
 <div class="hero-inner">
 
-<div class="logo-wrap">
-<img class="logo" src="logo.png" alt="unYZY">
-</div>
+<div class="logo-glow"></div>
+
+<img
+class="logo"
+src="logo.png"
+alt="unYZY"
+
+>
 
 <div class="description">
 KEVLAR YEEZY
 </div>
 
 <div class="actions">
-<a class="action primary" href="downloads.html">
-Browse Downloads
-</a>
 
-<a class="action" href="news.html">
-Latest News
-</a>
+<a
+class="action primary"
+href="downloads.html"
+
+>
+
+Browse Downloads </a>
+
+<a
+class="action"
+href="news.html"
+
+>
+
+Latest News </a>
+
 </div>
 
 </div>
+
+<div class="corner left">KEVLAR</div>
+<div class="corner right">YEEZY</div>
 
 </main>
 
