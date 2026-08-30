@@ -5,24 +5,22 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
-<title>unYZY [UPDATES]</title>
+<title>unYZY [DOWNLOADS]</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 :root{
 --bg:#08090b;
---surface:#0e1014;
---surface-hover:#12151a;
+--surface:#0f1115;
+--surface2:#14171c;
+--line:rgba(255,255,255,.075);
+--line-strong:rgba(255,255,255,.13);
 --text:#f5f5f6;
 --muted:#858b95;
---dim:#626873;
---line:rgba(255,255,255,.075);
---line-hover:rgba(255,255,255,.13);
---added:#d5d8dc;
---update:#b3b8c0;
---patch:#969ca5;
---bug:#7d848e;
+--dim:#5d636d;
 }
 
 html{
@@ -33,16 +31,18 @@ body{
 margin:0;
 min-height:100vh;
 background:
-radial-gradient(circle at 50% -15%,rgba(255,255,255,.065),transparent 34rem),
-radial-gradient(circle at 0% 60%,rgba(255,255,255,.018),transparent 28rem),
-radial-gradient(circle at 100% 80%,rgba(255,255,255,.014),transparent 30rem),
+radial-gradient(circle at 50% -15%,rgba(255,255,255,.07),transparent 31rem),
+radial-gradient(circle at 0% 55%,rgba(255,255,255,.018),transparent 30rem),
+radial-gradient(circle at 100% 75%,rgba(255,255,255,.015),transparent 30rem),
 var(--bg);
 color:var(--text);
 font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
 opacity:0;
 transform:scale(1.012);
-transition:opacity .55s ease,transform .75s cubic-bezier(.22,1,.36,1);
+transition:
+opacity .55s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -64,8 +64,20 @@ background:
 linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
 background-size:80px 80px;
-mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 75%);
-opacity:.28;
+mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 72%);
+opacity:.3;
+}
+
+body:after{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:radial-gradient(
+ellipse at center,
+transparent 45%,
+rgba(0,0,0,.3) 100%
+);
 }
 
 a{
@@ -84,7 +96,7 @@ gap:3px;
 padding:5px;
 border:1px solid rgba(255,255,255,.08);
 border-radius:14px;
-background:rgba(11,12,15,.76);
+background:rgba(11,12,15,.74);
 backdrop-filter:blur(24px) saturate(150%);
 -webkit-backdrop-filter:blur(24px) saturate(150%);
 box-shadow:
@@ -105,7 +117,10 @@ text-decoration:none;
 font-size:12px;
 font-weight:750;
 letter-spacing:-.15px;
-transition:color .2s ease,background .2s ease,transform .2s ease;
+transition:
+color .2s ease,
+background .2s ease,
+transform .2s ease;
 }
 
 .nav a:hover{
@@ -126,42 +141,27 @@ transform:scale(.95);
 }
 
 .container{
-width:min(1000px,calc(100% - 36px));
+width:min(1040px,calc(100% - 36px));
 margin:auto;
-padding:130px 0 90px;
+padding:128px 0 90px;
 }
 
 .page-head{
 display:flex;
 align-items:flex-end;
 justify-content:space-between;
-gap:40px;
-padding-bottom:30px;
+gap:30px;
+padding-bottom:28px;
 border-bottom:1px solid var(--line);
 }
 
-.heading{
-min-width:0;
-}
-
 .kicker{
-display:flex;
-align-items:center;
-gap:9px;
-margin-bottom:13px;
-color:#666c76;
+margin-bottom:11px;
+color:#696f79;
 font-size:9px;
 font-weight:850;
-letter-spacing:1.9px;
+letter-spacing:1.8px;
 text-transform:uppercase;
-}
-
-.kicker:before{
-content:"";
-width:18px;
-height:1px;
-background:#666c76;
-opacity:.7;
 }
 
 .page-title{
@@ -173,88 +173,104 @@ font-weight:900;
 }
 
 .page-subtitle{
-margin-top:15px;
-max-width:470px;
+margin-top:13px;
+max-width:460px;
 color:var(--muted);
 font-size:12px;
-line-height:1.65;
+line-height:1.6;
 }
 
-.logo-area{
-position:relative;
-width:118px;
-height:118px;
-flex:0 0 118px;
-display:grid;
-place-items:center;
-}
-
-.logo-area:before{
-content:"";
-position:absolute;
-width:90px;
-height:55px;
-border-radius:50%;
-background:rgba(255,255,255,.065);
-filter:blur(38px);
-opacity:.7;
-}
-
-.logo{
-position:relative;
-z-index:2;
-width:100px;
-height:100px;
-display:block;
-object-fit:contain;
-filter:
-drop-shadow(0 20px 35px rgba(0,0,0,.5))
-drop-shadow(0 0 30px rgba(255,255,255,.045));
-}
-
-.changelog{
-margin-top:28px;
-}
-
-.changelog-top{
+.head-info{
 display:flex;
 align-items:center;
-justify-content:space-between;
-margin-bottom:13px;
+gap:18px;
+padding-bottom:3px;
 }
 
-.changelog-label{
-color:#5e646e;
-font-size:9px;
-font-weight:850;
-letter-spacing:1.5px;
+.file-count{
+color:#777d86;
+font-size:10px;
+font-weight:800;
+letter-spacing:1px;
 text-transform:uppercase;
 }
 
-.changelog-count{
-color:#4f555e;
-font-size:9px;
-font-weight:750;
+.head-line{
+width:1px;
+height:28px;
+background:var(--line);
 }
 
-.updates{
-display:flex;
-flex-direction:column;
-gap:9px;
-}
-
-.update{
+.search-wrap{
 position:relative;
-display:grid;
-grid-template-columns:125px minmax(0,1fr) auto;
-gap:24px;
-align-items:start;
-padding:19px 20px;
+margin-top:24px;
+}
+
+.search-icon{
+position:absolute;
+left:16px;
+top:50%;
+z-index:2;
+transform:translateY(-50%);
+color:#646a74;
+font-size:17px;
+line-height:1;
+pointer-events:none;
+}
+
+.search{
+width:100%;
+height:46px;
+padding:0 16px 0 43px;
 border:1px solid var(--line);
-border-radius:11px;
+border-radius:10px;
+outline:none;
+background:rgba(255,255,255,.025);
+color:#fff;
+font-family:inherit;
+font-size:12px;
+transition:
+background .2s ease,
+border-color .2s ease,
+box-shadow .2s ease;
+}
+
+.search::placeholder{
+color:#5d626b;
+}
+
+.search:hover{
+border-color:rgba(255,255,255,.11);
+}
+
+.search:focus{
+border-color:rgba(255,255,255,.18);
+background:rgba(255,255,255,.04);
+box-shadow:
+0 0 0 3px rgba(255,255,255,.025),
+0 10px 35px rgba(0,0,0,.15);
+}
+
+.downloads{
+display:grid;
+grid-template-columns:repeat(2,minmax(0,1fr));
+gap:12px;
+margin-top:14px;
+}
+
+.file{
+position:relative;
+display:flex;
+align-items:center;
+gap:15px;
+min-width:0;
+padding:15px;
+border:1px solid var(--line);
+border-radius:13px;
 background:
-linear-gradient(145deg,rgba(255,255,255,.022),rgba(255,255,255,.004)),
+linear-gradient(145deg,rgba(255,255,255,.025),rgba(255,255,255,.006)),
 var(--surface);
+box-shadow:0 8px 25px rgba(0,0,0,.08);
 transition:
 transform .25s cubic-bezier(.22,1,.36,1),
 border-color .2s ease,
@@ -262,117 +278,160 @@ background .2s ease,
 box-shadow .25s ease;
 }
 
-.update:hover{
-transform:translateY(-2px);
-border-color:var(--line-hover);
+.file:hover{
+transform:translateY(-4px);
+border-color:var(--line-strong);
 background:
-linear-gradient(145deg,rgba(255,255,255,.035),rgba(255,255,255,.008)),
-var(--surface-hover);
-box-shadow:0 16px 38px rgba(0,0,0,.18);
+linear-gradient(145deg,rgba(255,255,255,.04),rgba(255,255,255,.008)),
+var(--surface2);
+box-shadow:0 22px 45px rgba(0,0,0,.22);
 }
 
-.update.latest{
-border-color:rgba(255,255,255,.11);
-background:
-linear-gradient(145deg,rgba(255,255,255,.032),rgba(255,255,255,.006)),
-var(--surface);
-}
-
-.update.latest:before{
+.file:before{
 content:"";
 position:absolute;
-left:0;
-top:13px;
-bottom:13px;
-width:2px;
-border-radius:2px;
-background:rgba(255,255,255,.75);
-box-shadow:0 0 14px rgba(255,255,255,.12);
+inset:0;
+border-radius:inherit;
+pointer-events:none;
+background:linear-gradient(
+120deg,
+rgba(255,255,255,.035),
+transparent 35%
+);
+opacity:0;
+transition:opacity .25s ease;
 }
 
-.update-date{
-padding-top:2px;
-color:#606670;
-font-size:9px;
-font-weight:800;
-letter-spacing:1.15px;
-line-height:1.55;
-text-transform:uppercase;
+.file:hover:before{
+opacity:1;
 }
 
-.latest .update-date{
-color:#aeb3ba;
+.icon{
+position:relative;
+z-index:1;
+width:68px;
+height:68px;
+flex:0 0 68px;
+display:grid;
+place-items:center;
+overflow:hidden;
+border-radius:10px;
+background:#181a1f;
+border:1px solid rgba(255,255,255,.045);
+color:#737983;
+font-size:20px;
+box-shadow:
+inset 0 1px 0 rgba(255,255,255,.025),
+0 8px 20px rgba(0,0,0,.2);
+transition:
+transform .25s cubic-bezier(.22,1,.36,1),
+border-color .2s ease;
 }
 
-.update-content{
+.file:hover .icon{
+transform:scale(1.035);
+border-color:rgba(255,255,255,.09);
+}
+
+.icon img{
+width:100%;
+height:100%;
+display:block;
+object-fit:cover;
+}
+
+.info{
+position:relative;
+z-index:1;
 min-width:0;
+flex:1;
 }
 
-.update-title{
-margin:0;
-color:#eceef0;
+.name{
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
 font-size:14px;
-line-height:1.35;
 font-weight:850;
-letter-spacing:-.2px;
+letter-spacing:-.25px;
 }
 
-.update-description{
-margin-top:6px;
-max-width:650px;
-color:#777e88;
+.description{
+margin-top:4px;
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+color:var(--muted);
 font-size:11px;
-line-height:1.65;
 }
 
-.update-tag{
-min-width:72px;
-height:25px;
+.type{
 display:inline-flex;
 align-items:center;
-justify-content:center;
-padding:0 9px;
-border:1px solid rgba(255,255,255,.085);
-border-radius:7px;
-background:rgba(255,255,255,.022);
+height:20px;
+margin-top:8px;
+padding:0 7px;
+border:1px solid rgba(255,255,255,.07);
+border-radius:5px;
+background:rgba(255,255,255,.02);
+color:#606670;
 font-size:8px;
 font-weight:850;
-letter-spacing:.9px;
+letter-spacing:1px;
 text-transform:uppercase;
-white-space:nowrap;
 }
 
-.tag-added{
-color:var(--added);
-border-color:rgba(207,210,214,.16);
-background:rgba(207,210,214,.045);
+.download{
+position:relative;
+z-index:1;
+height:36px;
+padding:0 13px;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:7px;
+flex:0 0 auto;
+border:1px solid rgba(255,255,255,.14);
+border-radius:8px;
+background:#e7e7e9;
+color:#090a0c;
+text-decoration:none;
+font-size:10px;
+font-weight:850;
+transition:
+background .18s ease,
+border-color .18s ease,
+transform .18s ease,
+box-shadow .18s ease;
 }
 
-.tag-update{
-color:var(--update);
-border-color:rgba(174,180,189,.13);
-background:rgba(174,180,189,.035);
+.download:hover{
+background:#fff;
+border-color:#fff;
+transform:translateY(-2px);
+box-shadow:0 9px 22px rgba(0,0,0,.28);
 }
 
-.tag-patch{
-color:var(--patch);
-border-color:rgba(143,150,159,.12);
-background:rgba(143,150,159,.03);
-}
-
-.tag-bug{
-color:var(--bug);
-border-color:rgba(119,126,136,.12);
-background:rgba(119,126,136,.025);
+.download:active{
+transform:scale(.96);
 }
 
 .empty{
-padding:48px 20px;
-border:1px dashed rgba(255,255,255,.075);
-border-radius:11px;
+grid-column:1/-1;
+padding:55px 20px;
+border:1px dashed rgba(255,255,255,.08);
+border-radius:13px;
 text-align:center;
-color:#626872;
+color:#666c75;
 font-size:11px;
+background:rgba(255,255,255,.008);
+}
+
+.empty strong{
+display:block;
+margin-bottom:6px;
+color:#999ea6;
+font-size:12px;
 }
 
 .page-transition{
@@ -394,7 +453,36 @@ visibility:visible;
 pointer-events:auto;
 }
 
+.transition-glow{
+position:absolute;
+width:230px;
+height:230px;
+border-radius:50%;
+background:rgba(255,255,255,.055);
+filter:blur(75px);
+opacity:0;
+transform:scale(.5);
+}
+
+.page-transition.show .transition-glow{
+opacity:1;
+transform:scale(1);
+transition:
+opacity .55s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
+}
+
+.page-transition.fade .transition-glow{
+opacity:0;
+transform:scale(1.35);
+transition:
+opacity .35s ease,
+transform .45s ease;
+}
+
 .transition-logo{
+position:relative;
+z-index:2;
 width:min(300px,60vw);
 height:min(300px,60vw);
 object-fit:contain;
@@ -402,23 +490,23 @@ opacity:0;
 transform:scale(.72);
 filter:
 drop-shadow(0 28px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 60px rgba(255,255,255,.07));
+drop-shadow(0 0 55px rgba(255,255,255,.07));
 }
 
 .page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
 transition:
-opacity .48s ease,
-transform .72s cubic-bezier(.22,1,.36,1);
+opacity .5s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 .page-transition.fade .transition-logo{
 opacity:0;
-transform:scale(1.09);
+transform:scale(1.1);
 transition:
-opacity .36s ease,
-transform .48s cubic-bezier(.22,1,.36,1);
+opacity .38s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 @media(max-width:760px){
@@ -431,26 +519,14 @@ width:calc(100% - 24px);
 align-items:flex-start;
 }
 
-.logo-area{
-width:100px;
-height:100px;
-flex-basis:100px;
+.downloads{
+grid-template-columns:1fr;
 }
 
-.logo{
-width:84px;
-height:84px;
+.file{
+padding:14px;
 }
 
-.logo-area:before{
-width:80px;
-height:50px;
-}
-
-.update{
-grid-template-columns:105px minmax(0,1fr) auto;
-gap:17px;
-}
 }
 
 @media(max-width:560px){
@@ -460,15 +536,14 @@ top:12px;
 }
 
 .nav a{
-min-width:70px;
 height:33px;
+min-width:70px;
 padding:0 10px;
 font-size:11px;
 }
 
 .container{
 padding-top:103px;
-padding-bottom:60px;
 }
 
 .page-head{
@@ -482,71 +557,58 @@ letter-spacing:-3.5px;
 }
 
 .page-subtitle{
-max-width:340px;
 font-size:11px;
 }
 
-.logo-area{
-width:92px;
-height:92px;
-margin:20px auto 0;
+.head-info{
+margin-top:18px;
 }
 
-.logo{
-width:78px;
-height:78px;
+.search-wrap{
+margin-top:20px;
 }
 
-.logo-area:before{
-width:75px;
-height:45px;
+.file{
+padding:12px;
+gap:12px;
 }
 
-.changelog{
-margin-top:23px;
+.icon{
+width:58px;
+height:58px;
+flex-basis:58px;
 }
 
-.update{
-display:grid;
-grid-template-columns:1fr;
-gap:8px;
-padding:16px;
-}
-
-.update.latest:before{
-top:10px;
-bottom:10px;
-}
-
-.update-date{
-padding-right:80px;
-font-size:8px;
-}
-
-.update-title{
+.name{
 font-size:13px;
 }
 
-.update-description{
-font-size:10.5px;
+.description{
+font-size:10px;
 }
 
-.update-tag{
-position:absolute;
-top:15px;
-right:15px;
-min-width:65px;
-height:23px;
+.download{
+width:36px;
+padding:0;
 }
+
+.download-text{
+display:none;
+}
+
 }
 
 @media(prefers-reduced-motion:reduce){
 
 body,
-.update,
-.page-transition .transition-logo{
+.file,
+.download,
+.nav a,
+.page-transition .transition-logo,
+.page-transition .transition-glow{
 transition:none;
 }
+
 }
 </style>
 
@@ -556,157 +618,132 @@ transition:none;
 
 <nav class="nav">
 <a href="index.html" data-page="home">Home</a>
-<a href="downloads.html" data-page="downloads">Downloads</a>
-<a href="updates.html" class="active" data-page="updates">Updates</a>
+<a href="downloads.html" class="active" data-page="downloads">Downloads</a>
+<a href="updates.html" data-page="updates">Updates</a>
 </nav>
 
 <main class="container">
 
 <header class="page-head">
 
-<div class="heading">
-
-<div class="kicker">
-Changelog
-</div>
-
-<h1 class="page-title">
-Updates
-</h1>
-
+<div>
+<div class="kicker">Archive</div>
+<h1 class="page-title">Downloads</h1>
 <div class="page-subtitle">
-A running record of additions, changes, patches, and fixes to the archive.
+Browse the available releases and archived files.
+</div>
 </div>
 
-</div>
-
-<div class="logo-area">
-<img class="logo" src="LOGO2.png" alt="">
+<div class="head-info">
+<div class="file-count" id="fileCount">0 Files</div>
+<div class="head-line"></div>
+<div class="file-count">ZIP</div>
 </div>
 
 </header>
 
-<section class="changelog">
-
-<div class="changelog-top">
-
-<div class="changelog-label">
-Recent activity
+<div class="search-wrap">
+<div class="search-icon">⌕</div>
+<input
+class="search"
+id="search"
+type="text"
+placeholder="Search the archive..."
+autocomplete="off"
+spellcheck="false"
+>
 </div>
 
-<div class="changelog-count" id="updateCount">
-0 updates
-</div>
-
-</div>
-
-<div class="updates" id="updatesList"></div>
-
-</section>
+<section class="downloads" id="downloadsList"></section>
 
 </main>
 
 <div class="page-transition" id="pageTransition">
-
-<img
-class="transition-logo"
-id="transitionLogo"
-src="LOGO2.png"
-alt=""
-
->
-
+<div class="transition-glow"></div>
+<img class="transition-logo" id="transitionLogo" src="LOGO2.png" alt="">
 </div>
 
 <script>
-const updates=[
+const files=[
 {
-date:"AUG 30, 2026",
-title:"[ALBUM]",
-description:"IN A PERFECT WORLD has been added to Downloads!",
-type:"Added"
-},
-date:"AUG 30, 2026",
-title:"[WEBSITE]",
-description:"unYZY has finally been released! ",
-type:"Update"
-},
+name:"IN A PERFECT WORLD",
+description:"10/10",
+file:"IN A PERFECT WORLD.zip",
+icon:"IAPW.png"
+}
 ];
 
-const updatesList=document.getElementById("updatesList");
-const updateCount=document.getElementById("updateCount");
+const downloads=document.getElementById("downloadsList");
+const search=document.getElementById("search");
+const fileCount=document.getElementById("fileCount");
 
 function escapeHTML(value){
-return String(value??"").replace(/[&<>"']/g,char=>({
+return String(value??"").replace(/[&<>"']/g,c=>({
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
-}[char]));
+}[c]));
 }
 
-function getTagClass(type){
-switch(type){
-case"Added":
-return"tag-added";
-case"Update":
-return"tag-update";
-case"Patch":
-return"tag-patch";
-case"Bug Fixes":
-return"tag-bug";
-default:
-return"";
-}
+function escapeAttr(value){
+return escapeHTML(value);
 }
 
-function renderUpdates(){
+function renderFiles(filter=""){
+const value=filter.toLowerCase().trim();
 
-updateCount.textContent=
-`${updates.length} ${updates.length===1?"update":"updates"}`;
+const filtered=files.filter(file=>
+file.name.toLowerCase().includes(value) ||
+file.description.toLowerCase().includes(value)
+);
 
-if(!updates.length){
+fileCount.textContent=`${filtered.length} ${filtered.length===1?"File":"Files"}`;
 
-updatesList.innerHTML=`
+if(!filtered.length){
+downloads.innerHTML=`
 <div class="empty">
-No updates yet.
-</div>
-`;
-
+<strong>No results</strong>
+Nothing in the archive matches your search.
+</div>`;
 return;
 }
 
-updatesList.innerHTML=updates.map((update,index)=>`
+downloads.innerHTML=filtered.map(file=>`
+<article class="file">
 
-<article class="update ${index===0?"latest":""}">
-
-<div class="update-date">
-${escapeHTML(update.date)}
+<div class="icon">
+<img
+src="${escapeAttr(file.icon)}"
+alt=""
+onerror="this.style.display='none';this.parentElement.textContent='📦'"
+>
 </div>
 
-<div class="update-content">
-
-<h2 class="update-title">
-${escapeHTML(update.title)}
-</h2>
-
-<div class="update-description">
-${escapeHTML(update.description)}
+<div class="info">
+<div class="name">${escapeHTML(file.name)}</div>
+<div class="description">${escapeHTML(file.description)}</div>
+<div class="type">ZIP Archive</div>
 </div>
 
-</div>
-
-<div class="update-tag ${getTagClass(update.type)}">
-${escapeHTML(update.type)}
-</div>
+<a
+class="download"
+href="${escapeAttr(file.file)}"
+download
+aria-label="Download ${escapeAttr(file.name)}"
+>
+<span>↓</span>
+<span class="download-text">Download</span>
+</a>
 
 </article>
-
 `).join("");
 }
 
-renderUpdates();
+search.addEventListener("input",()=>{
+renderFiles(search.value);
+});
 
 const pageTransition=document.getElementById("pageTransition");
 const transitionLogo=document.getElementById("transitionLogo");
@@ -715,17 +752,13 @@ const links=document.querySelectorAll("[data-page]");
 let navigating=false;
 
 function navigate(url,target){
-
 if(navigating)return;
 
 navigating=true;
 
 document.body.classList.add("leaving");
 
-transitionLogo.src=
-target==="home"
-?"logo.png"
-:"LOGO2.png";
+transitionLogo.src=target==="home"?"logo.png":"LOGO2.png";
 
 pageTransition.classList.add("active");
 
@@ -738,102 +771,50 @@ pageTransition.classList.add("fade");
 },620);
 
 setTimeout(()=>{
-
-sessionStorage.setItem(
-"unyzyTransition",
-target
-);
-
+sessionStorage.setItem("unyzyTransition",target);
 window.location.href=url;
-
 },880);
 }
 
 links.forEach(link=>{
-
 link.addEventListener("click",event=>{
-
 event.preventDefault();
-
-navigate(
-link.href,
-link.dataset.page
-);
-
+navigate(link.href,link.dataset.page);
 });
-
 });
 
 function enterPage(){
+const transition=sessionStorage.getItem("unyzyTransition");
 
-const transition=
-sessionStorage.getItem(
-"unyzyTransition"
-);
+sessionStorage.removeItem("unyzyTransition");
 
-sessionStorage.removeItem(
-"unyzyTransition"
-);
+if(transition==="home" || transition==="downloads" || transition==="updates"){
 
-if(
-transition==="home"||
-transition==="downloads"||
-transition==="updates"
-){
+transitionLogo.src=transition==="home"?"logo.png":"LOGO2.png";
 
-transitionLogo.src=
-transition==="home"
-?"logo.png"
-:"LOGO2.png";
-
-pageTransition.classList.add(
-"active"
-);
+pageTransition.classList.add("active");
 
 requestAnimationFrame(()=>{
-
-pageTransition.classList.add(
-"show"
-);
-
+pageTransition.classList.add("show");
 });
 
 setTimeout(()=>{
-
-pageTransition.classList.add(
-"fade"
-);
-
-document.body.classList.add(
-"ready"
-);
-
+pageTransition.classList.add("fade");
+document.body.classList.add("ready");
 },520);
 
 setTimeout(()=>{
-
-pageTransition.classList.remove(
-"active",
-"show",
-"fade"
-);
-
+pageTransition.classList.remove("active","show","fade");
 },950);
 
 }else{
-
 requestAnimationFrame(()=>{
-
-document.body.classList.add(
-"ready"
-);
-
+document.body.classList.add("ready");
 });
-
+}
 }
 
-}
-
+renderFiles();
 enterPage();
 </script>
 
