@@ -16,11 +16,6 @@
       "source": "/updates.html",
       "destination": "/updates",
       "permanent": true
-    },
-    {
-      "source": "/assets/:path*",
-      "destination": "/404",
-      "permanent": false
     }
   ],
   "rewrites": [
