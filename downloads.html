@@ -221,10 +221,10 @@ linear-gradient(145deg,rgba(255,255,255,.028),rgba(255,255,255,.006)),
 var(--surface);
 box-shadow:0 8px 25px rgba(0,0,0,.08);
 transition:
-transform .25s cubic-bezier(.22,1,.36,1),
-border-color .2s ease,
-background .2s ease,
-box-shadow .25s ease;
+transform .3s cubic-bezier(.22,1,.36,1),
+border-color .25s ease,
+background .25s ease,
+box-shadow .3s ease;
 }
 
 .file:after{
@@ -255,24 +255,81 @@ var(--surface2);
 box-shadow:0 22px 50px rgba(0,0,0,.25);
 }
 
-.file.shared{
-border-color:rgba(255,255,255,.28);
+.file.shared-target{
+border-color:rgba(255,255,255,.3);
+background:
+linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.012)),
+var(--surface2);
 box-shadow:
 0 0 0 1px rgba(255,255,255,.05),
-0 20px 55px rgba(0,0,0,.28);
-animation:sharedPulse 1.5s ease;
+0 0 45px rgba(255,255,255,.06),
+0 25px 65px rgba(0,0,0,.35);
+animation:sharedArrival 1.8s cubic-bezier(.22,1,.36,1);
 }
 
-@keyframes sharedPulse{
+@keyframes sharedArrival{
+
 0%{
-transform:scale(1);
+opacity:0;
+transform:
+translateY(22px)
+scale(.96);
 }
+
 35%{
-transform:scale(1.012);
+opacity:1;
+transform:
+translateY(-7px)
+scale(1.025);
 }
+
+65%{
+transform:
+translateY(2px)
+scale(1.008);
+}
+
 100%{
-transform:scale(1);
+transform:
+translateY(0)
+scale(1);
 }
+
+}
+
+.shared-badge{
+position:absolute;
+top:10px;
+right:10px;
+height:21px;
+padding:0 8px;
+display:flex;
+align-items:center;
+gap:5px;
+border:1px solid rgba(255,255,255,.16);
+border-radius:6px;
+background:rgba(255,255,255,.07);
+color:#d7d9dc;
+font-size:7px;
+font-weight:700;
+letter-spacing:1px;
+z-index:3;
+opacity:0;
+transform:translateY(-4px);
+transition:.35s ease;
+}
+
+.file.shared-target .shared-badge{
+opacity:1;
+transform:translateY(0);
+}
+
+.shared-badge-dot{
+width:4px;
+height:4px;
+border-radius:50%;
+background:#fff;
+box-shadow:0 0 8px rgba(255,255,255,.6);
 }
 
 .icon{
@@ -429,6 +486,193 @@ color:#6d737d;
 font-size:11px;
 }
 
+.share-overlay{
+position:fixed;
+inset:0;
+z-index:500;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:20px;
+background:rgba(0,0,0,.62);
+backdrop-filter:blur(14px);
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+transition:
+opacity .25s ease,
+visibility .25s ease;
+}
+
+.share-overlay.active{
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+}
+
+.share-panel{
+width:min(460px,100%);
+padding:22px;
+border:1px solid rgba(255,255,255,.1);
+border-radius:17px;
+background:
+linear-gradient(
+145deg,
+rgba(255,255,255,.045),
+rgba(255,255,255,.012)
+),
+#0d0f12;
+box-shadow:
+0 35px 100px rgba(0,0,0,.55);
+transform:translateY(18px) scale(.97);
+transition:
+transform .35s cubic-bezier(.22,1,.36,1);
+}
+
+.share-overlay.active .share-panel{
+transform:translateY(0) scale(1);
+}
+
+.share-top{
+display:flex;
+align-items:flex-start;
+justify-content:space-between;
+gap:20px;
+}
+
+.share-kicker{
+color:#656b74;
+font-size:8px;
+font-weight:700;
+letter-spacing:1.7px;
+text-transform:uppercase;
+}
+
+.share-title{
+margin-top:6px;
+font-size:20px;
+font-weight:700;
+letter-spacing:-.5px;
+}
+
+.share-close{
+width:30px;
+height:30px;
+display:grid;
+place-items:center;
+border:1px solid rgba(255,255,255,.08);
+border-radius:8px;
+background:rgba(255,255,255,.03);
+color:#777d86;
+font-family:inherit;
+font-size:16px;
+cursor:pointer;
+transition:.2s ease;
+}
+
+.share-close:hover{
+color:#fff;
+background:rgba(255,255,255,.08);
+border-color:rgba(255,255,255,.15);
+}
+
+.share-preview{
+display:flex;
+align-items:center;
+gap:12px;
+margin-top:20px;
+padding:12px;
+border:1px solid rgba(255,255,255,.065);
+border-radius:11px;
+background:rgba(255,255,255,.022);
+}
+
+.share-preview-icon{
+width:48px;
+height:48px;
+flex:0 0 48px;
+overflow:hidden;
+border:1px solid rgba(255,255,255,.08);
+border-radius:8px;
+background:#17191e;
+}
+
+.share-preview-icon img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.share-preview-name{
+overflow:hidden;
+text-overflow:ellipsis;
+white-space:nowrap;
+font-size:12px;
+font-weight:700;
+}
+
+.share-preview-sub{
+margin-top:4px;
+color:#686e77;
+font-size:9px;
+}
+
+.share-url{
+display:flex;
+gap:7px;
+margin-top:12px;
+}
+
+.share-url input{
+width:100%;
+height:42px;
+min-width:0;
+padding:0 11px;
+border:1px solid rgba(255,255,255,.08);
+border-radius:9px;
+outline:none;
+background:rgba(255,255,255,.025);
+color:#aeb2b8;
+font-family:inherit;
+font-size:9px;
+}
+
+.share-url input:focus{
+border-color:rgba(255,255,255,.16);
+}
+
+.copy-link{
+height:42px;
+padding:0 15px;
+flex:0 0 auto;
+border:1px solid rgba(255,255,255,.14);
+border-radius:9px;
+background:#e7e7e9;
+color:#090a0c;
+font-family:inherit;
+font-size:9px;
+font-weight:700;
+cursor:pointer;
+transition:.18s ease;
+}
+
+.copy-link:hover{
+background:#fff;
+transform:translateY(-1px);
+box-shadow:0 8px 20px rgba(255,255,255,.08);
+}
+
+.copy-link.done{
+background:#fff;
+}
+
+.share-note{
+margin-top:11px;
+color:#565c65;
+font-size:9px;
+line-height:1.55;
+}
+
 .transition{
 position:fixed;
 inset:0;
@@ -535,6 +779,18 @@ display:none;
 width:38px;
 }
 
+.share-panel{
+padding:17px;
+}
+
+.share-url{
+flex-direction:column;
+}
+
+.copy-link{
+width:100%;
+}
+
 }
 
 @media(prefers-reduced-motion:reduce){
@@ -543,6 +799,8 @@ body,
 .file,
 .download,
 .share,
+.share-overlay,
+.share-panel,
 .transition img{
 transition:none;
 }
@@ -633,6 +891,100 @@ id="downloadsList"
 
 
 <div
+class="share-overlay"
+id="shareOverlay"
+>
+
+<div
+class="share-panel"
+role="dialog"
+aria-modal="true"
+aria-labelledby="shareTitle"
+>
+
+<div class="share-top">
+
+<div>
+
+<div class="share-kicker">
+Share Download
+</div>
+
+<div
+class="share-title"
+id="shareTitle"
+>
+Share
+</div>
+
+</div>
+
+<button
+class="share-close"
+id="shareClose"
+type="button"
+aria-label="Close"
+>
+×
+</button>
+
+</div>
+
+
+<div class="share-preview">
+
+<div
+class="share-preview-icon"
+id="sharePreviewIcon"
+>
+</div>
+
+<div>
+
+<div
+class="share-preview-name"
+id="sharePreviewName"
+>
+</div>
+
+<div class="share-preview-sub">
+unYZY download
+</div>
+
+</div>
+
+</div>
+
+
+<div class="share-url">
+
+<input
+id="shareURL"
+readonly
+spellcheck="false"
+>
+
+<button
+class="copy-link"
+id="copyLink"
+type="button"
+>
+Copy Link
+</button>
+
+</div>
+
+
+<div class="share-note">
+Anyone with this link will be taken directly to this download.
+</div>
+
+</div>
+
+</div>
+
+
+<div
 class="transition"
 id="transition"
 >
@@ -650,18 +1002,21 @@ alt=""
 
 const files=[
 {
+id:"iapw",
 name:"IN A PERFECT WORLD",
 description:"ALREADY IN THE FINISHED STAGES OF RECORDING IN A PERFECT WORLD, NEVER RELEASED.",
 file:"IN A PERFECT WORLD.zip",
 icon:"IAPW.png"
 },
 {
+id:"iapw-early",
 name:"IN A PERFECT WORLD [EARLY]",
 description:"EARLY STAGES OF RECORDING IN A PERFECT WORLD.",
 file:"IN A PERFECT WORLD [EARLY].zip",
 icon:"IAPWE.png"
 },
 {
+id:"bully-first",
 name:"BULLY [FIRST]",
 description:"FIRST VERSION OF BULLY, CONTAINS AI VOCALS OF KANYE.",
 file:"BULLY [FIRST].zip",
@@ -678,6 +1033,27 @@ document.getElementById("search");
 const fileCount=
 document.getElementById("fileCount");
 
+const shareOverlay=
+document.getElementById("shareOverlay");
+
+const shareClose=
+document.getElementById("shareClose");
+
+const shareTitle=
+document.getElementById("shareTitle");
+
+const sharePreviewIcon=
+document.getElementById("sharePreviewIcon");
+
+const sharePreviewName=
+document.getElementById("sharePreviewName");
+
+const shareURL=
+document.getElementById("shareURL");
+
+const copyLink=
+document.getElementById("copyLink");
+
 const transition=
 document.getElementById("transition");
 
@@ -688,6 +1064,8 @@ const links=
 document.querySelectorAll("[data-page]");
 
 let navigating=false;
+
+let activeShareFile=null;
 
 
 function escapeHTML(value){
@@ -713,9 +1091,11 @@ window.location.href
 
 url.search="";
 
+url.hash="";
+
 url.searchParams.set(
-"file",
-file.name
+"share",
+file.id
 );
 
 return url.href;
@@ -732,7 +1112,7 @@ const filtered=
 files.filter(file=>
 file.name
 .toLowerCase()
-.includes(value) ||
+.includes(value)||
 
 file.description
 .toLowerCase()
@@ -763,8 +1143,13 @@ filtered.map(file=>`
 
 <article
 class="file"
-data-file="${escapeHTML(file.name)}"
+data-file-id="${escapeHTML(file.id)}"
 >
+
+<div class="shared-badge">
+<span class="shared-badge-dot"></span>
+SHARED WITH YOU
+</div>
 
 <div class="icon">
 
@@ -826,7 +1211,7 @@ Download
 <button
 class="share"
 type="button"
-data-share="${escapeHTML(file.name)}"
+data-share-id="${escapeHTML(file.id)}"
 aria-label="Share ${escapeHTML(file.name)}"
 title="Share"
 >
@@ -850,10 +1235,13 @@ downloads
 
 button.addEventListener(
 "click",
-()=>shareFile(
-button.dataset.share,
-button
-)
+()=>{
+
+openShare(
+button.dataset.shareId
+);
+
+}
 );
 
 });
@@ -864,99 +1252,119 @@ highlightSharedFile();
 }
 
 
-async function shareFile(name,button){
+function openShare(id){
 
 const file=
 files.find(
-item=>item.name===name
+item=>item.id===id
 );
 
 if(!file){
 return;
 }
 
-const url=
+activeShareFile=file;
+
+shareTitle.textContent=
+file.name;
+
+sharePreviewName.textContent=
+file.name;
+
+sharePreviewIcon.innerHTML=
+`<img src="/assets/${encodeURIComponent(file.icon)}" alt="">`;
+
+shareURL.value=
 getShareURL(file);
 
-try{
+copyLink.textContent=
+"Copy Link";
 
-if(
-navigator.share
-){
+copyLink.classList.remove(
+"done"
+);
 
-await navigator.share({
-title:`unYZY — ${file.name}`,
-text:file.description,
-url:url
-});
-
-button.classList.add("copied");
+shareOverlay.classList.add(
+"active"
+);
 
 setTimeout(()=>{
-button.classList.remove("copied");
-},1200);
 
-return;
+shareURL.select();
+
+},100);
 
 }
 
-await navigator.clipboard.writeText(url);
 
-button.classList.add("copied");
+function closeShare(){
 
-button.innerHTML=
-`<span class="share-icon">✓</span>`;
+shareOverlay.classList.remove(
+"active"
+);
 
-setTimeout(()=>{
+activeShareFile=null;
 
-button.classList.remove("copied");
+}
 
-button.innerHTML=
-`<span class="share-icon">↗</span>`;
 
-},1400);
+async function copyShareLink(){
 
-}catch(error){
-
-if(
-error.name==="AbortError"
-){
+if(!activeShareFile){
 return;
 }
 
+const url=
+getShareURL(
+activeShareFile
+);
+
+let copied=false;
+
 try{
 
-const textarea=
-document.createElement("textarea");
+await navigator.clipboard.writeText(
+url
+);
 
-textarea.value=url;
+copied=true;
 
-textarea.style.position="fixed";
-textarea.style.opacity="0";
+}catch{
 
-document.body.appendChild(textarea);
+try{
 
-textarea.select();
+shareURL.focus();
 
-document.execCommand("copy");
+shareURL.select();
 
-textarea.remove();
-
-button.classList.add("copied");
-
-button.innerHTML=
-`<span class="share-icon">✓</span>`;
-
-setTimeout(()=>{
-
-button.classList.remove("copied");
-
-button.innerHTML=
-`<span class="share-icon">↗</span>`;
-
-},1400);
+copied=
+document.execCommand(
+"copy"
+);
 
 }catch{}
+
+}
+
+if(copied){
+
+copyLink.textContent=
+"Copied";
+
+copyLink.classList.add(
+"done"
+);
+
+setTimeout(()=>{
+
+copyLink.textContent=
+"Copy Link";
+
+copyLink.classList.remove(
+"done"
+);
+
+},1600);
 
 }
 
@@ -970,18 +1378,16 @@ new URLSearchParams(
 window.location.search
 );
 
-const sharedName=
-params.get("file");
+const sharedID=
+params.get("share");
 
-if(!sharedName){
+if(!sharedID){
 return;
 }
 
 const card=
-[...downloads.querySelectorAll(".file")]
-.find(
-element=>
-element.dataset.file===sharedName
+downloads.querySelector(
+`[data-file-id="${CSS.escape(sharedID)}"]`
 );
 
 if(!card){
@@ -995,17 +1401,61 @@ behavior:"smooth",
 block:"center"
 });
 
-card.classList.add("shared");
+card.classList.add(
+"shared-target"
+);
 
 setTimeout(()=>{
 
-card.classList.remove("shared");
+card.classList.remove(
+"shared-target"
+);
 
-},1800);
+},3200);
 
-},250);
+},350);
 
 }
+
+
+shareClose.addEventListener(
+"click",
+closeShare
+);
+
+
+copyLink.addEventListener(
+"click",
+copyShareLink
+);
+
+
+shareOverlay.addEventListener(
+"click",
+event=>{
+
+if(event.target===shareOverlay){
+
+closeShare();
+
+}
+
+}
+);
+
+
+document.addEventListener(
+"keydown",
+event=>{
+
+if(event.key==="Escape"){
+
+closeShare();
+
+}
+
+}
+);
 
 
 function getLogo(target){
@@ -1152,7 +1602,11 @@ document.body.classList.add(
 search.addEventListener(
 "input",
 ()=>{
-renderFiles(search.value);
+
+renderFiles(
+search.value
+);
+
 }
 );
 
