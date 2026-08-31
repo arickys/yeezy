@@ -2,62 +2,55 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090b">
-
 <title>unYZY [HOME]</title>
 
 <style>
-*{
-box-sizing:border-box;
+@font-face{
+font-family:YeezyTSTAR;
+src:url("/fonts/yeezy_tstar-regular-webfont.woff") format("woff");
+font-weight:400;
+font-style:normal;
+font-display:swap;
 }
+
+@font-face{
+font-family:YeezyTSTAR;
+src:url("/fonts/yeezy_tstar-bold-webfont.woff") format("woff");
+font-weight:700 950;
+font-style:normal;
+font-display:swap;
+}
+
+*{box-sizing:border-box}
 
 :root{
 --bg:#08090b;
---white:#f5f5f6;
---muted:#7d828b;
---dim:#555a63;
+--surface:#101216;
+--surface2:#15171c;
+--line:rgba(255,255,255,.075);
+--text:#f4f4f5;
+--muted:#858a93;
 }
 
-html,
-body{
+html,body{
 margin:0;
-width:100%;
 min-height:100%;
 }
 
 body{
 min-height:100vh;
-overflow:hidden;
 background:
-radial-gradient(
-circle at 50% 42%,
-rgba(255,255,255,.075),
-rgba(255,255,255,.035) 13%,
-rgba(255,255,255,.012) 25%,
-transparent 48%
-),
-radial-gradient(
-circle at 50% 100%,
-rgba(255,255,255,.025),
-transparent 38%
-),
+radial-gradient(circle at 50% -20%,rgba(255,255,255,.075),transparent 32rem),
+radial-gradient(circle at 0 80%,rgba(255,255,255,.018),transparent 28rem),
 var(--bg);
-color:var(--white);
-font-family:
-Inter,
-ui-sans-serif,
--apple-system,
-BlinkMacSystemFont,
-"Segoe UI",
-Arial,
-sans-serif;
+color:var(--text);
+font-family:YeezyTSTAR,Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
 opacity:0;
-transform:scale(1.012);
-transition:
-opacity .55s ease,
-transform .75s cubic-bezier(.22,1,.36,1);
+transform:scale(1.015);
+transition:opacity .6s ease,transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -76,39 +69,10 @@ position:fixed;
 inset:0;
 pointer-events:none;
 background:
-linear-gradient(
-rgba(255,255,255,.012) 1px,
-transparent 1px
-),
-linear-gradient(
-90deg,
-rgba(255,255,255,.012) 1px,
-transparent 1px
-);
+linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
 background-size:80px 80px;
-mask-image:linear-gradient(
-to bottom,
-rgba(0,0,0,.7),
-transparent 72%
-);
-opacity:.3;
-}
-
-body:after{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:
-radial-gradient(
-ellipse at center,
-transparent 45%,
-rgba(0,0,0,.28) 100%
-);
-}
-
-a{
-color:inherit;
+mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
 }
 
 .nav{
@@ -118,17 +82,13 @@ left:50%;
 z-index:100;
 transform:translateX(-50%);
 display:flex;
-align-items:center;
 gap:3px;
 padding:5px;
-border:1px solid rgba(255,255,255,.075);
+border:1px solid rgba(255,255,255,.08);
 border-radius:14px;
-background:rgba(10,11,14,.68);
-backdrop-filter:blur(24px) saturate(150%);
--webkit-backdrop-filter:blur(24px) saturate(150%);
-box-shadow:
-0 18px 55px rgba(0,0,0,.4),
-inset 0 1px 0 rgba(255,255,255,.035);
+background:rgba(10,11,14,.78);
+backdrop-filter:blur(25px) saturate(150%);
+box-shadow:0 18px 55px rgba(0,0,0,.4);
 }
 
 .nav a{
@@ -139,276 +99,188 @@ align-items:center;
 justify-content:center;
 padding:0 14px;
 border-radius:9px;
-color:#70757e;
+color:#737983;
 text-decoration:none;
 font-size:12px;
-font-weight:750;
-letter-spacing:-.15px;
-transition:
-color .2s ease,
-background .2s ease,
-transform .2s ease;
+font-weight:700;
+transition:.2s ease;
 }
 
 .nav a:hover{
 color:#fff;
-background:rgba(255,255,255,.05);
+background:rgba(255,255,255,.055);
 }
 
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
-box-shadow:
-inset 0 0 0 1px rgba(255,255,255,.035),
-0 2px 8px rgba(0,0,0,.18);
-}
-
-.nav a:active{
-transform:scale(.95);
 }
 
 .hero{
-position:relative;
-width:100%;
-height:100vh;
-min-height:600px;
+width:min(1040px,calc(100% - 36px));
+min-height:100vh;
+margin:auto;
 display:flex;
-align-items:center;
-justify-content:center;
-padding:80px 24px 30px;
-}
-
-.hero-inner{
-position:relative;
-z-index:2;
-display:flex;
-flex-direction:column;
 align-items:center;
 justify-content:center;
 text-align:center;
+padding:100px 0;
+}
+
+.hero-content{
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
 .logo{
-position:relative;
-width:min(320px,42vw);
-height:min(320px,42vw);
-max-width:320px;
-max-height:320px;
-display:block;
+width:150px;
+height:150px;
 object-fit:contain;
 filter:
-drop-shadow(0 28px 45px rgba(0,0,0,.48))
-drop-shadow(0 0 45px rgba(255,255,255,.055));
-animation:
-logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
+drop-shadow(0 30px 60px rgba(0,0,0,.6))
+drop-shadow(0 0 45px rgba(255,255,255,.06));
+animation:float 6s ease-in-out infinite;
 }
 
-@keyframes logoFloat{
-0%,
-100%{
-transform:translateY(0) scale(1);
+@keyframes float{
+0%,100%{transform:translateY(0)}
+50%{transform:translateY(-8px)}
 }
 
-50%{
-transform:translateY(-12px) scale(1.015);
-}
-}
-
-.logo-glow{
-position:absolute;
-z-index:-1;
-width:260px;
-height:150px;
-left:50%;
-top:50%;
-transform:translate(-50%,-38%);
-border-radius:50%;
-background:rgba(255,255,255,.07);
-filter:blur(70px);
-opacity:.55;
-pointer-events:none;
+.title{
+margin:28px 0 0;
+font-size:clamp(55px,9vw,100px);
+line-height:.82;
+letter-spacing:-5px;
+font-weight:900;
 }
 
-.description{
-margin-top:8px;
-color:#858a93;
-font-size:12px;
-font-weight:650;
-letter-spacing:.5px;
+.subtitle{
+margin-top:18px;
+color:var(--muted);
+font-size:13px;
+letter-spacing:.1px;
 }
 
 .actions{
 display:flex;
-align-items:center;
-justify-content:center;
-gap:8px;
-margin-top:25px;
+gap:9px;
+margin-top:30px;
 }
 
-.action{
-height:40px;
-display:inline-flex;
-align-items:center;
-justify-content:center;
-padding:0 17px;
-border:1px solid rgba(255,255,255,.12);
-border-radius:9px;
-background:rgba(255,255,255,.025);
-color:#bfc2c7;
-text-decoration:none;
-font-size:11px;
-font-weight:800;
-transition:
-background .2s ease,
-border-color .2s ease,
-color .2s ease,
-transform .2s ease,
-box-shadow .2s ease;
-}
-
-.action:hover{
-transform:translateY(-2px);
-background:rgba(255,255,255,.075);
-border-color:rgba(255,255,255,.2);
-color:#fff;
-box-shadow:0 12px 30px rgba(0,0,0,.2);
-}
-
-.action.primary{
-background:#e9e9eb;
-border-color:#e9e9eb;
-color:#08090b;
-}
-
-.action.primary:hover{
-background:#fff;
-border-color:#fff;
-color:#08090b;
-box-shadow:0 14px 32px rgba(0,0,0,.3);
-}
-
-.corner{
-position:absolute;
-z-index:2;
-color:#454a53;
-font-size:9px;
-font-weight:750;
-letter-spacing:1.5px;
-}
-
-.corner.left{
-left:30px;
-bottom:27px;
-}
-
-.corner.right{
-right:30px;
-bottom:27px;
-}
-
-.page-transition{
-position:fixed;
-inset:0;
-z-index:999;
+.button{
+height:42px;
+padding:0 18px;
 display:flex;
 align-items:center;
 justify-content:center;
+border-radius:9px;
+border:1px solid rgba(255,255,255,.1);
+background:rgba(255,255,255,.035);
+color:#d8d9dc;
+text-decoration:none;
+font-size:11px;
+font-weight:700;
+transition:.2s ease;
+}
+
+.button:hover{
+background:rgba(255,255,255,.08);
+border-color:rgba(255,255,255,.18);
+transform:translateY(-2px);
+}
+
+.button.primary{
+background:#e8e8e9;
+color:#090a0c;
+border-color:#e8e8e9;
+}
+
+.button.primary:hover{
+background:#fff;
+border-color:#fff;
+}
+
+.transition{
+position:fixed;
+inset:0;
+z-index:999;
+display:grid;
+place-items:center;
 background:#08090b;
 opacity:0;
 visibility:hidden;
 pointer-events:none;
 }
 
-.page-transition.active{
+.transition.active{
 opacity:1;
 visibility:visible;
-pointer-events:auto;
 }
 
-.transition-logo{
-width:min(310px,62vw);
-height:min(310px,62vw);
+.transition img{
+width:min(300px,60vw);
+height:min(300px,60vw);
 object-fit:contain;
 opacity:0;
-transform:scale(.72);
-filter:
-drop-shadow(0 28px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 60px rgba(255,255,255,.07));
+transform:scale(.7);
+filter:drop-shadow(0 30px 60px rgba(0,0,0,.7));
 }
 
-.page-transition.show .transition-logo{
+.transition.show img{
 opacity:1;
 transform:scale(1);
-transition:
-opacity .5s ease,
-transform .75s cubic-bezier(.22,1,.36,1);
+transition:opacity .5s ease,transform .7s cubic-bezier(.22,1,.36,1);
 }
 
-.page-transition.fade .transition-logo{
+.transition.fade img{
 opacity:0;
-transform:scale(1.1);
-transition:
-opacity .4s ease,
-transform .5s cubic-bezier(.22,1,.36,1);
+transform:scale(1.08);
+transition:opacity .4s ease,transform .45s ease;
 }
 
-@media(max-width:650px){
-
-body{
-overflow:auto;
-}
-
+@media(max-width:600px){
 .nav{
 top:12px;
 }
 
 .nav a{
-height:33px;
 min-width:70px;
-padding:0 10px;
+height:33px;
 font-size:11px;
+padding:0 10px;
 }
 
 .hero{
-min-height:100svh;
-padding:75px 18px 35px;
+width:calc(100% - 24px);
 }
 
 .logo{
-width:min(250px,70vw);
-height:min(250px,70vw);
+width:120px;
+height:120px;
 }
 
-.logo-glow{
-width:210px;
-height:125px;
+.title{
+font-size:58px;
+letter-spacing:-3.5px;
 }
 
-.description{
+.subtitle{
 font-size:11px;
-margin-top:3px;
 }
 
 .actions{
 width:100%;
-max-width:330px;
-margin-top:22px;
 }
 
-.action{
+.button{
 flex:1;
-padding:0 12px;
-}
-
-.corner{
-display:none;
 }
 }
 
 @media(prefers-reduced-motion:reduce){
-
-body,
-.page-transition .transition-logo{
+body,.transition img,.button{
 transition:none;
 }
 
@@ -428,150 +300,98 @@ animation:none;
 </nav>
 
 <main class="hero">
+<div class="hero-content">
 
-<div class="hero-inner">
+<img class="logo" src="/assets/LOGO2.png" alt="unYZY">
 
-<div class="logo-glow"></div>
+<h1 class="title">unYZY</h1>
 
-<img
-class="logo"
-src="/api/image?file=logo.png"
-alt="unYZY"
->
-
-<div class="description">
-KEVLAR YEEZY
+<div class="subtitle">
+An archive for everything Yeezy.
 </div>
 
 <div class="actions">
-
-<a
-class="action primary"
-href="/downloads"
-data-page="downloads"
->
-Browse Downloads
-</a>
-
-<a
-class="action"
-href="/updates"
-data-page="updates"
->
-Latest Updates
-</a>
-
+<a class="button primary" href="/downloads" data-page="downloads">Browse Archive</a>
+<a class="button" href="/updates" data-page="updates">View Updates</a>
 </div>
 
 </div>
-
-<div class="corner left">+</div>
-<div class="corner right">+</div>
-
 </main>
 
-<div class="page-transition" id="pageTransition">
-<img
-class="transition-logo"
-id="transitionLogo"
-src="/api/image?file=LOGO2.png"
-alt=""
->
+<div class="transition" id="transition">
+<img id="transitionLogo" src="/assets/LOGO2.png" alt="">
 </div>
 
 <script>
-const pageTransition = document.getElementById("pageTransition");
-const transitionLogo = document.getElementById("transitionLogo");
-const links = document.querySelectorAll("[data-page]");
-
-let navigating = false;
+const transition=document.getElementById("transition");
+const transitionLogo=document.getElementById("transitionLogo");
+const links=document.querySelectorAll("[data-page]");
+let navigating=false;
 
 function getLogo(target){
-return target === "home"
-? "/api/image?file=logo.png"
-: "/api/image?file=LOGO2.png";
+return target==="home"
+?"/assets/logo.png"
+:"/assets/LOGO2.png";
 }
 
 function navigate(url,target){
 if(navigating)return;
 
-navigating = true;
-
+navigating=true;
 document.body.classList.add("leaving");
 
-transitionLogo.src = getLogo(target);
-
-pageTransition.classList.add("active");
+transitionLogo.src=getLogo(target);
+transition.classList.add("active");
 
 requestAnimationFrame(()=>{
-pageTransition.classList.add("show");
+transition.classList.add("show");
 });
 
 setTimeout(()=>{
-pageTransition.classList.add("fade");
+transition.classList.add("fade");
 },620);
 
 setTimeout(()=>{
 sessionStorage.setItem("unyzyTransition",target);
-window.location.href = url;
+location.href=url;
 },880);
 }
 
 links.forEach(link=>{
-link.addEventListener("click",event=>{
-event.preventDefault();
-
-navigate(
-link.href,
-link.dataset.page
-);
+link.addEventListener("click",e=>{
+e.preventDefault();
+navigate(link.href,link.dataset.page);
 });
 });
 
-function enterPage(){
-
-const transition =
-sessionStorage.getItem("unyzyTransition");
-
+function enter(){
+const target=sessionStorage.getItem("unyzyTransition");
 sessionStorage.removeItem("unyzyTransition");
 
-if(
-transition === "home" ||
-transition === "downloads" ||
-transition === "updates"
-){
-
-transitionLogo.src = getLogo(transition);
-
-pageTransition.classList.add("active");
+if(target){
+transitionLogo.src=getLogo(target);
+transition.classList.add("active");
 
 requestAnimationFrame(()=>{
-pageTransition.classList.add("show");
+transition.classList.add("show");
 });
 
 setTimeout(()=>{
-pageTransition.classList.add("fade");
+transition.classList.add("fade");
 document.body.classList.add("ready");
-},520);
+},500);
 
 setTimeout(()=>{
-pageTransition.classList.remove(
-"active",
-"show",
-"fade"
-);
-},950);
-
+transition.classList.remove("active","show","fade");
+},930);
 }else{
-
 requestAnimationFrame(()=>{
 document.body.classList.add("ready");
 });
-
 }
 }
 
-enterPage();
+enter();
 </script>
 
 </body>
