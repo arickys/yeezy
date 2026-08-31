@@ -4,10 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090b">
+
 <title>unYZY [UPDATES]</title>
+
 <link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png">
 
 <style>
+
 @font-face{
 font-family:YeezyTSTAR;
 src:url("/fonts/yeezy_tstar-regular-webfont.woff") format("woff");
@@ -24,32 +27,56 @@ font-style:normal;
 font-display:swap;
 }
 
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
 :root{
 --bg:#08090b;
 --surface:#101216;
 --surface2:#15181d;
 --line:rgba(255,255,255,.075);
+
 --text:#f5f5f6;
 --muted:#858b95;
+--muted2:#666c75;
+
+--white:rgba(255,255,255,.9);
 }
 
-html{scroll-behavior:smooth}
+html{
+scroll-behavior:smooth;
+}
 
 body{
 margin:0;
 min-height:100vh;
+
 background:
-radial-gradient(circle at 50% -18%,rgba(255,255,255,.07),transparent 31rem),
-radial-gradient(circle at 0 65%,rgba(255,255,255,.018),transparent 28rem),
+radial-gradient(
+circle at 50% -18%,
+rgba(255,255,255,.07),
+transparent 31rem
+),
+radial-gradient(
+circle at 0 65%,
+rgba(255,255,255,.018),
+transparent 28rem
+),
 var(--bg);
+
 color:var(--text);
+
 font-family:YeezyTSTAR,Arial,sans-serif;
+
 -webkit-font-smoothing:antialiased;
+
 opacity:0;
 transform:scale(1.012);
-transition:opacity .55s ease,transform .7s cubic-bezier(.22,1,.36,1);
+
+transition:
+opacity .55s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -64,50 +91,94 @@ transform:scale(.985);
 
 body:before{
 content:"";
+
 position:fixed;
 inset:0;
+
 pointer-events:none;
+
 background:
-linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
-linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+linear-gradient(
+rgba(255,255,255,.012) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.012) 1px,
+transparent 1px
+);
+
 background-size:80px 80px;
-mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 75%);
+
+mask-image:
+linear-gradient(
+to bottom,
+rgba(0,0,0,.7),
+transparent 75%
+);
 }
+
+/* =========================
+   NAVIGATION
+========================= */
 
 .nav{
 position:fixed;
+
 top:20px;
 left:50%;
+
 z-index:100;
+
 transform:translateX(-50%);
+
 display:flex;
 gap:3px;
+
 padding:5px;
+
 border:1px solid rgba(255,255,255,.085);
 border-radius:14px;
+
 background:rgba(11,12,15,.78);
-backdrop-filter:blur(24px) saturate(150%);
-box-shadow:0 18px 55px rgba(0,0,0,.4);
+
+backdrop-filter:
+blur(24px)
+saturate(150%);
+
+box-shadow:
+0 18px 55px rgba(0,0,0,.4);
 }
 
 .nav a{
 height:35px;
 min-width:78px;
+
 display:flex;
 align-items:center;
 justify-content:center;
+
 padding:0 14px;
+
 border-radius:9px;
+
 color:#747a84;
+
 text-decoration:none;
+
 font-size:12px;
 font-weight:700;
-transition:.2s ease;
+
+transition:
+color .2s ease,
+background .2s ease,
+transform .2s ease;
 }
 
 .nav a:hover{
 color:#fff;
 background:rgba(255,255,255,.055);
+transform:translateY(-1px);
 }
 
 .nav a.active{
@@ -115,179 +186,515 @@ color:#fff;
 background:rgba(255,255,255,.09);
 }
 
+/* =========================
+   PAGE
+========================= */
+
 .container{
 width:min(1040px,calc(100% - 36px));
+
 margin:auto;
-padding:130px 0 90px;
+
+padding:
+130px 0 90px;
 }
+
+/* =========================
+   HEADER
+========================= */
 
 .page-head{
 display:flex;
+
 align-items:center;
 justify-content:space-between;
+
 gap:30px;
+
 padding-bottom:30px;
+
 border-bottom:1px solid var(--line);
 }
 
 .kicker{
 margin-bottom:11px;
+
 color:#696f78;
+
 font-size:9px;
 font-weight:700;
+
 letter-spacing:1.8px;
+
 text-transform:uppercase;
 }
 
 .page-title{
 margin:0;
+
 font-size:clamp(48px,6vw,70px);
+
 line-height:.85;
+
 letter-spacing:-4px;
+
 font-weight:900;
 }
 
 .page-subtitle{
 margin-top:14px;
+
 color:var(--muted);
+
 font-size:12px;
+
 line-height:1.6;
 }
 
 .logo-area{
 width:120px;
 height:120px;
+
 display:grid;
 place-items:center;
+
 flex:0 0 120px;
 }
 
 .logo-area img{
 width:100%;
 height:100%;
+
 object-fit:contain;
-filter:drop-shadow(0 25px 45px rgba(0,0,0,.55));
+
+filter:
+drop-shadow(
+0 25px 45px rgba(0,0,0,.55)
+);
 }
+
+/* =========================
+   CONTROLS
+========================= */
+
+.controls{
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+margin-top:25px;
+
+padding:10px;
+
+border:1px solid var(--line);
+
+border-radius:13px;
+
+background:
+rgba(255,255,255,.018);
+
+backdrop-filter:blur(12px);
+}
+
+.search{
+flex:1;
+
+height:38px;
+
+padding:0 13px;
+
+border:1px solid rgba(255,255,255,.07);
+
+border-radius:9px;
+
+outline:none;
+
+background:
+rgba(255,255,255,.025);
+
+color:#fff;
+
+font-family:inherit;
+
+font-size:11px;
+
+transition:.2s ease;
+}
+
+.search::placeholder{
+color:#5f646c;
+}
+
+.search:focus{
+border-color:
+rgba(255,255,255,.18);
+
+background:
+rgba(255,255,255,.045);
+}
+
+.filter{
+height:38px;
+
+padding:0 12px;
+
+border:1px solid rgba(255,255,255,.07);
+
+border-radius:9px;
+
+outline:none;
+
+background:
+rgba(255,255,255,.025);
+
+color:#858b95;
+
+font-family:inherit;
+
+font-size:10px;
+
+cursor:pointer;
+}
+
+.filter option{
+background:#101216;
+color:#fff;
+}
+
+.update-count{
+padding:0 10px;
+
+color:#5f646c;
+
+font-size:9px;
+font-weight:700;
+
+letter-spacing:1px;
+
+white-space:nowrap;
+}
+
+/* =========================
+   TIMELINE
+========================= */
 
 .timeline{
 position:relative;
-margin:30px 0 0 8px;
+
+margin:
+30px 0 0 8px;
 }
 
 .timeline:before{
 content:"";
+
 position:absolute;
+
 left:5px;
+
 top:12px;
 bottom:12px;
+
 width:1px;
-background:linear-gradient(
+
+background:
+linear-gradient(
 to bottom,
 rgba(255,255,255,.14),
 rgba(255,255,255,.025)
 );
 }
 
+/* =========================
+   UPDATE CARD
+========================= */
+
 .update{
 position:relative;
+
 display:grid;
-grid-template-columns:135px minmax(0,1fr) auto;
+
+grid-template-columns:
+135px
+minmax(0,1fr)
+auto;
+
 gap:24px;
-padding:20px 20px 20px 25px;
+
+padding:
+20px 20px 20px 25px;
+
 margin-bottom:12px;
+
 border:1px solid var(--line);
+
 border-radius:13px;
+
 background:
-linear-gradient(145deg,rgba(255,255,255,.026),rgba(255,255,255,.006)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.026),
+rgba(255,255,255,.006)
+),
 var(--surface);
-transition:.25s cubic-bezier(.22,1,.36,1);
+
+transition:
+transform .25s cubic-bezier(.22,1,.36,1),
+border-color .25s ease,
+background .25s ease,
+box-shadow .25s ease;
+
+animation:
+updateIn .55s cubic-bezier(.22,1,.36,1) both;
+
+animation-delay:
+calc(var(--index) * 55ms);
+}
+
+@keyframes updateIn{
+
+from{
+opacity:0;
+transform:
+translateY(15px)
+scale(.985);
+}
+
+to{
+opacity:1;
+transform:
+translateY(0)
+scale(1);
+}
+
 }
 
 .update:before{
 content:"";
+
 position:absolute;
+
 left:-28px;
 top:27px;
+
 width:7px;
 height:7px;
-border:2px solid var(--bg);
+
+border:
+2px solid var(--bg);
+
 border-radius:50%;
+
 background:#656b74;
-box-shadow:0 0 0 1px rgba(255,255,255,.08);
+
+box-shadow:
+0 0 0 1px
+rgba(255,255,255,.08);
 }
 
-.update:first-child:before{
+.update.latest:before{
 background:#fff;
-box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 18px rgba(255,255,255,.15);
+
+box-shadow:
+0 0 0 1px
+rgba(255,255,255,.12),
+0 0 18px
+rgba(255,255,255,.15);
 }
 
 .update:hover{
 transform:translateY(-3px);
-border-color:rgba(255,255,255,.14);
+
+border-color:
+rgba(255,255,255,.14);
+
 background:
-linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.008)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.045),
+rgba(255,255,255,.008)
+),
 var(--surface2);
-box-shadow:0 20px 45px rgba(0,0,0,.22);
+
+box-shadow:
+0 20px 45px
+rgba(0,0,0,.22);
 }
+
+/* =========================
+   DATE
+========================= */
 
 .date{
 padding-top:2px;
+
 color:#656b75;
+
 font-size:9px;
 font-weight:700;
+
 letter-spacing:1.1px;
+
+text-transform:uppercase;
 }
 
-.update:first-child .date{
+.latest .date{
 color:#b0b4bb;
+}
+
+/* =========================
+   RELEASE
+========================= */
+
+.release{
+display:inline-flex;
+
+align-items:center;
+
+margin-bottom:6px;
+
+padding:4px 7px;
+
+border:1px solid
+rgba(255,255,255,.07);
+
+border-radius:5px;
+
+background:
+rgba(255,255,255,.025);
+
+color:#686e77;
+
+font-size:7px;
+font-weight:700;
+
+letter-spacing:1px;
+
+text-transform:uppercase;
+}
+
+.latest .release{
+color:#bfc2c7;
+
+border-color:
+rgba(255,255,255,.13);
+
+background:
+rgba(255,255,255,.045);
 }
 
 .title{
 margin:0;
+
 font-size:15px;
+
 font-weight:700;
+
 letter-spacing:-.2px;
 }
 
 .description{
 margin-top:7px;
+
 color:#777d87;
+
 font-size:11px;
+
 line-height:1.65;
 }
 
+/* =========================
+   TAG
+========================= */
+
 .tag{
 height:25px;
+
 padding:0 9px;
+
 display:flex;
+
 align-items:center;
 justify-content:center;
-border:1px solid rgba(255,255,255,.09);
+
+border:
+1px solid
+rgba(255,255,255,.09);
+
 border-radius:7px;
-background:rgba(255,255,255,.025);
+
+background:
+rgba(255,255,255,.025);
+
 color:#747a84;
+
 font-size:8px;
 font-weight:700;
+
 letter-spacing:1px;
+
 text-transform:uppercase;
+
 white-space:nowrap;
 }
 
-.update:first-child .tag{
+.latest .tag{
 color:#e0e1e3;
-border-color:rgba(255,255,255,.15);
-background:rgba(255,255,255,.055);
+
+border-color:
+rgba(255,255,255,.15);
+
+background:
+rgba(255,255,255,.055);
 }
+
+/* =========================
+   EMPTY
+========================= */
+
+.empty{
+display:none;
+
+padding:60px 20px;
+
+text-align:center;
+
+border:1px dashed
+rgba(255,255,255,.08);
+
+border-radius:13px;
+
+color:#626770;
+
+font-size:11px;
+}
+
+.empty.show{
+display:block;
+}
+
+/* =========================
+   TRANSITION
+========================= */
 
 .transition{
 position:fixed;
+
 inset:0;
+
 z-index:999;
+
 display:grid;
 place-items:center;
+
 background:#08090b;
+
 opacity:0;
+
 visibility:hidden;
+
 pointer-events:none;
 }
 
@@ -299,25 +706,45 @@ visibility:visible;
 .transition img{
 width:min(300px,60vw);
 height:min(300px,60vw);
+
 object-fit:contain;
+
 opacity:0;
+
 transform:scale(.7);
-filter:drop-shadow(0 30px 60px rgba(0,0,0,.7));
+
+filter:
+drop-shadow(
+0 30px 60px rgba(0,0,0,.7)
+);
 }
 
 .transition.show img{
 opacity:1;
+
 transform:scale(1);
-transition:opacity .5s ease,transform .7s cubic-bezier(.22,1,.36,1);
+
+transition:
+opacity .5s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 .transition.fade img{
 opacity:0;
+
 transform:scale(1.08);
-transition:opacity .4s ease,transform .45s ease;
+
+transition:
+opacity .4s ease,
+transform .45s ease;
 }
 
+/* =========================
+   MOBILE
+========================= */
+
 @media(max-width:700px){
+
 .page-head{
 align-items:flex-start;
 }
@@ -325,16 +752,19 @@ align-items:flex-start;
 .logo-area{
 width:90px;
 height:90px;
+
 flex-basis:90px;
 }
 
 .update{
 grid-template-columns:1fr;
+
 gap:9px;
 }
 
 .tag{
 position:absolute;
+
 top:17px;
 right:17px;
 }
@@ -342,22 +772,41 @@ right:17px;
 .title{
 padding-right:70px;
 }
+
+.controls{
+flex-wrap:wrap;
+}
+
+.search{
+width:100%;
+flex-basis:100%;
+}
+
+.update-count{
+margin-left:auto;
+}
+
 }
 
 @media(max-width:560px){
+
 .nav{
 top:12px;
 }
 
 .nav a{
 height:33px;
+
 min-width:70px;
+
 font-size:11px;
+
 padding:0 10px;
 }
 
 .container{
 width:calc(100% - 24px);
+
 padding-top:105px;
 }
 
@@ -366,184 +815,700 @@ display:block;
 }
 
 .logo-area{
-margin:20px auto 0;
+margin:
+20px auto 0;
+
 width:90px;
 height:90px;
 }
 
 .page-title{
 font-size:47px;
+
 letter-spacing:-3.5px;
 }
+
+.controls{
+padding:8px;
+}
+
+.filter{
+flex:1;
+}
+
+.update-count{
+width:100%;
+text-align:right;
+}
+
 }
 
 @media(prefers-reduced-motion:reduce){
-body,.update,.transition img{
+
+body,
+.update,
+.transition img{
 transition:none;
 }
+
+.update{
+animation:none;
 }
+
+}
+
 </style>
 </head>
 
 <body>
 
+<!-- =========================
+     NAVIGATION
+========================= -->
+
 <nav class="nav">
-<a href="/" data-page="home">Home</a>
-<a href="/downloads" data-page="downloads">Downloads</a>
-<a href="/updates" class="active" data-page="updates">Updates</a>
+
+<a href="/" data-page="home">
+Home
+</a>
+
+<a href="/downloads" data-page="downloads">
+Downloads
+</a>
+
+<a
+href="/updates"
+class="active"
+data-page="updates"
+>
+Updates
+</a>
+
 </nav>
+
+
+<!-- =========================
+     MAIN
+========================= -->
 
 <main class="container">
 
 <header class="page-head">
 
 <div>
-<div class="kicker">Changelog</div>
 
-<h1 class="page-title">Updates</h1>
+<div class="kicker">
+Changelog
+</div>
+
+<h1 class="page-title">
+Updates
+</h1>
 
 <div class="page-subtitle">
 New additions, changes, fixes, and improvements to the archive.
 </div>
+
 </div>
 
+
 <div class="logo-area">
-<img src="/assets/LOGO2.png" alt="">
+
+<img
+src="/assets/LOGO2.png"
+alt=""
+>
+
 </div>
 
 </header>
 
-<section class="timeline">
 
-<article class="update">
-<div class="date">AUG 30, 2026</div>
+<!-- =========================
+     SEARCH / FILTER
+========================= -->
 
-<div>
-<h2 class="title">Archive launch</h2>
-<div class="description">
-The archive is now live with the first available release.
-</div>
-</div>
+<div class="controls">
 
-<div class="tag">Added</div>
-</article>
+<input
+class="search"
+id="search"
+type="search"
+placeholder="Search updates..."
+autocomplete="off"
+>
 
-<article class="update">
-<div class="date">AUG 30, 2026</div>
+<select
+class="filter"
+id="filter"
+>
+<option value="ALL">
+All
+</option>
+</select>
 
-<div>
-<h2 class="title">Dedicated pages</h2>
-<div class="description">
-Downloads and updates now have their own separate pages.
-</div>
-</div>
-
-<div class="tag">Update</div>
-</article>
-
-<article class="update">
-<div class="date">AUG 30, 2026</div>
-
-<div>
-<h2 class="title">Navigation cleanup</h2>
-<div class="description">
-Clean URLs are now used throughout the site.
-</div>
+<div
+class="update-count"
+id="updateCount"
+>
+0 UPDATES
 </div>
 
-<div class="tag">Patch</div>
-</article>
-
-<article class="update">
-<div class="date">AUG 30, 2026</div>
-
-<div>
-<h2 class="title">Asset loading fix</h2>
-<div class="description">
-Fixed image paths after moving the site's graphics into the assets folder.
-</div>
 </div>
 
-<div class="tag">Bug Fixes</div>
-</article>
 
+<!-- =========================
+     TIMELINE
+========================= -->
+
+<section
+class="timeline"
+id="timeline"
+>
 </section>
+
+
+<div
+class="empty"
+id="empty"
+>
+No updates found.
+</div>
 
 </main>
 
-<div class="transition" id="transition">
-<img id="transitionLogo" src="/assets/LOGO2.png" alt="">
+
+<!-- =========================
+     PAGE TRANSITION
+========================= -->
+
+<div
+class="transition"
+id="transition"
+>
+
+<img
+id="transitionLogo"
+src="/assets/LOGO2.png"
+alt=""
+>
+
 </div>
 
+
 <script>
-const transition=document.getElementById("transition");
-const transitionLogo=document.getElementById("transitionLogo");
-const links=document.querySelectorAll("[data-page"]);
-let navigating=false;
+
+/*
+==========================================================
+    unYZY UPDATE DATABASE
+==========================================================
+
+    THIS IS THE ONLY PART YOU NEED TO EDIT.
+
+    Add a new update like this:
+
+    {
+        TITLE: "UPDATE [V1]",
+        DESC: "PLACEHOLDER",
+        TAG: "UPDATE",
+        DATE: "AUG 30, 2026"
+    }
+
+    Or:
+
+    {
+        TITLE: "UPDATE [V2]",
+        DESC: "Added a new download section.",
+        TAG: "ADDED",
+        DATE: "SEP 02, 2026"
+    }
+
+    The newest update should be FIRST.
+
+==========================================================
+*/
+
+
+const UPDATES = [
+
+    {
+        TITLE: "UPDATE [V1]",
+        DESC: "The first version of the unYZY archive is now live.",
+        TAG: "RELEASE",
+        DATE: "AUG 30, 2026"
+    },
+
+    {
+        TITLE: "Dedicated pages",
+        DESC: "Downloads and updates now have their own separate pages.",
+        TAG: "UPDATE",
+        DATE: "AUG 30, 2026"
+    },
+
+    {
+        TITLE: "Navigation cleanup",
+        DESC: "Clean URLs are now used throughout the site.",
+        TAG: "PATCH",
+        DATE: "AUG 30, 2026"
+    },
+
+    {
+        TITLE: "Asset loading fix",
+        DESC: "Fixed image paths after moving the site's graphics into the assets folder.",
+        TAG: "BUG FIX",
+        DATE: "AUG 30, 2026"
+    }
+
+];
+
+
+/*
+==========================================================
+    DO NOT EDIT BELOW THIS LINE
+==========================================================
+*/
+
+
+const timeline =
+document.getElementById("timeline");
+
+const search =
+document.getElementById("search");
+
+const filter =
+document.getElementById("filter");
+
+const updateCount =
+document.getElementById("updateCount");
+
+const empty =
+document.getElementById("empty");
+
+
+
+/* =========================
+   NORMALIZE DATA
+========================= */
+
+function normalizeUpdate(update){
+
+return{
+
+TITLE:
+String(update.TITLE || "Untitled Update"),
+
+DESC:
+String(
+update.DESC ||
+"No description provided."
+),
+
+TAG:
+String(
+update.TAG ||
+"UPDATE"
+),
+
+DATE:
+String(
+update.DATE ||
+"TBA"
+)
+
+};
+
+}
+
+
+
+/* =========================
+   BUILD FILTERS
+========================= */
+
+function buildFilters(){
+
+const tags =
+[
+...new Set(
+UPDATES
+.map(update =>
+normalizeUpdate(update).TAG
+.toUpperCase()
+)
+)
+];
+
+tags.forEach(tag=>{
+
+const option =
+document.createElement("option");
+
+option.value = tag;
+
+option.textContent = tag;
+
+filter.appendChild(option);
+
+});
+
+}
+
+
+
+/* =========================
+   RENDER
+========================= */
+
+function renderUpdates(){
+
+const query =
+search.value
+.trim()
+.toLowerCase();
+
+const selectedTag =
+filter.value;
+
+timeline.innerHTML = "";
+
+let visible = 0;
+
+
+UPDATES.forEach(
+(rawUpdate,index)=>{
+
+const update =
+normalizeUpdate(rawUpdate);
+
+const matchesSearch =
+!query ||
+
+update.TITLE
+.toLowerCase()
+.includes(query) ||
+
+update.DESC
+.toLowerCase()
+.includes(query) ||
+
+update.TAG
+.toLowerCase()
+.includes(query) ||
+
+update.DATE
+.toLowerCase()
+.includes(query);
+
+
+const matchesTag =
+selectedTag === "ALL" ||
+
+update.TAG
+.toUpperCase() === selectedTag;
+
+
+if(!matchesSearch || !matchesTag){
+return;
+}
+
+
+visible++;
+
+
+const article =
+document.createElement("article");
+
+article.className =
+"update";
+
+
+if(index === 0){
+article.classList.add("latest");
+}
+
+
+article.style.setProperty(
+"--index",
+visible - 1
+);
+
+
+article.innerHTML = `
+
+<div class="date">
+${escapeHTML(update.DATE)}
+</div>
+
+<div>
+
+<div class="release">
+${index === 0 ? "LATEST" : "RELEASE"}
+</div>
+
+<h2 class="title">
+${escapeHTML(update.TITLE)}
+</h2>
+
+<div class="description">
+${escapeHTML(update.DESC)}
+</div>
+
+</div>
+
+<div class="tag">
+${escapeHTML(update.TAG)}
+</div>
+
+`;
+
+
+timeline.appendChild(article);
+
+});
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+empty.classList.toggle(
+"show",
+visible === 0
+);
+
+
+/* =========================
+   COUNT
+========================= */
+
+updateCount.textContent =
+`${visible} ${visible === 1 ? "UPDATE" : "UPDATES"}`;
+
+}
+
+
+
+/* =========================
+   HTML ESCAPE
+========================= */
+
+function escapeHTML(value){
+
+return value
+.replace(/&/g,"&amp;")
+.replace(/</g,"&lt;")
+.replace(/>/g,"&gt;")
+.replace(/"/g,"&quot;")
+.replace(/'/g,"&#039;");
+
+}
+
+
+
+/* =========================
+   SEARCH
+========================= */
+
+search.addEventListener(
+"input",
+renderUpdates
+);
+
+
+filter.addEventListener(
+"change",
+renderUpdates
+);
+
+
+
+/* =========================
+   INITIALIZE
+========================= */
+
+buildFilters();
+
+renderUpdates();
+
+
+
+/* =====================================================
+   PAGE TRANSITIONS
+===================================================== */
+
+const transition =
+document.getElementById("transition");
+
+const transitionLogo =
+document.getElementById("transitionLogo");
+
+const links =
+document.querySelectorAll(
+"[data-page]"
+);
+
+let navigating = false;
+
+
 
 function getLogo(target){
-return target==="home"
-?"/assets/logo.png"
-:"/assets/LOGO2.png";
+
+return target === "home"
+
+? "/assets/logo.png"
+
+: "/assets/LOGO2.png";
+
 }
+
+
 
 function navigate(url,target){
-if(navigating)return;
 
-navigating=true;
-document.body.classList.add("leaving");
-transitionLogo.src=getLogo(target);
-transition.classList.add("active");
+if(navigating){
+return;
+}
+
+navigating = true;
+
+document.body.classList.add(
+"leaving"
+);
+
+transitionLogo.src =
+getLogo(target);
+
+transition.classList.add(
+"active"
+);
+
 
 requestAnimationFrame(()=>{
-transition.classList.add("show");
+
+transition.classList.add(
+"show"
+);
+
 });
 
+
 setTimeout(()=>{
-transition.classList.add("fade");
+
+transition.classList.add(
+"fade"
+);
+
 },620);
 
+
 setTimeout(()=>{
-sessionStorage.setItem("unyzyTransition",target);
-location.href=url;
+
+sessionStorage.setItem(
+"unyzyTransition",
+target
+);
+
+location.href = url;
+
 },880);
+
 }
+
+
 
 links.forEach(link=>{
-link.addEventListener("click",e=>{
+
+link.addEventListener(
+"click",
+e=>{
+
 e.preventDefault();
-navigate(link.href,link.dataset.page);
+
+navigate(
+link.href,
+link.dataset.page
+);
+
 });
+
 });
+
+
 
 function enter(){
-const target=sessionStorage.getItem("unyzyTransition");
-sessionStorage.removeItem("unyzyTransition");
+
+const target =
+sessionStorage.getItem(
+"unyzyTransition"
+);
+
+sessionStorage.removeItem(
+"unyzyTransition"
+);
+
 
 if(target){
-transitionLogo.src=getLogo(target);
-transition.classList.add("active");
+
+transitionLogo.src =
+getLogo(target);
+
+transition.classList.add(
+"active"
+);
+
 
 requestAnimationFrame(()=>{
-transition.classList.add("show");
+
+transition.classList.add(
+"show"
+);
+
 });
 
+
 setTimeout(()=>{
-transition.classList.add("fade");
-document.body.classList.add("ready");
+
+transition.classList.add(
+"fade"
+);
+
+document.body.classList.add(
+"ready"
+);
+
 },500);
 
+
 setTimeout(()=>{
-transition.classList.remove("active","show","fade");
+
+transition.classList.remove(
+"active",
+"show",
+"fade"
+);
+
 },930);
-}else{
-requestAnimationFrame(()=>{
-document.body.classList.add("ready");
-});
-}
+
 }
 
+else{
+
+requestAnimationFrame(()=>{
+
+document.body.classList.add(
+"ready"
+);
+
+});
+
+}
+
+}
+
+
+
 enter();
+
 </script>
 
 </body>
