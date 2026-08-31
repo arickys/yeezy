@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090b">
+
 <title>unYZY [OFFLINE]</title>
 
 <style>
@@ -11,7 +12,6 @@
 font-family:Yeezy;
 src:url("/fonts/yeezy_tstar-regular-webfont.woff") format("woff");
 font-weight:400;
-font-style:normal;
 font-display:swap;
 }
 
@@ -19,7 +19,6 @@ font-display:swap;
 font-family:Yeezy;
 src:url("/fonts/yeezy_tstar-bold.webfont.woff") format("woff");
 font-weight:700;
-font-style:normal;
 font-display:swap;
 }
 
@@ -36,19 +35,11 @@ height:100%;
 
 body{
 overflow:hidden;
-display:flex;
-align-items:center;
-justify-content:center;
 background:
 radial-gradient(
-circle at 50% 42%,
+circle at 50% 40%,
 rgba(255,255,255,.07),
-transparent 30rem
-),
-radial-gradient(
-circle at 50% 100%,
-rgba(255,255,255,.025),
-transparent 35rem
+transparent 30%
 ),
 #08090b;
 color:#f5f5f6;
@@ -56,161 +47,93 @@ font-family:Yeezy,Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
 }
 
-body:before{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-background:
-linear-gradient(
-rgba(255,255,255,.012) 1px,
-transparent 1px
-),
-linear-gradient(
-90deg,
-rgba(255,255,255,.012) 1px,
-transparent 1px
-);
-background-size:80px 80px;
-mask-image:linear-gradient(
-to bottom,
-rgba(0,0,0,.7),
-transparent 80%
-);
-opacity:.3;
+.page{
+width:100%;
+height:100%;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:30px;
 }
 
-.page{
-position:relative;
-z-index:2;
-width:min(720px,calc(100% - 36px));
+.content{
+width:min(440px,100%);
 text-align:center;
 }
 
-.logo-wrap{
-position:relative;
-width:130px;
-height:130px;
-margin:0 auto 30px;
-display:grid;
-place-items:center;
-}
-
-.logo-wrap:before{
-content:"";
-position:absolute;
-width:90px;
-height:55px;
-border-radius:50%;
-background:rgba(255,255,255,.09);
-filter:blur(45px);
-}
-
 .logo{
-position:relative;
-z-index:2;
-width:100%;
-height:100%;
+width:110px;
+height:110px;
 object-fit:contain;
+margin-bottom:30px;
 filter:
-drop-shadow(0 25px 50px rgba(0,0,0,.65))
-drop-shadow(0 0 40px rgba(255,255,255,.06));
-animation:float 5s ease-in-out infinite;
-}
-
-@keyframes float{
-0%,100%{
-transform:translateY(0);
-}
-
-50%{
-transform:translateY(-8px);
-}
-}
-
-.status{
-margin-bottom:12px;
-color:#646a73;
-font-size:9px;
-font-weight:700;
-letter-spacing:2px;
-text-transform:uppercase;
+drop-shadow(0 25px 45px rgba(0,0,0,.6))
+drop-shadow(0 0 35px rgba(255,255,255,.06));
 }
 
 h1{
 margin:0;
-font-size:clamp(48px,8vw,76px);
-line-height:.88;
+font-size:42px;
+line-height:1;
+letter-spacing:-2px;
 font-weight:700;
-letter-spacing:-4px;
 }
 
-.description{
-max-width:390px;
-margin:18px auto 0;
+p{
+margin:14px auto 0;
+max-width:330px;
 color:#777d86;
-font-size:12px;
-line-height:1.65;
+font-size:14px;
+line-height:1.5;
+}
+
+.status{
+margin:25px auto 0;
+width:max-content;
+padding:8px 11px;
+border:1px solid rgba(255,255,255,.09);
+border-radius:7px;
+background:rgba(255,255,255,.025);
+color:#858b94;
+font-size:10px;
+font-weight:700;
+letter-spacing:1.2px;
+text-transform:uppercase;
 }
 
 .retry{
-margin-top:25px;
+margin-top:18px;
+display:inline-flex;
+align-items:center;
+justify-content:center;
 height:40px;
-padding:0 19px;
+padding:0 18px;
 border:1px solid rgba(255,255,255,.13);
-border-radius:9px;
-background:rgba(255,255,255,.035);
-color:#d8d9dc;
+border-radius:8px;
+background:#e8e8ea;
+color:#08090b;
 font-family:inherit;
-font-size:11px;
+font-size:12px;
 font-weight:700;
+text-decoration:none;
 cursor:pointer;
-transition:
-transform .2s ease,
-background .2s ease,
-border-color .2s ease;
+transition:.2s ease;
 }
 
 .retry:hover{
+background:#fff;
 transform:translateY(-2px);
-background:rgba(255,255,255,.08);
-border-color:rgba(255,255,255,.22);
 }
 
-.retry:active{
-transform:translateY(0) scale(.97);
-}
-
-@media(max-width:600px){
-
-.logo-wrap{
-width:100px;
-height:100px;
-margin-bottom:24px;
-}
-
+@media(max-width:500px){
 h1{
-font-size:44px;
-letter-spacing:-2.8px;
+font-size:36px;
 }
-
-.description{
-font-size:11px;
-padding:0 15px;
-}
-
-}
-
-@media(prefers-reduced-motion:reduce){
 
 .logo{
-animation:none;
+width:90px;
+height:90px;
 }
-
-.retry{
-transition:none;
-}
-
 }
 </style>
 </head>
@@ -219,31 +142,34 @@ transition:none;
 
 <main class="page">
 
-<div class="logo-wrap">
+<div class="content">
+
 <img
 class="logo"
 src="/assets/LOGO2.png"
 alt="unYZY"
 >
-</div>
 
-<div class="status">
-Connection unavailable
-</div>
+<h1>No connection.</h1>
 
-<h1>You're offline.</h1>
-
-<p class="description">
-unYZY couldn't connect to the server.
-Check your internet connection and try again.
+<p>
+unYZY couldn't connect to the internet.
+Check your connection and try again.
 </p>
 
-<button
+<div class="status">
+Offline
+</div>
+
+<a
 class="retry"
-onclick="location.reload()"
+href="/"
+onclick="location.reload();return false;"
 >
 Try Again
-</button>
+</a>
+
+</div>
 
 </main>
 
