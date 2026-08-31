@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090b">
-
 <title>unYZY [OFFLINE]</title>
 
 <style>
@@ -30,9 +29,9 @@ box-sizing:border-box;
 
 html,
 body{
+margin:0;
 width:100%;
 height:100%;
-margin:0;
 }
 
 body{
@@ -42,14 +41,14 @@ align-items:center;
 justify-content:center;
 background:
 radial-gradient(
-circle at 50% 38%,
-rgba(255,255,255,.075),
-transparent 30%
+circle at 50% 42%,
+rgba(255,255,255,.07),
+transparent 30rem
 ),
 radial-gradient(
 circle at 50% 100%,
 rgba(255,255,255,.025),
-transparent 45%
+transparent 35rem
 ),
 #08090b;
 color:#f5f5f6;
@@ -73,39 +72,38 @@ rgba(255,255,255,.012) 1px,
 transparent 1px
 );
 background-size:80px 80px;
-opacity:.3;
 mask-image:linear-gradient(
 to bottom,
 rgba(0,0,0,.7),
 transparent 80%
 );
+opacity:.3;
 }
 
 .page{
-width:min(560px,calc(100% - 40px));
-display:flex;
-flex-direction:column;
-align-items:center;
+position:relative;
+z-index:2;
+width:min(720px,calc(100% - 36px));
 text-align:center;
 }
 
 .logo-wrap{
 position:relative;
-width:150px;
-height:150px;
-display:flex;
-align-items:center;
-justify-content:center;
-margin-bottom:34px;
+width:130px;
+height:130px;
+margin:0 auto 30px;
+display:grid;
+place-items:center;
 }
 
-.glow{
+.logo-wrap:before{
+content:"";
 position:absolute;
-width:80%;
-height:55%;
+width:90px;
+height:55px;
 border-radius:50%;
 background:rgba(255,255,255,.09);
-filter:blur(65px);
+filter:blur(45px);
 }
 
 .logo{
@@ -115,13 +113,24 @@ width:100%;
 height:100%;
 object-fit:contain;
 filter:
-drop-shadow(0 25px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 45px rgba(255,255,255,.06));
+drop-shadow(0 25px 50px rgba(0,0,0,.65))
+drop-shadow(0 0 40px rgba(255,255,255,.06));
+animation:float 5s ease-in-out infinite;
 }
 
-.label{
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+
+50%{
+transform:translateY(-8px);
+}
+}
+
+.status{
 margin-bottom:12px;
-color:#666c75;
+color:#646a73;
 font-size:9px;
 font-weight:700;
 letter-spacing:2px;
@@ -130,28 +139,28 @@ text-transform:uppercase;
 
 h1{
 margin:0;
-font-size:clamp(32px,7vw,48px);
-line-height:.95;
-letter-spacing:-2.5px;
+font-size:clamp(48px,8vw,76px);
+line-height:.88;
 font-weight:700;
+letter-spacing:-4px;
 }
 
-p{
+.description{
 max-width:390px;
-margin:16px auto 0;
-color:#737983;
+margin:18px auto 0;
+color:#777d86;
 font-size:12px;
 line-height:1.65;
 }
 
 .retry{
-margin-top:27px;
-height:41px;
+margin-top:25px;
+height:40px;
 padding:0 19px;
-border:1px solid rgba(255,255,255,.12);
+border:1px solid rgba(255,255,255,.13);
 border-radius:9px;
 background:rgba(255,255,255,.035);
-color:#d9dade;
+color:#d8d9dc;
 font-family:inherit;
 font-size:11px;
 font-weight:700;
@@ -164,14 +173,44 @@ border-color .2s ease;
 
 .retry:hover{
 transform:translateY(-2px);
-background:rgba(255,255,255,.075);
-border-color:rgba(255,255,255,.2);
+background:rgba(255,255,255,.08);
+border-color:rgba(255,255,255,.22);
+}
+
+.retry:active{
+transform:translateY(0) scale(.97);
+}
+
+@media(max-width:600px){
+
+.logo-wrap{
+width:100px;
+height:100px;
+margin-bottom:24px;
+}
+
+h1{
+font-size:44px;
+letter-spacing:-2.8px;
+}
+
+.description{
+font-size:11px;
+padding:0 15px;
+}
+
 }
 
 @media(prefers-reduced-motion:reduce){
+
+.logo{
+animation:none;
+}
+
 .retry{
 transition:none;
 }
+
 }
 </style>
 </head>
@@ -181,27 +220,22 @@ transition:none;
 <main class="page">
 
 <div class="logo-wrap">
-
-<div class="glow"></div>
-
 <img
 class="logo"
 src="/assets/LOGO2.png"
 alt="unYZY"
 >
-
 </div>
 
-<div class="label">
-Connection Lost
+<div class="status">
+Connection unavailable
 </div>
 
-<h1>
-You're offline.
-</h1>
+<h1>You're offline.</h1>
 
-<p>
-unYZY couldn't connect to the internet. Check your connection and try again.
+<p class="description">
+unYZY couldn't connect to the server.
+Check your internet connection and try again.
 </p>
 
 <button

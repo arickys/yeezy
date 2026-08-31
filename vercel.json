@@ -1,7 +1,6 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-
   "redirects": [
     {
       "source": "/index.html",
@@ -19,19 +18,14 @@
       "permanent": true
     }
   ],
-
   "rewrites": [
     {
-      "source": "/",
-      "destination": "/api/device"
-    },
-    {
       "source": "/downloads",
-      "destination": "/api/device"
+      "destination": "/downloads.html"
     },
     {
       "source": "/updates",
-      "destination": "/api/device"
+      "destination": "/updates.html"
     }
   ]
 }

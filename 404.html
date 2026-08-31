@@ -263,13 +263,13 @@ Return Home
 </div>
 
 </main>
-if ("serviceWorker" in navigator) {
-    window.addEventListener("load", () => {
-        navigator.serviceWorker.register("/sw.js")
-            .catch(error => {
-                console.error("Service worker registration failed:", error);
-            });
-    });
-}
+<script>
+if("serviceWorker" in navigator){
+window.addEventListener("load",()=>{
+navigator.serviceWorker.register("/sw.js",{
+scope:"/"
+}).catch(()=>{});
+});
+</script>
 </body>
 </html>
