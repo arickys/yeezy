@@ -7,70 +7,97 @@
 <title>unYZY [404]</title>
 
 <style>
-*{box-sizing:border-box}
+*{
+box-sizing:border-box;
+}
 
-html,body{
+html,
+body{
 margin:0;
 width:100%;
-min-height:100%;
+height:100%;
 }
 
 body{
-min-height:100vh;
-display:grid;
-place-items:center;
 overflow:hidden;
 background:
-radial-gradient(circle at 50% 45%,rgba(255,255,255,.065),transparent 30rem),
-radial-gradient(circle at 50% 100%,rgba(255,255,255,.02),transparent 30rem),
+radial-gradient(
+circle at 50% 42%,
+rgba(255,255,255,.055),
+transparent 34rem
+),
 #08090b;
 color:#f5f5f6;
-font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;
+font-family:
+Inter,
+ui-sans-serif,
+-apple-system,
+BlinkMacSystemFont,
+"Segoe UI",
+Arial,
+sans-serif;
 -webkit-font-smoothing:antialiased;
 }
 
-body:after{
+body:before{
 content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.42));
+background:
+linear-gradient(
+rgba(255,255,255,.012) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.012) 1px,
+transparent 1px
+);
+background-size:80px 80px;
+mask-image:linear-gradient(
+to bottom,
+rgba(0,0,0,.6),
+transparent 80%
+);
 }
 
 .error{
 position:relative;
 z-index:2;
-width:min(900px,calc(100% - 36px));
+width:100%;
+height:100%;
 display:flex;
 align-items:center;
 justify-content:center;
-gap:clamp(25px,6vw,80px);
+text-align:center;
+padding:30px;
 }
 
-.number{
-font-size:clamp(130px,22vw,250px);
-font-weight:950;
-line-height:.72;
-letter-spacing:-18px;
-color:#f2f2f3;
-text-shadow:0 25px 70px rgba(0,0,0,.5);
+.content{
+display:flex;
+flex-direction:column;
+align-items:center;
 }
 
-.logo-wrap{
+.logo-frame{
 position:relative;
-width:clamp(210px,30vw,360px);
-height:clamp(210px,30vw,360px);
-display:grid;
-place-items:center;
+width:min(520px,75vw);
+height:min(330px,48vw);
+display:flex;
+align-items:center;
+justify-content:center;
+margin-bottom:5px;
 }
 
-.logo-glow{
+.logo-frame:before{
+content:"";
 position:absolute;
-width:80%;
+width:75%;
 height:55%;
 border-radius:50%;
-background:rgba(255,255,255,.075);
-filter:blur(65px);
+background:rgba(255,255,255,.07);
+filter:blur(70px);
 }
 
 .logo{
@@ -80,90 +107,85 @@ width:100%;
 height:100%;
 object-fit:contain;
 filter:
-drop-shadow(0 35px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 45px rgba(255,255,255,.06));
+drop-shadow(0 35px 65px rgba(0,0,0,.65))
+drop-shadow(0 0 55px rgba(255,255,255,.05));
 animation:float 6s ease-in-out infinite;
 }
 
 @keyframes float{
-0%,100%{transform:translateY(0)}
-50%{transform:translateY(-10px)}
+
+0%,100%{
+transform:translateY(0);
 }
 
-.content{
-position:absolute;
-left:50%;
-bottom:65px;
-transform:translateX(-50%);
-z-index:3;
-text-align:center;
+50%{
+transform:translateY(-9px);
 }
 
-.title{
-font-size:13px;
-font-weight:850;
-letter-spacing:.5px;
 }
 
-.subtitle{
-margin-top:7px;
-color:#737983;
-font-size:11px;
-line-height:1.5;
+.error-code{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:16px;
+margin-top:-5px;
+font-size:clamp(90px,15vw,160px);
+line-height:.8;
+font-weight:950;
+letter-spacing:-12px;
 }
 
-.button{
+.error-code span{
+display:block;
+}
+
+.message{
+margin-top:28px;
+color:#777d87;
+font-size:12px;
+line-height:1.6;
+}
+
+.home{
+margin-top:25px;
+height:40px;
+padding:0 17px;
 display:inline-flex;
 align-items:center;
 justify-content:center;
-height:38px;
-margin-top:18px;
-padding:0 16px;
-border:1px solid rgba(255,255,255,.13);
+border:1px solid rgba(255,255,255,.12);
 border-radius:9px;
-background:rgba(255,255,255,.035);
-color:#d5d6d9;
+background:#e9e9eb;
+color:#08090b;
 text-decoration:none;
-font-size:10px;
+font-size:11px;
 font-weight:850;
 transition:.2s ease;
 }
 
-.button:hover{
+.home:hover{
 background:#fff;
-border-color:#fff;
-color:#08090b;
 transform:translateY(-2px);
+box-shadow:0 14px 35px rgba(0,0,0,.3);
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
 
-.error{
-flex-direction:column;
-gap:15px;
+.logo-frame{
+width:90vw;
+height:55vw;
 }
 
-.number{
-font-size:125px;
-letter-spacing:-10px;
+.error-code{
+font-size:90px;
+letter-spacing:-7px;
 }
 
-.logo-wrap{
-width:240px;
-height:240px;
+.message{
+font-size:11px;
 }
 
-.content{
-position:relative;
-left:auto;
-bottom:auto;
-transform:none;
-margin-top:-25px;
-}
-}
-
-@media(prefers-reduced-motion:reduce){
-.logo{animation:none}
 }
 </style>
 </head>
@@ -172,26 +194,36 @@ margin-top:-25px;
 
 <main class="error">
 
-<div class="number">4</div>
+<div class="content">
 
-<div class="logo-wrap">
-<div class="logo-glow"></div>
-<img class="logo" src="assets/err.png" alt="">
+<div class="logo-frame">
+<img
+class="logo"
+src="/api/image?file=err.png"
+alt=""
+>
 </div>
 
-<div class="number">4</div>
+<div class="error-code">
+<span>4</span>
+<span>0</span>
+<span>4</span>
+</div>
 
-</main>
-
-<div class="content">
-<div class="title">Page not found.</div>
-
-<div class="subtitle">
+<div class="message">
 The page you're looking for doesn't exist.
 </div>
 
-<a class="button" href="/">Return Home</a>
+<a
+class="home"
+href="/"
+>
+Return Home
+</a>
+
 </div>
+
+</main>
 
 </body>
 </html>

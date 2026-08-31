@@ -3,6 +3,11 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/index.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/downloads.html",
       "destination": "/downloads",
       "permanent": true
@@ -10,11 +15,6 @@
     {
       "source": "/updates.html",
       "destination": "/updates",
-      "permanent": true
-    },
-    {
-      "source": "/index.html",
-      "destination": "/",
       "permanent": true
     }
   ],
