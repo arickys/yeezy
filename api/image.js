@@ -2,28 +2,28 @@ import fs from "fs";
 import path from "path";
 
 export default function handler(req, res) {
-  const name = path.basename(req.query.name || "");
+  const file = path.basename(req.query.file || "");
 
-  const allowed = [
+  const allowedFiles = [
     "logo.png",
     "LOGO2.png",
     "err.png",
     "IAPW.png"
   ];
 
-  if (!allowed.includes(name)) {
+  if (!allowedFiles.includes(file)) {
     return res.status(404).send("Not Found");
   }
 
-  const filePath = path.join(process.cwd(), "assets", name);
+  const filePath = path.join(process.cwd(), "assets", file);
 
   if (!fs.existsSync(filePath)) {
     return res.status(404).send("Not Found");
   }
 
-  const ext = path.extname(name).toLowerCase();
+  const extension = path.extname(file).toLowerCase();
 
-  const types = {
+  const contentTypes = {
     ".png": "image/png",
     ".jpg": "image/jpeg",
     ".jpeg": "image/jpeg",
@@ -31,8 +31,17 @@ export default function handler(req, res) {
     ".gif": "image/gif"
   };
 
-  res.setHeader("Content-Type", types[ext] || "application/octet-stream");
-  res.setHeader("Cache-Control", "public, max-age=31536000, immutable");
+  res.statusCode = 200;
+
+  res.setHeader(
+    "Content-Type",
+    contentTypes[extension] || "application/octet-stream"
+  );
+
+  res.setHeader(
+    "Cache-Control",
+    "public, max-age=31536000, immutable"
+  );
 
   fs.createReadStream(filePath).pipe(res);
 }

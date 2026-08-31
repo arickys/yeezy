@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
+
 <title>unYZY [HOME]</title>
 
 <style>
@@ -15,6 +16,7 @@ box-sizing:border-box;
 --bg:#08090b;
 --white:#f5f5f6;
 --muted:#7d828b;
+--dim:#555a63;
 }
 
 html,
@@ -55,7 +57,7 @@ opacity:0;
 transform:scale(1.012);
 transition:
 opacity .55s ease,
-transform .7s cubic-bezier(.22,1,.36,1);
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -68,6 +70,30 @@ opacity:0;
 transform:scale(.985);
 }
 
+body:before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(
+rgba(255,255,255,.012) 1px,
+transparent 1px
+),
+linear-gradient(
+90deg,
+rgba(255,255,255,.012) 1px,
+transparent 1px
+);
+background-size:80px 80px;
+mask-image:linear-gradient(
+to bottom,
+rgba(0,0,0,.7),
+transparent 72%
+);
+opacity:.3;
+}
+
 body:after{
 content:"";
 position:fixed;
@@ -77,7 +103,7 @@ background:
 radial-gradient(
 ellipse at center,
 transparent 45%,
-rgba(0,0,0,.3)
+rgba(0,0,0,.28) 100%
 );
 }
 
@@ -89,7 +115,7 @@ color:inherit;
 position:fixed;
 top:20px;
 left:50%;
-z-index:50;
+z-index:100;
 transform:translateX(-50%);
 display:flex;
 align-items:center;
@@ -117,6 +143,7 @@ color:#70757e;
 text-decoration:none;
 font-size:12px;
 font-weight:750;
+letter-spacing:-.15px;
 transition:
 color .2s ease,
 background .2s ease,
@@ -131,6 +158,9 @@ background:rgba(255,255,255,.05);
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
+box-shadow:
+inset 0 0 0 1px rgba(255,255,255,.035),
+0 2px 8px rgba(0,0,0,.18);
 }
 
 .nav a:active{
@@ -141,6 +171,7 @@ transform:scale(.95);
 position:relative;
 width:100%;
 height:100vh;
+min-height:600px;
 display:flex;
 align-items:center;
 justify-content:center;
@@ -157,31 +188,8 @@ justify-content:center;
 text-align:center;
 }
 
-.logo-wrap{
-position:relative;
-display:flex;
-align-items:center;
-justify-content:center;
-width:340px;
-height:340px;
-}
-
-.logo-glow{
-position:absolute;
-width:270px;
-height:160px;
-left:50%;
-top:50%;
-transform:translate(-50%,-35%);
-border-radius:50%;
-background:rgba(255,255,255,.07);
-filter:blur(75px);
-opacity:.6;
-}
-
 .logo{
 position:relative;
-z-index:2;
 width:min(320px,42vw);
 height:min(320px,42vw);
 max-width:320px;
@@ -196,16 +204,33 @@ logoFloat 6s cubic-bezier(.45,.05,.55,.95) infinite;
 }
 
 @keyframes logoFloat{
-0%,100%{
+0%,
+100%{
 transform:translateY(0) scale(1);
 }
+
 50%{
 transform:translateY(-12px) scale(1.015);
 }
 }
 
+.logo-glow{
+position:absolute;
+z-index:-1;
+width:260px;
+height:150px;
+left:50%;
+top:50%;
+transform:translate(-50%,-38%);
+border-radius:50%;
+background:rgba(255,255,255,.07);
+filter:blur(70px);
+opacity:.55;
+pointer-events:none;
+}
+
 .description{
-margin-top:2px;
+margin-top:8px;
 color:#858a93;
 font-size:12px;
 font-weight:650;
@@ -259,6 +284,7 @@ color:#08090b;
 background:#fff;
 border-color:#fff;
 color:#08090b;
+box-shadow:0 14px 32px rgba(0,0,0,.3);
 }
 
 .corner{
@@ -315,14 +341,14 @@ opacity:1;
 transform:scale(1);
 transition:
 opacity .5s ease,
-transform .7s cubic-bezier(.22,1,.36,1);
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 .page-transition.fade .transition-logo{
 opacity:0;
 transform:scale(1.1);
 transition:
-opacity .38s ease,
+opacity .4s ease,
 transform .5s cubic-bezier(.22,1,.36,1);
 }
 
@@ -348,11 +374,6 @@ min-height:100svh;
 padding:75px 18px 35px;
 }
 
-.logo-wrap{
-width:270px;
-height:270px;
-}
-
 .logo{
 width:min(250px,70vw);
 height:min(250px,70vw);
@@ -363,9 +384,15 @@ width:210px;
 height:125px;
 }
 
+.description{
+font-size:11px;
+margin-top:3px;
+}
+
 .actions{
 width:100%;
 max-width:330px;
+margin-top:22px;
 }
 
 .action{
@@ -381,9 +408,11 @@ display:none;
 @media(prefers-reduced-motion:reduce){
 
 body,
-.logo,
 .page-transition .transition-logo{
 transition:none;
+}
+
+.logo{
 animation:none;
 }
 }
@@ -393,16 +422,15 @@ animation:none;
 <body>
 
 <nav class="nav">
-<a href="index.html" class="active" data-page="home">Home</a>
-<a href="downloads.html" data-page="downloads">Downloads</a>
-<a href="updates.html" data-page="updates">Updates</a>
+<a href="/" class="active" data-page="home">Home</a>
+<a href="/downloads" data-page="downloads">Downloads</a>
+<a href="/updates" data-page="updates">Updates</a>
 </nav>
 
 <main class="hero">
 
 <div class="hero-inner">
 
-<div class="logo-wrap">
 <div class="logo-glow"></div>
 
 <img
@@ -410,7 +438,6 @@ class="logo"
 src="/api/image?file=logo.png"
 alt="unYZY"
 >
-</div>
 
 <div class="description">
 KEVLAR YEEZY
@@ -420,7 +447,7 @@ KEVLAR YEEZY
 
 <a
 class="action primary"
-href="downloads.html"
+href="/downloads"
 data-page="downloads"
 >
 Browse Downloads
@@ -428,7 +455,7 @@ Browse Downloads
 
 <a
 class="action"
-href="updates.html"
+href="/updates"
 data-page="updates"
 >
 Latest Updates
@@ -453,29 +480,26 @@ alt=""
 </div>
 
 <script>
-const pageTransition =
-document.getElementById("pageTransition");
-
-const transitionLogo =
-document.getElementById("transitionLogo");
-
-const links =
-document.querySelectorAll("[data-page]");
+const pageTransition = document.getElementById("pageTransition");
+const transitionLogo = document.getElementById("transitionLogo");
+const links = document.querySelectorAll("[data-page]");
 
 let navigating = false;
 
-function navigate(url,target){
+function getLogo(target){
+return target === "home"
+? "/api/image?file=logo.png"
+: "/api/image?file=LOGO2.png";
+}
 
+function navigate(url,target){
 if(navigating)return;
 
-navigating=true;
+navigating = true;
 
 document.body.classList.add("leaving");
 
-transitionLogo.src =
-target === "home"
-? "/api/image?file=logo.png"
-: "/api/image?file=LOGO2.png";
+transitionLogo.src = getLogo(target);
 
 pageTransition.classList.add("active");
 
@@ -488,36 +512,20 @@ pageTransition.classList.add("fade");
 },620);
 
 setTimeout(()=>{
-sessionStorage.setItem(
-"unyzyTransition",
-target
-);
-
-window.location.href=url;
-
+sessionStorage.setItem("unyzyTransition",target);
+window.location.href = url;
 },880);
 }
 
 links.forEach(link=>{
-
 link.addEventListener("click",event=>{
-
-if(
-event.ctrlKey ||
-event.metaKey ||
-event.shiftKey ||
-event.altKey
-)return;
-
 event.preventDefault();
 
 navigate(
 link.href,
 link.dataset.page
 );
-
 });
-
 });
 
 function enterPage(){
@@ -525,9 +533,7 @@ function enterPage(){
 const transition =
 sessionStorage.getItem("unyzyTransition");
 
-sessionStorage.removeItem(
-"unyzyTransition"
-);
+sessionStorage.removeItem("unyzyTransition");
 
 if(
 transition === "home" ||
@@ -535,10 +541,7 @@ transition === "downloads" ||
 transition === "updates"
 ){
 
-transitionLogo.src =
-transition === "home"
-? "/api/image?file=logo.png"
-: "/api/image?file=LOGO2.png";
+transitionLogo.src = getLogo(transition);
 
 pageTransition.classList.add("active");
 
@@ -547,21 +550,16 @@ pageTransition.classList.add("show");
 });
 
 setTimeout(()=>{
-
 pageTransition.classList.add("fade");
-
 document.body.classList.add("ready");
-
 },520);
 
 setTimeout(()=>{
-
 pageTransition.classList.remove(
 "active",
 "show",
 "fade"
 );
-
 },950);
 
 }else{
@@ -571,7 +569,6 @@ document.body.classList.add("ready");
 });
 
 }
-
 }
 
 enterPage();

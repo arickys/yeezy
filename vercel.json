@@ -31,10 +31,6 @@
     {
       "source": "/updates",
       "destination": "/updates.html"
-    },
-    {
-      "source": "/api/image/:name",
-      "destination": "/assets/:name"
     }
   ]
 }

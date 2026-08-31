@@ -1,11 +1,10 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#08090b">
-<meta name="description" content="unYZY archive updates and changelog">
+
 <title>unYZY [UPDATES]</title>
 
 <style>
@@ -15,13 +14,13 @@ box-sizing:border-box;
 
 :root{
 --bg:#08090b;
---surface:#101216;
---surface-hover:#15181d;
+--surface:#0f1115;
+--surface2:#14171c;
 --line:rgba(255,255,255,.075);
---line-hover:rgba(255,255,255,.13);
+--line-strong:rgba(255,255,255,.12);
 --text:#f5f5f6;
 --muted:#858b95;
---dim:#626873;
+--dim:#5d636d;
 }
 
 html{
@@ -33,19 +32,19 @@ margin:0;
 min-height:100vh;
 background:
 radial-gradient(
-circle at 50% -12%,
+circle at 50% -15%,
 rgba(255,255,255,.075),
-transparent 34rem
+transparent 31rem
 ),
 radial-gradient(
-circle at 0% 60%,
+circle at 0% 55%,
 rgba(255,255,255,.018),
 transparent 30rem
 ),
 radial-gradient(
-circle at 100% 80%,
+circle at 100% 75%,
 rgba(255,255,255,.015),
-transparent 32rem
+transparent 30rem
 ),
 var(--bg);
 color:var(--text);
@@ -58,13 +57,11 @@ BlinkMacSystemFont,
 Arial,
 sans-serif;
 -webkit-font-smoothing:antialiased;
-
 opacity:0;
 transform:scale(1.012);
-
 transition:
-opacity .5s ease,
-transform .7s cubic-bezier(.22,1,.36,1);
+opacity .55s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -82,7 +79,6 @@ content:"";
 position:fixed;
 inset:0;
 pointer-events:none;
-
 background:
 linear-gradient(
 rgba(255,255,255,.012) 1px,
@@ -93,31 +89,13 @@ linear-gradient(
 rgba(255,255,255,.012) 1px,
 transparent 1px
 );
-
 background-size:80px 80px;
-
-mask-image:
-linear-gradient(
+mask-image:linear-gradient(
 to bottom,
-rgba(0,0,0,.65),
+rgba(0,0,0,.7),
 transparent 72%
 );
-
-opacity:.28;
-}
-
-body:after{
-content:"";
-position:fixed;
-inset:0;
-pointer-events:none;
-
-background:
-radial-gradient(
-ellipse at center,
-transparent 45%,
-rgba(0,0,0,.3) 100%
-);
+opacity:.3;
 }
 
 a{
@@ -129,28 +107,16 @@ position:fixed;
 top:20px;
 left:50%;
 z-index:100;
-
 transform:translateX(-50%);
-
 display:flex;
 align-items:center;
 gap:3px;
-
 padding:5px;
-
 border:1px solid rgba(255,255,255,.08);
 border-radius:14px;
-
-background:rgba(11,12,15,.76);
-
-backdrop-filter:
-blur(24px)
-saturate(150%);
-
--webkit-backdrop-filter:
-blur(24px)
-saturate(150%);
-
+background:rgba(11,12,15,.74);
+backdrop-filter:blur(24px) saturate(150%);
+-webkit-backdrop-filter:blur(24px) saturate(150%);
 box-shadow:
 0 18px 55px rgba(0,0,0,.42),
 inset 0 1px 0 rgba(255,255,255,.035);
@@ -159,22 +125,16 @@ inset 0 1px 0 rgba(255,255,255,.035);
 .nav a{
 height:35px;
 min-width:78px;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 padding:0 14px;
-
 border-radius:9px;
-
 color:#707680;
 text-decoration:none;
-
 font-size:12px;
 font-weight:750;
 letter-spacing:-.15px;
-
 transition:
 color .2s ease,
 background .2s ease,
@@ -189,7 +149,6 @@ background:rgba(255,255,255,.05);
 .nav a.active{
 color:#fff;
 background:rgba(255,255,255,.09);
-
 box-shadow:
 inset 0 0 0 1px rgba(255,255,255,.035),
 0 2px 9px rgba(0,0,0,.18);
@@ -202,28 +161,25 @@ transform:scale(.95);
 .container{
 width:min(1040px,calc(100% - 36px));
 margin:auto;
-padding:128px 0 90px;
+padding:128px 0 80px;
 }
 
 .page-head{
-position:relative;
-
 display:flex;
-align-items:flex-end;
+align-items:center;
 justify-content:space-between;
-
-gap:40px;
-
+gap:35px;
 padding-bottom:30px;
-
 border-bottom:1px solid var(--line);
+}
+
+.heading{
+min-width:0;
 }
 
 .kicker{
 margin-bottom:12px;
-
-color:#686e78;
-
+color:#696f79;
 font-size:9px;
 font-weight:850;
 letter-spacing:1.8px;
@@ -232,165 +188,105 @@ text-transform:uppercase;
 
 .page-title{
 margin:0;
-
 font-size:clamp(48px,6vw,70px);
-line-height:.88;
-
+line-height:.9;
 letter-spacing:-4.5px;
 font-weight:900;
 }
 
 .page-subtitle{
-max-width:480px;
-
-margin-top:14px;
-
+margin-top:13px;
+max-width:430px;
 color:var(--muted);
-
 font-size:12px;
 line-height:1.6;
 }
 
 .logo-area{
 position:relative;
-
-width:145px;
-height:145px;
-
-flex:0 0 145px;
-
+width:135px;
+height:135px;
+flex:0 0 135px;
 display:grid;
 place-items:center;
 }
 
 .logo-area:before{
 content:"";
-
 position:absolute;
-
 width:120px;
-height:75px;
-
+height:80px;
 border-radius:50%;
+background:rgba(255,255,255,.075);
+filter:blur(45px);
+}
 
-background:rgba(255,255,255,.07);
-
-filter:blur(42px);
-
-opacity:.6;
+.logo-area:after{
+content:"";
+position:absolute;
+width:108px;
+height:108px;
+border:1px solid rgba(255,255,255,.025);
+border-radius:50%;
+box-shadow:
+0 0 50px rgba(255,255,255,.025),
+inset 0 0 35px rgba(255,255,255,.018);
 }
 
 .logo{
 position:relative;
 z-index:2;
-
-width:120px;
-height:120px;
-
+width:108px;
+height:108px;
 display:block;
-
 object-fit:contain;
-
 filter:
-drop-shadow(0 24px 38px rgba(0,0,0,.5))
+drop-shadow(0 22px 38px rgba(0,0,0,.5))
 drop-shadow(0 0 35px rgba(255,255,255,.055));
-
 animation:
 logoFloat 6s ease-in-out infinite;
 }
 
 @keyframes logoFloat{
-
-0%,
-100%{
+0%,100%{
 transform:translateY(0);
 }
 
 50%{
 transform:translateY(-7px);
 }
-
-}
-
-.stats{
-display:flex;
-align-items:center;
-gap:8px;
-
-margin-top:22px;
-}
-
-.stat{
-height:29px;
-
-display:inline-flex;
-align-items:center;
-gap:7px;
-
-padding:0 10px;
-
-border:1px solid rgba(255,255,255,.065);
-border-radius:7px;
-
-background:rgba(255,255,255,.02);
-
-color:#707680;
-
-font-size:9px;
-font-weight:800;
-letter-spacing:.8px;
-text-transform:uppercase;
-}
-
-.stat strong{
-color:#cfd1d5;
-font-weight:850;
 }
 
 .timeline{
 position:relative;
-
 margin-top:30px;
-
-padding-left:19px;
+padding-left:23px;
 }
 
 .timeline:before{
 content:"";
-
 position:absolute;
-
-left:0;
-top:8px;
-bottom:8px;
-
+left:6px;
+top:10px;
+bottom:10px;
 width:1px;
-
-background:
-linear-gradient(
+background:linear-gradient(
 to bottom,
-rgba(255,255,255,.14),
+rgba(255,255,255,.12),
 rgba(255,255,255,.025)
 );
 }
 
 .update{
 position:relative;
-
 display:grid;
-grid-template-columns:145px minmax(0,1fr) auto;
-
+grid-template-columns:150px minmax(0,1fr) auto;
 gap:25px;
-
 align-items:start;
-
 margin-bottom:12px;
-
-padding:21px 20px 21px 23px;
-
+padding:21px 20px 21px 25px;
 border:1px solid var(--line);
 border-radius:13px;
-
 background:
 linear-gradient(
 145deg,
@@ -398,10 +294,8 @@ rgba(255,255,255,.025),
 rgba(255,255,255,.006)
 ),
 var(--surface);
-
 box-shadow:
 0 8px 25px rgba(0,0,0,.08);
-
 transition:
 transform .25s cubic-bezier(.22,1,.36,1),
 border-color .2s ease,
@@ -411,65 +305,46 @@ box-shadow .25s ease;
 
 .update:before{
 content:"";
-
 position:absolute;
-
-left:-23px;
+left:-21px;
 top:27px;
-
 width:7px;
 height:7px;
-
-border:2px solid var(--bg);
+border:2px solid #08090b;
 border-radius:50%;
-
-background:#666c75;
-
+background:#777d86;
 box-shadow:
 0 0 0 1px rgba(255,255,255,.08);
 }
 
+.update:first-child:before{
+background:#fff;
+box-shadow:
+0 0 0 1px rgba(255,255,255,.12),
+0 0 18px rgba(255,255,255,.15);
+}
+
 .update:hover{
 transform:translateY(-3px);
-
-border-color:var(--line-hover);
-
+border-color:var(--line-strong);
 background:
 linear-gradient(
 145deg,
 rgba(255,255,255,.04),
 rgba(255,255,255,.008)
 ),
-var(--surface-hover);
-
+var(--surface2);
 box-shadow:
 0 20px 45px rgba(0,0,0,.2);
 }
 
-.update:first-child{
-border-color:rgba(255,255,255,.11);
-}
-
-.update:first-child:before{
-background:#fff;
-
-box-shadow:
-0 0 0 1px rgba(255,255,255,.13),
-0 0 18px rgba(255,255,255,.15);
-}
-
 .update-date{
 padding-top:2px;
-
 color:#656b75;
-
 font-size:9px;
 font-weight:850;
-
-letter-spacing:1.15px;
+letter-spacing:1.2px;
 line-height:1.5;
-
-text-transform:uppercase;
 }
 
 .update:first-child .update-date{
@@ -482,92 +357,58 @@ min-width:0;
 
 .update-title{
 margin:0;
-
-font-size:15px;
+font-size:14px;
 line-height:1.3;
-
 font-weight:850;
-letter-spacing:-.25px;
+letter-spacing:-.2px;
 }
 
 .update-description{
 margin-top:7px;
-
 max-width:650px;
-
 color:#777d87;
-
 font-size:11px;
-line-height:1.65;
+line-height:1.6;
 }
 
 .update-tag{
 height:25px;
-
 display:inline-flex;
 align-items:center;
 justify-content:center;
-
 padding:0 9px;
-
 border:1px solid rgba(255,255,255,.09);
 border-radius:7px;
-
 background:rgba(255,255,255,.025);
-
 color:#737983;
-
 font-size:8px;
 font-weight:850;
-
 letter-spacing:1px;
-
 text-transform:uppercase;
 white-space:nowrap;
 }
 
-.tag-added{
-color:#d9dadd;
-}
-
-.tag-update{
-color:#b9bdc4;
-}
-
-.tag-patch{
-color:#aeb3bb;
-}
-
-.tag-bug{
-color:#999fa8;
+.update:first-child{
+border-color:rgba(255,255,255,.105);
 }
 
 .update:first-child .update-tag{
-color:#e5e6e8;
-
+color:#e0e1e3;
 border-color:rgba(255,255,255,.15);
-
 background:rgba(255,255,255,.055);
 }
 
 .page-transition{
 position:fixed;
 inset:0;
-
 z-index:999;
-
 display:flex;
 align-items:center;
 justify-content:center;
-
 background:#08090b;
-
 opacity:0;
 visibility:hidden;
 pointer-events:none;
-
-transition:
-opacity .35s ease;
 }
 
 .page-transition.active{
@@ -577,36 +418,30 @@ pointer-events:auto;
 }
 
 .transition-logo{
-width:min(300px,60vw);
-height:min(300px,60vw);
-
+width:min(310px,62vw);
+height:min(310px,62vw);
 object-fit:contain;
-
 opacity:0;
-
 transform:scale(.72);
-
 filter:
 drop-shadow(0 28px 55px rgba(0,0,0,.65))
-drop-shadow(0 0 55px rgba(255,255,255,.07));
-
-transition:
-opacity .5s ease,
-transform .7s cubic-bezier(.22,1,.36,1);
+drop-shadow(0 0 60px rgba(255,255,255,.07));
 }
 
 .page-transition.show .transition-logo{
 opacity:1;
 transform:scale(1);
+transition:
+opacity .5s ease,
+transform .75s cubic-bezier(.22,1,.36,1);
 }
 
 .page-transition.fade .transition-logo{
 opacity:0;
-transform:scale(1.08);
-
+transform:scale(1.1);
 transition:
-opacity .35s ease,
-transform .45s cubic-bezier(.22,1,.36,1);
+opacity .4s ease,
+transform .5s cubic-bezier(.22,1,.36,1);
 }
 
 @media(max-width:760px){
@@ -620,32 +455,39 @@ align-items:flex-start;
 }
 
 .logo-area{
-width:110px;
-height:110px;
-flex-basis:110px;
+width:105px;
+height:105px;
+flex-basis:105px;
 }
 
 .logo{
-width:90px;
-height:90px;
+width:85px;
+height:85px;
+}
+
+.logo-area:after{
+width:88px;
+height:88px;
+}
+
+.logo-area:before{
+width:95px;
 }
 
 .update{
 grid-template-columns:1fr;
 gap:9px;
-
 padding:18px;
 }
 
 .update-tag{
 position:absolute;
-
 top:17px;
 right:17px;
 }
 
 .update-title{
-padding-right:70px;
+padding-right:65px;
 }
 
 }
@@ -669,8 +511,13 @@ padding-top:103px;
 
 .page-head{
 display:block;
+padding-bottom:24px;
+}
 
-padding-bottom:25px;
+.logo-area{
+width:100px;
+height:100px;
+margin:20px auto 0;
 }
 
 .page-title{
@@ -682,39 +529,14 @@ letter-spacing:-3.5px;
 font-size:11px;
 }
 
-.logo-area{
-width:100px;
-height:100px;
-
-margin:21px auto 0;
-}
-
-.logo{
-width:86px;
-height:86px;
-}
-
-.stats{
-margin-top:19px;
-}
-
 .timeline{
 margin-top:24px;
-padding-left:15px;
-}
-
-.timeline:before{
-left:0;
+margin-left:2px;
 }
 
 .update{
-padding:16px;
-
 margin-bottom:10px;
-}
-
-.update:before{
-left:-19px;
+padding:16px;
 }
 
 .update-date{
@@ -729,33 +551,39 @@ font-size:10.5px;
 top:15px;
 right:15px;
 }
-
 }
 
 @media(prefers-reduced-motion:reduce){
 
 body,
 .update,
-.page-transition,
-.transition-logo{
+.page-transition .transition-logo{
 transition:none;
 }
 
 .logo{
 animation:none;
 }
-
 }
 </style>
-
 </head>
 
 <body>
 
 <nav class="nav">
-<a href="index.html" data-page="home">Home</a>
-<a href="downloads.html" data-page="downloads">Downloads</a>
-<a href="updates.html" class="active" data-page="updates">Updates</a>
+
+<a href="/" data-page="home">
+Home
+</a>
+
+<a href="/downloads" data-page="downloads">
+Downloads
+</a>
+
+<a href="/updates" class="active" data-page="updates">
+Updates
+</a>
+
 </nav>
 
 <main class="container">
@@ -776,28 +604,16 @@ Updates
 New additions, changes, fixes, and improvements to the archive.
 </div>
 
-<div class="stats">
-
-<div class="stat">
-<span>Entries</span>
-<strong>4</strong>
-</div>
-
-<div class="stat">
-<span>Latest</span>
-<strong>Aug 30</strong>
-</div>
-
-</div>
-
 </div>
 
 <div class="logo-area">
+
 <img
 class="logo"
-src="assets/LOGO2.png"
+src="/api/image?file=LOGO2.png"
 alt=""
 >
+
 </div>
 
 </header>
@@ -822,7 +638,7 @@ The archive is now live with the first available release.
 
 </div>
 
-<div class="update-tag tag-added">
+<div class="update-tag">
 Added
 </div>
 
@@ -841,12 +657,12 @@ Dedicated pages
 </h2>
 
 <div class="update-description">
-Downloads and updates now have their own separate pages for easier navigation.
+Downloads and updates now have their own separate pages.
 </div>
 
 </div>
 
-<div class="update-tag tag-update">
+<div class="update-tag">
 Update
 </div>
 
@@ -865,12 +681,12 @@ Navigation cleanup
 </h2>
 
 <div class="update-description">
-Clean URLs are now used throughout the site, keeping the archive easier to navigate.
+Clean URLs are now used throughout the site.
 </div>
 
 </div>
 
-<div class="update-tag tag-patch">
+<div class="update-tag">
 Patch
 </div>
 
@@ -894,7 +710,7 @@ Fixed image paths after moving the site's graphics into the assets folder.
 
 </div>
 
-<div class="update-tag tag-bug">
+<div class="update-tag">
 Bug Fixes
 </div>
 
@@ -905,36 +721,46 @@ Bug Fixes
 </main>
 
 <div class="page-transition" id="pageTransition">
+
 <img
 class="transition-logo"
 id="transitionLogo"
-src="assets/LOGO2.png"
+src="/api/image?file=LOGO2.png"
 alt=""
 >
+
 </div>
 
 <script>
-const pageTransition=document.getElementById("pageTransition");
-const transitionLogo=document.getElementById("transitionLogo");
-const links=document.querySelectorAll("[data-page]");
+const pageTransition =
+document.getElementById("pageTransition");
 
-let navigating=false;
+const transitionLogo =
+document.getElementById("transitionLogo");
+
+const links =
+document.querySelectorAll("[data-page]");
+
+let navigating = false;
 
 function getLogo(target){
-return target==="home"
-?"assets/logo.png"
-:"assets/LOGO2.png";
+
+return target === "home"
+? "/api/image?file=logo.png"
+: "/api/image?file=LOGO2.png";
+
 }
 
 function navigate(url,target){
 
 if(navigating)return;
 
-navigating=true;
+navigating = true;
 
 document.body.classList.add("leaving");
 
-transitionLogo.src=getLogo(target);
+transitionLogo.src =
+getLogo(target);
 
 pageTransition.classList.add("active");
 
@@ -947,29 +773,21 @@ pageTransition.classList.add("fade");
 },620);
 
 setTimeout(()=>{
+
 sessionStorage.setItem(
 "unyzyTransition",
 target
 );
 
-window.location.href=url;
+window.location.href = url;
+
 },880);
 
 }
 
-links.forEach(link=>{
+links.forEach(link => {
 
-link.addEventListener("click",event=>{
-
-if(
-link.target==="_blank" ||
-event.ctrlKey ||
-event.metaKey ||
-event.shiftKey ||
-event.altKey
-){
-return;
-}
+link.addEventListener("click",event => {
 
 event.preventDefault();
 
@@ -984,18 +802,21 @@ link.dataset.page
 
 function enterPage(){
 
-const transition=
+const transition =
 sessionStorage.getItem("unyzyTransition");
 
-sessionStorage.removeItem("unyzyTransition");
+sessionStorage.removeItem(
+"unyzyTransition"
+);
 
 if(
-transition==="home" ||
-transition==="downloads" ||
-transition==="updates"
+transition === "home" ||
+transition === "downloads" ||
+transition === "updates"
 ){
 
-transitionLogo.src=getLogo(transition);
+transitionLogo.src =
+getLogo(transition);
 
 pageTransition.classList.add("active");
 
