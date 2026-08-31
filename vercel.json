@@ -16,6 +16,11 @@
       "source": "/updates.html",
       "destination": "/updates",
       "permanent": true
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "/404",
+      "permanent": false
     }
   ],
   "rewrites": [
@@ -26,6 +31,10 @@
     {
       "source": "/updates",
       "destination": "/updates.html"
+    },
+    {
+      "source": "/image/:name",
+      "destination": "/api/image?name=:name"
     }
   ]
 }
