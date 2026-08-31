@@ -54,7 +54,9 @@ font-family:YeezyTSTAR,Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
 opacity:0;
 transform:scale(1.012);
-transition:opacity .55s ease,transform .7s cubic-bezier(.22,1,.36,1);
+transition:
+opacity .55s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 body.ready{
@@ -76,7 +78,11 @@ background:
 linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
 linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
 background-size:80px 80px;
-mask-image:linear-gradient(to bottom,rgba(0,0,0,.65),transparent 75%);
+mask-image:linear-gradient(
+to bottom,
+rgba(0,0,0,.65),
+transparent 75%
+);
 }
 
 .nav{
@@ -217,14 +223,18 @@ overflow:hidden;
 border:1px solid var(--line);
 border-radius:14px;
 background:
-linear-gradient(145deg,rgba(255,255,255,.028),rgba(255,255,255,.006)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.028),
+rgba(255,255,255,.006)
+),
 var(--surface);
 box-shadow:0 8px 25px rgba(0,0,0,.08);
 transition:
-transform .3s cubic-bezier(.22,1,.36,1),
-border-color .25s ease,
-background .25s ease,
-box-shadow .3s ease;
+transform .25s cubic-bezier(.22,1,.36,1),
+border-color .2s ease,
+background .2s ease,
+box-shadow .25s ease;
 }
 
 .file:after{
@@ -250,86 +260,32 @@ transform:translateX(100%);
 transform:translateY(-4px);
 border-color:rgba(255,255,255,.14);
 background:
-linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.008)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.045),
+rgba(255,255,255,.008)
+),
 var(--surface2);
 box-shadow:0 22px 50px rgba(0,0,0,.25);
 }
 
 .file.shared-target{
-border-color:rgba(255,255,255,.3);
+border-color:rgba(255,255,255,.22);
 background:
-linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.012)),
+linear-gradient(
+145deg,
+rgba(255,255,255,.045),
+rgba(255,255,255,.008)
+),
 var(--surface2);
 box-shadow:
-0 0 0 1px rgba(255,255,255,.05),
-0 0 45px rgba(255,255,255,.06),
-0 25px 65px rgba(0,0,0,.35);
-animation:sharedArrival 1.8s cubic-bezier(.22,1,.36,1);
+0 0 0 1px rgba(255,255,255,.025),
+0 18px 45px rgba(0,0,0,.28);
+transform:translateY(-2px);
 }
 
-@keyframes sharedArrival{
-
-0%{
-opacity:0;
-transform:
-translateY(22px)
-scale(.96);
-}
-
-35%{
-opacity:1;
-transform:
-translateY(-7px)
-scale(1.025);
-}
-
-65%{
-transform:
-translateY(2px)
-scale(1.008);
-}
-
-100%{
-transform:
-translateY(0)
-scale(1);
-}
-
-}
-
-.shared-badge{
-position:absolute;
-top:10px;
-right:10px;
-height:21px;
-padding:0 8px;
-display:flex;
-align-items:center;
-gap:5px;
-border:1px solid rgba(255,255,255,.16);
-border-radius:6px;
-background:rgba(255,255,255,.07);
-color:#d7d9dc;
-font-size:7px;
-font-weight:700;
-letter-spacing:1px;
-z-index:3;
-opacity:0;
-transform:translateY(-4px);
-transition:.35s ease;
-}
-
-.file.shared-target .shared-badge{
-opacity:1;
-transform:translateY(0);
-}
-
-.shared-badge-dot{
-width:4px;
-height:4px;
-border-radius:50%;
-background:#fff;
-box-shadow:0 0 8px rgba(255,255,255,.6);
+.file.shared-target .icon{
+border-color:rgba(255,255,255,.15);
 }
 
 .icon{
@@ -421,7 +377,6 @@ height:36px;
 display:flex;
 align-items:center;
 justify-content:center;
-gap:7px;
 border-radius:8px;
 font-family:inherit;
 font-size:10px;
@@ -436,6 +391,7 @@ box-shadow .18s ease;
 
 .download{
 padding:0 13px;
+gap:7px;
 border:1px solid rgba(255,255,255,.16);
 background:#e7e7e9;
 color:#090a0c;
@@ -450,30 +406,29 @@ box-shadow:0 8px 20px rgba(255,255,255,.08);
 }
 
 .share{
-width:38px;
+width:36px;
 padding:0;
-border:1px solid rgba(255,255,255,.09);
-background:rgba(255,255,255,.035);
-color:#9ca1a9;
+border:1px solid rgba(255,255,255,.08);
+background:rgba(255,255,255,.025);
+color:#777d86;
 }
 
 .share:hover{
 color:#fff;
-border-color:rgba(255,255,255,.18);
-background:rgba(255,255,255,.075);
+border-color:rgba(255,255,255,.14);
+background:rgba(255,255,255,.055);
 transform:translateY(-1px);
-box-shadow:0 8px 20px rgba(0,0,0,.18);
 }
 
 .share.copied{
 color:#fff;
-border-color:rgba(255,255,255,.25);
-background:rgba(255,255,255,.1);
+border-color:rgba(255,255,255,.18);
+background:rgba(255,255,255,.07);
 }
 
 .share-icon{
-font-size:15px;
-line-height:0;
+font-size:14px;
+line-height:1;
 }
 
 .empty{
@@ -484,193 +439,6 @@ border-radius:13px;
 text-align:center;
 color:#6d737d;
 font-size:11px;
-}
-
-.share-overlay{
-position:fixed;
-inset:0;
-z-index:500;
-display:flex;
-align-items:center;
-justify-content:center;
-padding:20px;
-background:rgba(0,0,0,.62);
-backdrop-filter:blur(14px);
-opacity:0;
-visibility:hidden;
-pointer-events:none;
-transition:
-opacity .25s ease,
-visibility .25s ease;
-}
-
-.share-overlay.active{
-opacity:1;
-visibility:visible;
-pointer-events:auto;
-}
-
-.share-panel{
-width:min(460px,100%);
-padding:22px;
-border:1px solid rgba(255,255,255,.1);
-border-radius:17px;
-background:
-linear-gradient(
-145deg,
-rgba(255,255,255,.045),
-rgba(255,255,255,.012)
-),
-#0d0f12;
-box-shadow:
-0 35px 100px rgba(0,0,0,.55);
-transform:translateY(18px) scale(.97);
-transition:
-transform .35s cubic-bezier(.22,1,.36,1);
-}
-
-.share-overlay.active .share-panel{
-transform:translateY(0) scale(1);
-}
-
-.share-top{
-display:flex;
-align-items:flex-start;
-justify-content:space-between;
-gap:20px;
-}
-
-.share-kicker{
-color:#656b74;
-font-size:8px;
-font-weight:700;
-letter-spacing:1.7px;
-text-transform:uppercase;
-}
-
-.share-title{
-margin-top:6px;
-font-size:20px;
-font-weight:700;
-letter-spacing:-.5px;
-}
-
-.share-close{
-width:30px;
-height:30px;
-display:grid;
-place-items:center;
-border:1px solid rgba(255,255,255,.08);
-border-radius:8px;
-background:rgba(255,255,255,.03);
-color:#777d86;
-font-family:inherit;
-font-size:16px;
-cursor:pointer;
-transition:.2s ease;
-}
-
-.share-close:hover{
-color:#fff;
-background:rgba(255,255,255,.08);
-border-color:rgba(255,255,255,.15);
-}
-
-.share-preview{
-display:flex;
-align-items:center;
-gap:12px;
-margin-top:20px;
-padding:12px;
-border:1px solid rgba(255,255,255,.065);
-border-radius:11px;
-background:rgba(255,255,255,.022);
-}
-
-.share-preview-icon{
-width:48px;
-height:48px;
-flex:0 0 48px;
-overflow:hidden;
-border:1px solid rgba(255,255,255,.08);
-border-radius:8px;
-background:#17191e;
-}
-
-.share-preview-icon img{
-width:100%;
-height:100%;
-object-fit:cover;
-}
-
-.share-preview-name{
-overflow:hidden;
-text-overflow:ellipsis;
-white-space:nowrap;
-font-size:12px;
-font-weight:700;
-}
-
-.share-preview-sub{
-margin-top:4px;
-color:#686e77;
-font-size:9px;
-}
-
-.share-url{
-display:flex;
-gap:7px;
-margin-top:12px;
-}
-
-.share-url input{
-width:100%;
-height:42px;
-min-width:0;
-padding:0 11px;
-border:1px solid rgba(255,255,255,.08);
-border-radius:9px;
-outline:none;
-background:rgba(255,255,255,.025);
-color:#aeb2b8;
-font-family:inherit;
-font-size:9px;
-}
-
-.share-url input:focus{
-border-color:rgba(255,255,255,.16);
-}
-
-.copy-link{
-height:42px;
-padding:0 15px;
-flex:0 0 auto;
-border:1px solid rgba(255,255,255,.14);
-border-radius:9px;
-background:#e7e7e9;
-color:#090a0c;
-font-family:inherit;
-font-size:9px;
-font-weight:700;
-cursor:pointer;
-transition:.18s ease;
-}
-
-.copy-link:hover{
-background:#fff;
-transform:translateY(-1px);
-box-shadow:0 8px 20px rgba(255,255,255,.08);
-}
-
-.copy-link.done{
-background:#fff;
-}
-
-.share-note{
-margin-top:11px;
-color:#565c65;
-font-size:9px;
-line-height:1.55;
 }
 
 .transition{
@@ -702,13 +470,17 @@ filter:drop-shadow(0 30px 60px rgba(0,0,0,.7));
 .transition.show img{
 opacity:1;
 transform:scale(1);
-transition:opacity .5s ease,transform .7s cubic-bezier(.22,1,.36,1);
+transition:
+opacity .5s ease,
+transform .7s cubic-bezier(.22,1,.36,1);
 }
 
 .transition.fade img{
 opacity:0;
 transform:scale(1.08);
-transition:opacity .4s ease,transform .45s ease;
+transition:
+opacity .4s ease,
+transform .45s ease;
 }
 
 @media(max-width:760px){
@@ -767,7 +539,7 @@ gap:5px;
 }
 
 .download{
-width:38px;
+width:36px;
 padding:0;
 }
 
@@ -776,19 +548,7 @@ display:none;
 }
 
 .share{
-width:38px;
-}
-
-.share-panel{
-padding:17px;
-}
-
-.share-url{
-flex-direction:column;
-}
-
-.copy-link{
-width:100%;
+width:36px;
 }
 
 }
@@ -799,8 +559,6 @@ body,
 .file,
 .download,
 .share,
-.share-overlay,
-.share-panel,
 .transition img{
 transition:none;
 }
@@ -810,7 +568,6 @@ display:none;
 }
 
 }
-
 </style>
 </head>
 
@@ -818,7 +575,10 @@ display:none;
 
 <nav class="nav">
 
-<a href="/" data-page="home">
+<a
+href="/"
+data-page="home"
+>
 Home
 </a>
 
@@ -891,100 +651,6 @@ id="downloadsList"
 
 
 <div
-class="share-overlay"
-id="shareOverlay"
->
-
-<div
-class="share-panel"
-role="dialog"
-aria-modal="true"
-aria-labelledby="shareTitle"
->
-
-<div class="share-top">
-
-<div>
-
-<div class="share-kicker">
-Share Download
-</div>
-
-<div
-class="share-title"
-id="shareTitle"
->
-Share
-</div>
-
-</div>
-
-<button
-class="share-close"
-id="shareClose"
-type="button"
-aria-label="Close"
->
-×
-</button>
-
-</div>
-
-
-<div class="share-preview">
-
-<div
-class="share-preview-icon"
-id="sharePreviewIcon"
->
-</div>
-
-<div>
-
-<div
-class="share-preview-name"
-id="sharePreviewName"
->
-</div>
-
-<div class="share-preview-sub">
-unYZY download
-</div>
-
-</div>
-
-</div>
-
-
-<div class="share-url">
-
-<input
-id="shareURL"
-readonly
-spellcheck="false"
->
-
-<button
-class="copy-link"
-id="copyLink"
-type="button"
->
-Copy Link
-</button>
-
-</div>
-
-
-<div class="share-note">
-Anyone with this link will be taken directly to this download.
-</div>
-
-</div>
-
-</div>
-
-
-<div
 class="transition"
 id="transition"
 >
@@ -999,7 +665,6 @@ alt=""
 
 
 <script>
-
 const files=[
 {
 id:"iapw",
@@ -1024,143 +689,63 @@ icon:"BULLY1.png"
 }
 ];
 
-const downloads=
-document.getElementById("downloadsList");
-
-const search=
-document.getElementById("search");
-
-const fileCount=
-document.getElementById("fileCount");
-
-const shareOverlay=
-document.getElementById("shareOverlay");
-
-const shareClose=
-document.getElementById("shareClose");
-
-const shareTitle=
-document.getElementById("shareTitle");
-
-const sharePreviewIcon=
-document.getElementById("sharePreviewIcon");
-
-const sharePreviewName=
-document.getElementById("sharePreviewName");
-
-const shareURL=
-document.getElementById("shareURL");
-
-const copyLink=
-document.getElementById("copyLink");
-
-const transition=
-document.getElementById("transition");
-
-const transitionLogo=
-document.getElementById("transitionLogo");
-
-const links=
-document.querySelectorAll("[data-page]");
+const downloads=document.getElementById("downloadsList");
+const search=document.getElementById("search");
+const fileCount=document.getElementById("fileCount");
+const transition=document.getElementById("transition");
+const transitionLogo=document.getElementById("transitionLogo");
+const links=document.querySelectorAll("[data-page]");
 
 let navigating=false;
 
-let activeShareFile=null;
-
-
 function escapeHTML(value){
-
-return String(value??"")
-.replace(/[&<>"']/g,c=>({
+return String(value??"").replace(/[&<>"']/g,c=>({
 "&":"&amp;",
 "<":"&lt;",
 ">":"&gt;",
 '"':"&quot;",
 "'":"&#039;"
 }[c]));
-
 }
-
 
 function getShareURL(file){
-
-const url=
-new URL(
-window.location.href
-);
-
+const url=new URL(window.location.href);
 url.search="";
-
 url.hash="";
-
-url.searchParams.set(
-"share",
-file.id
-);
-
+url.searchParams.set("share",file.id);
 return url.href;
-
 }
 
-
 function renderFiles(filter=""){
+const value=filter.toLowerCase().trim();
 
-const value=
-filter.toLowerCase().trim();
-
-const filtered=
-files.filter(file=>
-file.name
-.toLowerCase()
-.includes(value)||
-
-file.description
-.toLowerCase()
-.includes(value)
+const filtered=files.filter(file=>
+file.name.toLowerCase().includes(value)||
+file.description.toLowerCase().includes(value)
 );
 
 fileCount.textContent=
-`${filtered.length} ${
-filtered.length===1
-?"file"
-:"files"
-}`;
+`${filtered.length} ${filtered.length===1?"file":"files"}`;
 
 if(!filtered.length){
-
-downloads.innerHTML=`
-<div class="empty">
-No downloads found.
-</div>
-`;
-
+downloads.innerHTML=
+`<div class="empty">No downloads found.</div>`;
 return;
 }
 
-
-downloads.innerHTML=
-filtered.map(file=>`
-
+downloads.innerHTML=filtered.map(file=>`
 <article
 class="file"
 data-file-id="${escapeHTML(file.id)}"
 >
 
-<div class="shared-badge">
-<span class="shared-badge-dot"></span>
-SHARED WITH YOU
-</div>
-
 <div class="icon">
-
 <img
 src="/assets/${encodeURIComponent(file.icon)}"
 alt=""
 onerror="this.remove();this.parentElement.textContent='◈'"
 >
-
 </div>
-
 
 <div class="info">
 
@@ -1188,7 +773,6 @@ Available
 
 </div>
 
-
 <div class="actions">
 
 <a
@@ -1196,183 +780,93 @@ class="download"
 href="${encodeURIComponent(file.file)}"
 download
 >
-
-<span>
-↓
-</span>
-
-<span class="download-text">
-Download
-</span>
-
+<span>↓</span>
+<span class="download-text">Download</span>
 </a>
-
 
 <button
 class="share"
 type="button"
 data-share-id="${escapeHTML(file.id)}"
-aria-label="Share ${escapeHTML(file.name)}"
-title="Share"
+aria-label="Copy share link"
+title="Copy link"
 >
-
-<span class="share-icon">
-↗
-</span>
-
+<span class="share-icon">↗</span>
 </button>
 
 </div>
 
 </article>
-
 `).join("");
-
 
 downloads
 .querySelectorAll(".share")
 .forEach(button=>{
-
-button.addEventListener(
-"click",
-()=>{
-
-openShare(
-button.dataset.shareId
+button.addEventListener("click",()=>{
+copyShareLink(
+button.dataset.shareId,
+button
 );
-
-}
-);
-
+});
 });
 
-
 highlightSharedFile();
-
 }
 
-
-function openShare(id){
-
-const file=
-files.find(
-item=>item.id===id
-);
+async function copyShareLink(id,button){
+const file=files.find(item=>item.id===id);
 
 if(!file){
 return;
 }
 
-activeShareFile=file;
-
-shareTitle.textContent=
-file.name;
-
-sharePreviewName.textContent=
-file.name;
-
-sharePreviewIcon.innerHTML=
-`<img src="/assets/${encodeURIComponent(file.icon)}" alt="">`;
-
-shareURL.value=
-getShareURL(file);
-
-copyLink.textContent=
-"Copy Link";
-
-copyLink.classList.remove(
-"done"
-);
-
-shareOverlay.classList.add(
-"active"
-);
-
-setTimeout(()=>{
-
-shareURL.select();
-
-},100);
-
-}
-
-
-function closeShare(){
-
-shareOverlay.classList.remove(
-"active"
-);
-
-activeShareFile=null;
-
-}
-
-
-async function copyShareLink(){
-
-if(!activeShareFile){
-return;
-}
-
-const url=
-getShareURL(
-activeShareFile
-);
+const url=getShareURL(file);
 
 let copied=false;
 
 try{
-
-await navigator.clipboard.writeText(
-url
-);
-
+await navigator.clipboard.writeText(url);
 copied=true;
-
 }catch{
+const textarea=document.createElement("textarea");
+
+textarea.value=url;
+textarea.style.position="fixed";
+textarea.style.left="-9999px";
+textarea.style.top="0";
+
+document.body.appendChild(textarea);
+
+textarea.focus();
+textarea.select();
 
 try{
-
-shareURL.focus();
-
-shareURL.select();
-
-copied=
-document.execCommand(
-"copy"
-);
-
-}catch{}
-
+copied=document.execCommand("copy");
+}catch{
+copied=false;
 }
 
-if(copied){
+textarea.remove();
+}
 
-copyLink.textContent=
-"Copied";
+if(!copied){
+return;
+}
 
-copyLink.classList.add(
-"done"
-);
+button.classList.add("copied");
+
+const original=button.innerHTML;
+
+button.innerHTML=
+'<span class="share-icon">✓</span>';
 
 setTimeout(()=>{
-
-copyLink.textContent=
-"Copy Link";
-
-copyLink.classList.remove(
-"done"
-);
-
-},1600);
-
+button.classList.remove("copied");
+button.innerHTML=original;
+},1200);
 }
-
-}
-
 
 function highlightSharedFile(){
-
 const params=
 new URLSearchParams(
 window.location.search
@@ -1395,7 +889,6 @@ return;
 }
 
 setTimeout(()=>{
-
 card.scrollIntoView({
 behavior:"smooth",
 block:"center"
@@ -1406,69 +899,21 @@ card.classList.add(
 );
 
 setTimeout(()=>{
-
 card.classList.remove(
 "shared-target"
 );
+},2600);
 
-},3200);
-
-},350);
-
+},300);
 }
-
-
-shareClose.addEventListener(
-"click",
-closeShare
-);
-
-
-copyLink.addEventListener(
-"click",
-copyShareLink
-);
-
-
-shareOverlay.addEventListener(
-"click",
-event=>{
-
-if(event.target===shareOverlay){
-
-closeShare();
-
-}
-
-}
-);
-
-
-document.addEventListener(
-"keydown",
-event=>{
-
-if(event.key==="Escape"){
-
-closeShare();
-
-}
-
-}
-);
-
 
 function getLogo(target){
-
 return target==="home"
 ?"/assets/logo.png"
 :"/assets/LOGO2.png";
-
 }
 
-
 function navigate(url,target){
-
 if(navigating){
 return;
 }
@@ -1487,55 +932,39 @@ transition.classList.add(
 );
 
 requestAnimationFrame(()=>{
-
 transition.classList.add(
 "show"
 );
-
 });
 
 setTimeout(()=>{
-
 transition.classList.add(
 "fade"
 );
-
 },620);
 
 setTimeout(()=>{
-
 sessionStorage.setItem(
 "unyzyTransition",
 target
 );
 
 location.href=url;
-
 },880);
-
 }
 
-
 links.forEach(link=>{
-
-link.addEventListener(
-"click",
-e=>{
-
+link.addEventListener("click",e=>{
 e.preventDefault();
 
 navigate(
 link.href,
 link.dataset.page
 );
-
 });
-
 });
-
 
 function enter(){
-
 const target=
 sessionStorage.getItem(
 "unyzyTransition"
@@ -1555,15 +984,12 @@ transition.classList.add(
 );
 
 requestAnimationFrame(()=>{
-
 transition.classList.add(
 "show"
 );
-
 });
 
 setTimeout(()=>{
-
 transition.classList.add(
 "fade"
 );
@@ -1571,50 +997,33 @@ transition.classList.add(
 document.body.classList.add(
 "ready"
 );
-
 },500);
 
 setTimeout(()=>{
-
 transition.classList.remove(
 "active",
 "show",
 "fade"
 );
-
 },930);
 
 }else{
 
 requestAnimationFrame(()=>{
-
 document.body.classList.add(
 "ready"
 );
-
 });
 
 }
-
 }
 
-
-search.addEventListener(
-"input",
-()=>{
-
-renderFiles(
-search.value
-);
-
-}
-);
-
+search.addEventListener("input",()=>{
+renderFiles(search.value);
+});
 
 renderFiles();
-
 enter();
-
 </script>
 
 </body>
