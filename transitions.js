@@ -1,18 +1,3 @@
-/* ==========================================================================
-   unYZY — shared route transition engine
-   Handles: nav active-slider positioning, cross-page veil transition with
-   logo morph, back/forward cache correctness, and entrance choreography.
-
-   Every page includes:
-     <body data-page="home">
-       <nav class="nav">...<div class="nav-slider"></div></nav>
-       <div class="route-veil" id="routeVeil">
-         <div class="route-veil-ring"></div>
-         <img class="route-veil-logo" id="routeVeilLogo">
-         <div class="route-veil-bar"><div class="route-veil-bar-fill"></div></div>
-       </div>
-       <script src="/transitions.js"></script>
-   ========================================================================== */
 
 (function(){
   "use strict";
@@ -27,7 +12,7 @@
   var veil=document.getElementById("routeVeil");
   var veilLogo=document.getElementById("routeVeilLogo");
   var nav=document.querySelector(".nav");
-var links=document.querySelectorAll("nav.nav a[data-page]");
+  var links=document.querySelectorAll("nav.nav a[data-page]");
 
   var navigating=false;
 
@@ -72,9 +57,9 @@ var links=document.querySelectorAll("nav.nav a[data-page]");
   /* ---- outbound: play veil, then navigate ------------------------------- */
 
   function beginNavigation(url,target){
-  if(navigating)return;
-  if(!url||url.indexOf("undefined")!==-1)return;
-  navigating=true;
+    if(navigating)return;
+    if(!url||url.indexOf("undefined")!==-1)return;
+    navigating=true;
 
     body.setAttribute("data-state","leave");
 

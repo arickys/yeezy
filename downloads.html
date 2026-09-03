@@ -188,11 +188,16 @@
   border:1px solid rgba(255,255,255,.07);
   border-radius:11px;
   background:#181a1f;
-  color:#707680;
-  font-size:11px;
-  font-weight:700;
-  letter-spacing:1px;
+  color:#565b64;
+  font-size:24px;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.icon-fallback{
+  display:grid;
+  place-items:center;
+  width:100%;
+  height:100%;
 }
 
 .icon img{
@@ -321,6 +326,74 @@
   font-size:11px;
 }
 
+/* ---- grouped sections ---- */
+
+.group{
+  margin-bottom:30px;
+}
+
+.group:last-child{
+  margin-bottom:0;
+}
+
+.group-head{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:12px;
+}
+
+.group-title{
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--muted);
+}
+
+.group-count{
+  color:var(--dimmer);
+  font-size:10px;
+  font-weight:700;
+}
+
+.group-line{
+  flex:1;
+  height:1px;
+  background:var(--line);
+}
+
+/* ---- sort select, sits with the filter chips ---- */
+
+.sort-select{
+  height:45px;
+  padding:0 32px 0 14px;
+  border:1px solid var(--line);
+  border-radius:var(--radius-md);
+  background:
+    var(--surface)
+    url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='10' height='6'><path d='M0 0L5 6L10 0Z' fill='%23858b95'/></svg>")
+    no-repeat right 13px center;
+  color:var(--muted);
+  font-family:inherit;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  appearance:none;
+  -webkit-appearance:none;
+  transition:border-color var(--dur-fast) ease,color var(--dur-fast) ease;
+}
+
+.sort-select:hover{
+  color:#fff;
+  border-color:rgba(255,255,255,.16);
+}
+
+.sort-select:focus-visible{
+  outline:2px solid rgba(255,255,255,.55);
+  outline-offset:2px;
+}
+
 @media(max-width:900px){
   .downloads{
     grid-template-columns:1fr;
@@ -428,11 +501,18 @@
     </div>
 
     <div class="filters" id="filters"></div>
+
+    <select class="sort-select" id="sortSelect">
+      <option value="newest">Newest First</option>
+      <option value="az">A–Z</option>
+    </select>
   </div>
 
-  <section class="downloads" id="downloadsList"></section>
+  <section id="downloadsList"></section>
 
 </main>
+
+<footer class="site-footer" id="siteFooter"></footer>
 
 <div class="toast" id="toast"></div>
 
@@ -442,7 +522,6 @@
   <div class="route-veil-bar"><div class="route-veil-bar-fill"></div></div>
 </div>
 
-<script src="/transitions.js"></script>
 <script>
 (function(){
 "use strict";
@@ -540,10 +619,12 @@ var files=[
 
 var projects=["All","BULLY","IAPW"];
 var activeProject="All";
+var activeSort="newest";
 
 var downloadsEl=document.getElementById("downloadsList");
 var searchEl=document.getElementById("search");
 var filtersEl=document.getElementById("filters");
+var sortEl=document.getElementById("sortSelect");
 var fileCountEl=document.getElementById("fileCount");
 var toastEl=document.getElementById("toast");
 
@@ -619,6 +700,39 @@ function renderFilters(){
   });
 }
 
+function fileCardHTML(file){
+  return ''+
+    '<article class="file surface-card">'+
+      '<div class="icon">'+
+        '<img src="/assets/'+escapeHTML(file.icon)+'" alt="" '+
+          'onerror="this.outerHTML=\'<span class=&quot;icon-fallback&quot;>&#9635;</span>\'">'+
+      '</div>'+
+      '<div class="info">'+
+        '<div class="name">'+escapeHTML(file.name)+'</div>'+
+        '<div class="description">'+escapeHTML(file.description)+'</div>'+
+        '<div class="type">ZIP Archive</div>'+
+      '</div>'+
+      '<div class="file-actions">'+
+        '<a class="download" href="'+escapeHTML(file.file)+'" download title="Download '+escapeHTML(file.name)+'">'+
+          '<span>↓</span><span class="download-text">Download</span>'+
+        '</a>'+
+        '<button class="share" type="button" data-share-id="'+escapeHTML(file.id)+'" title="Share '+escapeHTML(file.name)+'">'+
+          '<span class="share-icon">↗</span><span class="share-text">Share</span>'+
+        '</button>'+
+      '</div>'+
+    '</article>';
+}
+
+function sortFiles(list){
+  var copy=list.slice();
+  if(activeSort==="az"){
+    copy.sort(function(a,b){return a.name.localeCompare(b.name);});
+  }
+  // "newest" == original array order (already newest-last per project,
+  // so we reverse within each project when grouping below)
+  return copy;
+}
+
 function renderFiles(filter){
   var value=(filter||"").toLowerCase().trim();
 
@@ -637,27 +751,31 @@ function renderFiles(filter){
     return;
   }
 
-  downloadsEl.innerHTML=filtered.map(function(file){
+  // group by project, preserving the projects[] display order
+  var groups=projects.filter(function(p){return p!=="All";}).map(function(p){
+    return {
+      name:p,
+      items:filtered.filter(function(f){return f.project===p;})
+    };
+  }).filter(function(g){return g.items.length;});
+
+  downloadsEl.innerHTML=groups.map(function(group){
+    var items=sortFiles(group.items);
+    if(activeSort==="newest"){
+      items=items.slice().reverse();
+    }
+
     return ''+
-      '<article class="file surface-card">'+
-        '<div class="icon">'+
-          '<img src="/assets/'+escapeHTML(file.icon)+'" alt="" '+
-            'onerror="this.style.display=\'none\';this.parentElement.textContent=\'ZIP\'">'+
+      '<div class="group">'+
+        '<div class="group-head">'+
+          '<div class="group-title">'+escapeHTML(group.name)+'</div>'+
+          '<div class="group-count">'+items.length+'</div>'+
+          '<div class="group-line"></div>'+
         '</div>'+
-        '<div class="info">'+
-          '<div class="name">'+escapeHTML(file.name)+'</div>'+
-          '<div class="description">'+escapeHTML(file.description)+'</div>'+
-          '<div class="type">ZIP Archive</div>'+
+        '<div class="downloads">'+
+          items.map(fileCardHTML).join("")+
         '</div>'+
-        '<div class="file-actions">'+
-          '<a class="download" href="'+escapeHTML(file.file)+'" download title="Download '+escapeHTML(file.name)+'">'+
-            '<span>↓</span><span class="download-text">Download</span>'+
-          '</a>'+
-          '<button class="share" type="button" data-share-id="'+escapeHTML(file.id)+'" title="Share '+escapeHTML(file.name)+'">'+
-            '<span class="share-icon">↗</span><span class="share-text">Share</span>'+
-          '</button>'+
-        '</div>'+
-      '</article>';
+      '</div>';
   }).join("");
 
   downloadsEl.querySelectorAll("[data-share-id]").forEach(function(button){
@@ -674,10 +792,17 @@ searchEl.addEventListener("input",function(){
   renderFiles(searchEl.value);
 });
 
+sortEl.addEventListener("change",function(){
+  activeSort=sortEl.value;
+  renderFiles(searchEl.value);
+});
+
 renderFilters();
 renderFiles();
 })();
 </script>
 
+<script src="/footer.js"></script>
+<script src="/transitions.js"></script>
 </body>
 </html>

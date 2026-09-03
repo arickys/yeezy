@@ -112,6 +112,99 @@ h1{
   text-transform:uppercase;
 }
 
+/* recently added strip */
+.recent{
+  margin-top:56px;
+}
+
+.recent-head{
+  display:flex;
+  align-items:baseline;
+  justify-content:space-between;
+  margin-bottom:14px;
+}
+
+.recent-title{
+  font-size:13px;
+  font-weight:700;
+  letter-spacing:-.2px;
+}
+
+.recent-link{
+  color:var(--dim);
+  text-decoration:none;
+  font-size:10px;
+  font-weight:700;
+  transition:color var(--dur-fast) ease;
+}
+
+.recent-link:hover{
+  color:var(--text);
+}
+
+.recent-grid{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+
+.recent-item{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  padding:12px;
+  text-decoration:none;
+  color:inherit;
+}
+
+.recent-icon{
+  flex:0 0 auto;
+  width:42px;
+  height:42px;
+  display:grid;
+  place-items:center;
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:9px;
+  background:#181a1f;
+  color:#707680;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.5px;
+  overflow:hidden;
+}
+
+.recent-icon img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+}
+
+.recent-info{
+  min-width:0;
+}
+
+.recent-name{
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:-.1px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.recent-tag{
+  margin-top:3px;
+  color:var(--dim);
+  font-size:9px;
+}
+
+@media(max-width:760px){
+  .recent-grid{
+    grid-template-columns:1fr;
+  }
+}
+
 @media(prefers-reduced-motion:reduce){
   .logo{animation:none}
 }
@@ -192,14 +285,14 @@ h1{
     </div>
   </section>
 
-  <section class="stats u-stagger">
+  <section class="stats u-stagger" id="statsStrip">
     <div class="stat">
-      <div class="stat-value">11</div>
+      <div class="stat-value" id="statFiles">—</div>
       <div class="stat-label">Files Archived</div>
     </div>
     <div class="stat">
-      <div class="stat-value">2</div>
-      <div class="stat-label">Projects</div>
+      <div class="stat-value" id="statProjects">—</div>
+      <div class="stat-label" id="statProjectsLabel">Projects</div>
     </div>
     <div class="stat">
       <div class="stat-value">4</div>
@@ -207,7 +300,17 @@ h1{
     </div>
   </section>
 
+  <section class="recent u-stagger">
+    <div class="recent-head">
+      <div class="recent-title">Recently Added</div>
+      <a class="recent-link" href="/downloads" data-page="downloads">View all →</a>
+    </div>
+    <div class="recent-grid" id="recentGrid"></div>
+  </section>
+
 </main>
+
+<footer class="site-footer" id="siteFooter"></footer>
 
 <div class="route-veil" id="routeVeil">
   <div class="route-veil-ring"></div>
@@ -215,6 +318,57 @@ h1{
   <div class="route-veil-bar"><div class="route-veil-bar-fill"></div></div>
 </div>
 
+<script>
+(function(){
+"use strict";
+
+// same dataset shape as /downloads — kept minimal here since this page
+// only needs it for the stat strip + recently-added preview.
+var files=[
+  {name:"BULLY [EARLY]",icon:"BULLYEARLY.png",project:"BULLY"},
+  {name:"BULLY [FIRST]",icon:"BULLY1.png",project:"BULLY"},
+  {name:"BULLY [SECOND]",icon:"BULLY2.png",project:"BULLY"},
+  {name:"BULLY [THIRD]",icon:"BULLY3.png",project:"BULLY"},
+  {name:"BULLY [IRKO]",icon:"NO_CIERTO_BESAME_MAMA.png",project:"BULLY"},
+  {name:"BULLY [DELUXE]",icon:"BULLYDELUXE.png",project:"BULLY"},
+  {name:"BULLY [DIGITAL FIRST]",icon:"BULLYDG.png",project:"BULLY"},
+  {name:"BULLY [LISTENING PARTY]",icon:"BULLYLP.png",project:"BULLY"},
+  {name:"BULLY [PHYSICAL VERSION]",icon:"BULLYPV.png",project:"BULLY"},
+  {name:"IN A PERFECT WORLD",icon:"IAPW.png",project:"IAPW"},
+  {name:"IN A PERFECT WORLD [EARLY]",icon:"IAPWE.png",project:"IAPW"}
+];
+
+function escapeHTML(value){
+  return String(value==null?"":value).replace(/[&<>"']/g,function(ch){
+    return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[ch];
+  });
+}
+
+var projectCount=new Set(files.map(function(f){return f.project;})).size;
+
+document.getElementById("statFiles").textContent=files.length;
+document.getElementById("statProjects").textContent=projectCount;
+document.getElementById("statProjectsLabel").textContent=
+  projectCount===1?"Project":"Projects";
+
+var recent=files.slice(-3).reverse();
+
+document.getElementById("recentGrid").innerHTML=recent.map(function(file){
+  return ''+
+    '<a class="recent-item surface-card" href="/downloads" data-page="downloads">'+
+      '<div class="recent-icon">'+
+        '<img src="/assets/'+escapeHTML(file.icon)+'" alt="" '+
+          'onerror="this.style.display=\'none\';this.parentElement.textContent=\'ZIP\'">'+
+      '</div>'+
+      '<div class="recent-info">'+
+        '<div class="recent-name">'+escapeHTML(file.name)+'</div>'+
+        '<div class="recent-tag">'+escapeHTML(file.project)+'</div>'+
+      '</div>'+
+    '</a>';
+}).join("");
+})();
+</script>
+<script src="/footer.js"></script>
 <script src="/transitions.js"></script>
 </body>
 </html>

@@ -181,6 +181,90 @@
   background:rgba(255,150,150,.06);
 }
 
+/* bullet list inside a longer update body */
+.update-list{
+  list-style:none;
+  margin:11px 0 0;
+  padding:0;
+  display:flex;
+  flex-direction:column;
+  gap:7px;
+}
+
+.update-list li{
+  display:flex;
+  align-items:baseline;
+  gap:8px;
+  color:#8b909a;
+  font-size:11px;
+  line-height:1.55;
+}
+
+.li-tag{
+  flex:0 0 auto;
+  display:inline-flex;
+  align-items:center;
+  height:18px;
+  padding:0 6px;
+  border-radius:5px;
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:.6px;
+  text-transform:uppercase;
+  white-space:nowrap;
+}
+
+.li-tag.added{
+  color:#a9f0c2;
+  background:rgba(140,255,180,.1);
+}
+
+.li-tag.soon{
+  color:#e3c988;
+  background:rgba(255,210,120,.1);
+}
+
+/* collapsed older entries */
+.update.is-hidden{
+  display:none;
+}
+
+.showmore{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+  width:100%;
+  height:44px;
+  margin-top:6px;
+  border:1px dashed rgba(255,255,255,.11);
+  border-radius:var(--radius-md);
+  background:transparent;
+  color:var(--muted);
+  font-family:inherit;
+  font-size:11px;
+  font-weight:700;
+  cursor:pointer;
+  transition:
+    color var(--dur-fast) ease,
+    border-color var(--dur-fast) ease,
+    background var(--dur-fast) ease;
+}
+
+.showmore:hover{
+  color:#fff;
+  border-color:rgba(255,255,255,.22);
+  background:rgba(255,255,255,.03);
+}
+
+.showmore-icon{
+  transition:transform var(--dur-base) var(--ease-spring);
+}
+
+.showmore.is-open .showmore-icon{
+  transform:rotate(180deg);
+}
+
 @media(max-width:760px){
   .page-head{
     align-items:flex-start;
@@ -290,9 +374,27 @@
     </div>
   </header>
 
-  <section class="timeline u-stagger">
+  <section class="timeline u-stagger" id="timeline">
 
     <article class="update surface-card">
+      <div class="update-date">SEP 2, 2026</div>
+      <div class="update-content">
+        <h2 class="update-title">Biggest update after releasing</h2>
+        <div class="update-description">
+          Fixed every single little bug, fixed downloading issues, and more. Below is what's been added / coming soon:
+          <ul class="update-list">
+            <li><span class="li-tag added">Added</span> ZIP-content previews — preview what's inside each ZIP</li>
+            <li><span class="li-tag added">Added</span> Polished cards / download cards</li>
+            <li><span class="li-tag added">Added</span> Revamped user interface / design</li>
+            <li><span class="li-tag added">Added</span> Several unreleased BULLY versions</li>
+            <li><span class="li-tag soon">Coming Soon</span> Lots of albums on the way</li>
+          </ul>
+        </div>
+      </div>
+      <div class="update-tag" data-kind="added">Major</div>
+    </article>
+
+    <article class="update surface-card is-hidden" data-collapsible>
       <div class="update-date">AUG 30, 2026</div>
       <div class="update-content">
         <h2 class="update-title">Archive launch</h2>
@@ -303,7 +405,7 @@
       <div class="update-tag" data-kind="added">Added</div>
     </article>
 
-    <article class="update surface-card">
+    <article class="update surface-card is-hidden" data-collapsible>
       <div class="update-date">AUG 30, 2026</div>
       <div class="update-content">
         <h2 class="update-title">Dedicated pages</h2>
@@ -314,7 +416,7 @@
       <div class="update-tag">Update</div>
     </article>
 
-    <article class="update surface-card">
+    <article class="update surface-card is-hidden" data-collapsible>
       <div class="update-date">AUG 30, 2026</div>
       <div class="update-content">
         <h2 class="update-title">Navigation cleanup</h2>
@@ -325,7 +427,7 @@
       <div class="update-tag">Patch</div>
     </article>
 
-    <article class="update surface-card">
+    <article class="update surface-card is-hidden" data-collapsible>
       <div class="update-date">AUG 30, 2026</div>
       <div class="update-content">
         <h2 class="update-title">Asset loading fix</h2>
@@ -338,7 +440,14 @@
 
   </section>
 
+  <button class="showmore" id="showMoreBtn" type="button">
+    <span>Show earlier updates</span>
+    <span class="showmore-icon">⌄</span>
+  </button>
+
 </main>
+
+<footer class="site-footer" id="siteFooter"></footer>
 
 <div class="route-veil" id="routeVeil">
   <div class="route-veil-ring"></div>
@@ -346,6 +455,32 @@
   <div class="route-veil-bar"><div class="route-veil-bar-fill"></div></div>
 </div>
 
+<script>
+(function(){
+"use strict";
+
+var btn=document.getElementById("showMoreBtn");
+var hidden=document.querySelectorAll("#timeline [data-collapsible]");
+
+if(!hidden.length){
+  btn.style.display="none";
+  return;
+}
+
+var open=false;
+
+btn.addEventListener("click",function(){
+  open=!open;
+  hidden.forEach(function(el){
+    el.classList.toggle("is-hidden",!open);
+  });
+  btn.classList.toggle("is-open",open);
+  btn.querySelector("span").textContent=
+    open?"Hide earlier updates":"Show earlier updates";
+});
+})();
+</script>
+<script src="/footer.js"></script>
 <script src="/transitions.js"></script>
 </body>
 </html>
