@@ -610,160 +610,23 @@
   <div class="route-veil-bar"><div class="route-veil-bar-fill"></div></div>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script>
 (function(){
 "use strict";
 
-// NOTE: `contents` is a manual listing of what's inside each ZIP.
-// Swap these with the real filenames/sizes whenever convenient —
-// the preview UI just renders whatever is in this array.
 var files=[
-  {
-    id:"bully-early",
-    name:"BULLY [EARLY]",
-    description:"Early version of BULLY, very little songs, uses AI vocals.",
-    file:"BULLY [EARLY].zip",
-    icon:"BULLYEARLY.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Intro (AI Vocals).mp3",size:"4.1 MB"},
-      {name:"02 - Untitled.mp3",size:"5.6 MB"},
-      {name:"cover.jpg",size:"820 KB"}
-    ]
-  },
-  {
-    id:"bully-first",
-    name:"BULLY [FIRST]",
-    description:"First version of BULLY, contains AI vocals of Kanye.",
-    file:"BULLY [FIRST].zip",
-    icon:"BULLY1.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (First Version).mp3",size:"6.2 MB"},
-      {name:"02 - Interlude.mp3",size:"3.4 MB"},
-      {name:"03 - Outro.mp3",size:"2.9 MB"},
-      {name:"cover.jpg",size:"790 KB"}
-    ]
-  },
-  {
-    id:"bully-second",
-    name:"BULLY [SECOND]",
-    description:"Second version of BULLY, still contains AI vocals of Kanye.",
-    file:"BULLY [SECOND].zip",
-    icon:"BULLY2.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (Second Version).mp3",size:"6.5 MB"},
-      {name:"02 - Bonus Cut.mp3",size:"5.1 MB"},
-      {name:"cover.jpg",size:"810 KB"}
-    ]
-  },
-  {
-    id:"bully-third",
-    name:"BULLY [THIRD]",
-    description:"Third version of BULLY, new beats, new vocals.",
-    file:"BULLY [THIRD].zip",
-    icon:"BULLY3.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (Third Version).mp3",size:"7.0 MB"},
-      {name:"02 - New Beat Idea.mp3",size:"4.8 MB"},
-      {name:"03 - Alt Vocals.mp3",size:"5.3 MB"},
-      {name:"cover.jpg",size:"860 KB"}
-    ]
-  },
-  {
-    id:"bully-irko",
-    name:"BULLY [IRKO]",
-    description:"AI vocals, remixed.",
-    file:"BULLY [IRKO].zip",
-    icon:"NO_CIERTO_BESAME_MAMA.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (IRKO Remix).mp3",size:"6.8 MB"},
-      {name:"cover.jpg",size:"770 KB"}
-    ]
-  },
-  {
-    id:"bully-delux",
-    name:"BULLY [DELUXE]",
-    description:"OK, control that mission!",
-    file:"BULLY [DELUXE].zip",
-    icon:"BULLYDELUXE.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (Deluxe).mp3",size:"7.2 MB"},
-      {name:"02 - Control That Mission.mp3",size:"5.9 MB"},
-      {name:"03 - Bonus Track.mp3",size:"4.6 MB"},
-      {name:"cover.jpg",size:"900 KB"}
-    ]
-  },
-  {
-    id:"bully-dgfirst",
-    name:"BULLY [DIGITAL FIRST]",
-    description:"First digital copy of BULLY.",
-    file:"BULLY [DIGITAL FIRST].zip",
-    icon:"BULLYDG.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (Digital).mp3",size:"6.4 MB"},
-      {name:"info.txt",size:"1 KB"},
-      {name:"cover.jpg",size:"800 KB"}
-    ]
-  },
-  {
-    id:"bully-lp",
-    name:"BULLY [LISTENING PARTY]",
-    description:"The first listening party [private] for BULLY!",
-    file:"BULLY [LISTENING PARTY].zip",
-    icon:"BULLYLP.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Listening Party Rip.mp3",size:"9.3 MB"},
-      {name:"crowd_audio.mp3",size:"3.7 MB"},
-      {name:"cover.jpg",size:"840 KB"}
-    ]
-  },
-  {
-    id:"bully-pv",
-    name:"BULLY [PHYSICAL VERSION]",
-    description:"The first physical version for BULLY! [Sold out immediately]",
-    file:"BULLY [PHYSICAL VERSION].zip",
-    icon:"BULLYPV.png",
-    project:"BULLY",
-    contents:[
-      {name:"01 - Bully (Physical Rip).mp3",size:"7.5 MB"},
-      {name:"artwork_scan.jpg",size:"2.2 MB"},
-      {name:"cover.jpg",size:"880 KB"}
-    ]
-  },
-  {
-    id:"iapw",
-    name:"IN A PERFECT WORLD",
-    description:"Already in the finished stages of recording In A Perfect World, never released.",
-    file:"IN A PERFECT WORLD.zip",
-    icon:"IAPW.png",
-    project:"IAPW",
-    contents:[
-      {name:"01 - In A Perfect World.mp3",size:"6.9 MB"},
-      {name:"02 - Interlude.mp3",size:"3.1 MB"},
-      {name:"03 - Reprise.mp3",size:"4.4 MB"},
-      {name:"cover.jpg",size:"850 KB"}
-    ]
-  },
-  {
-    id:"iapw-early",
-    name:"IN A PERFECT WORLD [EARLY]",
-    description:"Early stages of recording In A Perfect World.",
-    file:"IN A PERFECT WORLD [EARLY].zip",
-    icon:"IAPWE.png",
-    project:"IAPW",
-    contents:[
-      {name:"01 - IAPW (Early Rough).mp3",size:"5.4 MB"},
-      {name:"02 - Demo Idea.mp3",size:"3.9 MB"},
-      {name:"cover.jpg",size:"780 KB"}
-    ]
-  }
+  {id:"bully-early",name:"BULLY [EARLY]",description:"Early version of BULLY, very little songs, uses AI vocals.",file:"BULLY [EARLY].zip",icon:"BULLYEARLY.png",project:"BULLY"},
+  {id:"bully-first",name:"BULLY [FIRST]",description:"First version of BULLY, contains AI vocals of Kanye.",file:"BULLY [FIRST].zip",icon:"BULLY1.png",project:"BULLY"},
+  {id:"bully-second",name:"BULLY [SECOND]",description:"Second version of BULLY, still contains AI vocals of Kanye.",file:"BULLY [SECOND].zip",icon:"BULLY2.png",project:"BULLY"},
+  {id:"bully-third",name:"BULLY [THIRD]",description:"Third version of BULLY, new beats, new vocals.",file:"BULLY [THIRD].zip",icon:"BULLY3.png",project:"BULLY"},
+  {id:"bully-irko",name:"BULLY [IRKO]",description:"AI vocals, remixed.",file:"BULLY [IRKO].zip",icon:"NO_CIERTO_BESAME_MAMA.png",project:"BULLY"},
+  {id:"bully-delux",name:"BULLY [DELUXE]",description:"OK, control that mission!",file:"BULLY [DELUXE].zip",icon:"BULLYDELUXE.png",project:"BULLY"},
+  {id:"bully-dgfirst",name:"BULLY [DIGITAL FIRST]",description:"First digital copy of BULLY.",file:"BULLY [DIGITAL FIRST].zip",icon:"BULLYDG.png",project:"BULLY"},
+  {id:"bully-lp",name:"BULLY [LISTENING PARTY]",description:"The first listening party [private] for BULLY!",file:"BULLY [LISTENING PARTY].zip",icon:"BULLYLP.png",project:"BULLY"},
+  {id:"bully-pv",name:"BULLY [PHYSICAL VERSION]",description:"The first physical version for BULLY! [Sold out immediately]",file:"BULLY [PHYSICAL VERSION].zip",icon:"BULLYPV.png",project:"BULLY"},
+  {id:"iapw",name:"IN A PERFECT WORLD",description:"Already in the finished stages of recording In A Perfect World, never released.",file:"IN A PERFECT WORLD.zip",icon:"IAPW.png",project:"IAPW"},
+  {id:"iapw-early",name:"IN A PERFECT WORLD [EARLY]",description:"Early stages of recording In A Perfect World.",file:"IN A PERFECT WORLD [EARLY].zip",icon:"IAPWE.png",project:"IAPW"}
 ];
 
 var projects=["All","BULLY","IAPW"];
@@ -778,11 +641,26 @@ var fileCountEl=document.getElementById("fileCount");
 var toastEl=document.getElementById("toast");
 
 var toastTimer;
+var zipCache={}; // id -> array of {name,size} once read
 
 function escapeHTML(value){
   return String(value==null?"":value).replace(/[&<>"']/g,function(ch){
     return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[ch];
   });
+}
+
+function formatBytes(bytes){
+  if(!bytes&&bytes!==0)return "";
+  if(bytes<1024)return bytes+" B";
+  if(bytes<1024*1024)return (bytes/1024).toFixed(1)+" KB";
+  return (bytes/(1024*1024)).toFixed(1)+" MB";
+}
+
+function iconFor(name){
+  if(/\.(mp3|wav|m4a|flac|aac)$/i.test(name))return "♪";
+  if(/\.(jpg|jpeg|png|gif|webp)$/i.test(name))return "▨";
+  if(/\.(txt|md|nfo)$/i.test(name))return "▤";
+  return "▫";
 }
 
 function getDownloadURL(file){
@@ -793,18 +671,12 @@ function showToast(message){
   clearTimeout(toastTimer);
   toastEl.textContent=message;
   toastEl.classList.add("show");
-  toastTimer=setTimeout(function(){
-    toastEl.classList.remove("show");
-  },2200);
+  toastTimer=setTimeout(function(){toastEl.classList.remove("show");},2200);
 }
 
 function shareFile(file,button){
   var url=getDownloadURL(file);
-  var shareData={
-    title:file.name+" — unYZY",
-    text:"Download "+file.name+" from unYZY.",
-    url:url
-  };
+  var shareData={title:file.name+" — unYZY",text:"Download "+file.name+" from unYZY.",url:url};
 
   function fallbackCopy(){
     navigator.clipboard.writeText(url).then(function(){
@@ -815,15 +687,11 @@ function shareFile(file,button){
         button.classList.remove("copied");
         button.querySelector(".share-text").textContent="Share";
       },1800);
-    }).catch(function(){
-      showToast("Unable to share this download.");
-    });
+    }).catch(function(){showToast("Unable to share this download.");});
   }
 
   if(navigator.share){
-    navigator.share(shareData).then(function(){
-      showToast("Shared successfully.");
-    }).catch(function(error){
+    navigator.share(shareData).then(function(){showToast("Shared successfully.");}).catch(function(error){
       if(error&&error.name==="AbortError")return;
       fallbackCopy();
     });
@@ -832,41 +700,99 @@ function shareFile(file,button){
   }
 }
 
-function renderFilters(){
-  filtersEl.innerHTML=projects.map(function(project){
-    return '<button class="chip'+(project===activeProject?" active":"")+
-      '" type="button" data-project="'+escapeHTML(project)+'">'+
-      escapeHTML(project==="All"?"All Projects":project)+
-      "</button>";
-  }).join("");
+/* ---- real zip reading, on demand ---- */
 
-  filtersEl.querySelectorAll("[data-project]").forEach(function(btn){
-    btn.addEventListener("click",function(){
-      activeProject=btn.dataset.project;
-      renderFilters();
-      renderFiles(searchEl.value);
+function readZipEntries(file){
+  if(zipCache[file.id]){
+    return Promise.resolve(zipCache[file.id]);
+  }
+
+  return fetch(getDownloadURL(file))
+    .then(function(res){
+      if(!res.ok)throw new Error("fetch failed: "+res.status);
+      return res.blob();
+    })
+    .then(function(blob){
+      return JSZip.loadAsync(blob);
+    })
+    .then(function(zip){
+      var entries=[];
+      zip.forEach(function(relPath,entry){
+        if(entry.dir)return;
+        entries.push({
+          name:relPath,
+          size:(entry._data&&entry._data.uncompressedSize)||entry.uncompressedSize||0
+        });
+      });
+      entries.sort(function(a,b){return a.name.localeCompare(b.name);});
+      zipCache[file.id]=entries;
+      return entries;
     });
-  });
 }
 
-function contentsRowsHTML(file){
-  if(!file.contents||!file.contents.length){
-    return '<div class="preview-row"><span class="preview-row-name">No preview available.</span></div>';
+function contentsRowsHTML(entries){
+  if(!entries.length){
+    return '<div class="preview-row"><span class="preview-row-name">Empty archive.</span></div>';
   }
-  return file.contents.map(function(item){
+  return entries.map(function(item){
     return ''+
       '<div class="preview-row">'+
-        '<span class="preview-row-icon">'+(/\.(mp3|wav|m4a)$/i.test(item.name)?"♪":"▤")+'</span>'+
+        '<span class="preview-row-icon">'+iconFor(item.name)+'</span>'+
         '<span class="preview-row-name">'+escapeHTML(item.name)+'</span>'+
-        '<span class="preview-row-size">'+escapeHTML(item.size||"")+'</span>'+
+        '<span class="preview-row-size">'+escapeHTML(formatBytes(item.size))+'</span>'+
       '</div>';
   }).join("");
 }
 
+function togglePreview(file,button){
+  var panel=document.getElementById("preview-"+file.id);
+  if(!panel)return;
+
+  var willOpen=!panel.classList.contains("is-open");
+
+  if(!willOpen){
+    panel.classList.remove("is-open");
+    button.classList.remove("is-open");
+    button.querySelector("span").textContent="Preview contents";
+    return;
+  }
+
+  // opening: show it immediately with a loading state, then fill in
+  // real contents once the zip has actually been fetched and read
+  panel.classList.add("is-open");
+  button.classList.add("is-open");
+
+  if(zipCache[file.id]){
+    panel.querySelector(".preview-contents-inner").innerHTML=contentsRowsHTML(zipCache[file.id]);
+    button.querySelector("span").textContent="Hide contents";
+    return;
+  }
+
+  panel.querySelector(".preview-contents-inner").innerHTML=
+    '<div class="preview-row preview-loading"><span class="preview-row-name">Reading archive…</span></div>';
+  button.querySelector("span").textContent="Loading…";
+  button.disabled=true;
+
+  readZipEntries(file).then(function(entries){
+    panel.querySelector(".preview-contents-inner").innerHTML=contentsRowsHTML(entries);
+    button.querySelector("span").textContent="Hide contents";
+    button.disabled=false;
+  }).catch(function(err){
+    panel.querySelector(".preview-contents-inner").innerHTML=
+      '<div class="preview-row"><span class="preview-row-name">Couldn\'t read this archive.</span></div>';
+    button.querySelector("span").textContent="Preview contents";
+    button.disabled=false;
+    panel.classList.remove("is-open");
+    button.classList.remove("is-open");
+    console.error("zip preview failed for",file.id,err);
+  });
+}
+
+/* ---- rendering ---- */
+
 function fileCardHTML(file){
-  var hasContents=file.contents&&file.contents.length;
   return ''+
-    '<article class="file surface-card'+(hasContents?" has-preview":"")+'">'+
+    '<article class="file surface-card has-preview">'+
       '<div class="icon">'+
         '<img src="/assets/'+escapeHTML(file.icon)+'" alt="" '+
           'onerror="this.outerHTML=\'<span class=&quot;icon-fallback&quot;>&#9635;</span>\'">'+
@@ -884,14 +810,12 @@ function fileCardHTML(file){
           '<span class="share-icon">↗</span><span class="share-text">Share</span>'+
         '</button>'+
       '</div>'+
-      (hasContents?(
-        '<button class="preview-toggle" type="button" data-preview-id="'+escapeHTML(file.id)+'">'+
-          '<span>Preview contents</span><span class="preview-toggle-icon">⌄</span>'+
-        '</button>'+
-        '<div class="preview-contents" id="preview-'+escapeHTML(file.id)+'">'+
-          '<div class="preview-contents-inner">'+contentsRowsHTML(file)+'</div>'+
-        '</div>'
-      ):"")+
+      '<button class="preview-toggle" type="button" data-preview-id="'+escapeHTML(file.id)+'">'+
+        '<span>Preview contents</span><span class="preview-toggle-icon">⌄</span>'+
+      '</button>'+
+      '<div class="preview-contents" id="preview-'+escapeHTML(file.id)+'">'+
+        '<div class="preview-contents-inner"></div>'+
+      '</div>'+
     '</article>';
 }
 
@@ -900,9 +824,24 @@ function sortFiles(list){
   if(activeSort==="az"){
     copy.sort(function(a,b){return a.name.localeCompare(b.name);});
   }
-  // "newest" == original array order (already newest-last per project,
-  // so we reverse within each project when grouping below)
   return copy;
+}
+
+function renderFilters(){
+  filtersEl.innerHTML=projects.map(function(project){
+    return '<button class="chip'+(project===activeProject?" active":"")+
+      '" type="button" data-project="'+escapeHTML(project)+'">'+
+      escapeHTML(project==="All"?"All Projects":project)+
+      "</button>";
+  }).join("");
+
+  filtersEl.querySelectorAll("[data-project]").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      activeProject=btn.dataset.project;
+      renderFilters();
+      renderFiles(searchEl.value);
+    });
+  });
 }
 
 function renderFiles(filter){
@@ -923,20 +862,13 @@ function renderFiles(filter){
     return;
   }
 
-  // group by project, preserving the projects[] display order
   var groups=projects.filter(function(p){return p!=="All";}).map(function(p){
-    return {
-      name:p,
-      items:filtered.filter(function(f){return f.project===p;})
-    };
+    return {name:p,items:filtered.filter(function(f){return f.project===p;})};
   }).filter(function(g){return g.items.length;});
 
   downloadsEl.innerHTML=groups.map(function(group){
     var items=sortFiles(group.items);
-    if(activeSort==="newest"){
-      items=items.slice().reverse();
-    }
-
+    if(activeSort==="newest"){items=items.slice().reverse();}
     return ''+
       '<div class="group">'+
         '<div class="group-head">'+
@@ -944,41 +876,27 @@ function renderFiles(filter){
           '<div class="group-count">'+items.length+'</div>'+
           '<div class="group-line"></div>'+
         '</div>'+
-        '<div class="downloads">'+
-          items.map(fileCardHTML).join("")+
-        '</div>'+
+        '<div class="downloads">'+items.map(fileCardHTML).join("")+'</div>'+
       '</div>';
   }).join("");
 
   downloadsEl.querySelectorAll("[data-share-id]").forEach(function(button){
     button.addEventListener("click",function(){
-      var file=files.filter(function(item){
-        return item.id===button.dataset.shareId;
-      })[0];
+      var file=files.filter(function(item){return item.id===button.dataset.shareId;})[0];
       if(file)shareFile(file,button);
     });
   });
 
   downloadsEl.querySelectorAll("[data-preview-id]").forEach(function(button){
     button.addEventListener("click",function(){
-      var panel=document.getElementById("preview-"+button.dataset.previewId);
-      if(!panel)return;
-      var open=panel.classList.toggle("is-open");
-      button.classList.toggle("is-open",open);
-      button.querySelector("span").textContent=
-        open?"Hide contents":"Preview contents";
+      var file=files.filter(function(item){return item.id===button.dataset.previewId;})[0];
+      if(file)togglePreview(file,button);
     });
   });
 }
 
-searchEl.addEventListener("input",function(){
-  renderFiles(searchEl.value);
-});
-
-sortEl.addEventListener("change",function(){
-  activeSort=sortEl.value;
-  renderFiles(searchEl.value);
-});
+searchEl.addEventListener("input",function(){renderFiles(searchEl.value);});
+sortEl.addEventListener("change",function(){activeSort=sortEl.value;renderFiles(searchEl.value);});
 
 renderFilters();
 renderFiles();
