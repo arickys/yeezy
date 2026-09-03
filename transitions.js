@@ -27,7 +27,7 @@
   var veil=document.getElementById("routeVeil");
   var veilLogo=document.getElementById("routeVeilLogo");
   var nav=document.querySelector(".nav");
-  var links=document.querySelectorAll("[data-page]");
+var links=document.querySelectorAll("nav.nav a[data-page]");
 
   var navigating=false;
 
@@ -72,8 +72,9 @@
   /* ---- outbound: play veil, then navigate ------------------------------- */
 
   function beginNavigation(url,target){
-    if(navigating)return;
-    navigating=true;
+  if(navigating)return;
+  if(!url||url.indexOf("undefined")!==-1)return;
+  navigating=true;
 
     body.setAttribute("data-state","leave");
 
