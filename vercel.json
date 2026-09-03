@@ -2,22 +2,22 @@
   "redirects": [
     {
       "source": "/downloads",
-      "destination": "/",
+      "destination": "/offline",
       "permanent": false
     },
     {
       "source": "/downloads.html",
-      "destination": "/",
+      "destination": "/offline",
       "permanent": false
     },
     {
       "source": "/updates",
-      "destination": "/",
+      "destination": "/offline",
       "permanent": false
     },
     {
       "source": "/updates.html",
-      "destination": "/",
+      "destination": "/offline",
       "permanent": false
     }
   ]
