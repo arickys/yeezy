@@ -1,4 +1,4 @@
-const REDIRECT_TO_HOME = true;
+const REDIRECT_TO_HOME = false;
 
 export default function handler(req, res) {
     if (!REDIRECT_TO_HOME) {
