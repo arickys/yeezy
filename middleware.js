@@ -1,4 +1,4 @@
-const OFFLINE_MODE = false;
+const OFFLINE_MODE = true;
 
 export default function middleware(request) {
     if (!OFFLINE_MODE) {

@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08090b">
+<meta name="theme-color" content="#6c3b82">
 <title>unYZY [OFFLINE]</title>
 <link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png">
 
@@ -14,6 +14,7 @@
   font-weight:400;
   font-display:swap;
 }
+
 @font-face{
   font-family:Yeezy;
   src:url("/fonts/yeezy_tstar-bold.webfont.woff") format("woff");
@@ -21,33 +22,38 @@
   font-display:swap;
 }
 
-*{box-sizing:border-box}
-
-:root{
-  --bg:#08090b;
-  --white:#f5f5f6;
-  --muted:#777d86;
-  --dim:#858b94;
+*{
+  box-sizing:border-box;
 }
 
-html,body{
-  margin:0;
+html,
+body{
   width:100%;
   height:100%;
+  margin:0;
 }
 
 body{
   overflow:hidden;
-  background:
-    radial-gradient(circle at 50% 40%,rgba(255,255,255,.07),transparent 30%),
-    radial-gradient(circle at 50% 100%,rgba(255,255,255,.02),transparent 45%),
-    var(--bg);
-  color:var(--white);
+  color:#fff;
   font-family:Yeezy,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(46,19,75,.08),
+      rgba(111,34,94,.05) 50%,
+      rgba(241,111,78,.08)
+    ),
+    url("/assets/graduation-bg.png") center center / cover no-repeat;
+
   opacity:0;
-  transform:scale(1.02);
-  transition:opacity .6s cubic-bezier(.16,1,.3,1),transform .8s cubic-bezier(.16,1,.3,1);
+  transform:scale(1.04);
+
+  transition:
+    opacity .9s cubic-bezier(.16,1,.3,1),
+    transform 1.2s cubic-bezier(.16,1,.3,1);
 }
 
 body.ready{
@@ -55,139 +61,316 @@ body.ready{
   transform:scale(1);
 }
 
+/* soft photographic haze */
 body:before{
   content:"";
   position:fixed;
   inset:0;
   pointer-events:none;
+
   background:
-    linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
-  background-size:80px 80px;
-  mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 80%);
-  -webkit-mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 80%);
+    radial-gradient(
+      circle at 50% 45%,
+      rgba(255,255,255,.09),
+      transparent 32%
+    ),
+    linear-gradient(
+      180deg,
+      rgba(32,12,55,.16),
+      transparent 35%,
+      rgba(222,70,104,.06) 70%,
+      rgba(255,139,77,.12)
+    );
+
+  mix-blend-mode:screen;
+}
+
+/* subtle film grain */
+body:after{
+  content:"";
+  position:fixed;
+  inset:-50%;
+  pointer-events:none;
+
+  opacity:.11;
+
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+
+  mix-blend-mode:soft-light;
+}
+
+/* very subtle vignette */
+.vignette{
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+
+  background:
+    radial-gradient(
+      ellipse at center,
+      transparent 45%,
+      rgba(30,8,39,.22) 100%
+    );
+
+  z-index:2;
 }
 
 .page{
   width:100%;
   height:100%;
+
   display:flex;
   align-items:center;
   justify-content:center;
+
   padding:30px;
+
+  position:relative;
+  z-index:5;
 }
 
 .content{
-  width:min(440px,100%);
+  width:min(500px,100%);
   text-align:center;
+
+  display:flex;
+  flex-direction:column;
+  align-items:center;
 }
 
+/* tiny archive label */
+.archive{
+  margin-bottom:18px;
+
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:4px;
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.68);
+
+  text-shadow:
+    0 2px 12px rgba(39,8,51,.5);
+}
+
+/* logo */
 .logo-wrap{
   position:relative;
-  width:110px;
-  height:110px;
-  margin:0 auto 30px;
+
+  width:150px;
+  height:150px;
+
   display:grid;
   place-items:center;
+
+  margin-bottom:18px;
 }
 
 .logo-wrap:before{
   content:"";
+
   position:absolute;
-  width:90px;
-  height:50px;
+
+  width:130px;
+  height:130px;
+
   border-radius:50%;
-  background:rgba(255,255,255,.08);
-  filter:blur(45px);
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(255,255,255,.18),
+      rgba(255,168,201,.08) 45%,
+      transparent 72%
+    );
+
+  filter:blur(18px);
 }
 
 .logo{
   position:relative;
   z-index:2;
-  width:100%;
-  height:100%;
+
+  width:125px;
+  height:125px;
+
   object-fit:contain;
+
   filter:
-    drop-shadow(0 25px 45px rgba(0,0,0,.6))
-    drop-shadow(0 0 35px rgba(255,255,255,.06));
-  animation:pulse 2.6s ease-in-out infinite;
+    brightness(1.15)
+    contrast(.92)
+    saturate(.72)
+    drop-shadow(0 16px 30px rgba(44,8,50,.48));
+
+  animation:float 5s ease-in-out infinite;
 }
 
-@keyframes pulse{
-  0%,100%{opacity:1}
-  50%{opacity:.55}
+@keyframes float{
+  0%,100%{
+    transform:translateY(0);
+  }
+
+  50%{
+    transform:translateY(-7px);
+  }
+}
+
+/* connection lost */
+.eyebrow{
+  display:flex;
+  align-items:center;
+  gap:11px;
+
+  margin-bottom:10px;
+
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+
+  color:rgba(255,255,255,.62);
+
+  text-shadow:
+    0 2px 12px rgba(47,8,55,.55);
+}
+
+.eyebrow:before,
+.eyebrow:after{
+  content:"";
+
+  width:24px;
+  height:1px;
+
+  background:rgba(255,255,255,.4);
 }
 
 h1{
   margin:0;
-  font-size:42px;
-  line-height:1;
-  letter-spacing:-2px;
+
+  font-size:clamp(45px,8vw,70px);
+  line-height:.88;
+
   font-weight:700;
+  letter-spacing:-4px;
+
+  color:#fff;
+
+  text-shadow:
+    0 3px 0 rgba(74,24,75,.18),
+    0 8px 30px rgba(55,8,55,.45);
 }
 
-p{
-  margin:14px auto 0;
-  max-width:330px;
-  color:var(--muted);
-  font-size:14px;
-  line-height:1.5;
+.description{
+  width:min(350px,100%);
+
+  margin:17px auto 0;
+
+  font-size:13px;
+  line-height:1.55;
+
+  color:rgba(255,255,255,.78);
+
+  text-shadow:
+    0 2px 12px rgba(46,7,53,.5);
 }
 
+/* offline indicator */
 .status{
-  margin:25px auto 0;
-  width:max-content;
+  margin-top:22px;
+
   display:flex;
   align-items:center;
-  gap:7px;
+  gap:8px;
+
   padding:8px 12px;
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:7px;
-  background:rgba(255,255,255,.025);
-  color:var(--dim);
-  font-size:10px;
+
+  border:1px solid rgba(255,255,255,.22);
+
+  background:rgba(66,24,76,.13);
+
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+
+  color:rgba(255,255,255,.8);
+
+  font-size:9px;
   font-weight:700;
-  letter-spacing:1.2px;
+  letter-spacing:2px;
+
   text-transform:uppercase;
+
+  box-shadow:
+    0 8px 30px rgba(51,8,57,.14);
 }
 
 .status-dot{
-  width:6px;
-  height:6px;
+  width:5px;
+  height:5px;
+
   border-radius:50%;
-  background:#e17c7c;
-  box-shadow:0 0 8px rgba(225,124,124,.5);
+
+  background:#ffd0c0;
+
+  box-shadow:
+    0 0 10px rgba(255,170,151,.8);
+
   animation:blink 1.8s ease-in-out infinite;
 }
 
 @keyframes blink{
-  0%,100%{opacity:1}
-  50%{opacity:.35}
+  0%,100%{
+    opacity:1;
+  }
+
+  50%{
+    opacity:.35;
+  }
 }
 
+/* retry */
 .retry{
-  margin-top:18px;
+  margin-top:15px;
+
+  height:40px;
+  padding:0 19px;
+
   display:inline-flex;
   align-items:center;
   justify-content:center;
-  gap:7px;
-  height:40px;
-  padding:0 18px;
-  border:1px solid rgba(255,255,255,.13);
-  border-radius:8px;
-  background:#e8e8ea;
-  color:#08090b;
+  gap:8px;
+
+  border:1px solid rgba(255,255,255,.35);
+  border-radius:2px;
+
+  background:rgba(255,255,255,.88);
+  color:#54265e;
+
   font-family:inherit;
-  font-size:12px;
+
+  font-size:10px;
   font-weight:700;
-  text-decoration:none;
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+
   cursor:pointer;
-  transition:.2s cubic-bezier(.22,1,.36,1);
+
+  box-shadow:
+    0 12px 35px rgba(46,9,53,.28);
+
+  transition:
+    transform .3s cubic-bezier(.22,1,.36,1),
+    background .3s ease,
+    box-shadow .3s ease;
 }
 
 .retry:hover{
   background:#fff;
-  transform:translateY(-2px);
+
+  transform:translateY(-3px);
+
+  box-shadow:
+    0 17px 40px rgba(46,9,53,.34);
 }
 
 .retry:active{
@@ -196,26 +379,81 @@ p{
 
 .retry-icon{
   display:inline-block;
-  transition:transform .5s cubic-bezier(.22,1,.36,1);
+
+  font-size:15px;
+  line-height:1;
+
+  transition:
+    transform .6s cubic-bezier(.22,1,.36,1);
 }
 
 .retry.spinning .retry-icon{
   transform:rotate(360deg);
 }
 
-@media(max-width:500px){
-  h1{
-    font-size:36px;
+/* bottom text */
+.footer{
+  position:fixed;
+
+  left:0;
+  right:0;
+  bottom:22px;
+
+  text-align:center;
+
+  font-size:8px;
+  font-weight:700;
+  letter-spacing:3px;
+
+  color:rgba(255,255,255,.43);
+
+  text-transform:uppercase;
+
+  text-shadow:
+    0 2px 10px rgba(48,7,55,.5);
+
+  z-index:10;
+}
+
+@media(max-width:600px){
+
+  .page{
+    padding:22px;
   }
 
   .logo-wrap{
-    width:90px;
-    height:90px;
+    width:125px;
+    height:125px;
+    margin-bottom:16px;
+  }
+
+  .logo{
+    width:105px;
+    height:105px;
+  }
+
+  h1{
+    font-size:48px;
+    letter-spacing:-3px;
+  }
+
+  .description{
+    max-width:300px;
+    font-size:12px;
+  }
+
+  .footer{
+    bottom:15px;
   }
 }
 
 @media(prefers-reduced-motion:reduce){
-  body,.logo,.status-dot,.retry,.retry-icon{
+
+  body,
+  .logo,
+  .status-dot,
+  .retry,
+  .retry-icon{
     animation:none;
     transition:none;
   }
@@ -224,16 +462,32 @@ p{
 </head>
 
 <body>
+
+<div class="vignette"></div>
+
 <main class="page">
+
   <div class="content">
 
+    <div class="archive">
+      unYZY archive
+    </div>
+
     <div class="logo-wrap">
-      <img class="logo" src="/assets/LOGO2.png" alt="unYZY">
+      <img
+        class="logo"
+        src="/assets/LOGO2.png"
+        alt="unYZY"
+      >
+    </div>
+
+    <div class="eyebrow">
+      connection lost
     </div>
 
     <h1>No connection.</h1>
 
-    <p>
+    <p class="description">
       unYZY couldn't connect to the internet.
       Check your connection and try again.
     </p>
@@ -243,13 +497,22 @@ p{
       Offline
     </div>
 
-    <button class="retry" id="retryBtn" type="button">
+    <button
+      class="retry"
+      id="retryBtn"
+      type="button"
+    >
       <span class="retry-icon">⟳</span>
       <span>Try Again</span>
     </button>
 
   </div>
+
 </main>
+
+<div class="footer">
+  unYZY — offline archive
+</div>
 
 <script>
 requestAnimationFrame(function(){
@@ -257,11 +520,15 @@ requestAnimationFrame(function(){
 });
 
 document.getElementById("retryBtn").addEventListener("click",function(){
+
   this.classList.add("spinning");
+
   setTimeout(function(){
     location.reload();
   },260);
+
 });
 </script>
+
 </body>
 </html>

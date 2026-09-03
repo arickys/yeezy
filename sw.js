@@ -10,6 +10,7 @@ const STATIC_FILES = [
     "/assets/logo.png",
     "/assets/err.png",
     "/assets/IAPW.png",
+    "/assets/graduation-bg.png",
     "/assets/IAPWE.png",
     "/assets/NO_CIERTO_BESAME_MAMA.png",
     "/fonts/yeezy_tstar-bold.webfont.woff",
