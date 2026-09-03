@@ -1,31 +1,24 @@
 {
-  "cleanUrls": true,
-  "trailingSlash": false,
   "redirects": [
     {
-      "source": "/index.html",
+      "source": "/downloads",
       "destination": "/",
-      "permanent": true
+      "permanent": false
     },
     {
       "source": "/downloads.html",
-      "destination": "/downloads",
-      "permanent": true
-    },
-    {
-      "source": "/updates.html",
-      "destination": "/updates",
-      "permanent": true
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/downloads",
-      "destination": "/downloads.html"
+      "destination": "/",
+      "permanent": false
     },
     {
       "source": "/updates",
-      "destination": "/updates.html"
+      "destination": "/",
+      "permanent": false
+    },
+    {
+      "source": "/updates.html",
+      "destination": "/",
+      "permanent": false
     }
   ]
 }

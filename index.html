@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="theme-color" content="#08090b">
-
-<title>unYZY [OFFLINE]</title>
+<link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png">
+<title>unYZY [HOME]</title>
 
 <style>
 @font-face{
@@ -26,113 +26,321 @@ font-display:swap;
 box-sizing:border-box;
 }
 
-html,
+:root{
+--bg:#08090b;
+--surface:#101216;
+--surface2:#15171c;
+--line:rgba(255,255,255,.075);
+--text:#f5f5f6;
+--muted:#858b95;
+--dim:#5e646e;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
 body{
 margin:0;
-width:100%;
-height:100%;
-}
-
-body{
-overflow:hidden;
+min-height:100vh;
 background:
-radial-gradient(
-circle at 50% 40%,
-rgba(255,255,255,.07),
-transparent 30%
-),
-#08090b;
-color:#f5f5f6;
+radial-gradient(circle at 50% -15%,rgba(255,255,255,.07),transparent 32rem),
+radial-gradient(circle at 0 60%,rgba(255,255,255,.018),transparent 28rem),
+radial-gradient(circle at 100% 75%,rgba(255,255,255,.015),transparent 30rem),
+var(--bg);
+color:var(--text);
 font-family:Yeezy,Arial,sans-serif;
 -webkit-font-smoothing:antialiased;
+opacity:0;
+transform:scale(1.012);
+transition:opacity .55s ease,transform .75s cubic-bezier(.22,1,.36,1);
 }
 
-.page{
-width:100%;
-height:100%;
+body.ready{
+opacity:1;
+transform:scale(1);
+}
+
+body.leaving{
+opacity:0;
+transform:scale(.985);
+}
+
+body:before{
+content:"";
+position:fixed;
+inset:0;
+pointer-events:none;
+background:
+linear-gradient(rgba(255,255,255,.012) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+background-size:80px 80px;
+mask-image:linear-gradient(to bottom,rgba(0,0,0,.7),transparent 76%);
+opacity:.3;
+}
+
+.nav{
+position:fixed;
+top:20px;
+left:50%;
+z-index:100;
+transform:translateX(-50%);
+display:flex;
+gap:3px;
+padding:5px;
+border:1px solid rgba(255,255,255,.085);
+border-radius:14px;
+background:rgba(12,13,16,.78);
+backdrop-filter:blur(24px) saturate(150%);
+-webkit-backdrop-filter:blur(24px) saturate(150%);
+box-shadow:0 15px 50px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.035);
+}
+
+.nav a{
+height:35px;
+min-width:78px;
 display:flex;
 align-items:center;
 justify-content:center;
-padding:30px;
+padding:0 14px;
+border-radius:9px;
+color:#747a84;
+text-decoration:none;
+font-size:12px;
+font-weight:700;
+transition:color .2s ease,background .2s ease,transform .2s ease;
 }
 
-.content{
-width:min(440px,100%);
+.nav a:hover{
+color:#fff;
+background:rgba(255,255,255,.055);
+}
+
+.nav a.active{
+color:#fff;
+background:rgba(255,255,255,.095);
+}
+
+.nav a:active{
+transform:scale(.95);
+}
+
+.container{
+width:min(1050px,calc(100% - 36px));
+margin:auto;
+padding:145px 0 90px;
+}
+
+.hero{
+min-height:calc(100vh - 235px);
+display:flex;
+align-items:center;
+justify-content:center;
 text-align:center;
 }
 
+.hero-inner{
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+.logo-wrap{
+position:relative;
+width:170px;
+height:170px;
+display:grid;
+place-items:center;
+margin-bottom:34px;
+}
+
+.logo-wrap:before{
+content:"";
+position:absolute;
+width:125px;
+height:70px;
+border-radius:50%;
+background:rgba(255,255,255,.08);
+filter:blur(55px);
+}
+
 .logo{
-width:110px;
-height:110px;
+position:relative;
+z-index:2;
+width:100%;
+height:100%;
 object-fit:contain;
-margin-bottom:30px;
 filter:
-drop-shadow(0 25px 45px rgba(0,0,0,.6))
-drop-shadow(0 0 35px rgba(255,255,255,.06));
+drop-shadow(0 28px 55px rgba(0,0,0,.62))
+drop-shadow(0 0 45px rgba(255,255,255,.055));
+animation:float 6s ease-in-out infinite;
+}
+
+@keyframes float{
+0%,100%{
+transform:translateY(0);
+}
+50%{
+transform:translateY(-7px);
+}
+}
+
+.kicker{
+margin-bottom:12px;
+color:#686e77;
+font-size:9px;
+font-weight:700;
+letter-spacing:2px;
+text-transform:uppercase;
 }
 
 h1{
 margin:0;
-font-size:42px;
-line-height:1;
-letter-spacing:-2px;
+font-size:clamp(58px,9vw,94px);
+line-height:.84;
+letter-spacing:-5px;
 font-weight:700;
 }
 
-p{
-margin:14px auto 0;
-max-width:330px;
+.subtitle{
+max-width:430px;
+margin:20px auto 0;
 color:#777d86;
-font-size:14px;
-line-height:1.5;
+font-size:13px;
+line-height:1.65;
 }
 
-.status{
-margin:25px auto 0;
-width:max-content;
-padding:8px 11px;
-border:1px solid rgba(255,255,255,.09);
-border-radius:7px;
-background:rgba(255,255,255,.025);
-color:#858b94;
-font-size:10px;
-font-weight:700;
-letter-spacing:1.2px;
-text-transform:uppercase;
+.actions{
+display:flex;
+gap:9px;
+margin-top:28px;
 }
 
-.retry{
-margin-top:18px;
+.button{
+height:42px;
 display:inline-flex;
 align-items:center;
 justify-content:center;
-height:40px;
-padding:0 18px;
-border:1px solid rgba(255,255,255,.13);
-border-radius:8px;
-background:#e8e8ea;
-color:#08090b;
-font-family:inherit;
-font-size:12px;
-font-weight:700;
+padding:0 17px;
+border:1px solid rgba(255,255,255,.11);
+border-radius:9px;
+background:rgba(255,255,255,.035);
+color:#d8d9dc;
 text-decoration:none;
-cursor:pointer;
-transition:.2s ease;
+font-size:11px;
+font-weight:700;
+transition:transform .2s ease,background .2s ease,border-color .2s ease;
 }
 
-.retry:hover{
-background:#fff;
+.button.primary{
+background:#e7e7e9;
+border-color:#e7e7e9;
+color:#090a0c;
+}
+
+.button:hover{
 transform:translateY(-2px);
+background:rgba(255,255,255,.08);
+border-color:rgba(255,255,255,.2);
 }
 
-@media(max-width:500px){
+.button.primary:hover{
+background:#fff;
+border-color:#fff;
+}
+
+.page-transition{
+position:fixed;
+inset:0;
+z-index:999;
+display:flex;
+align-items:center;
+justify-content:center;
+background:#08090b;
+opacity:0;
+visibility:hidden;
+pointer-events:none;
+}
+
+.page-transition.active{
+opacity:1;
+visibility:visible;
+pointer-events:auto;
+}
+
+.transition-logo{
+width:min(300px,60vw);
+height:min(300px,60vw);
+object-fit:contain;
+opacity:0;
+transform:scale(.72);
+filter:drop-shadow(0 28px 55px rgba(0,0,0,.65)) drop-shadow(0 0 55px rgba(255,255,255,.07));
+}
+
+.page-transition.show .transition-logo{
+opacity:1;
+transform:scale(1);
+transition:opacity .5s ease,transform .7s cubic-bezier(.22,1,.36,1);
+}
+
+.page-transition.fade .transition-logo{
+opacity:0;
+transform:scale(1.1);
+transition:opacity .38s ease,transform .5s cubic-bezier(.22,1,.36,1);
+}
+
+@media(max-width:560px){
+.nav{
+top:12px;
+}
+
+.nav a{
+height:33px;
+min-width:70px;
+padding:0 10px;
+font-size:11px;
+}
+
+.container{
+width:calc(100% - 24px);
+padding-top:105px;
+}
+
+.logo-wrap{
+width:125px;
+height:125px;
+margin-bottom:28px;
+}
+
 h1{
-font-size:36px;
+font-size:54px;
+letter-spacing:-3.5px;
+}
+
+.subtitle{
+font-size:11px;
+}
+
+.actions{
+margin-top:23px;
+}
+
+.button{
+height:39px;
+padding:0 14px;
+}
+}
+
+@media(prefers-reduced-motion:reduce){
+body,
+.button,
+.nav a,
+.page-transition .transition-logo{
+transition:none;
 }
 
 .logo{
-width:90px;
-height:90px;
+animation:none;
 }
 }
 </style>
@@ -140,38 +348,130 @@ height:90px;
 
 <body>
 
-<main class="page">
+<nav class="nav">
+<a href="/" class="active" data-page="home">Home</a>
+<a href="/downloads" data-page="downloads">Downloads</a>
+<a href="/updates" data-page="updates">Updates</a>
+</nav>
 
-<div class="content">
+<main class="container">
 
-<img
-class="logo"
-src="/assets/LOGO2.png"
-alt="unYZY"
->
+<section class="hero">
 
-<h1>No connection.</h1>
+<div class="hero-inner">
 
-<p>
-unYZY couldn't connect to the internet.
-Check your connection and try again.
+<div class="logo-wrap">
+<img class="logo" src="/assets/LOGO2.png" alt="unYZY">
+</div>
+
+<div class="kicker">unYZY Archive</div>
+
+<h1>unYZY</h1>
+
+<p class="subtitle">
+An independent archive for releases, recordings, and material from the Yeezy era.
 </p>
 
-<div class="status">
-Offline
-</div>
-
-<a
-class="retry"
-href="/"
-onclick="location.reload();return false;"
->
-Try Again
+<div class="actions">
+<a class="button primary" href="/downloads" data-page="downloads">
+Browse Downloads
 </a>
 
+<a class="button" href="/updates" data-page="updates">
+View Updates
+</a>
 </div>
 
+</div>
+
+</section>
+
 </main>
+
+<div class="page-transition" id="pageTransition">
+<img class="transition-logo" id="transitionLogo" src="/assets/LOGO2.png" alt="">
+</div>
+
+<script>
+const transition=document.getElementById("pageTransition");
+const transitionLogo=document.getElementById("transitionLogo");
+const links=document.querySelectorAll("[data-page]");
+
+let navigating=false;
+
+function getLogo(target){
+return target==="home"
+?"/assets/logo.png"
+:"/assets/LOGO2.png";
+}
+
+function navigate(url,target){
+if(navigating)return;
+
+navigating=true;
+document.body.classList.add("leaving");
+
+transitionLogo.src=getLogo(target);
+transition.classList.add("active");
+
+requestAnimationFrame(()=>{
+transition.classList.add("show");
+});
+
+setTimeout(()=>{
+transition.classList.add("fade");
+},620);
+
+setTimeout(()=>{
+sessionStorage.setItem("unyzyTransition",target);
+window.location.href=url;
+},880);
+}
+
+links.forEach(link=>{
+link.addEventListener("click",event=>{
+if(event.ctrlKey||event.metaKey||event.shiftKey||event.altKey)return;
+
+event.preventDefault();
+navigate(link.href,link.dataset.page);
+});
+});
+
+function enterPage(){
+const previous=sessionStorage.getItem("unyzyTransition");
+sessionStorage.removeItem("unyzyTransition");
+
+if(previous){
+transitionLogo.src=getLogo(previous);
+transition.classList.add("active");
+
+requestAnimationFrame(()=>{
+transition.classList.add("show");
+});
+
+setTimeout(()=>{
+transition.classList.add("fade");
+document.body.classList.add("ready");
+},520);
+
+setTimeout(()=>{
+transition.classList.remove("active","show","fade");
+},950);
+}else{
+requestAnimationFrame(()=>{
+document.body.classList.add("ready");
+});
+}
+}
+
+if("serviceWorker" in navigator){
+window.addEventListener("load",()=>{
+navigator.serviceWorker.register("/sw.js",{scope:"/"}).catch(()=>{});
+});
+}
+
+enterPage();
+</script>
 
 </body>
 </html>
