@@ -1,18 +1,22 @@
-const CACHE_NAME = "unyzy-v4";
+const CACHE_NAME = "unyzy-v5";
 
 const STATIC_FILES = [
     "/",
     "/index.html",
     "/downloads.html",
     "/updates.html",
+    "/offline.html",
     "/404.html",
+
+    "/graduation-bg.png",
+
     "/assets/LOGO2.png",
     "/assets/logo.png",
     "/assets/err.png",
     "/assets/IAPW.png",
-    "/assets/graduation-bg.png",
     "/assets/IAPWE.png",
     "/assets/NO_CIERTO_BESAME_MAMA.png",
+
     "/fonts/yeezy_tstar-bold.webfont.woff",
     "/fonts/yeezy_tstar-regular-webfont.woff"
 ];
@@ -22,12 +26,18 @@ self.addEventListener("install", event => {
         caches.open(CACHE_NAME).then(async cache => {
             for (const file of STATIC_FILES) {
                 try {
-                    await cache.add(file);
-                } catch {
+                    const response = await fetch(file, { cache: "no-store" });
+
+                    if (response.ok) {
+                        await cache.put(file, response);
+                    }
+                } catch (error) {
                     console.warn("Could not cache:", file);
                 }
             }
-        }).then(() => self.skipWaiting())
+
+            await self.skipWaiting();
+        })
     );
 });
 
@@ -46,6 +56,10 @@ self.addEventListener("activate", event => {
 self.addEventListener("fetch", event => {
     if (event.request.method !== "GET") return;
 
+    const url = new URL(event.request.url);
+
+    if (url.origin !== self.location.origin) return;
+
     event.respondWith(
         fetch(event.request)
             .then(response => {
@@ -61,7 +75,9 @@ self.addEventListener("fetch", event => {
             })
             .catch(() =>
                 caches.match(event.request).then(cached => {
-                    if (cached) return cached;
+                    if (cached) {
+                        return cached;
+                    }
 
                     if (event.request.mode === "navigate") {
                         return caches.match("/offline.html");
