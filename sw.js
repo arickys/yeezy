@@ -8,8 +8,7 @@ const STATIC_FILES = [
     "/offline.html",
     "/404.html",
 
-    "/graduation-bg.png",
-
+    "/assets/graduation-bg.png",
     "/assets/LOGO2.png",
     "/assets/logo.png",
     "/assets/err.png",

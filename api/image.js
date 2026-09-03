@@ -34,12 +34,15 @@ export default function handler(req, res) {
         ".gif": "image/gif"
     };
 
-    res.statusCode = 200;
+    const contentType = contentTypes[extension];
 
-    res.setHeader(
-        "Content-Type",
-        contentTypes[extension] || "application/octet-stream"
-    );
+    if (!contentType) {
+        return res.status(415).send("Unsupported file type");
+    }
+
+    res.status(200);
+
+    res.setHeader("Content-Type", contentType);
 
     res.setHeader(
         "Cache-Control",
