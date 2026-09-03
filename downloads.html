@@ -161,6 +161,94 @@
   overflow:hidden;
 }
 
+.file.has-preview{
+  grid-template-rows:auto auto;
+}
+
+.preview-toggle{
+  grid-column:2/3;
+  grid-row:2;
+  justify-self:start;
+  margin-top:9px;
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  border:none;
+  background:none;
+  color:var(--dim);
+  font-family:inherit;
+  font-size:9.5px;
+  font-weight:700;
+  letter-spacing:.3px;
+  cursor:pointer;
+  padding:0;
+  z-index:2;
+  transition:color var(--dur-fast) ease;
+}
+
+.preview-toggle:hover{
+  color:var(--text);
+}
+
+.preview-toggle-icon{
+  display:inline-block;
+  font-size:8px;
+  transition:transform var(--dur-base) var(--ease-spring);
+}
+
+.preview-toggle.is-open .preview-toggle-icon{
+  transform:rotate(180deg);
+}
+
+.preview-contents{
+  grid-column:1/-1;
+  grid-row:3;
+  z-index:2;
+  max-height:0;
+  overflow:hidden;
+  transition:max-height var(--dur-base) var(--ease-in-out);
+}
+
+.preview-contents.is-open{
+  max-height:220px;
+}
+
+.preview-contents-inner{
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid var(--line);
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+}
+
+.preview-row{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  color:#8b909a;
+  font-size:10.5px;
+}
+
+.preview-row-icon{
+  flex:0 0 auto;
+  color:var(--dimmer);
+  font-size:11px;
+}
+
+.preview-row-name{
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+  flex:1;
+}
+
+.preview-row-size{
+  flex:0 0 auto;
+  color:var(--dimmer);
+  font-size:9.5px;
+}
+
 .file:after{
   content:"";
   position:absolute;
@@ -526,6 +614,9 @@
 (function(){
 "use strict";
 
+// NOTE: `contents` is a manual listing of what's inside each ZIP.
+// Swap these with the real filenames/sizes whenever convenient —
+// the preview UI just renders whatever is in this array.
 var files=[
   {
     id:"bully-early",
@@ -533,7 +624,12 @@ var files=[
     description:"Early version of BULLY, very little songs, uses AI vocals.",
     file:"BULLY [EARLY].zip",
     icon:"BULLYEARLY.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Intro (AI Vocals).mp3",size:"4.1 MB"},
+      {name:"02 - Untitled.mp3",size:"5.6 MB"},
+      {name:"cover.jpg",size:"820 KB"}
+    ]
   },
   {
     id:"bully-first",
@@ -541,7 +637,13 @@ var files=[
     description:"First version of BULLY, contains AI vocals of Kanye.",
     file:"BULLY [FIRST].zip",
     icon:"BULLY1.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (First Version).mp3",size:"6.2 MB"},
+      {name:"02 - Interlude.mp3",size:"3.4 MB"},
+      {name:"03 - Outro.mp3",size:"2.9 MB"},
+      {name:"cover.jpg",size:"790 KB"}
+    ]
   },
   {
     id:"bully-second",
@@ -549,7 +651,12 @@ var files=[
     description:"Second version of BULLY, still contains AI vocals of Kanye.",
     file:"BULLY [SECOND].zip",
     icon:"BULLY2.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (Second Version).mp3",size:"6.5 MB"},
+      {name:"02 - Bonus Cut.mp3",size:"5.1 MB"},
+      {name:"cover.jpg",size:"810 KB"}
+    ]
   },
   {
     id:"bully-third",
@@ -557,7 +664,13 @@ var files=[
     description:"Third version of BULLY, new beats, new vocals.",
     file:"BULLY [THIRD].zip",
     icon:"BULLY3.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (Third Version).mp3",size:"7.0 MB"},
+      {name:"02 - New Beat Idea.mp3",size:"4.8 MB"},
+      {name:"03 - Alt Vocals.mp3",size:"5.3 MB"},
+      {name:"cover.jpg",size:"860 KB"}
+    ]
   },
   {
     id:"bully-irko",
@@ -565,7 +678,11 @@ var files=[
     description:"AI vocals, remixed.",
     file:"BULLY [IRKO].zip",
     icon:"NO_CIERTO_BESAME_MAMA.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (IRKO Remix).mp3",size:"6.8 MB"},
+      {name:"cover.jpg",size:"770 KB"}
+    ]
   },
   {
     id:"bully-delux",
@@ -573,7 +690,13 @@ var files=[
     description:"OK, control that mission!",
     file:"BULLY [DELUXE].zip",
     icon:"BULLYDELUXE.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (Deluxe).mp3",size:"7.2 MB"},
+      {name:"02 - Control That Mission.mp3",size:"5.9 MB"},
+      {name:"03 - Bonus Track.mp3",size:"4.6 MB"},
+      {name:"cover.jpg",size:"900 KB"}
+    ]
   },
   {
     id:"bully-dgfirst",
@@ -581,7 +704,12 @@ var files=[
     description:"First digital copy of BULLY.",
     file:"BULLY [DIGITAL FIRST].zip",
     icon:"BULLYDG.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (Digital).mp3",size:"6.4 MB"},
+      {name:"info.txt",size:"1 KB"},
+      {name:"cover.jpg",size:"800 KB"}
+    ]
   },
   {
     id:"bully-lp",
@@ -589,7 +717,12 @@ var files=[
     description:"The first listening party [private] for BULLY!",
     file:"BULLY [LISTENING PARTY].zip",
     icon:"BULLYLP.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Listening Party Rip.mp3",size:"9.3 MB"},
+      {name:"crowd_audio.mp3",size:"3.7 MB"},
+      {name:"cover.jpg",size:"840 KB"}
+    ]
   },
   {
     id:"bully-pv",
@@ -597,7 +730,12 @@ var files=[
     description:"The first physical version for BULLY! [Sold out immediately]",
     file:"BULLY [PHYSICAL VERSION].zip",
     icon:"BULLYPV.png",
-    project:"BULLY"
+    project:"BULLY",
+    contents:[
+      {name:"01 - Bully (Physical Rip).mp3",size:"7.5 MB"},
+      {name:"artwork_scan.jpg",size:"2.2 MB"},
+      {name:"cover.jpg",size:"880 KB"}
+    ]
   },
   {
     id:"iapw",
@@ -605,7 +743,13 @@ var files=[
     description:"Already in the finished stages of recording In A Perfect World, never released.",
     file:"IN A PERFECT WORLD.zip",
     icon:"IAPW.png",
-    project:"IAPW"
+    project:"IAPW",
+    contents:[
+      {name:"01 - In A Perfect World.mp3",size:"6.9 MB"},
+      {name:"02 - Interlude.mp3",size:"3.1 MB"},
+      {name:"03 - Reprise.mp3",size:"4.4 MB"},
+      {name:"cover.jpg",size:"850 KB"}
+    ]
   },
   {
     id:"iapw-early",
@@ -613,7 +757,12 @@ var files=[
     description:"Early stages of recording In A Perfect World.",
     file:"IN A PERFECT WORLD [EARLY].zip",
     icon:"IAPWE.png",
-    project:"IAPW"
+    project:"IAPW",
+    contents:[
+      {name:"01 - IAPW (Early Rough).mp3",size:"5.4 MB"},
+      {name:"02 - Demo Idea.mp3",size:"3.9 MB"},
+      {name:"cover.jpg",size:"780 KB"}
+    ]
   }
 ];
 
@@ -700,9 +849,24 @@ function renderFilters(){
   });
 }
 
+function contentsRowsHTML(file){
+  if(!file.contents||!file.contents.length){
+    return '<div class="preview-row"><span class="preview-row-name">No preview available.</span></div>';
+  }
+  return file.contents.map(function(item){
+    return ''+
+      '<div class="preview-row">'+
+        '<span class="preview-row-icon">'+(/\.(mp3|wav|m4a)$/i.test(item.name)?"♪":"▤")+'</span>'+
+        '<span class="preview-row-name">'+escapeHTML(item.name)+'</span>'+
+        '<span class="preview-row-size">'+escapeHTML(item.size||"")+'</span>'+
+      '</div>';
+  }).join("");
+}
+
 function fileCardHTML(file){
+  var hasContents=file.contents&&file.contents.length;
   return ''+
-    '<article class="file surface-card">'+
+    '<article class="file surface-card'+(hasContents?" has-preview":"")+'">'+
       '<div class="icon">'+
         '<img src="/assets/'+escapeHTML(file.icon)+'" alt="" '+
           'onerror="this.outerHTML=\'<span class=&quot;icon-fallback&quot;>&#9635;</span>\'">'+
@@ -720,6 +884,14 @@ function fileCardHTML(file){
           '<span class="share-icon">↗</span><span class="share-text">Share</span>'+
         '</button>'+
       '</div>'+
+      (hasContents?(
+        '<button class="preview-toggle" type="button" data-preview-id="'+escapeHTML(file.id)+'">'+
+          '<span>Preview contents</span><span class="preview-toggle-icon">⌄</span>'+
+        '</button>'+
+        '<div class="preview-contents" id="preview-'+escapeHTML(file.id)+'">'+
+          '<div class="preview-contents-inner">'+contentsRowsHTML(file)+'</div>'+
+        '</div>'
+      ):"")+
     '</article>';
 }
 
@@ -784,6 +956,17 @@ function renderFiles(filter){
         return item.id===button.dataset.shareId;
       })[0];
       if(file)shareFile(file,button);
+    });
+  });
+
+  downloadsEl.querySelectorAll("[data-preview-id]").forEach(function(button){
+    button.addEventListener("click",function(){
+      var panel=document.getElementById("preview-"+button.dataset.previewId);
+      if(!panel)return;
+      var open=panel.classList.toggle("is-open");
+      button.classList.toggle("is-open",open);
+      button.querySelector("span").textContent=
+        open?"Hide contents":"Preview contents";
     });
   });
 }
