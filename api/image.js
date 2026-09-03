@@ -2,46 +2,49 @@ import fs from "fs";
 import path from "path";
 
 export default function handler(req, res) {
-  const file = path.basename(req.query.file || "");
+    const file = path.basename(req.query.file || "");
 
-  const allowedFiles = [
-    "logo.png",
-    "LOGO2.png",
-    "err.png",
-    "IAPW.png"
-  ];
+    const allowedFiles = [
+        "logo.png",
+        "LOGO2.png",
+        "err.png",
+        "IAPW.png",
+        "IAPWE.png",
+        "NO_CIERTO_BESAME_MAMA.png",
+        "graduation-bg.png"
+    ];
 
-  if (!allowedFiles.includes(file)) {
-    return res.status(404).send("Not Found");
-  }
+    if (!allowedFiles.includes(file)) {
+        return res.status(404).send("Not Found");
+    }
 
-  const filePath = path.join(process.cwd(), "assets", file);
+    const filePath = path.join(process.cwd(), "assets", file);
 
-  if (!fs.existsSync(filePath)) {
-    return res.status(404).send("Not Found");
-  }
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).send("Not Found");
+    }
 
-  const extension = path.extname(file).toLowerCase();
+    const extension = path.extname(file).toLowerCase();
 
-  const contentTypes = {
-    ".png": "image/png",
-    ".jpg": "image/jpeg",
-    ".jpeg": "image/jpeg",
-    ".webp": "image/webp",
-    ".gif": "image/gif"
-  };
+    const contentTypes = {
+        ".png": "image/png",
+        ".jpg": "image/jpeg",
+        ".jpeg": "image/jpeg",
+        ".webp": "image/webp",
+        ".gif": "image/gif"
+    };
 
-  res.statusCode = 200;
+    res.statusCode = 200;
 
-  res.setHeader(
-    "Content-Type",
-    contentTypes[extension] || "application/octet-stream"
-  );
+    res.setHeader(
+        "Content-Type",
+        contentTypes[extension] || "application/octet-stream"
+    );
 
-  res.setHeader(
-    "Cache-Control",
-    "public, max-age=31536000, immutable"
-  );
+    res.setHeader(
+        "Cache-Control",
+        "public, max-age=31536000, immutable"
+    );
 
-  fs.createReadStream(filePath).pipe(res);
+    fs.createReadStream(filePath).pipe(res);
 }
