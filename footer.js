@@ -19,6 +19,6 @@
     '</div>'+
     '<div class="foot-disclaimer">'+
       'unYZY is an independent, fan-run archive. Not affiliated with or endorsed by any label or artist. '+
-      '&copy; '+year+' unYZY Archive.'+
+      ''+year+' unYZY!'+
     '</div>';
 })();
