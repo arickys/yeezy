@@ -1,24 +1,4 @@
 {
-  "redirects": [
-    {
-      "source": "/downloads",
-      "destination": "/offline",
-      "permanent": false
-    },
-    {
-      "source": "/downloads.html",
-      "destination": "/offline",
-      "permanent": false
-    },
-    {
-      "source": "/updates",
-      "destination": "/offline",
-      "permanent": false
-    },
-    {
-      "source": "/updates.html",
-      "destination": "/offline",
-      "permanent": false
-    }
-  ]
+  "cleanUrls": true,
+  "trailingSlash": false
 }
