@@ -637,6 +637,10 @@ body:after{
   color:#fff;
 }
 
+.nav a.active{
+  color:#090909;
+}
+
 .container h1,
 .container h2,
 .heading h1,
@@ -683,7 +687,7 @@ body:after{
 .chip.active{
   border-color:var(--accent);
   background:var(--accent);
-  color:#fff;
+  color:#090909;
 }
 
 .btn.primary:hover,

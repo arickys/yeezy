@@ -18,7 +18,7 @@
   var navigating=false;
   var transitionAudio=new Audio(TRANSITION_SONG);
   transitionAudio.preload="auto";
-  transitionAudio.volume=.35;
+  transitionAudio.volume=.48;
 
   function playTransitionSong(){
     transitionAudio.currentTime=0;
@@ -89,7 +89,7 @@
 
       setTimeout(function(){
         veil.classList.add("is-fading");
-      },560);
+      },2200);
     }
 
     setTimeout(function(){
@@ -97,7 +97,7 @@
         sessionStorage.setItem(STORAGE_KEY,target);
       }catch(e){}
       window.location.href=url;
-    },780);
+    },3000);
   }
 
   links.forEach(function(link){
