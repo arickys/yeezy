@@ -1,4 +1,4 @@
-const CACHE_NAME = "unyzy-v8";
+const CACHE_NAME = "unyzy-v10";
 
 const STATIC_FILES = [
     "/",

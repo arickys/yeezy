@@ -54,6 +54,12 @@
     placeSlider(true);
   });
 
+  if(document.fonts&&document.fonts.ready){
+    document.fonts.ready.then(function(){
+      placeSlider(true);
+    });
+  }
+
   /* ---- outbound: play veil, then navigate ------------------------------- */
 
   function beginNavigation(url,target){
