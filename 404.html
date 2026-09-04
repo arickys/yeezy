@@ -26,6 +26,12 @@
   font-weight:400;
   font-display:swap;
 }
+@font-face{
+  font-family:OldEnglish;
+  src:local("Old English Text MT"),local("UnifrakturCook");
+  font-weight:400;
+  font-display:swap;
+}
 
 *{box-sizing:border-box}
 
@@ -45,9 +51,10 @@ html,body{
 body{
   overflow:hidden;
   background:
-    linear-gradient(180deg,rgba(12,23,52,.18),rgba(36,85,73,.12) 48%,rgba(8,28,39,.48)),
-    url("/assets/mountainsSky.jpg") center / cover fixed;
-  color:#f3ffd9;
+    linear-gradient(115deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.72) 43%,rgba(255,255,255,.1) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.9)),
+    url("/assets/BULLYLP.png") center / cover fixed;
+  color:#f0eee8;
   font-family:Yeezy,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
   opacity:0;
@@ -107,7 +114,7 @@ body:before{
   line-height:.72;
   font-weight:900;
   letter-spacing:-.09em;
-  color:#d5ff8d;
+  color:#f1eee5;
   text-shadow:0 25px 80px rgba(0,0,0,.55);
   user-select:none;
 }
@@ -158,6 +165,10 @@ body:before{
   letter-spacing:0;
 }
 
+.message h1{
+  font-family:OldEnglish,Georgia,serif;
+}
+
 .message p{
   margin:11px 0 0;
   color:#d0e8b6;
@@ -198,13 +209,13 @@ body:before{
 }
 
 .btn.primary{
-  background:#c8ff7b;
-  border-color:#c8ff7b;
-  color:#17352d;
+  background:#fff;
+  border-color:#fff;
+  color:#090909;
 }
 
 .btn.primary:hover{
-  background:#e1ffae;
+  background:#dedede;
 }
 
 @media(max-width:650px){

@@ -29,6 +29,12 @@
   font-display:swap;
 }
 
+@font-face{
+  font-family:OldEnglish;
+  src:local("Old English Text MT"),local("UnifrakturCook");
+  font-weight:400;
+}
+
 *{
   box-sizing:border-box;
 }
@@ -57,7 +63,7 @@ background:
         rgba(152,63,107,.12) 46%,
         rgba(242,151,74,.2)
     ),
-    url("/assets/mountainsSky.jpg") center center / cover no-repeat fixed;
+    url("/assets/BULLYLP.png") center center / cover no-repeat fixed;
 
   opacity:1;
   transform:scale(1);
@@ -87,7 +93,7 @@ body:before{
       rgba(222,70,104,.08) 70%,
       rgba(255,180,92,.12)
     ),
-    url("/assets/mountainsSky.jpg") center / cover no-repeat;
+    url("/assets/BULLYLP.png") center / cover no-repeat;
 
   opacity:.34;
   mix-blend-mode:screen;
@@ -267,72 +273,6 @@ body:after{
   }
 }
 
-.mountain-scene{
-  position:fixed;
-  inset:0;
-  z-index:4;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.mountain-scene img{
-  position:absolute;
-  left:50%;
-  bottom:-1px;
-  width:max(100vw,666px);
-  max-width:none;
-  height:auto;
-  transform:translateX(-50%);
-  filter:drop-shadow(0 -8px 18px rgba(10,25,45,.28));
-}
-
-.cloud-layer{
-  position:fixed;
-  inset:0;
-  z-index:2;
-  overflow:hidden;
-  pointer-events:none;
-}
-
-.cloud-layer span{
-  position:absolute;
-  left:var(--left);
-  top:var(--top);
-  width:var(--width);
-  height:var(--height);
-  border-radius:50%;
-  background:rgba(238,246,239,.2);
-  filter:blur(12px);
-  opacity:var(--opacity);
-  will-change:transform;
-  animation:cloud-slide var(--duration) ease-in-out var(--delay) infinite alternate;
-}
-
-.cloud-layer span:after{
-  content:"";
-  position:absolute;
-  left:22%;
-  top:-45%;
-  width:38%;
-  height:115%;
-  border-radius:50%;
-  background:inherit;
-}
-
-.cloud-layer span:nth-child(1){--left:-8%;--top:18%;--width:270px;--height:30px;--opacity:.55;--duration:24s;--delay:-8s}
-.cloud-layer span:nth-child(2){--left:58%;--top:27%;--width:330px;--height:36px;--opacity:.38;--duration:30s;--delay:-15s}
-.cloud-layer span:nth-child(3){--left:19%;--top:43%;--width:220px;--height:24px;--opacity:.3;--duration:20s;--delay:-4s}
-
-@keyframes cloud-slide{
-  from{
-    transform:translate3d(-35px,0,0);
-  }
-
-  to{
-    transform:translate3d(55px,8px,0);
-  }
-}
-
 @keyframes float{
   0%,100%{
     transform:translateY(0);
@@ -375,14 +315,14 @@ body:after{
 h1{
   margin:0;
 
-  font-size:clamp(45px,8vw,70px);
-  line-height:.88;
+  font-size:clamp(48px,9vw,78px);
+  line-height:.82;
 
   font-family:AwesomePolar,Yeezy,sans-serif;
   font-weight:400;
   letter-spacing:0;
 
-  color:#b7ff4a;
+  color:#fff;
 
   text-shadow:
     0 3px 0 rgba(74,24,75,.22),
@@ -397,7 +337,7 @@ h1{
   font-size:13px;
   line-height:1.55;
 
-  color:rgba(205,255,151,.92);
+  color:#aaa69f;
 
   text-shadow:
     0 2px 12px rgba(46,7,53,.5);
@@ -416,12 +356,12 @@ h1{
   border:1px solid rgba(255,255,255,.22);
   border-radius:999px;
 
-  background:rgba(42,65,49,.28);
+  background:rgba(255,255,255,.06);
 
   backdrop-filter:blur(12px);
   -webkit-backdrop-filter:blur(12px);
 
-  color:rgba(224,239,194,.94);
+  color:#dedbd4;
 
   font-size:9px;
   font-weight:700;
@@ -439,10 +379,10 @@ h1{
 
   border-radius:50%;
 
-  background:#dce8ae;
+  background:#fff;
 
   box-shadow:
-    0 0 10px rgba(255,211,119,.8);
+    0 0 10px rgba(255,255,255,.7);
 
   animation:blink 1.8s ease-in-out infinite;
 }
@@ -473,7 +413,7 @@ h1{
   border-radius:999px;
 
   background:rgba(255,255,255,.17);
-  color:#c7ff80;
+  color:#fff;
 
   font-family:AwesomePolar,Yeezy,sans-serif;
 
@@ -500,7 +440,7 @@ h1{
 
 .retry:hover{
   background:rgba(255,255,255,.26);
-  color:#d9ffab;
+  color:#fff;
 
   transform:translateY(-3px);
 
@@ -592,8 +532,6 @@ h1{
   body:before,
   .logo,
   .logo-float,
-  .cloud-layer span,
-  .mountain-scene img,
   .status-dot,
   .retry,
   .retry-icon{
@@ -601,20 +539,53 @@ h1{
     transition:none;
   }
 }
+
+/* BULLY offline direction */
+body{
+  color:#f0eee8;
+  background:
+    linear-gradient(115deg,rgba(0,0,0,.98) 0%,rgba(0,0,0,.72) 43%,rgba(255,255,255,.1) 100%),
+    linear-gradient(180deg,rgba(0,0,0,.12),rgba(0,0,0,.9)),
+    url("/assets/BULLYLP.png") center / cover fixed;
+}
+
+body:before{
+  display:none;
+}
+
+.logo-float{
+  filter:grayscale(1) contrast(1.18) drop-shadow(0 16px 28px rgba(0,0,0,.72));
+}
+
+h1{
+  font-family:OldEnglish,Georgia,serif;
+  color:#fff;
+}
+
+    0 2px 0 rgba(0,0,0,.55),
+    0 12px 34px rgba(0,0,0,.72);
+}
+
+.retry{
+  border-color:rgba(255,255,255,.18);
+  border-radius:3px;
+  background:rgba(20,20,20,.84);
+  color:#fff;
+  backdrop-filter:none;
+  -webkit-backdrop-filter:none;
+}
+
+.retry:hover{
+  border-color:rgba(255,255,255,.72);
+  background:rgba(255,255,255,.12);
+  color:#fff;
+}
 </style>
 </head>
 
 <body>
 
 <img class="logo-float" src="/assets/LOGO2.png" alt="">
-
-<div class="cloud-layer" aria-hidden="true">
-  <span></span><span></span><span></span>
-</div>
-
-<div class="mountain-scene" aria-hidden="true">
-  <img src="/assets/mountains.png" alt="">
-</div>
 
 <div class="vignette"></div>
 
