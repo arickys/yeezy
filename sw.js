@@ -1,4 +1,4 @@
-const CACHE_NAME = "unyzy-v7";
+const CACHE_NAME = "unyzy-v8";
 
 const STATIC_FILES = [
     "/",
@@ -7,6 +7,9 @@ const STATIC_FILES = [
     "/updates.html",
     "/offline.html",
     "/404.html",
+    "/theme.css",
+    "/footer.js",
+    "/transitions.js",
 
     "/assets/graduation-bg.png",
     "/assets/mountains.png",
@@ -18,7 +21,7 @@ const STATIC_FILES = [
     "/assets/IAPWE.png",
     "/assets/NO_CIERTO_BESAME_MAMA.png",
 
-    "/fonts/yeezy_tstar-bold.webfont.woff",
+    "/fonts/yeezy_tstar-bold-webfont.woff",
     "/fonts/yeezy_tstar-regular-webfont.woff",
     "/assets/AwesomeBi_polar-Regular.otf"
 ];

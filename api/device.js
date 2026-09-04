@@ -26,7 +26,7 @@ font-weight:400;
 
 @font-face{
 font-family:Yeezy;
-src:url("/fonts/yeezy_tstar-bold.webfont.woff") format("woff");
+src:url("/fonts/yeezy_tstar-bold-webfont.woff") format("woff");
 font-weight:700;
 }
 

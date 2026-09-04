@@ -16,8 +16,14 @@
 }
 @font-face{
   font-family:Yeezy;
-  src:url("/fonts/yeezy_tstar-bold.webfont.woff") format("woff");
+  src:url("/fonts/yeezy_tstar-bold-webfont.woff") format("woff");
   font-weight:700;
+  font-display:swap;
+}
+@font-face{
+  font-family:AwesomePolar;
+  src:url("/assets/AwesomeBi_polar-Regular.otf") format("opentype");
+  font-weight:400;
   font-display:swap;
 }
 
@@ -39,10 +45,9 @@ html,body{
 body{
   overflow:hidden;
   background:
-    radial-gradient(circle at 50% 50%,rgba(255,255,255,.07),transparent 30%),
-    radial-gradient(circle at 50% 100%,rgba(255,255,255,.025),transparent 42%),
-    var(--bg);
-  color:var(--white);
+    linear-gradient(180deg,rgba(12,23,52,.18),rgba(36,85,73,.12) 48%,rgba(8,28,39,.48)),
+    url("/assets/mountainsSky.jpg") center / cover fixed;
+  color:#f3ffd9;
   font-family:Yeezy,Arial,sans-serif;
   -webkit-font-smoothing:antialiased;
   opacity:0;
@@ -102,7 +107,7 @@ body:before{
   line-height:.72;
   font-weight:900;
   letter-spacing:-.09em;
-  color:#ededee;
+  color:#d5ff8d;
   text-shadow:0 25px 80px rgba(0,0,0,.55);
   user-select:none;
 }
@@ -148,13 +153,14 @@ body:before{
 .message h1{
   margin:0;
   font-size:clamp(25px,3vw,38px);
-  font-weight:900;
-  letter-spacing:-1.8px;
+  font-family:AwesomePolar,Yeezy,sans-serif;
+  font-weight:400;
+  letter-spacing:0;
 }
 
 .message p{
   margin:11px 0 0;
-  color:var(--muted);
+  color:#d0e8b6;
   font-size:12px;
   line-height:1.6;
 }
@@ -172,11 +178,11 @@ body:before{
   align-items:center;
   justify-content:center;
   border:1px solid rgba(255,255,255,.13);
-  border-radius:9px;
-  background:rgba(255,255,255,.035);
-  color:#d5d6d9;
+  border-radius:999px;
+  background:rgba(9,33,40,.45);
+  color:#d9f5bc;
   text-decoration:none;
-  font-family:inherit;
+  font-family:AwesomePolar,Yeezy,sans-serif;
   font-size:11px;
   font-weight:700;
   cursor:pointer;
@@ -192,13 +198,13 @@ body:before{
 }
 
 .btn.primary{
-  background:#e7e7e9;
-  border-color:#e7e7e9;
-  color:#090a0c;
+  background:#c8ff7b;
+  border-color:#c8ff7b;
+  color:#17352d;
 }
 
 .btn.primary:hover{
-  background:#fff;
+  background:#e1ffae;
 }
 
 @media(max-width:650px){
