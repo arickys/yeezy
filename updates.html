@@ -219,6 +219,12 @@
   background:rgba(255,255,255,.1);
 }
 
+.li-tag.removed,
+.li-tag.fixed{
+  color:#dedbd4;
+  background:rgba(255,255,255,.06);
+}
+
 .li-tag.soon{
   color:#dedbd4;
   background:rgba(255,255,255,.1);
@@ -375,6 +381,27 @@
   </header>
 
   <section class="timeline u-stagger" id="timeline">
+
+    <article class="update surface-card">
+      <div class="update-date">SEP 3, 2026</div>
+      <div class="update-content">
+        <h2 class="update-title">BULLY theme and archive overhaul</h2>
+        <div class="update-description">
+          A full visual and functionality pass focused on making the archive feel darker, cleaner, and more like BULLY.
+          <ul class="update-list">
+            <li><span class="li-tag added">Added</span> BULLYLP artwork as the shared black-and-white background</li>
+            <li><span class="li-tag added">Added</span> Old English display typography and consistent Yeezy branding</li>
+            <li><span class="li-tag added">Added</span> Playable MP3 previews extracted directly from ZIP archives</li>
+            <li><span class="li-tag added">Added</span> BULLY music to the page transition interstitial</li>
+            <li><span class="li-tag added">Added</span> New album-style download cards with better previews and actions</li>
+            <li><span class="li-tag added">Added</span> Automatic development and preview offline mode</li>
+            <li><span class="li-tag removed">Removed</span> Mountain, cloud, confetti, green, and Graduation styling</li>
+            <li><span class="li-tag fixed">Fixed</span> Broken asset paths, missing fonts, tab alignment, and preview row stretching</li>
+          </ul>
+        </div>
+      </div>
+      <div class="update-tag" data-kind="added">Major</div>
+    </article>
 
     <article class="update surface-card">
       <div class="update-date">SEP 2, 2026</div>

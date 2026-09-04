@@ -5,6 +5,7 @@
   var STORAGE_KEY="unyzyRoute";
   var LOGO_HOME="/assets/logo.png";
   var LOGO_OTHER="/assets/LOGO2.png";
+  var TRANSITION_SONG="/assets/05%20Bully%20MIX.03_03.mp3";
 
   var body=document.body;
   var currentPage=body.getAttribute("data-page")||"home";
@@ -15,6 +16,14 @@
   var links=document.querySelectorAll("nav.nav a[data-page]");
 
   var navigating=false;
+  var transitionAudio=new Audio(TRANSITION_SONG);
+  transitionAudio.preload="auto";
+  transitionAudio.volume=.35;
+
+  function playTransitionSong(){
+    transitionAudio.currentTime=0;
+    transitionAudio.play().catch(function(){});
+  }
 
   function logoFor(target){
     return target==="home"?LOGO_HOME:LOGO_OTHER;
@@ -66,6 +75,7 @@
     if(navigating)return;
     if(!url||url.indexOf("undefined")!==-1)return;
     navigating=true;
+    playTransitionSong();
 
     body.setAttribute("data-state","leave");
 

@@ -1,4 +1,4 @@
-const CACHE_NAME = "unyzy-v13";
+const CACHE_NAME = "unyzy-v16";
 
 const STATIC_FILES = [
     "/",
@@ -19,6 +19,7 @@ const STATIC_FILES = [
     "/assets/IAPWE.png",
     "/assets/NO_CIERTO_BESAME_MAMA.png",
     "/assets/BULLYLP.png",
+    "/assets/05 Bully MIX.03_03.mp3",
 
     "/fonts/yeezy_tstar-bold-webfont.woff",
     "/fonts/yeezy_tstar-regular-webfont.woff",

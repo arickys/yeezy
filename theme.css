@@ -796,3 +796,59 @@ body:after{
 .site-footer .foot-brand{
   color:#fff;
 }
+
+.route-veil{
+  overflow:hidden;
+  background:
+    linear-gradient(115deg,rgba(0,0,0,.98),rgba(0,0,0,.78) 48%,rgba(255,255,255,.08)),
+    url("/assets/BULLYLP.png") center / cover;
+}
+
+.route-veil:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.1),transparent);
+  transform:translateX(-100%);
+  opacity:0;
+}
+
+.route-veil.is-active:before{
+  opacity:1;
+  animation:veil-sweep .9s var(--ease-out) both;
+}
+
+@keyframes veil-sweep{
+  to{
+    transform:translateX(100%);
+  }
+}
+
+.route-veil-logo{
+  transform:scale(.72) rotate(-8deg);
+  filter:grayscale(1) contrast(1.25) blur(7px) drop-shadow(0 28px 55px rgba(0,0,0,.72));
+}
+
+.route-veil.is-shown .route-veil-logo{
+  transform:scale(1) rotate(0deg);
+  filter:grayscale(1) contrast(1.25) blur(0) drop-shadow(0 28px 55px rgba(0,0,0,.72));
+}
+
+.route-veil.is-fading .route-veil-logo{
+  transform:scale(1.08) rotate(4deg);
+  filter:grayscale(1) contrast(1.25) blur(5px) drop-shadow(0 28px 55px rgba(0,0,0,.72));
+}
+
+.route-veil-ring{
+  border-color:rgba(255,255,255,.18);
+  box-shadow:0 0 0 1px rgba(0,0,0,.35),0 0 80px rgba(255,255,255,.06);
+}
+
+.route-veil-bar{
+  height:1px;
+  background:rgba(255,255,255,.16);
+}
+
+.route-veil-bar-fill{
+  background:#fff;
+}
