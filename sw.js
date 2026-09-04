@@ -1,4 +1,4 @@
-const CACHE_NAME = "unyzy-v5";
+const CACHE_NAME = "unyzy-v7";
 
 const STATIC_FILES = [
     "/",
@@ -9,6 +9,8 @@ const STATIC_FILES = [
     "/404.html",
 
     "/assets/graduation-bg.png",
+    "/assets/mountains.png",
+    "/assets/mountainsSky.jpg",
     "/assets/LOGO2.png",
     "/assets/logo.png",
     "/assets/err.png",
@@ -17,7 +19,8 @@ const STATIC_FILES = [
     "/assets/NO_CIERTO_BESAME_MAMA.png",
 
     "/fonts/yeezy_tstar-bold.webfont.woff",
-    "/fonts/yeezy_tstar-regular-webfont.woff"
+    "/fonts/yeezy_tstar-regular-webfont.woff",
+    "/assets/AwesomeBi_polar-Regular.otf"
 ];
 
 self.addEventListener("install", event => {
