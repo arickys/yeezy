@@ -1,4 +1,6 @@
-const OFFLINE_MODE = true;
+const OFFLINE_MODE = process.env.OFFLINE_MODE
+    ? process.env.OFFLINE_MODE === "true"
+    : process.env.NODE_ENV === "development" || process.env.VERCEL_ENV !== "production";
 
 export default function middleware(request) {
     if (!OFFLINE_MODE) {
