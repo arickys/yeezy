@@ -20,6 +20,10 @@ export default function middleware(request) {
         return;
     }
 
+    if (request.destination !== "document") {
+        return;
+    }
+
     return Response.redirect(
         new URL("/offline", request.url),
         307
