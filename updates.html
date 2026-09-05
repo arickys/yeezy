@@ -1,513 +1,61 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#08090b">
-<link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png">
-<link rel="stylesheet" href="/theme.css">
-<title>unYZY [UPDATES]</title>
 
-<style>
-.page-head{
-  display:flex;
-  align-items:flex-end;
-  justify-content:space-between;
-  gap:30px;
-  padding-bottom:28px;
-  border-bottom:1px solid var(--line);
-}
+<html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <meta name="theme-color" content="#080808"> <title>[NEW WEBSITE]</title> <link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png">
 
-.page-title{
-  margin:0;
-  font-size:clamp(50px,6vw,70px);
-  line-height:.86;
-  letter-spacing:-4px;
-  font-weight:700;
-}
+<style> @font-face{ font-family:Yeezy; src:url("/fonts/yeezy_tstar-regular-webfont.woff") format("woff"); font-weight:400; font-display:swap; } @font-face{ font-family:Yeezy; src:url("/fonts/yeezy_tstar-bold-webfont.woff") format("woff"); font-weight:700; font-display:swap; } @font-face{ font-family:OldEnglish; src:local("Old English Text MT"),local("UnifrakturCook"); font-weight:400; } *{ box-sizing:border-box; } html, body{ width:100%; height:100%; margin:0; } html{ overflow:hidden; } body{ overflow:hidden; color:#fff; font-family:Yeezy,Arial,sans-serif; background: linear-gradient( 110deg, rgba(0,0,0,.96) 0%, rgba(0,0,0,.78) 38%, rgba(0,0,0,.48) 67%, rgba(0,0,0,.9) 100% ), url("/assets/BULLYLP.png") center / cover no-repeat fixed; -webkit-font-smoothing:antialiased; } /* cinematic overlay */ body:before{ content:""; position:fixed; inset:0; pointer-events:none; background: radial-gradient( circle at 50% 45%, transparent 0%, rgba(0,0,0,.18) 45%, rgba(0,0,0,.78) 100% ); z-index:1; } /* film grain */ body:after{ content:""; position:fixed; inset:-50%; pointer-events:none; opacity:.075; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E"); mix-blend-mode:soft-light; z-index:20; } /* top navigation */ .nav{ position:fixed; top:0; left:0; right:0; height:86px; padding:0 38px; display:flex; align-items:center; justify-content:space-between; z-index:10; } .brand{ display:flex; align-items:center; gap:12px; color:#fff; text-decoration:none; font-size:10px; font-weight:700; letter-spacing:4px; text-transform:uppercase; } .brand-mark{ width:7px; height:7px; border-radius:50%; background:#fff; box-shadow:0 0 14px rgba(255,255,255,.75); } .nav-right{ display:flex; align-items:center; gap:10px; } .nav-link{ height:36px; padding:0 15px; display:flex; align-items:center; justify-content:center; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.28); color:rgba(255,255,255,.7); text-decoration:none; font-size:9px; font-weight:700; letter-spacing:2px; text-transform:uppercase; transition: color .25s ease, background .25s ease, border-color .25s ease, transform .25s ease; } .nav-link:hover{ color:#fff; background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.4); transform:translateY(-2px); } /* floating logo */ .logo-float{ position:fixed; z-index:4; top:15%; right:8%; width:125px; height:125px; object-fit:contain; filter: grayscale(1) contrast(1.2) drop-shadow(0 20px 35px rgba(0,0,0,.8)); opacity:.75; animation:float 6s ease-in-out infinite; } @keyframes float{ 0%,100%{ transform:translateY(0) rotate(-4deg); } 50%{ transform:translateY(-10px) rotate(2deg); } } /* main */ .page{ position:relative; z-index:5; width:100%; height:100%; display:flex; align-items:center; justify-content:center; padding:90px 24px 70px; } .content{ width:min(760px,100%); text-align:center; display:flex; flex-direction:column; align-items:center; } /* tiny label */ .eyebrow{ display:flex; align-items:center; gap:13px; margin-bottom:22px; color:rgba(255,255,255,.5); font-size:9px; font-weight:700; letter-spacing:5px; text-transform:uppercase; } .eyebrow:before, .eyebrow:after{ content:""; width:32px; height:1px; background:rgba(255,255,255,.32); } /* headline */ h1{ margin:0; font-family:OldEnglish,Georgia,serif; font-size:clamp(70px,12vw,145px); line-height:.78; font-weight:400; letter-spacing:-4px; color:#fff; text-shadow: 0 3px 0 rgba(0,0,0,.7), 0 18px 55px rgba(0,0,0,.8); animation:title-in 1.2s cubic-bezier(.16,1,.3,1) both; } @keyframes title-in{ from{ opacity:0; transform:translateY(25px) scale(.97); filter:blur(10px); } to{ opacity:1; transform:translateY(0) scale(1); filter:blur(0); } } /* subtitle */ .subtitle{ margin:28px 0 0; color:rgba(255,255,255,.78); font-size:13px; line-height:1.65; letter-spacing:.3px; max-width:440px; animation:fade-up 1s .2s cubic-bezier(.16,1,.3,1) both; } @keyframes fade-up{ from{ opacity:0; transform:translateY(15px); } to{ opacity:1; transform:translateY(0); } } /* divider */ .divider{ width:100%; max-width:480px; height:1px; margin:32px 0 25px; background: linear-gradient( 90deg, transparent, rgba(255,255,255,.28), transparent ); } /* buttons */ .actions{ display:flex; align-items:center; justify-content:center; gap:10px; flex-wrap:wrap; animation:fade-up 1s .35s cubic-bezier(.16,1,.3,1) both; } .button{ position:relative; height:46px; min-width:145px; padding:0 21px; display:inline-flex; align-items:center; justify-content:center; gap:10px; border:1px solid rgba(255,255,255,.24); border-radius:2px; background:rgba(255,255,255,.08); color:#fff; text-decoration:none; font-size:9px; font-weight:700; letter-spacing:2.5px; text-transform:uppercase; overflow:hidden; transition: transform .3s cubic-bezier(.22,1,.36,1), background .3s ease, border-color .3s ease, box-shadow .3s ease; } .button:before{ content:""; position:absolute; inset:0; background:linear-gradient( 105deg, transparent 25%, rgba(255,255,255,.15) 50%, transparent 75% ); transform:translateX(-120%); transition:transform .7s cubic-bezier(.16,1,.3,1); } .button:hover:before{ transform:translateX(120%); } .button:hover{ transform:translateY(-4px); background:rgba(255,255,255,.14); border-color:rgba(255,255,255,.62); box-shadow:0 15px 40px rgba(0,0,0,.35); } .button:active{ transform:translateY(-1px) scale(.98); } .button.primary{ background:#fff; color:#080808; border-color:#fff; } .button.primary:hover{ background:#eee; color:#000; border-color:#fff; } .discord-icon{ width:14px; height:14px; display:block; fill:currentColor; } /* status */ .status{ margin-top:27px; display:flex; align-items:center; gap:8px; color:rgba(255,255,255,.4); font-size:8px; font-weight:700; letter-spacing:3px; text-transform:uppercase; } .status-dot{ width:5px; height:5px; border-radius:50%; background:#fff; box-shadow:0 0 10px rgba(255,255,255,.8); animation:pulse 1.8s ease-in-out infinite; } @keyframes pulse{ 0%,100%{ opacity:1; transform:scale(1); } 50%{ opacity:.35; transform:scale(.75); } } /* corner details */ .corner{ position:fixed; z-index:8; color:rgba(255,255,255,.28); font-size:7px; font-weight:700; letter-spacing:3px; text-transform:uppercase; } .corner.left{ left:38px; bottom:30px; } .corner.right{ right:38px; bottom:30px; } /* mobile */ @media(max-width:650px){ .nav{ height:70px; padding:0 20px; } .brand{ font-size:8px; letter-spacing:3px; } .nav-link{ height:32px; padding:0 11px; font-size:8px; } .logo-float{ top:10%; right:-4%; width:100px; height:100px; opacity:.45; } .page{ padding:80px 20px 65px; } h1{ font-size:70px; letter-spacing:-3px; } .subtitle{ font-size:12px; max-width:320px; } .divider{ max-width:320px; margin:25px 0 20px; } .actions{ width:100%; } .button{ width:100%; max-width:280px; } .corner{ display:none; } } @media(prefers-reduced-motion:reduce){ *, *:before, *:after{ animation:none!important; transition:none!important; } } </style>
 
-.page-subtitle{
-  margin-top:14px;
-  max-width:450px;
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-}
-
-.logo-area{
-  position:relative;
-  width:125px;
-  height:125px;
-  display:grid;
-  place-items:center;
-  flex:0 0 125px;
-}
-
-.logo-area:before{
-  content:"";
-  position:absolute;
-  width:105px;
-  height:60px;
-  border-radius:50%;
-  background:rgba(255,255,255,.08);
-  filter:blur(50px);
-}
-
-.logo-area img{
-  position:relative;
-  z-index:2;
-  width:105px;
-  height:105px;
-  object-fit:contain;
-  filter:drop-shadow(0 22px 40px rgba(0,0,0,.52)) drop-shadow(0 0 35px rgba(255,255,255,.05));
-}
-
-/* ---- timeline ---- */
-
-.timeline{
-  position:relative;
-  margin-top:30px;
-  padding-left:20px;
-}
-
-.timeline:before{
-  content:"";
-  position:absolute;
-  left:0;
-  top:10px;
-  bottom:10px;
-  width:1px;
-  background:linear-gradient(to bottom,rgba(255,255,255,.14),rgba(255,255,255,.025));
-}
-
-.update{
-  position:relative;
-  display:grid;
-  grid-template-columns:145px minmax(0,1fr) auto;
-  gap:24px;
-  align-items:start;
-  margin-bottom:12px;
-  padding:21px 20px;
-}
-
-.update:before{
-  content:"";
-  position:absolute;
-  left:-24px;
-  top:28px;
-  width:7px;
-  height:7px;
-  border:2px solid var(--bg);
-  border-radius:50%;
-  background:#656b74;
-  box-shadow:0 0 0 1px rgba(255,255,255,.08);
-  transition:background var(--dur-fast) ease,box-shadow var(--dur-fast) ease;
-}
-
-.update:first-child:before{
-  background:#fff;
-  box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 16px rgba(255,255,255,.13);
-}
-
-.update:first-child{
-  border-color:rgba(255,255,255,.105);
-}
-
-.update-date{
-  padding-top:2px;
-  color:#626873;
-  font-size:9px;
-  font-weight:700;
-  letter-spacing:1.2px;
-  line-height:1.5;
-}
-
-.update:first-child .update-date{
-  color:#aeb2b9;
-}
-
-.update-content{
-  min-width:0;
-}
-
-.update-title{
-  margin:0;
-  font-size:15px;
-  font-weight:700;
-  letter-spacing:-.2px;
-}
-
-.update-description{
-  margin-top:7px;
-  max-width:650px;
-  color:#777d87;
-  font-size:11px;
-  line-height:1.65;
-}
-
-.update-tag{
-  height:25px;
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding:0 9px;
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:7px;
-  background:rgba(255,255,255,.025);
-  color:#737983;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:1px;
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-
-.update:first-child .update-tag{
-  color:#e0e1e3;
-  border-color:rgba(255,255,255,.15);
-  background:rgba(255,255,255,.055);
-}
-
-/* tag color accents — subtle, still monochrome-first */
-.update-tag[data-kind="added"]{
-  border-color:rgba(255,255,255,.18);
-  color:#dedbd4;
-  background:rgba(255,255,255,.06);
-}
-
-.update-tag[data-kind="bug"]{
-  border-color:rgba(255,150,150,.18);
-  color:#f0b3b3;
-  background:rgba(255,150,150,.06);
-}
-
-/* bullet list inside a longer update body */
-.update-list{
-  list-style:none;
-  margin:11px 0 0;
-  padding:0;
-  display:flex;
-  flex-direction:column;
-  gap:7px;
-}
-
-.update-list li{
-  display:flex;
-  align-items:baseline;
-  gap:8px;
-  color:#8b909a;
-  font-size:11px;
-  line-height:1.55;
-}
-
-.li-tag{
-  flex:0 0 auto;
-  display:inline-flex;
-  align-items:center;
-  height:18px;
-  padding:0 6px;
-  border-radius:5px;
-  font-size:8px;
-  font-weight:700;
-  letter-spacing:.6px;
-  text-transform:uppercase;
-  white-space:nowrap;
-}
-
-.li-tag.added{
-  color:#dedbd4;
-  background:rgba(255,255,255,.1);
-}
-
-.li-tag.removed,
-.li-tag.fixed{
-  color:#dedbd4;
-  background:rgba(255,255,255,.06);
-}
-
-.li-tag.soon{
-  color:#dedbd4;
-  background:rgba(255,255,255,.1);
-}
-
-/* collapsed older entries */
-.update.is-hidden{
-  display:none;
-}
-
-.showmore{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:7px;
-  width:100%;
-  height:44px;
-  margin-top:6px;
-  border:1px dashed rgba(255,255,255,.11);
-  border-radius:var(--radius-md);
-  background:transparent;
-  color:var(--muted);
-  font-family:inherit;
-  font-size:11px;
-  font-weight:700;
-  cursor:pointer;
-  transition:
-    color var(--dur-fast) ease,
-    border-color var(--dur-fast) ease,
-    background var(--dur-fast) ease;
-}
-
-.showmore:hover{
-  color:#fff;
-  border-color:rgba(255,255,255,.22);
-  background:rgba(255,255,255,.03);
-}
-
-.showmore-icon{
-  transition:transform var(--dur-base) var(--ease-spring);
-}
-
-.showmore.is-open .showmore-icon{
-  transform:rotate(180deg);
-}
-
-@media(max-width:760px){
-  .page-head{
-    align-items:flex-start;
-  }
-
-  .update{
-    grid-template-columns:1fr;
-    gap:9px;
-  }
-
-  .update-tag{
-    position:absolute;
-    top:17px;
-    right:17px;
-  }
-
-  .update-title{
-    padding-right:70px;
-  }
-
-  .logo-area{
-    width:100px;
-    height:100px;
-    flex-basis:100px;
-  }
-
-  .logo-area img{
-    width:85px;
-    height:85px;
-  }
-}
-
-@media(max-width:560px){
-  .page-head{
-    display:block;
-  }
-
-  .page-title{
-    font-size:47px;
-    letter-spacing:-3px;
-  }
-
-  .page-subtitle{
-    font-size:11px;
-  }
-
-  .logo-area{
-    margin:24px auto 0;
-  }
-
-  .timeline{
-    margin-top:24px;
-    padding-left:14px;
-  }
-
-  .timeline:before{
-    left:0;
-  }
-
-  .update{
-    padding:17px 16px;
-    margin-bottom:10px;
-  }
-
-  .update:before{
-    left:-18px;
-  }
-
-  .update-date{
-    font-size:8px;
-  }
-
-  .update-description{
-    font-size:10.5px;
-  }
-
-  .update-tag{
-    top:15px;
-    right:15px;
-  }
-}
-</style>
 </head>
 
-<body data-page="updates">
+<body>
 
-<nav class="nav">
-  <div class="nav-slider"></div>
-  <a href="/" data-page="home">Home</a>
-  <a href="/downloads" data-page="downloads">Downloads</a>
-  <a href="/updates" class="active" data-page="updates">Updates</a>
-</nav>
+<nav class="nav"> <a class="brand" href="/"> <span class="brand-mark"></span> unYZY </a>
 
-<main class="container u-view">
+<div class="nav-right"> <a class="nav-link" href="/">Enter Archive</a> </div> </nav>
 
-  <header class="page-head">
-    <div>
-      <div class="kicker">Changelog</div>
-      <h1 class="page-title">Updates</h1>
-      <div class="page-subtitle">
-        New additions, changes, fixes, and improvements to the archive.
-      </div>
-    </div>
+<img class="logo-float" src="/assets/LOGO2.png" alt="">
 
-    <div class="logo-area">
-      <img src="/assets/LOGO2.png" alt="unYZY">
-    </div>
-  </header>
+<main class="page"> <section class="content">
 
-  <section class="timeline u-stagger" id="timeline">
-
-    <article class="update surface-card">
-      <div class="update-date">SEP 3, 2026</div>
-      <div class="update-content">
-        <h2 class="update-title">BULLY theme and archive overhaul</h2>
-        <div class="update-description">
-          A full visual and functionality pass focused on making the archive feel darker, cleaner, and more like BULLY.
-          <ul class="update-list">
-            <li><span class="li-tag added">Added</span> BULLYLP artwork as the shared black-and-white background</li>
-            <li><span class="li-tag added">Added</span> Old English display typography and consistent Yeezy branding</li>
-            <li><span class="li-tag added">Added</span> Playable MP3 previews extracted directly from ZIP archives</li>
-            <li><span class="li-tag added">Added</span> BULLY music to the page transition interstitial</li>
-            <li><span class="li-tag added">Added</span> New album-style download cards with better previews and actions</li>
-            <li><span class="li-tag added">Added</span> Automatic development and preview offline mode</li>
-            <li><span class="li-tag removed">Removed</span> Mountain, cloud, confetti, green, and Graduation styling</li>
-            <li><span class="li-tag fixed">Fixed</span> Broken asset paths, missing fonts, tab alignment, and preview row stretching</li>
-          </ul>
-        </div>
-      </div>
-      <div class="update-tag" data-kind="added">Major</div>
-    </article>
-
-    <article class="update surface-card">
-      <div class="update-date">SEP 2, 2026</div>
-      <div class="update-content">
-        <h2 class="update-title">Biggest update after releasing</h2>
-        <div class="update-description">
-          Fixed every single little bug, fixed downloading issues, and more. Below is what's been added / coming soon:
-          <ul class="update-list">
-            <li><span class="li-tag added">Added</span> ZIP-content previews — preview what's inside each ZIP</li>
-            <li><span class="li-tag added">Added</span> Polished cards / download cards</li>
-            <li><span class="li-tag added">Added</span> Revamped user interface / design</li>
-            <li><span class="li-tag added">Added</span> Several unreleased BULLY versions</li>
-            <li><span class="li-tag soon">Coming Soon</span> Lots of albums on the way</li>
-          </ul>
-        </div>
-      </div>
-      <div class="update-tag" data-kind="added">Major</div>
-    </article>
-
-    <article class="update surface-card is-hidden" data-collapsible>
-      <div class="update-date">AUG 30, 2026</div>
-      <div class="update-content">
-        <h2 class="update-title">Archive launch</h2>
-        <div class="update-description">
-          The archive is now live with the first available release.
-        </div>
-      </div>
-      <div class="update-tag" data-kind="added">Added</div>
-    </article>
-
-    <article class="update surface-card is-hidden" data-collapsible>
-      <div class="update-date">AUG 30, 2026</div>
-      <div class="update-content">
-        <h2 class="update-title">Dedicated pages</h2>
-        <div class="update-description">
-          Downloads and updates now have their own separate pages.
-        </div>
-      </div>
-      <div class="update-tag">Update</div>
-    </article>
-
-    <article class="update surface-card is-hidden" data-collapsible>
-      <div class="update-date">AUG 30, 2026</div>
-      <div class="update-content">
-        <h2 class="update-title">Navigation cleanup</h2>
-        <div class="update-description">
-          Clean URLs are now used throughout the site.
-        </div>
-      </div>
-      <div class="update-tag">Patch</div>
-    </article>
-
-    <article class="update surface-card is-hidden" data-collapsible>
-      <div class="update-date">AUG 30, 2026</div>
-      <div class="update-content">
-        <h2 class="update-title">Asset loading fix</h2>
-        <div class="update-description">
-          Fixed image paths after moving the site's graphics into the assets folder.
-        </div>
-      </div>
-      <div class="update-tag" data-kind="bug">Bug Fixes</div>
-    </article>
-
-  </section>
-
-  <button class="showmore" id="showMoreBtn" type="button">
-    <span>Show earlier updates</span>
-    <span class="showmore-icon">⌄</span>
-  </button>
-
-</main>
-
-<footer class="site-footer" id="siteFooter"></footer>
-
-<div class="route-veil" id="routeVeil">
-  <div class="route-veil-ring"></div>
-  <img class="route-veil-logo" id="routeVeilLogo" src="/assets/LOGO2.png" alt="">
-  <div class="route-veil-bar"><div class="route-veil-bar-fill"></div></div>
+<div class="eyebrow">
+  Something new
 </div>
 
-<script>
-(function(){
-"use strict";
+<h1>NEW<br>WEBSITE</h1>
 
-var btn=document.getElementById("showMoreBtn");
-var hidden=document.querySelectorAll("#timeline [data-collapsible]");
+<p class="subtitle">
+  unYZY has moved forward.<br>
+  A completely rebuilt archive, a new interface,
+  and more unreleased material than ever.
+</p>
 
-if(!hidden.length){
-  btn.style.display="none";
-  return;
-}
+<div class="divider"></div>
 
-var open=false;
+<div class="actions">
 
-btn.addEventListener("click",function(){
-  open=!open;
-  hidden.forEach(function(el){
-    el.classList.toggle("is-hidden",!open);
-  });
-  btn.classList.toggle("is-open",open);
-  btn.querySelector("span").textContent=
-    open?"Hide earlier updates":"Show earlier updates";
-});
-})();
-</script>
-<script src="/footer.js"></script>
-<script src="/transitions.js"></script>
-</body>
-</html>
+  <a class="button primary" href="/">
+    Enter unYZY
+  </a>
+
+  <a class="button" href="https://discord.gg/DuyBzcYCfP" target="_blank" rel="noopener noreferrer">
+
+    <svg class="discord-icon" viewBox="0 0 24 24" aria-hidden="true">
+      <path d="M19.54 5.18A16.8 16.8 0 0 0 15.48 4l-.5 1.02a15.2 15.2 0 0 0-5.96 0L8.52 4a16.9 16.9 0 0 0-4.06 1.18C1.9 9.1 1.2 12.9 1.55 16.65a16.7 16.7 0 0 0 4.98 2.5l1.2-1.64c-.66-.24-1.29-.54-1.89-.9l.46-.35c3.64 1.7 7.6 1.7 11.2 0l.47.35c-.6.36-1.24.66-1.9.9l1.2 1.64a16.7 16.7 0 0 0 4.98-2.5c.42-4.35-.72-8.12-2.71-11.47ZM8.53 15.05c-1.09 0-1.98-1-1.98-2.22s.87-2.23 1.98-2.23 2 1 1.98 2.23c0 1.22-.87 2.22-1.98 2.22Zm6.94 0c-1.09 0-1.98-1-1.98-2.22s.87-2.23 1.98-2.23 2 1 1.98 2.23c0 1.22-.87 2.22-1.98 2.22Z"/>
+    </svg>
+
+    Discord
+  </a>
+
+</div>
+
+<div class="status">
+  <span class="status-dot"></span>
+  archive online
+</div>
+
+</section> </main>
+
+<div class="corner left"> unYZY / 2026 </div>
+
+<div class="corner right"> BULLY ARCHIVE </div>
+
+</body> </html>
