@@ -1,1 +1,542 @@
-<!DOCTYPE html> <html lang="en"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width,initial-scale=1"> <meta name="theme-color" content="#000"> <title>NEW WEBSITE</title> <link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png"> <style> @font-face{ font-family:Yeezy; src:url("/fonts/yeezy_tstar-regular-webfont.woff") format("woff"); font-weight:400; font-display:swap; } @font-face{ font-family:Yeezy; src:url("/fonts/yeezy_tstar-bold-webfont.woff") format("woff"); font-weight:700; font-display:swap; } *{ box-sizing:border-box; } html, body{ width:100%; height:100%; margin:0; overflow:hidden; } body{ background:#000; color:#fff; font-family:Yeezy,Arial,sans-serif; -webkit-font-smoothing:antialiased; } /* BACKGROUND */ .bg{ position:fixed; inset:0; background: radial-gradient( circle at 50% 48%, rgba(255,255,255,.035), transparent 32% ); z-index:0; } /* GRAIN */ .grain{ position:fixed; inset:-50%; z-index:20; pointer-events:none; opacity:.065; background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180' viewBox='0 0 180 180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); animation:grain .18s steps(2) infinite; } @keyframes grain{ 0%{transform:translate(0,0)} 25%{transform:translate(2%,-1%)} 50%{transform:translate(-1%,2%)} 75%{transform:translate(1%,1%)} 100%{transform:translate(-2%,-2%)} } /* NAV */ .nav{ position:fixed; top:0; left:0; right:0; height:80px; padding:0 35px; display:flex; align-items:center; justify-content:space-between; z-index:10; } .brand{ color:#fff; text-decoration:none; font-size:9px; font-weight:700; letter-spacing:5px; text-transform:uppercase; opacity:.7; transition:opacity .3s ease; } .brand:hover{ opacity:1; } .date{ color:rgba(255,255,255,.25); font-size:7px; letter-spacing:4px; text-transform:uppercase; } /* CENTER */ .center{ position:fixed; inset:0; z-index:5; display:flex; align-items:center; justify-content:center; } /* GLOBE */ .globe{ position:relative; width:min(47vw,520px); aspect-ratio:1; border-radius:50%; background: radial-gradient( circle at 38% 32%, rgba(255,255,255,.18), rgba(255,255,255,.035) 28%, rgba(0,0,0,.85) 72%, #000 100% ); box-shadow: inset -45px -25px 80px rgba(0,0,0,.95), inset 25px 20px 45px rgba(255,255,255,.06), 0 0 100px rgba(255,255,255,.025); animation: globeFloat 7s ease-in-out infinite; } /* GLOBE WIRES */ .globe:before, .globe:after{ content:""; position:absolute; inset:7%; border:1px solid rgba(255,255,255,.13); border-radius:50%; } .globe:before{ transform:rotateY(65deg); box-shadow: 0 0 0 1px rgba(255,255,255,.035), 0 0 25px rgba(255,255,255,.025); } .globe:after{ transform:rotateY(-65deg); } /* LATITUDE */ .latitude{ position:absolute; inset:22% 4%; border-top:1px solid rgba(255,255,255,.11); border-bottom:1px solid rgba(255,255,255,.08); border-radius:50%; transform:rotateX(62deg); } /* LONGITUDE */ .longitude{ position:absolute; inset:4% 22%; border-left:1px solid rgba(255,255,255,.1); border-right:1px solid rgba(255,255,255,.07); border-radius:50%; transform:rotateY(25deg); } /* ROTATING RING */ .ring{ position:absolute; inset:-5%; border:1px solid rgba(255,255,255,.055); border-radius:50%; transform:rotateX(72deg) rotateZ(-12deg); animation:ring 12s linear infinite; } @keyframes ring{ from{ transform:rotateX(72deg) rotateZ(-12deg); } to{ transform:rotateX(72deg) rotateZ(348deg); } } @keyframes globeFloat{ 0%,100%{ transform:translateY(0) scale(1); } 50%{ transform:translateY(-10px) scale(1.008); } } /* CENTER TEXT */ .center-text{ position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); text-align:center; pointer-events:none; } .center-text h1{ margin:0; font-size:clamp(25px,4vw,52px); font-weight:400; letter-spacing:10px; text-transform:uppercase; color:rgba(255,255,255,.86); text-shadow: 0 0 30px rgba(255,255,255,.08); white-space:nowrap; } .center-text p{ margin:17px 0 0; font-size:7px; letter-spacing:5px; color:rgba(255,255,255,.28); text-transform:uppercase; } /* DISCORD */ .discord{ position:fixed; left:50%; bottom:38px; transform:translateX(-50%); z-index:10; color:rgba(255,255,255,.28); text-decoration:none; font-size:7px; font-weight:700; letter-spacing:4px; text-transform:uppercase; transition: color .3s ease, letter-spacing .3s ease; } .discord:hover{ color:#fff; letter-spacing:6px; } /* CORNER */ .corner{ position:fixed; z-index:10; left:35px; bottom:35px; color:rgba(255,255,255,.18); font-size:6px; letter-spacing:3px; text-transform:uppercase; } /* MOBILE */ @media(max-width:650px){ .nav{ padding:0 20px; } .date{ display:none; } .globe{ width:78vw; } .center-text h1{ font-size:22px; letter-spacing:6px; } .center-text p{ font-size:6px; letter-spacing:3px; } .corner{ display:none; } .discord{ bottom:25px; } } @media(prefers-reduced-motion:reduce){ *, *:before, *:after{ animation:none!important; transition:none!important; } } </style> </head> <body> <div class="bg"></div> <div class="grain"></div> <nav class="nav"> <a href="/" class="brand"> unYZY </a> <div class="date"> 09 / 05 / 26 </div> </nav> <main class="center"> <div class="globe"> <div class="latitude"></div> <div class="longitude"></div> <div class="ring"></div> <div class="center-text"> <h1>NEW</h1> <p>unYZY</p> </div> </div> </main> <a class="discord" href="https://discord.gg/DuyBzcYCfP" target="_blank" rel="noopener noreferrer" > Discord </a> <div class="corner"> 001 / 001 </div> </body> </html>
+ html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#000">
+<title>NEW WEBSITE</title>
+<link rel="icon" type="image/png" href="/assets/NO_CIERTO_BESAME_MAMA.png">
+
+<style>
+@font-face{
+  font-family:Yeezy;
+  src:url("/fonts/yeezy_tstar-regular-webfont.woff") format("woff");
+  font-weight:400;
+  font-display:swap
+}
+
+@font-face{
+  font-family:Yeezy;
+  src:url("/fonts/yeezy_tstar-bold-webfont.woff") format("woff");
+  font-weight:700;
+  font-display:swap
+}
+
+*{
+  box-sizing:border-box
+}
+
+html,body{
+  width:100%;
+  height:100%;
+  margin:0;
+  overflow:hidden;
+  background:#000
+}
+
+body{
+  color:#fff;
+  font-family:Yeezy,Arial,sans-serif;
+  -webkit-font-smoothing:antialiased;
+  cursor:default
+}
+
+.bg{
+  position:fixed;
+  inset:0;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(255,255,255,.045),transparent 28%),
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.018),transparent 55%);
+  pointer-events:none
+}
+
+.grain{
+  position:fixed;
+  inset:-50%;
+  z-index:50;
+  pointer-events:none;
+  opacity:.055;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
+  animation:grain .18s steps(2) infinite
+}
+
+.nav{
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  height:80px;
+  padding:0 35px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  z-index:20
+}
+
+.brand{
+  color:#fff;
+  text-decoration:none;
+  font-size:9px;
+  font-weight:700;
+  letter-spacing:5px;
+  text-transform:uppercase;
+  opacity:.7;
+  transition:.3s
+}
+
+.brand:hover{
+  opacity:1;
+  letter-spacing:7px
+}
+
+.date{
+  color:rgba(255,255,255,.22);
+  font-size:7px;
+  letter-spacing:4px
+}
+
+.stage{
+  position:fixed;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  perspective:1200px;
+  z-index:5
+}
+
+.globe-wrap{
+  position:relative;
+  width:min(58vw,620px);
+  aspect-ratio:1;
+  transform-style:preserve-3d;
+  transition:transform .12s ease-out
+}
+
+.globe{
+  position:absolute;
+  inset:5%;
+  border-radius:50%;
+  transform-style:preserve-3d;
+  cursor:grab;
+  background:
+    radial-gradient(
+      circle at 35% 29%,
+      rgba(255,255,255,.2) 0%,
+      rgba(255,255,255,.075) 13%,
+      rgba(255,255,255,.025) 30%,
+      rgba(0,0,0,.92) 72%,
+      #000 100%
+    );
+  box-shadow:
+    inset -70px -35px 100px rgba(0,0,0,.98),
+    inset 25px 20px 55px rgba(255,255,255,.055),
+    0 0 100px rgba(255,255,255,.025);
+  animation:float 7s ease-in-out infinite
+}
+
+.globe:active{
+  cursor:grabbing
+}
+
+.globe::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  background:
+    repeating-radial-gradient(
+      ellipse at center,
+      transparent 0 25px,
+      rgba(255,255,255,.025) 26px 27px
+    );
+  opacity:.8;
+  pointer-events:none
+}
+
+.grid{
+  position:absolute;
+  inset:0;
+  border-radius:50%;
+  overflow:hidden;
+  transform-style:preserve-3d;
+  pointer-events:none
+}
+
+.line{
+  position:absolute;
+  border:1px solid rgba(255,255,255,.105);
+  border-radius:50%;
+  left:50%;
+  top:50%;
+  transform-style:preserve-3d;
+  transform-origin:center
+}
+
+.lat1{
+  width:100%;
+  height:34%;
+  transform:translate(-50%,-50%) rotateX(70deg)
+}
+
+.lat2{
+  width:100%;
+  height:62%;
+  transform:translate(-50%,-50%) rotateX(70deg)
+}
+
+.lat3{
+  width:100%;
+  height:88%;
+  transform:translate(-50%,-50%) rotateX(70deg)
+}
+
+.lon1{
+  width:28%;
+  height:100%;
+  transform:translate(-50%,-50%) rotateY(65deg)
+}
+
+.lon2{
+  width:55%;
+  height:100%;
+  transform:translate(-50%,-50%) rotateY(65deg)
+}
+
+.lon3{
+  width:82%;
+  height:100%;
+  transform:translate(-50%,-50%) rotateY(65deg)
+}
+
+.lon4{
+  width:28%;
+  height:100%;
+  transform:translate(-50%,-50%) rotateY(-65deg)
+}
+
+.lon5{
+  width:55%;
+  height:100%;
+  transform:translate(-50%,-50%) rotateY(-65deg)
+}
+
+.lon6{
+  width:82%;
+  height:100%;
+  transform:translate(-50%,-50%) rotateY(-65deg)
+}
+
+.ring{
+  position:absolute;
+  inset:-4%;
+  border:1px solid rgba(255,255,255,.065);
+  border-radius:50%;
+  transform:rotateX(72deg) rotateZ(-12deg);
+  pointer-events:none
+}
+
+.ring2{
+  position:absolute;
+  inset:-9%;
+  border:1px solid rgba(255,255,255,.025);
+  border-radius:50%;
+  transform:rotateX(72deg) rotateZ(18deg);
+  pointer-events:none
+}
+
+.center{
+  position:absolute;
+  inset:0;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  text-align:center;
+  pointer-events:none;
+  z-index:10
+}
+
+.center-content{
+  transition:
+    transform .6s cubic-bezier(.16,1,.3,1),
+    opacity .5s ease
+}
+
+.center h1{
+  margin:0;
+  font-size:clamp(25px,4.2vw,58px);
+  font-weight:400;
+  letter-spacing:11px;
+  text-transform:uppercase;
+  white-space:nowrap;
+  color:rgba(255,255,255,.9);
+  text-shadow:0 0 35px rgba(255,255,255,.09)
+}
+
+.center p{
+  margin:18px 0 0;
+  font-size:7px;
+  letter-spacing:6px;
+  color:rgba(255,255,255,.25);
+  text-transform:uppercase
+}
+
+.globe:hover .center-content{
+  transform:scale(1.04)
+}
+
+.hint{
+  position:fixed;
+  left:50%;
+  bottom:70px;
+  transform:translateX(-50%);
+  color:rgba(255,255,255,.2);
+  font-size:6px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  transition:opacity .5s
+}
+
+.discord{
+  position:fixed;
+  left:35px;
+  bottom:35px;
+  z-index:20;
+  color:rgba(255,255,255,.2);
+  text-decoration:none;
+  font-size:7px;
+  letter-spacing:4px;
+  text-transform:uppercase;
+  transition:.3s
+}
+
+.discord:hover{
+  color:#fff;
+  letter-spacing:6px
+}
+
+.corner{
+  position:fixed;
+  right:35px;
+  bottom:35px;
+  z-index:20;
+  color:rgba(255,255,255,.15);
+  font-size:6px;
+  letter-spacing:3px
+}
+
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-10px)}
+}
+
+@keyframes grain{
+  0%{transform:translate(0,0)}
+  25%{transform:translate(2%,-1%)}
+  50%{transform:translate(-1%,2%)}
+  75%{transform:translate(1%,1%)}
+  100%{transform:translate(-2%,-1%)}
+}
+
+@media(max-width:650px){
+  .nav{
+    padding:0 20px;
+    height:65px
+  }
+
+  .globe-wrap{
+    width:88vw
+  }
+
+  .center h1{
+    font-size:26px;
+    letter-spacing:7px
+  }
+
+  .discord{
+    left:20px;
+    bottom:25px
+  }
+
+  .corner{
+    right:20px;
+    bottom:25px
+  }
+
+  .hint{
+    bottom:55px
+  }
+}
+
+@media(prefers-reduced-motion:reduce){
+  *,*:before,*:after{
+    animation:none!important;
+    transition:none!important
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg"></div>
+<div class="grain"></div>
+
+<nav class="nav">
+  <a href="/" class="brand">unYZY</a>
+  <div class="date">09 / 05 / 26</div>
+</nav>
+
+<main class="stage">
+  <div class="globe-wrap" id="wrap">
+    <div class="globe" id="globe">
+
+      <div class="grid">
+        <div class="line lat1"></div>
+        <div class="line lat2"></div>
+        <div class="line lat3"></div>
+
+        <div class="line lon1"></div>
+        <div class="line lon2"></div>
+        <div class="line lon3"></div>
+
+        <div class="line lon4"></div>
+        <div class="line lon5"></div>
+        <div class="line lon6"></div>
+      </div>
+
+      <div class="ring"></div>
+      <div class="ring2"></div>
+
+      <div class="center">
+        <div class="center-content">
+          <h1 id="title">NEW WEBSITE</h1>
+          <p id="sub">DRAG TO EXPLORE</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div class="hint" id="hint">INTERACT</div>
+
+<a class="discord" href="https://discord.gg/DuyBzcYCfP" target="_blank" rel="noopener noreferrer">
+  Discord
+</a>
+
+<div class="corner">001 / 001</div>
+
+<script>
+const wrap = document.getElementById("wrap");
+const globe = document.getElementById("globe");
+const title = document.getElementById("title");
+const sub = document.getElementById("sub");
+const hint = document.getElementById("hint");
+
+let rx = 0;
+let ry = 0;
+let targetRx = 0;
+let targetRy = 0;
+
+let dragging = false;
+let lastX = 0;
+let lastY = 0;
+
+let autoRotate = true;
+let lastInteraction = Date.now();
+
+function animate(){
+  if(autoRotate && !dragging){
+    targetRy += 0.035;
+  }
+
+  rx += (targetRx - rx) * 0.08;
+  ry += (targetRy - ry) * 0.08;
+
+  globe.style.transform =
+    `rotateX(${rx}deg) rotateY(${ry}deg)`;
+
+  requestAnimationFrame(animate);
+}
+
+function pointerDown(x,y){
+  dragging = true;
+  autoRotate = false;
+  lastX = x;
+  lastY = y;
+  lastInteraction = Date.now();
+  hint.style.opacity = "0";
+}
+
+function pointerMove(x,y){
+  if(!dragging)return;
+
+  const dx = x - lastX;
+  const dy = y - lastY;
+
+  targetRy += dx * 0.35;
+  targetRx -= dy * 0.35;
+
+  targetRx = Math.max(-80,Math.min(80,targetRx));
+
+  lastX = x;
+  lastY = y;
+}
+
+function pointerUp(){
+  dragging = false;
+  lastInteraction = Date.now();
+}
+
+globe.addEventListener("mousedown",e=>{
+  pointerDown(e.clientX,e.clientY);
+});
+
+window.addEventListener("mousemove",e=>{
+  pointerMove(e.clientX,e.clientY);
+
+  if(!dragging){
+    const x = (e.clientX / innerWidth - .5) * 10;
+    const y = (e.clientY / innerHeight - .5) * -10;
+
+    wrap.style.transform =
+      `rotateX(${y}deg) rotateY(${x}deg)`;
+  }
+});
+
+window.addEventListener("mouseup",pointerUp);
+
+globe.addEventListener("touchstart",e=>{
+  const t = e.touches[0];
+  pointerDown(t.clientX,t.clientY);
+},{passive:true});
+
+globe.addEventListener("touchmove",e=>{
+  const t = e.touches[0];
+  pointerMove(t.clientX,t.clientY);
+},{passive:true});
+
+globe.addEventListener("touchend",pointerUp);
+
+globe.addEventListener("click",()=>{
+  title.style.opacity = "0";
+
+  setTimeout(()=>{
+    title.textContent = "NEW WEBSITE";
+    sub.textContent = "WELCOME TO UNYZY";
+    title.style.opacity = "1";
+  },250);
+});
+
+setTimeout(()=>{
+  hint.style.opacity = "0";
+},5000);
+
+animate();
+</script>
+
+</body>
+</html>
+ 
