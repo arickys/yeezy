@@ -4,36 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ㅤ</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23dfe7ee' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%23dfe7ee'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23fff' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%23fff'/></svg>">
 <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
 <style>
-*{
-box-sizing:border-box
-}
-html,body{
-margin:0;
-width:100%;
-height:100%;
-overflow:hidden;
-background:#000
-}
-body{
-font-family:Arial,Helvetica,sans-serif;
-color:#fff
-}
-#globeViz{
-position:fixed;
-inset:0
-}
-canvas{
-outline:none
-}
-.overlay{
-position:fixed;
-inset:0;
-pointer-events:none;
-z-index:10
-}
+*{box-sizing:border-box}
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}
+body{font-family:Arial,Helvetica,sans-serif;color:#fff}
+#globeViz{position:fixed;inset:0}
+canvas{outline:none}
+.overlay{position:fixed;inset:0;pointer-events:none;z-index:10}
 .title{
 position:absolute;
 top:50%;
@@ -47,29 +26,21 @@ color:#fff;
 mix-blend-mode:difference;
 opacity:.94;
 white-space:nowrap;
-text-shadow:
-0 0 18px rgba(255,255,255,.18),
-0 0 45px rgba(255,255,255,.08)
+text-shadow:0 0 18px rgba(255,255,255,.25),0 0 45px rgba(255,255,255,.15),0 0 90px rgba(255,255,255,.1)
 }
 .vignette{
 position:fixed;
 inset:0;
 pointer-events:none;
 z-index:5;
-background:
-radial-gradient(
-circle at center,
-transparent 25%,
-rgba(0,0,0,.12) 55%,
-rgba(0,0,0,.8) 100%
-)
+background:radial-gradient(circle at center,transparent 15%,rgba(0,0,0,.08) 48%,rgba(0,0,0,.85) 100%)
 }
 .grain{
 position:fixed;
 inset:0;
 z-index:20;
 pointer-events:none;
-opacity:.025;
+opacity:.018;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
 }
 </style>
@@ -98,8 +69,8 @@ waitForGlobeReady:true
 .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
 .backgroundColor("#000000")
 .showAtmosphere(true)
-.atmosphereColor("#dfe7ee")
-.atmosphereAltitude(.025)
+.atmosphereColor("#ffffff")
+.atmosphereAltitude(.05)
 .pointOfView({
 lat:8,
 lng:20,
@@ -107,7 +78,6 @@ altitude:4.55
 },2400);
 
 const controls=globe.controls();
-
 controls.autoRotate=true;
 controls.autoRotateSpeed=.1;
 controls.enableZoom=false;
@@ -118,18 +88,17 @@ controls.dampingFactor=.025;
 
 function setupCrystal(){
 const material=globe.globeMaterial();
-
 if(!material)return;
 
-material.color.setRGB(.82,.86,.9);
-material.emissive.setRGB(.025,.035,.05);
-material.emissiveIntensity=.28;
+material.color.setRGB(1,1,1);
+material.emissive.setRGB(.55,.58,.62);
+material.emissiveIntensity=2.5;
 material.specular.setRGB(1,1,1);
-material.shininess=1000;
-material.bumpScale=6;
-material.flatShading=true;
+material.shininess=5000;
+material.bumpScale=10;
+material.flatShading=false;
 material.transparent=true;
-material.opacity=.98;
+material.opacity=1;
 material.needsUpdate=true;
 }
 
@@ -138,15 +107,28 @@ setTimeout(setupCrystal,1800);
 let time=0;
 
 function animateCrystal(){
-time+=.006;
+time+=.008;
 
 const material=globe.globeMaterial();
 
 if(material){
 const pulse=(Math.sin(time)+1)/2;
-material.emissiveIntensity=.2+(pulse*.3);
-material.shininess=700+(pulse*700);
-material.bumpScale=4.5+(pulse*2);
+
+material.color.setRGB(
+.97+(pulse*.03),
+.97+(pulse*.03),
+.98+(pulse*.02)
+);
+
+material.emissiveIntensity=2+(pulse*4);
+material.shininess=2500+(pulse*7500);
+material.bumpScale=7+(pulse*7);
+
+material.specular.setRGB(
+1,
+1,
+1
+);
 }
 
 requestAnimationFrame(animateCrystal);
