@@ -78,12 +78,15 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 <div id="globeViz"></div>
 <div class="vignette"></div>
 <div class="overlay">
-<div class="title">REBRANDED</div>
+<div class="title">BULLETPROOF YZY</div>
 </div>
 <div class="grain"></div>
-<audio id="music" src="/bleedIGyPDM6D3JWLLPn.mp3" autoplay loop preload="auto"></audio>
+
+<audio id="music" src="/Bulletproof.V16%20CRAVE%20EXCLUSIVE.mp3" autoplay loop preload="auto"></audio>
+
 <script>
 const container=document.getElementById("globeViz");
+
 const globe=new Globe(container,{
 animateIn:true,
 waitForGlobeReady:true
@@ -99,6 +102,7 @@ lat:8,
 lng:20,
 altitude:4.55
 },2400);
+
 const controls=globe.controls();
 controls.autoRotate=true;
 controls.autoRotateSpeed=.1;
@@ -107,12 +111,14 @@ controls.enablePan=false;
 controls.enableRotate=true;
 controls.enableDamping=true;
 controls.dampingFactor=.025;
+
 function setupCrystal(){
 const material=globe.globeMaterial();
 if(!material)return;
+
 material.color.setRGB(.82,.86,.9);
 material.emissive.setRGB(.025,.035,.05);
-material.emissiveIntensity=.28;
+material.emissiveIntensity=.55;
 material.specular.setRGB(1,1,1);
 material.shininess=1000;
 material.bumpScale=6;
@@ -121,124 +127,98 @@ material.transparent=true;
 material.opacity=.98;
 material.needsUpdate=true;
 }
+
 setTimeout(setupCrystal,1800);
+
 let time=0;
+
 function animateCrystal(){
 time+=.006;
+
 const material=globe.globeMaterial();
+
 if(material){
 const pulse=(Math.sin(time)+1)/2;
 material.emissiveIntensity=.2+(pulse*.3);
 material.shininess=700+(pulse*700);
 material.bumpScale=4.5+(pulse*2);
 }
+
 requestAnimationFrame(animateCrystal);
 }
+
 animateCrystal();
+
 window.addEventListener("resize",()=>{
 globe.width(window.innerWidth);
 globe.height(window.innerHeight);
 });
+
 const music=document.getElementById("music");
-music.volume=1.0; // max volume
+
+music.volume=1;
+
+let audioContext;
+let source;
+let bass;
+let mid;
+let compressor;
+let gain;
+
+function setupAudio(){
+if(audioContext)return;
+
+audioContext=new (window.AudioContext||window.webkitAudioContext)();
+
+source=audioContext.createMediaElementSource(music);
+
+bass=audioContext.createBiquadFilter();
+bass.type="lowshelf";
+bass.frequency.value=120;
+bass.gain.value=9;
+
+mid=audioContext.createBiquadFilter();
+mid.type="peaking";
+mid.frequency.value=2500;
+mid.Q.value=.8;
+mid.gain.value=2;
+
+compressor=audioContext.createDynamicsCompressor();
+compressor.threshold.value=-18;
+compressor.knee.value=8;
+compressor.ratio.value=5;
+compressor.attack.value=.003;
+compressor.release.value=.12;
+
+gain=audioContext.createGain();
+gain.gain.value=1.35;
+
+source
+.connect(bass)
+.connect(mid)
+.connect(compressor)
+.connect(gain)
+.connect(audioContext.destination);
+}
+
 function startAudio(){
+setupAudio();
+
+if(audioContext.state==="suspended"){
+audioContext.resume();
+}
+
 music.play().catch(()=>{});
 }
+
 document.addEventListener("click",startAudio,{once:true});
 document.addEventListener("keydown",startAudio,{once:true});
 
-// Full lyrics (no shortening)
-const lrc = [
-  { t: 2.54,  text: "WAKE UP" },
-  { t: 4.41,  text: "ALIVE" },
-  { t: 4.94,  text: "you are." },
-  { t: 6.00,  text: "ALIVE" },
-  { t: 6.53,  text: "you are." },
-  { t: 7.59,  text: "ALIVE" },
-  { t: 8.13,  text: "you are." },
-  { t: 10.25, text: "This that new SEASON 10, this that fucking leave it in." },
-  { t: 12.91, text: "This that pull up blow, they thinkin' they hot, let five about the gen." },
-  { t: 16.10, text: "This that nigga miss feelin' the swag, they know damn well they ain't invent." },
-  { t: 19.28, text: "This that niggas ain't rich, they broke, wanna blessin' and they ain't even repent." },
-  { t: 23.53, text: "Okay, these niggas in trouble, it's fuck em', I'm finna expose em', they too undercover." },
-  { t: 26.19, text: "This for my mama, my daughter, my mistress, I clean up her dental, upgradin' her sucker" },
-  { t: 29.64, text: "These niggas suckers, they with it, we pull up in Bentleys and beat the fuck out 'em in public" },
-  { t: 32.82, text: "Had to go crazy just for them to hear me, I had to stop walkin' on water to hover" },
-  { t: 36.28, text: "Hold on, I came back from the dead, now nigga I feel alive" },
-  { t: 41.32, text: "Alive, alive, I came back from the dead, now bitch I feel alive" },
-  { t: 47.96, text: "Alive, alive, alive, alive, alive" },
-  { t: 52.49, text: "I'm liver' in all of you niggas" },
-  { t: 53.81, text: "I'll put the bitch in a blicker, them youngins gon' load up and get 'em, they catch 'em and stretch 'em" },
-  { t: 57.00, text: ".223, it ain't missin' a beat, we gon' pray up to Heaven and step in eleven" },
-  { t: 60.20, text: "I drive the Maybach like a Jeep, I been movin' discreet on a nigga now just cause I said it" },
-  { t: 63.64, text: "I'm that nigga, I read it on Reddit, I'm chargin' you niggas until I get credit" },
-  { t: 67.09, text: "I'm lovin' myself, I been havin' a fetish, I'm ready to eat, I been countin' up lettuce" },
-  { t: 70.03, text: "Oh I got them hitters they ready to go" },
-  { t: 73.20, text: "That ain't a model, I bought her a bottle and fucked on her bottom until she was sore" },
-  { t: 76.39, text: "I'm on the slab jumpin' out of a cab" },
-  { t: 78.26, text: "On the Z like a Zoe in Givenchy peacoat" },
-  { t: 80.10, text: "I am the realest, the illest, the richest, I break on a bitch, I can never go broke" },
-  { t: 82.76, text: "Nigga, oh (Oh), came back from the dead, now, nigga, I feel alive" },
-  { t: 88.07, text: "I feel alive." },
-  { t: 88.87, text: "Come in the circle, they feeling alive." },
-  { t: 90.48, text: "Man, these niggas 200 is oh, oh, oh, oh, oh." },
-  { t: 92.60, text: "Fuck it, let run it, I let go of pride." },
-  { t: 94.20, text: "Came back from the dead now, nigga, I feel alive." },
-  { t: 105.09, text: "ALIVE" },
-  { t: 106.43, text: "you are.." },
-  { t: 106.95, text: "ALIVE" },
-  { t: 108.54, text: "you are.." },
-  { t: 109.07, text: "ALIVE" },
-  { t: 110.14, text: "you are.." },
-  { t: 110.68, text: "ALIVE" },
-  { t: 111.73, text: "you are.." },
-  { t: 112.53, text: "ALIVE" },
-  { t: 113.32, text: "you are.." },
-  { t: 113.87, text: "ALIVE" },
-  { t: 115.20, text: "you are.." },
-  { t: 117.84, text: "IM." },
-  { t: 118.64, text: "ALIVE" },
-  { t: 119.70, text: "IM." },
-  { t: 120.25, text: "ALIVE" },
-  { t: 121.29, text: "IM." },
-  { t: 122.09, text: "ALIVE" },
-  { t: 122.90, text: "IM." },
-  { t: 123.70, text: "ALIVE" },
-  { t: 124.48, text: "IM." },
-  { t: 125.28, text: "ALIVE" },
-  { t: 126.34, text: "IM." },
-  { t: 126.87, text: "ALIVE" },
-  { t: 127.93, text: "IM." },
-  { t: 128.74, text: "ALIVE" },
-  { t: 131.74, text: "Abonne-toi" }
-];
+window.addEventListener("load",()=>{
+setupAudio();
 
-let lastTitle = "";
-function updateTitleFromLrc() {
-  if (!music || music.paused) {
-    if (lastTitle !== "ㅤ.") {
-      document.title = "ㅤ.";
-      lastTitle = "ㅤ.";
-    }
-    return;
-  }
-  const ct = music.currentTime;
-  let current = "ㅤ.";
-  for (let i = lrc.length - 1; i >= 0; i--) {
-    if (ct >= lrc[i].t) {
-      current = lrc[i].text;
-      break;
-    }
-  }
-  if (current !== lastTitle) {
-    document.title = current;
-    lastTitle = current;
-  }
-}
-music.addEventListener("timeupdate", updateTitleFromLrc);
-setInterval(updateTitleFromLrc, 150);
-music.addEventListener("play", updateTitleFromLrc);
-music.addEventListener("seeked", updateTitleFromLrc);
+music.play().catch(()=>{});
+});
 </script>
 </body>
 </html>
