@@ -245,10 +245,10 @@ const atmosphere=.018+(pulse*.045);
 globe.atmosphereAltitude(atmosphere);
 
 if(scene){
-const s=1+(pulse*.035)+(breathing*.008);
+const s=1+(pulse*.55)+(breathing*.015);
 scene.scale.lerp(
 { x:s,y:s,z:s },
-.08
+.22
 );
 }
 
