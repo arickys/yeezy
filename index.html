@@ -86,74 +86,26 @@ controls.enableRotate=true;
 controls.enableDamping=true;
 controls.dampingFactor=.025;
 
-function setupCrystal(){
-const material=globe.globeMaterial();
-if(!material)return;
-
-material.color.setRGB(1,1,1);
-material.emissive.setRGB(.55,.58,.62);
-material.emissiveIntensity=2.5;
-material.specular.setRGB(1,1,1);
-material.shininess=5000;
-material.bumpScale=10;
-material.flatShading=false;
-material.transparent=true;
-material.opacity=1;
-material.needsUpdate=true;
-}
-
-setTimeout(setupCrystal,1800);
-
-let time=0;
-
-function animateCrystal(){
-time+=.008;
-
-const material=globe.globeMaterial();
-
-if(material){
-const pulse=(Math.sin(time)+1)/2;
-
-material.color.setRGB(
-.97+(pulse*.03),
-.97+(pulse*.03),
-.98+(pulse*.02)
-);
-
-material.emissiveIntensity=2+(pulse*4);
-material.shininess=2500+(pulse*7500);
-material.bumpScale=7+(pulse*7);
-
-material.specular.setRGB(
-1,
-1,
-1
-);
-}
-
-requestAnimationFrame(animateCrystal);
-}
-
-animateCrystal();
-
-window.addEventListener("resize",()=>{
-globe.width(window.innerWidth);
-globe.height(window.innerHeight);
-});
-
 const music=document.getElementById("music");
-
 music.volume=1;
 
 let audioContext;
 let source;
 let compressor;
 let gain;
+let analyser;
+let frequencyData;
+
+let bass=0;
+let smoothBass=0;
+let impact=0;
+let lastBass=0;
+let rotationBoost=0;
 
 function setupAudio(){
 if(audioContext)return;
 
-audioContext=new (window.AudioContext||window.webkitAudioContext)();
+audioContext=new(window.AudioContext||window.webkitAudioContext)();
 
 source=audioContext.createMediaElementSource(music);
 
@@ -167,9 +119,16 @@ compressor.release.value=.08;
 gain=audioContext.createGain();
 gain.gain.value=2.8;
 
+analyser=audioContext.createAnalyser();
+analyser.fftSize=2048;
+analyser.smoothingTimeConstant=.72;
+
+frequencyData=new Uint8Array(analyser.frequencyBinCount);
+
 source
 .connect(compressor)
 .connect(gain)
+.connect(analyser)
 .connect(audioContext.destination);
 }
 
@@ -195,7 +154,107 @@ audioContext.resume();
 
 music.play().catch(()=>{});
 });
-</script>
 
+function getBass(){
+if(!analyser)return 0;
+
+analyser.getByteFrequencyData(frequencyData);
+
+const nyquist=audioContext.sampleRate/2;
+
+const lowBin=Math.floor((20/nyquist)*frequencyData.length);
+const highBin=Math.floor((180/nyquist)*frequencyData.length);
+
+let total=0;
+let count=0;
+
+for(let i=lowBin;i<=highBin;i++){
+const value=frequencyData[i]/255;
+total+=value*value;
+count++;
+}
+
+return Math.sqrt(total/count);
+}
+
+function animate(){
+requestAnimationFrame(animate);
+
+const rawBass=getBass();
+
+smoothBass+=(rawBass-smoothBass)*.12;
+
+const bassRise=smoothBass-lastBass;
+lastBass=smoothBass;
+
+if(bassRise>.025){
+impact=Math.min(1,impact+bassRise*7);
+rotationBoost=Math.min(1,rotationBoost+bassRise*5);
+}
+
+impact*=.88;
+rotationBoost*=.94;
+
+const material=globe.globeMaterial();
+
+if(material){
+const bassPower=Math.min(1,smoothBass*1.65);
+const hit=Math.min(1,impact);
+
+const scale=1+(bassPower*.045)+(hit*.065);
+
+globe.scene().scale.set(scale,scale,scale);
+
+material.color.setRGB(
+.96+(bassPower*.04),
+.96+(bassPower*.04),
+.98+(bassPower*.02)
+);
+
+material.emissive.setRGB(
+.45+(bassPower*.55),
+.48+(bassPower*.52),
+.52+(bassPower*.48)
+);
+
+material.emissiveIntensity=
+2+
+bassPower*5+
+hit*7;
+
+material.shininess=
+2500+
+bassPower*6500+
+hit*12000;
+
+material.bumpScale=
+7+
+bassPower*8+
+hit*10;
+
+material.specular.setRGB(1,1,1);
+}
+
+globe.atmosphereAltitude(
+.05+
+smoothBass*.055+
+impact*.08
+);
+
+globe.atmosphereColor("#ffffff");
+
+controls.autoRotateSpeed=
+.1+
+smoothBass*.8+
+rotationBoost*2.5;
+}
+
+animate();
+
+window.addEventListener("resize",()=>{
+globe.width(window.innerWidth);
+globe.height(window.innerHeight);
+});
+</script>
 </body>
 </html>
