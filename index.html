@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title></title>
+<title>ALIVE.</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23dfe7ee' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%23dfe7ee'/></svg>">
 <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
 <style>
@@ -78,7 +78,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 <div id="globeViz"></div>
 <div class="vignette"></div>
 <div class="overlay">
-<div class="title">REBRANDED</div>
+<div class="title">ALIVE</div>
 </div>
 <div class="grain"></div>
 <audio id="music" src="/bleedIGyPDM6D3JWLLPn.mp3" autoplay loop preload="auto"></audio>
@@ -139,15 +139,17 @@ window.addEventListener("resize",()=>{
 globe.width(window.innerWidth);
 globe.height(window.innerHeight);
 });
+
 const music=document.getElementById("music");
-music.volume=.45;
+music.volume = 0.95; // much louder
+
 function startAudio(){
 music.play().catch(()=>{});
 }
 document.addEventListener("click",startAudio,{once:true});
 document.addEventListener("keydown",startAudio,{once:true});
 
-// LRC-synced browser tab titles (all capitalized)
+// Shortened / split titles so they don't get cut off in the browser tab
 const lrc = [
   { t: 0.53,  text: "WAKE UP" },
   { t: 4.45,  text: "ALIVE (YOU ARE)" },
@@ -156,37 +158,42 @@ const lrc = [
   { t: 9.23,  text: "ALIVE" },
   { t: 10.02, text: "THIS THAT NEW SEASON TEN" },
   { t: 11.34, text: "THIS THAT FUCK HER BEST FRIEND" },
-  { t: 13.22, text: "THIS THAT PULL UP, BLOW, THEY THINKIN' THEY HOT, LET FIVE OUT THE GEN" },
-  { t: 16.14, text: "THIS THAT NIGGAS BEEN STEALIN' THE SWAG THEY KNOW DAMN WELL THEY AIN'T INVENT" },
-  { t: 19.58, text: "THIS THAT NIGGAS AIN'T RICH, THEY BROKE, WANT A BLESSING AND THEY AIN'T EVEN REPENT" },
-  { t: 22.76, text: "OKAY, THESE NIGGAS IN TROUBLE, IT'S FUCK 'EM, I'M FINNA EXPOSE 'EM, THEY TOO UNDERCOVER" },
-  { t: 26.23, text: "THIS FOR MY MAMA, MY DAUGHTER, MY MISTRESS, I CLEAN UP HER DENTAL, UPGRADIN' HER SUCKER" },
-  { t: 29.69, text: "THESE NIGGAS SUCKERS, THEY WITH IT, WE PULL UP IN BENTLEYS AND BEAT THE FUCK OUT 'EM IN PUBLIC" },
-  { t: 33.14, text: "HAD TO GO CRAZY JUST FOR THEM TO SAY THAT THEY HEAR ME, NAH, BITCH, NOW I'M FEELIN' DISCOVERED" },
-  { t: 36.85, text: "HOLD ON, I CAME BACK FROM THE DEAD, NOW, NIGGA, I FEEL ALIVE" },
+  { t: 13.22, text: "PULL UP, BLOW... LET FIVE OUT THE GEN" },
+  { t: 16.14, text: "NIGGAS STEALIN' THE SWAG..." },
+  { t: 19.58, text: "NIGGAS AIN'T RICH, THEY BROKE" },
+  { t: 22.76, text: "THESE NIGGAS IN TROUBLE..." },
+  { t: 26.23, text: "FOR MY MAMA, MY DAUGHTER..." },
+  { t: 29.69, text: "PULL UP IN BENTLEYS..." },
+  { t: 33.14, text: "HAD TO GO CRAZY..." },
+  { t: 36.85, text: "CAME BACK FROM THE DEAD" },
+  { t: 38.50, text: "NOW I FEEL ALIVE" },
   { t: 41.36, text: "ALIVE (YOU ARE)" },
   { t: 42.96, text: "ALIVE" },
-  { t: 46.14, text: "HOLD ON, I CAME BACK FROM THE DEAD, NOW, BITCH, I FEEL ALIVE" },
+  { t: 46.14, text: "CAME BACK FROM THE DEAD" },
+  { t: 47.50, text: "NOW I FEEL ALIVE" },
   { t: 48.02, text: "ALIVE (YOU ARE)" },
   { t: 49.86, text: "ALIVE (YOU ARE)" },
   { t: 51.20, text: "ALIVE" },
-  { t: 53.59, text: "I'M LIVER THAN ALL OF YOU NIGGAS" },
-  { t: 55.45, text: "I'LL PUT THE BITCH IN A BLICKER, THEM YOUNGINS GON' LOAD UP AND GET 'EM, THEY CATCH 'EM AND STRETCH 'EM" },
-  { t: 57.04, text: ".223, IT AIN'T MISSIN' A BEAT, WE GON' PRAY UP TO HEAVEN AND STEP IN ELEVEN" },
-  { t: 60.22, text: "I DRIVE THE MAYBACH LIKE A JEEP, I BEEN MOVIN' DISCREET, EVERY SWING THAT I THROW THEY TRY CATCH IT" },
-  { t: 63.95, text: "EVERY TIME THAT I STEP ON THE SCENE, I JUST WANTED TO TEST YOU, THEY KNOW THAT I BEEN LIVIN' RECKLESS" },
-  { t: 67.14, text: "I'M LOVIN' MYSELF, I BEEN HAVIN' A FETISH, I'M READY TO EAT, I BEEN COUNTIN' UP LETTUCE" },
-  { t: 70.31, text: "OH, I GOT THEM HITTERS, THEY READY TO GO" },
-  { t: 73.25, text: "THAT AIN'T A MODEL, I BOUGHT HER A BOTTLE AND FUCKED ON HER BOTTOM UNTIL SHE WAS SORE" },
-  { t: 76.43, text: "I'M ON THE SLAB JUMPIN' OUT OF A CAB" },
-  { t: 78.29, text: "ON THE Z LIKE A ZOE IN GIVENCHY PEACOAT" },
-  { t: 80.95, text: "I AM THE REALEST, THE ILLEST, THE RICHEST, I KNOW THAT THEY KNOW THIS, I KNOW THAT THEY KNOW" },
-  { t: 83.59, text: "NIGGA, OH (OH), CAME BACK FROM THE DEAD, NOW, NIGGA, I FEEL ALIVE" },
-  { t: 86.26, text: "COME IN THE CIRCLE, THEY FEELIN' ALIVE" },
-  { t: 90.96, text: "MAN, THESE NIGGAS TOO UNDER DISGUISE" },
-  { t: 91.23, text: "OH, OH, OH, OH, OH, FUCK IT, LET'S RUN IT, I LET GO MY PRIDE" },
-  { t: 93.90, text: "I GO TO WAR ABOUT MY KIDS, MY CHILD" },
-  { t: 99.46, text: "THESE NIGGAS BETTER JUST STAY UP INSIDE" },
+  { t: 53.59, text: "I'M LIVER THAN ALL OF YOU" },
+  { t: 55.45, text: "PUT THE BITCH IN A BLICKER" },
+  { t: 57.04, text: ".223 AIN'T MISSIN' A BEAT" },
+  { t: 60.22, text: "DRIVE THE MAYBACH LIKE A JEEP" },
+  { t: 63.95, text: "EVERY TIME I STEP ON THE SCENE" },
+  { t: 67.14, text: "LOVIN' MYSELF... COUNTIN' LETTUCE" },
+  { t: 70.31, text: "GOT THEM HITTERS READY TO GO" },
+  { t: 73.25, text: "THAT AIN'T A MODEL" },
+  { t: 74.60, text: "BOUGHT HER A BOTTLE" },
+  { t: 76.00, text: "FUCKED ON HER BOTTOM" },
+  { t: 76.43, text: "ON THE SLAB JUMPIN' OUT" },
+  { t: 78.29, text: "Z LIKE A ZOE IN GIVENCHY" },
+  { t: 80.95, text: "THE REALEST, THE ILLEST, THE RICHEST" },
+  { t: 83.59, text: "CAME BACK FROM THE DEAD" },
+  { t: 85.00, text: "NOW I FEEL ALIVE" },
+  { t: 86.26, text: "COME IN THE CIRCLE" },
+  { t: 90.96, text: "TOO UNDER DISGUISE" },
+  { t: 91.23, text: "FUCK IT, LET'S RUN IT" },
+  { t: 93.90, text: "I GO TO WAR ABOUT MY KIDS" },
+  { t: 99.46, text: "STAY UP INSIDE" },
   { t: 100.00, text: "WOO" },
   { t: 105.26, text: "ALIVE (YOU ARE)" },
   { t: 106.84, text: "ALIVE (YOU ARE)" },
@@ -202,14 +209,14 @@ const lrc = [
 let lastTitle = "";
 function updateTitleFromLrc() {
   if (!music || music.paused) {
-    if (lastTitle !== "ALIVE.") {
-      document.title = "ALIVE.";
-      lastTitle = "ALIVE.";
+    if (lastTitle !== "") {
+      document.title = "";
+      lastTitle = "";
     }
     return;
   }
   const ct = music.currentTime;
-  let current = "ALIVE.";
+  let current = "";
   for (let i = lrc.length - 1; i >= 0; i--) {
     if (ct >= lrc[i].t) {
       current = lrc[i].text;
@@ -222,9 +229,8 @@ function updateTitleFromLrc() {
   }
 }
 
-// Keep title in sync with audio
 music.addEventListener("timeupdate", updateTitleFromLrc);
-setInterval(updateTitleFromLrc, 200); // extra smooth polling
+setInterval(updateTitleFromLrc, 150);
 music.addEventListener("play", updateTitleFromLrc);
 music.addEventListener("seeked", updateTitleFromLrc);
 </script>
