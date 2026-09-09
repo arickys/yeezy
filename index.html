@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title></title>
+<title>ALIVE.</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23dfe7ee' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%23dfe7ee'/></svg>">
 <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
 <style>
@@ -78,7 +78,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 <div id="globeViz"></div>
 <div class="vignette"></div>
 <div class="overlay">
-<div class="title">ALIVE</div>
+<div class="title">REBRANDED</div>
 </div>
 <div class="grain"></div>
 <audio id="music" src="/bleedIGyPDM6D3JWLLPn.mp3" autoplay loop preload="auto"></audio>
@@ -114,7 +114,7 @@ material.color.setRGB(.82,.86,.9);
 material.emissive.setRGB(.025,.035,.05);
 material.emissiveIntensity=.28;
 material.specular.setRGB(1,1,1);
-material.shininess=19999;
+material.shininess=1000;
 material.bumpScale=6;
 material.flatShading=true;
 material.transparent=true;
@@ -139,84 +139,91 @@ window.addEventListener("resize",()=>{
 globe.width(window.innerWidth);
 globe.height(window.innerHeight);
 });
-
 const music=document.getElementById("music");
-music.volume = 5; // much louder
-
+music.volume=1.0; // max volume
 function startAudio(){
 music.play().catch(()=>{});
 }
 document.addEventListener("click",startAudio,{once:true});
 document.addEventListener("keydown",startAudio,{once:true});
 
-// Shortened / split titles so they don't get cut off in the browser tab
+// Full lyrics (no shortening)
 const lrc = [
-  { t: 0.53,  text: "WAKE UP" },
-  { t: 4.45,  text: "ALIVE (YOU ARE)" },
-  { t: 6.04,  text: "ALIVE (YOU ARE)" },
-  { t: 7.63,  text: "ALIVE (YOU ARE)" },
-  { t: 9.23,  text: "ALIVE" },
-  { t: 10.02, text: "THIS THAT NEW SEASON TEN" },
-  { t: 11.34, text: "THIS THAT FUCK HER BEST FRIEND" },
-  { t: 13.22, text: "PULL UP, BLOW... LET FIVE OUT THE GEN" },
-  { t: 16.14, text: "NIGGAS STEALIN' THE SWAG..." },
-  { t: 19.58, text: "NIGGAS AIN'T RICH, THEY BROKE" },
-  { t: 22.76, text: "THESE NIGGAS IN TROUBLE..." },
-  { t: 26.23, text: "FOR MY MAMA, MY DAUGHTER..." },
-  { t: 29.69, text: "PULL UP IN BENTLEYS..." },
-  { t: 33.14, text: "HAD TO GO CRAZY..." },
-  { t: 36.85, text: "CAME BACK FROM THE DEAD" },
-  { t: 38.50, text: "NOW I FEEL ALIVE" },
-  { t: 41.36, text: "ALIVE (YOU ARE)" },
-  { t: 42.96, text: "ALIVE" },
-  { t: 46.14, text: "CAME BACK FROM THE DEAD" },
-  { t: 47.50, text: "NOW I FEEL ALIVE" },
-  { t: 48.02, text: "ALIVE (YOU ARE)" },
-  { t: 49.86, text: "ALIVE (YOU ARE)" },
-  { t: 51.20, text: "ALIVE" },
-  { t: 53.59, text: "I'M LIVER THAN ALL OF YOU" },
-  { t: 55.45, text: "PUT THE BITCH IN A BLICKER" },
-  { t: 57.04, text: ".223 AIN'T MISSIN' A BEAT" },
-  { t: 60.22, text: "DRIVE THE MAYBACH LIKE A JEEP" },
-  { t: 63.95, text: "EVERY TIME I STEP ON THE SCENE" },
-  { t: 67.14, text: "LOVIN' MYSELF... COUNTIN' LETTUCE" },
-  { t: 70.31, text: "GOT THEM HITTERS READY TO GO" },
-  { t: 73.25, text: "THAT AIN'T A MODEL" },
-  { t: 74.60, text: "BOUGHT HER A BOTTLE" },
-  { t: 76.00, text: "FUCKED ON HER BOTTOM" },
-  { t: 76.43, text: "ON THE SLAB JUMPIN' OUT" },
-  { t: 78.29, text: "Z LIKE A ZOE IN GIVENCHY" },
-  { t: 80.95, text: "THE REALEST, THE ILLEST, THE RICHEST" },
-  { t: 83.59, text: "CAME BACK FROM THE DEAD" },
-  { t: 85.00, text: "NOW I FEEL ALIVE" },
-  { t: 86.26, text: "COME IN THE CIRCLE" },
-  { t: 90.96, text: "TOO UNDER DISGUISE" },
-  { t: 91.23, text: "FUCK IT, LET'S RUN IT" },
-  { t: 93.90, text: "I GO TO WAR ABOUT MY KIDS" },
-  { t: 99.46, text: "STAY UP INSIDE" },
-  { t: 100.00, text: "WOO" },
-  { t: 105.26, text: "ALIVE (YOU ARE)" },
-  { t: 106.84, text: "ALIVE (YOU ARE)" },
-  { t: 108.43, text: "ALIVE (YOU ARE)" },
-  { t: 110.03, text: "ALIVE (YOU ARE)" },
-  { t: 111.90, text: "ALIVE (YOU ARE)" },
-  { t: 113.50, text: "ALIVE (YOU ARE)" },
-  { t: 115.07, text: "ALIVE (YOU ARE)" },
-  { t: 116.68, text: "ALIVE" },
-  { t: 119.68, text: "ABONNE-TOI" }
+  { t: 2.54,  text: "WAKE UP" },
+  { t: 4.41,  text: "ALIVE" },
+  { t: 4.94,  text: "you are." },
+  { t: 6.00,  text: "ALIVE" },
+  { t: 6.53,  text: "you are." },
+  { t: 7.59,  text: "ALIVE" },
+  { t: 8.13,  text: "you are." },
+  { t: 10.25, text: "This that new SEASON 10, this that fucking leave it in." },
+  { t: 12.91, text: "This that pull up blow, they thinkin' they hot, let five about the gen." },
+  { t: 16.10, text: "This that nigga miss feelin' the swag, they know damn well they ain't invent." },
+  { t: 19.28, text: "This that niggas ain't rich, they broke, wanna blessin' and they ain't even repent." },
+  { t: 23.53, text: "Okay, these niggas in trouble, it's fuck em', I'm finna expose em', they too undercover." },
+  { t: 26.19, text: "This for my mama, my daughter, my mistress, I clean up her dental, upgradin' her sucker" },
+  { t: 29.64, text: "These niggas suckers, they with it, we pull up in Bentleys and beat the fuck out 'em in public" },
+  { t: 32.82, text: "Had to go crazy just for them to hear me, I had to stop walkin' on water to hover" },
+  { t: 36.28, text: "Hold on, I came back from the dead, now nigga I feel alive" },
+  { t: 41.32, text: "Alive, alive, I came back from the dead, now bitch I feel alive" },
+  { t: 47.96, text: "Alive, alive, alive, alive, alive" },
+  { t: 52.49, text: "I'm liver' in all of you niggas" },
+  { t: 53.81, text: "I'll put the bitch in a blicker, them youngins gon' load up and get 'em, they catch 'em and stretch 'em" },
+  { t: 57.00, text: ".223, it ain't missin' a beat, we gon' pray up to Heaven and step in eleven" },
+  { t: 60.20, text: "I drive the Maybach like a Jeep, I been movin' discreet on a nigga now just cause I said it" },
+  { t: 63.64, text: "I'm that nigga, I read it on Reddit, I'm chargin' you niggas until I get credit" },
+  { t: 67.09, text: "I'm lovin' myself, I been havin' a fetish, I'm ready to eat, I been countin' up lettuce" },
+  { t: 70.03, text: "Oh I got them hitters they ready to go" },
+  { t: 73.20, text: "That ain't a model, I bought her a bottle and fucked on her bottom until she was sore" },
+  { t: 76.39, text: "I'm on the slab jumpin' out of a cab" },
+  { t: 78.26, text: "On the Z like a Zoe in Givenchy peacoat" },
+  { t: 80.10, text: "I am the realest, the illest, the richest, I break on a bitch, I can never go broke" },
+  { t: 82.76, text: "Nigga, oh (Oh), came back from the dead, now, nigga, I feel alive" },
+  { t: 88.07, text: "I feel alive." },
+  { t: 88.87, text: "Come in the circle, they feeling alive." },
+  { t: 90.48, text: "Man, these niggas 200 is oh, oh, oh, oh, oh." },
+  { t: 92.60, text: "Fuck it, let run it, I let go of pride." },
+  { t: 94.20, text: "Came back from the dead now, nigga, I feel alive." },
+  { t: 105.09, text: "ALIVE" },
+  { t: 106.43, text: "you are.." },
+  { t: 106.95, text: "ALIVE" },
+  { t: 108.54, text: "you are.." },
+  { t: 109.07, text: "ALIVE" },
+  { t: 110.14, text: "you are.." },
+  { t: 110.68, text: "ALIVE" },
+  { t: 111.73, text: "you are.." },
+  { t: 112.53, text: "ALIVE" },
+  { t: 113.32, text: "you are.." },
+  { t: 113.87, text: "ALIVE" },
+  { t: 115.20, text: "you are.." },
+  { t: 117.84, text: "IM." },
+  { t: 118.64, text: "ALIVE" },
+  { t: 119.70, text: "IM." },
+  { t: 120.25, text: "ALIVE" },
+  { t: 121.29, text: "IM." },
+  { t: 122.09, text: "ALIVE" },
+  { t: 122.90, text: "IM." },
+  { t: 123.70, text: "ALIVE" },
+  { t: 124.48, text: "IM." },
+  { t: 125.28, text: "ALIVE" },
+  { t: 126.34, text: "IM." },
+  { t: 126.87, text: "ALIVE" },
+  { t: 127.93, text: "IM." },
+  { t: 128.74, text: "ALIVE" },
+  { t: 131.74, text: "Abonne-toi" }
 ];
 
 let lastTitle = "";
 function updateTitleFromLrc() {
   if (!music || music.paused) {
-    if (lastTitle !== "") {
-      document.title = "";
-      lastTitle = "";
+    if (lastTitle !== "ALIVE.") {
+      document.title = "ALIVE.";
+      lastTitle = "ALIVE.";
     }
     return;
   }
   const ct = music.currentTime;
-  let current = "";
+  let current = "ALIVE.";
   for (let i = lrc.length - 1; i >= 0; i--) {
     if (ct >= lrc[i].t) {
       current = lrc[i].text;
@@ -228,7 +235,6 @@ function updateTitleFromLrc() {
     lastTitle = current;
   }
 }
-
 music.addEventListener("timeupdate", updateTitleFromLrc);
 setInterval(updateTitleFromLrc, 150);
 music.addEventListener("play", updateTitleFromLrc);
