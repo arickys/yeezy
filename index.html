@@ -114,7 +114,7 @@ material.color.setRGB(.82,.86,.9);
 material.emissive.setRGB(.025,.035,.05);
 material.emissiveIntensity=.28;
 material.specular.setRGB(1,1,1);
-material.shininess=1000;
+material.shininess=19999;
 material.bumpScale=6;
 material.flatShading=true;
 material.transparent=true;
@@ -141,7 +141,7 @@ globe.height(window.innerHeight);
 });
 
 const music=document.getElementById("music");
-music.volume = 0.95; // much louder
+music.volume = 5; // much louder
 
 function startAudio(){
 music.play().catch(()=>{});
