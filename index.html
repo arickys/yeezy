@@ -80,7 +80,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 <div class="vignette"></div>
 
 <div class="overlay">
-<div class="title">REBRANDED</div>
+<div class="title">BULLETPROOF</div>
 </div>
 
 <div class="grain"></div>
@@ -144,7 +144,6 @@ const material=globe.globeMaterial();
 
 if(material){
 const pulse=(Math.sin(time)+1)/2;
-
 material.emissiveIntensity=.2+(pulse*.3);
 material.shininess=700+(pulse*700);
 material.bumpScale=4.5+(pulse*2);
@@ -166,9 +165,6 @@ music.volume=1;
 
 let audioContext;
 let source;
-let bass;
-let subBass;
-let mid;
 let compressor;
 let gain;
 
@@ -179,36 +175,17 @@ audioContext=new (window.AudioContext||window.webkitAudioContext)();
 
 source=audioContext.createMediaElementSource(music);
 
-subBass=audioContext.createBiquadFilter();
-subBass.type="lowshelf";
-subBass.frequency.value=65;
-subBass.gain.value=12;
-
-bass=audioContext.createBiquadFilter();
-bass.type="lowshelf";
-bass.frequency.value=105;
-bass.gain.value=15;
-
-mid=audioContext.createBiquadFilter();
-mid.type="peaking";
-mid.frequency.value=2200;
-mid.Q.value=.8;
-mid.gain.value=3;
-
 compressor=audioContext.createDynamicsCompressor();
-compressor.threshold.value=-24;
-compressor.knee.value=10;
-compressor.ratio.value=8;
-compressor.attack.value=.002;
+compressor.threshold.value=-14;
+compressor.knee.value=8;
+compressor.ratio.value=12;
+compressor.attack.value=.001;
 compressor.release.value=.08;
 
 gain=audioContext.createGain();
-gain.gain.value=2.2;
+gain.gain.value=2.8;
 
 source
-.connect(subBass)
-.connect(bass)
-.connect(mid)
 .connect(compressor)
 .connect(gain)
 .connect(audioContext.destination);
