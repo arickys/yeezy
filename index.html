@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>ㅤ</title>
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23fff' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%23fff'/></svg>">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='45' fill='%23000'/><circle cx='50' cy='50' r='38' fill='none' stroke='%23dfe7ee' stroke-width='4'/><circle cx='50' cy='50' r='18' fill='%23dfe7ee'/></svg>">
 <script src="https://cdn.jsdelivr.net/npm/globe.gl"></script>
 <style>
 *{box-sizing:border-box}
@@ -24,23 +24,23 @@ letter-spacing:.32em;
 text-indent:.32em;
 color:#fff;
 mix-blend-mode:difference;
-opacity:.94;
+opacity:.92;
 white-space:nowrap;
-text-shadow:0 0 18px rgba(255,255,255,.25),0 0 45px rgba(255,255,255,.15),0 0 90px rgba(255,255,255,.1)
+text-shadow:0 0 20px rgba(255,255,255,.12),0 0 60px rgba(255,255,255,.05)
 }
 .vignette{
 position:fixed;
 inset:0;
 pointer-events:none;
 z-index:5;
-background:radial-gradient(circle at center,transparent 15%,rgba(0,0,0,.08) 48%,rgba(0,0,0,.85) 100%)
+background:radial-gradient(circle at center,transparent 20%,rgba(0,0,0,.18) 55%,rgba(0,0,0,.88) 100%)
 }
 .grain{
 position:fixed;
 inset:0;
 z-index:20;
 pointer-events:none;
-opacity:.018;
+opacity:.035;
 background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")
 }
 </style>
@@ -51,7 +51,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 <div class="vignette"></div>
 
 <div class="overlay">
-<div class="title">BULLETPROOF</div>
+<div class="title">REBRANDED</div>
 </div>
 
 <div class="grain"></div>
@@ -69,8 +69,8 @@ waitForGlobeReady:true
 .bumpImageUrl("https://cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png")
 .backgroundColor("#000000")
 .showAtmosphere(true)
-.atmosphereColor("#ffffff")
-.atmosphereAltitude(.05)
+.atmosphereColor("#cbd3dc")
+.atmosphereAltitude(.018)
 .pointOfView({
 lat:8,
 lng:20,
@@ -79,53 +79,89 @@ altitude:4.55
 
 const controls=globe.controls();
 controls.autoRotate=true;
-controls.autoRotateSpeed=.1;
+controls.autoRotateSpeed=.12;
 controls.enableZoom=false;
 controls.enablePan=false;
 controls.enableRotate=true;
 controls.enableDamping=true;
-controls.dampingFactor=.025;
+controls.dampingFactor=.035;
+
+const scene=globe.scene();
+const camera=globe.camera();
+
+let material;
+
+function setupGlobe(){
+material=globe.globeMaterial();
+if(!material)return;
+
+material.color.setRGB(.22,.24,.27);
+material.emissive.setRGB(.008,.012,.018);
+material.emissiveIntensity=.12;
+material.specular.setRGB(.55,.6,.68);
+material.shininess=180;
+material.bumpScale=2.8;
+material.flatShading=false;
+material.transparent=true;
+material.opacity=.97;
+material.needsUpdate=true;
+}
+
+setTimeout(setupGlobe,1500);
 
 const music=document.getElementById("music");
 music.volume=1;
 
 let audioContext;
 let source;
+let analyser;
+let bass;
+let mid;
 let compressor;
 let gain;
-let analyser;
 let frequencyData;
-
-let bass=0;
+let bassValue=0;
 let smoothBass=0;
-let impact=0;
-let lastBass=0;
-let rotationBoost=0;
+let initialized=false;
 
 function setupAudio(){
-if(audioContext)return;
+if(initialized)return;
+initialized=true;
 
 audioContext=new(window.AudioContext||window.webkitAudioContext)();
 
 source=audioContext.createMediaElementSource(music);
 
+bass=audioContext.createBiquadFilter();
+bass.type="lowshelf";
+bass.frequency.value=100;
+bass.gain.value=7;
+
+mid=audioContext.createBiquadFilter();
+mid.type="peaking";
+mid.frequency.value=2200;
+mid.Q.value=.8;
+mid.gain.value=1.5;
+
 compressor=audioContext.createDynamicsCompressor();
-compressor.threshold.value=-14;
-compressor.knee.value=8;
-compressor.ratio.value=12;
-compressor.attack.value=.001;
-compressor.release.value=.08;
+compressor.threshold.value=-20;
+compressor.knee.value=10;
+compressor.ratio.value=4;
+compressor.attack.value=.004;
+compressor.release.value=.15;
 
 gain=audioContext.createGain();
-gain.gain.value=2.8;
+gain.gain.value=1.2;
 
 analyser=audioContext.createAnalyser();
-analyser.fftSize=2048;
+analyser.fftSize=512;
 analyser.smoothingTimeConstant=.72;
 
 frequencyData=new Uint8Array(analyser.frequencyBinCount);
 
 source
+.connect(bass)
+.connect(mid)
 .connect(compressor)
 .connect(gain)
 .connect(analyser)
@@ -147,11 +183,6 @@ document.addEventListener("keydown",startAudio,{once:true});
 
 window.addEventListener("load",()=>{
 setupAudio();
-
-if(audioContext.state==="suspended"){
-audioContext.resume();
-}
-
 music.play().catch(()=>{});
 });
 
@@ -160,93 +191,83 @@ if(!analyser)return 0;
 
 analyser.getByteFrequencyData(frequencyData);
 
-const nyquist=audioContext.sampleRate/2;
-
-const lowBin=Math.floor((20/nyquist)*frequencyData.length);
-const highBin=Math.floor((180/nyquist)*frequencyData.length);
-
 let total=0;
 let count=0;
 
-for(let i=lowBin;i<=highBin;i++){
-const value=frequencyData[i]/255;
-total+=value*value;
+for(let i=1;i<16;i++){
+total+=frequencyData[i];
 count++;
 }
 
-return Math.sqrt(total/count);
+const raw=total/count/255;
+
+smoothBass+=(raw-smoothBass)*.16;
+
+return Math.min(1,smoothBass*2.25);
 }
+
+let animationTime=0;
 
 function animate(){
 requestAnimationFrame(animate);
 
-const rawBass=getBass();
+animationTime+=.01;
 
-smoothBass+=(rawBass-smoothBass)*.12;
+bassValue=getBass();
 
-const bassRise=smoothBass-lastBass;
-lastBass=smoothBass;
-
-if(bassRise>.025){
-impact=Math.min(1,impact+bassRise*7);
-rotationBoost=Math.min(1,rotationBoost+bassRise*5);
-}
-
-impact*=.88;
-rotationBoost*=.94;
-
-const material=globe.globeMaterial();
+const pulse=Math.pow(bassValue,1.35);
+const breathing=(Math.sin(animationTime*.7)+1)*.5;
 
 if(material){
-const bassPower=Math.min(1,smoothBass*1.65);
-const hit=Math.min(1,impact);
+material.emissiveIntensity=.08+(pulse*.7);
+material.shininess=180+(pulse*850);
+material.bumpScale=2.5+(pulse*4);
 
-const scale=1+(bassPower*.045)+(hit*.065);
-
-globe.scene().scale.set(scale,scale,scale);
+const brightness=.2+(pulse*.18);
 
 material.color.setRGB(
-.96+(bassPower*.04),
-.96+(bassPower*.04),
-.98+(bassPower*.02)
+brightness,
+brightness*1.03,
+brightness*1.08
 );
-
-material.emissive.setRGB(
-.45+(bassPower*.55),
-.48+(bassPower*.52),
-.52+(bassPower*.48)
-);
-
-material.emissiveIntensity=
-2+
-bassPower*5+
-hit*7;
-
-material.shininess=
-2500+
-bassPower*6500+
-hit*12000;
-
-material.bumpScale=
-7+
-bassPower*8+
-hit*10;
-
-material.specular.setRGB(1,1,1);
 }
 
-globe.atmosphereAltitude(
-.05+
-smoothBass*.055+
-impact*.08
+const baseAltitude=4.55;
+camera.position.y+=0;
+
+const targetAltitude=baseAltitude-(pulse*.42);
+const currentAltitude=globe.pointOfView().altitude;
+
+globe.pointOfView({
+lat:8,
+lng:20,
+altitude:currentAltitude+(targetAltitude-currentAltitude)*.08
+});
+
+controls.autoRotateSpeed=.12+(pulse*.65);
+
+const atmosphere=.018+(pulse*.045);
+globe.atmosphereAltitude(atmosphere);
+
+if(scene){
+const s=1+(pulse*.035)+(breathing*.008);
+scene.scale.lerp(
+{ x:s,y:s,z:s },
+.08
 );
+}
 
-globe.atmosphereColor("#ffffff");
+const title=document.querySelector(".title");
 
-controls.autoRotateSpeed=
-.1+
-smoothBass*.8+
-rotationBoost*2.5;
+if(title){
+const glow=10+(pulse*65);
+const opacity=.86+(pulse*.12);
+
+title.style.opacity=opacity;
+title.style.textShadow=
+`0 0 ${glow}px rgba(255,255,255,${.08+pulse*.16}),
+0 0 ${glow*2.5}px rgba(255,255,255,${.025+pulse*.08})`;
+}
 }
 
 animate();
