@@ -12,12 +12,8 @@ html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#000}
 body{font-family:Arial,Helvetica,sans-serif;color:#fff}
 #globeViz{position:fixed;inset:0}
 canvas{outline:none}
-.overlay{position:fixed;inset:0;pointer-events:none;z-index:10}
+.overlay{position:fixed;inset:0;pointer-events:none;z-index:10;display:flex;align-items:center;justify-content:center}
 .title{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
 font-size:clamp(42px,6vw,86px);
 font-weight:300;
 letter-spacing:.32em;
@@ -51,12 +47,12 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 <div class="vignette"></div>
 
 <div class="overlay">
-<div class="title">REBRANDED</div>
+<div class="title" id="titleEl">REBRANDED</div>
 </div>
 
 <div class="grain"></div>
 
-<audio id="music" src="/Bulletproof.V16%20CRAVE%20EXCLUSIVE.mp3" autoplay loop preload="auto"></audio>
+<audio id="music" src="Bulletproof_V16_CRAVE_EXCLUSIVE.mp3" autoplay loop preload="auto"></audio>
 
 <script>
 const container=document.getElementById("globeViz");
@@ -233,7 +229,6 @@ brightness*1.08
 }
 
 const baseAltitude=4.55;
-camera.position.y+=0;
 
 const targetAltitude=baseAltitude-(pulse*.42);
 const currentAltitude=globe.pointOfView().altitude;
@@ -257,7 +252,7 @@ scene.scale.lerp(
 );
 }
 
-const title=document.querySelector(".title");
+const title=document.getElementById("titleEl");
 
 if(title){
 const glow=10+(pulse*65);
