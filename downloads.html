@@ -75,11 +75,14 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 </style>
 </head>
 <body>
+
 <div id="globeViz"></div>
 <div class="vignette"></div>
+
 <div class="overlay">
-<div class="title">BULLETPROOF YZY</div>
+<div class="title">REBRANDED</div>
 </div>
+
 <div class="grain"></div>
 
 <audio id="music" src="/Bulletproof.V16%20CRAVE%20EXCLUSIVE.mp3" autoplay loop preload="auto"></audio>
@@ -104,6 +107,7 @@ altitude:4.55
 },2400);
 
 const controls=globe.controls();
+
 controls.autoRotate=true;
 controls.autoRotateSpeed=.1;
 controls.enableZoom=false;
@@ -114,11 +118,12 @@ controls.dampingFactor=.025;
 
 function setupCrystal(){
 const material=globe.globeMaterial();
+
 if(!material)return;
 
 material.color.setRGB(.82,.86,.9);
 material.emissive.setRGB(.025,.035,.05);
-material.emissiveIntensity=.55;
+material.emissiveIntensity=.28;
 material.specular.setRGB(1,1,1);
 material.shininess=1000;
 material.bumpScale=6;
@@ -139,6 +144,7 @@ const material=globe.globeMaterial();
 
 if(material){
 const pulse=(Math.sin(time)+1)/2;
+
 material.emissiveIntensity=.2+(pulse*.3);
 material.shininess=700+(pulse*700);
 material.bumpScale=4.5+(pulse*2);
@@ -161,6 +167,7 @@ music.volume=1;
 let audioContext;
 let source;
 let bass;
+let subBass;
 let mid;
 let compressor;
 let gain;
@@ -172,28 +179,34 @@ audioContext=new (window.AudioContext||window.webkitAudioContext)();
 
 source=audioContext.createMediaElementSource(music);
 
+subBass=audioContext.createBiquadFilter();
+subBass.type="lowshelf";
+subBass.frequency.value=65;
+subBass.gain.value=12;
+
 bass=audioContext.createBiquadFilter();
 bass.type="lowshelf";
-bass.frequency.value=120;
-bass.gain.value=9;
+bass.frequency.value=105;
+bass.gain.value=15;
 
 mid=audioContext.createBiquadFilter();
 mid.type="peaking";
-mid.frequency.value=2500;
+mid.frequency.value=2200;
 mid.Q.value=.8;
-mid.gain.value=2;
+mid.gain.value=3;
 
 compressor=audioContext.createDynamicsCompressor();
-compressor.threshold.value=-18;
-compressor.knee.value=8;
-compressor.ratio.value=5;
-compressor.attack.value=.003;
-compressor.release.value=.12;
+compressor.threshold.value=-24;
+compressor.knee.value=10;
+compressor.ratio.value=8;
+compressor.attack.value=.002;
+compressor.release.value=.08;
 
 gain=audioContext.createGain();
-gain.gain.value=1.35;
+gain.gain.value=2.2;
 
 source
+.connect(subBass)
 .connect(bass)
 .connect(mid)
 .connect(compressor)
@@ -217,8 +230,13 @@ document.addEventListener("keydown",startAudio,{once:true});
 window.addEventListener("load",()=>{
 setupAudio();
 
+if(audioContext.state==="suspended"){
+audioContext.resume();
+}
+
 music.play().catch(()=>{});
 });
 </script>
+
 </body>
 </html>
